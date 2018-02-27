@@ -1,6 +1,6 @@
 book_filename: blogdown
 repo: https://github.com/mamaciasq/libro_blogdown.git
-output_dir: _book
+output_dir: _docs
 clean: [packages.bib, blogdown.bbl]
 language:
   label:
