@@ -1,5 +1,5 @@
 book_filename: blogdown
-repo: https://github.com/mamaciasq/libro_blogdown.git
+repo: https://github.com/mamaciasq/libro_blogdown
 output_dir: "docs"
 clean: [packages.bib, blogdown.bbl]
 language:

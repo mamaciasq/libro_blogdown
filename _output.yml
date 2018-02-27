@@ -9,7 +9,7 @@ bookdown::gitbook:
       after: |
         <li><a href="https://bookdown.org" target="_blank">Publicado con bookdown</a></li>
     download: [pdf, epub]
-    edit: https://github.com/rstudio/blogdown/edit/master/docs/%s
+    edit: https://github.com/mamaciasq/libro_blogdown%s
     sharing:
       github: yes
       facebook: no
