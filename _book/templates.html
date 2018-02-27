@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>blogdown: Creating Websites with R Markdown</title>
+  <meta name="description" content="A guide to creating websites with R Markdown and the R package blogdown.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="blogdown: Creating Websites with R Markdown" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/yihui/blogdown/" />
+  <meta property="og:image" content="https://bookdown.org/yihui/blogdown/images/cover.png" />
+  <meta property="og:description" content="A guide to creating websites with R Markdown and the R package blogdown." />
+  <meta name="github-repo" content="rstudio/blogdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="blogdown: Creating Websites with R Markdown" />
+  
+  <meta name="twitter:description" content="A guide to creating websites with R Markdown and the R package blogdown." />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/blogdown/images/cover.png" />
+
+<meta name="author" content="Yihui Xie, Amber Thomas, Alison Presmanes Hill">
+
+
+<meta name="date" content="2018-02-27">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="themes.html">
+<link rel="next" href="custom-layouts.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Creación de sitios web con R Markdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="structure-of-the-book.html"><a href="structure-of-the-book.html"><i class="fa fa-check"></i>Structure of the book</a></li>
+<li class="chapter" data-level="" data-path="software-info.html"><a href="software-info.html"><i class="fa fa-check"></i>Software information and conventions</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>About the Authors</a><ul>
+<li class="chapter" data-level="" data-path="yihui-xie.html"><a href="yihui-xie.html"><i class="fa fa-check"></i>Yihui Xie</a></li>
+<li class="chapter" data-level="" data-path="amber-thomas.html"><a href="amber-thomas.html"><i class="fa fa-check"></i>Amber Thomas</a></li>
+<li class="chapter" data-level="" data-path="alison-presmanes-hill.html"><a href="alison-presmanes-hill.html"><i class="fa fa-check"></i>Alison Presmanes Hill</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="get-started.html"><a href="get-started.html"><i class="fa fa-check"></i><b>1</b> Get Started</a><ul>
+<li class="chapter" data-level="1.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>1.1</b> Installation</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="installation.html"><a href="installation.html#update"><i class="fa fa-check"></i><b>1.1.1</b> Update</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="a-quick-example.html"><a href="a-quick-example.html"><i class="fa fa-check"></i><b>1.2</b> A quick example</a></li>
+<li class="chapter" data-level="1.3" data-path="rstudio-ide.html"><a href="rstudio-ide.html"><i class="fa fa-check"></i><b>1.3</b> RStudio IDE</a></li>
+<li class="chapter" data-level="1.4" data-path="global-options.html"><a href="global-options.html"><i class="fa fa-check"></i><b>1.4</b> Global options</a></li>
+<li class="chapter" data-level="1.5" data-path="output-format.html"><a href="output-format.html"><i class="fa fa-check"></i><b>1.5</b> R Markdown vs. Markdown</a></li>
+<li class="chapter" data-level="1.6" data-path="other-themes.html"><a href="other-themes.html"><i class="fa fa-check"></i><b>1.6</b> Other themes</a></li>
+<li class="chapter" data-level="1.7" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>1.7</b> A recommended workflow</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hugo.html"><a href="hugo.html"><i class="fa fa-check"></i><b>2</b> Hugo</a><ul>
+<li class="chapter" data-level="2.1" data-path="static-sites.html"><a href="static-sites.html"><i class="fa fa-check"></i><b>2.1</b> Static sites and Hugo</a></li>
+<li class="chapter" data-level="2.2" data-path="configuration.html"><a href="configuration.html"><i class="fa fa-check"></i><b>2.2</b> Configuration</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="configuration.html"><a href="configuration.html#toml-syntax"><i class="fa fa-check"></i><b>2.2.1</b> TOML Syntax</a></li>
+<li class="chapter" data-level="2.2.2" data-path="configuration.html"><a href="configuration.html#options"><i class="fa fa-check"></i><b>2.2.2</b> Options</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="content.html"><a href="content.html"><i class="fa fa-check"></i><b>2.3</b> Content</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="content.html"><a href="content.html#yaml-metadata"><i class="fa fa-check"></i><b>2.3.1</b> YAML metadata</a></li>
+<li class="chapter" data-level="2.3.2" data-path="content.html"><a href="content.html#body"><i class="fa fa-check"></i><b>2.3.2</b> Body</a></li>
+<li class="chapter" data-level="2.3.3" data-path="content.html"><a href="content.html#shortcode"><i class="fa fa-check"></i><b>2.3.3</b> Shortcode</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="themes.html"><a href="themes.html"><i class="fa fa-check"></i><b>2.4</b> Themes</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="themes.html"><a href="themes.html#the-default-theme"><i class="fa fa-check"></i><b>2.4.1</b> The default theme</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="templates.html"><a href="templates.html"><i class="fa fa-check"></i><b>2.5</b> Templates</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="templates.html"><a href="templates.html#a-minimal-example"><i class="fa fa-check"></i><b>2.5.1</b> A minimal example</a></li>
+<li class="chapter" data-level="2.5.2" data-path="templates.html"><a href="templates.html#how-to"><i class="fa fa-check"></i><b>2.5.2</b> Implementing more features</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="custom-layouts.html"><a href="custom-layouts.html"><i class="fa fa-check"></i><b>2.6</b> Custom layouts</a></li>
+<li class="chapter" data-level="2.7" data-path="static-files.html"><a href="static-files.html"><i class="fa fa-check"></i><b>2.7</b> Static files</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="deployment.html"><a href="deployment.html"><i class="fa fa-check"></i><b>3</b> Deployment</a><ul>
+<li class="chapter" data-level="3.1" data-path="netlify.html"><a href="netlify.html"><i class="fa fa-check"></i><b>3.1</b> Netlify</a></li>
+<li class="chapter" data-level="3.2" data-path="updog.html"><a href="updog.html"><i class="fa fa-check"></i><b>3.2</b> Updog</a></li>
+<li class="chapter" data-level="3.3" data-path="github-pages.html"><a href="github-pages.html"><i class="fa fa-check"></i><b>3.3</b> GitHub Pages</a></li>
+<li class="chapter" data-level="3.4" data-path="travis-github.html"><a href="travis-github.html"><i class="fa fa-check"></i><b>3.4</b> Travis + GitHub</a></li>
+<li class="chapter" data-level="3.5" data-path="gitlab-pages.html"><a href="gitlab-pages.html"><i class="fa fa-check"></i><b>3.5</b> GitLab Pages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="migration.html"><a href="migration.html"><i class="fa fa-check"></i><b>4</b> Migration</a><ul>
+<li class="chapter" data-level="4.1" data-path="from-jekyll.html"><a href="from-jekyll.html"><i class="fa fa-check"></i><b>4.1</b> From Jekyll</a></li>
+<li class="chapter" data-level="4.2" data-path="from-wordpress.html"><a href="from-wordpress.html"><i class="fa fa-check"></i><b>4.2</b> From WordPress</a></li>
+<li class="chapter" data-level="4.3" data-path="from-other-systems.html"><a href="from-other-systems.html"><i class="fa fa-check"></i><b>4.3</b> From other systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="other-generators.html"><a href="other-generators.html"><i class="fa fa-check"></i><b>5</b> Other Generators</a><ul>
+<li class="chapter" data-level="5.1" data-path="jekyll.html"><a href="jekyll.html"><i class="fa fa-check"></i><b>5.1</b> Jekyll</a></li>
+<li class="chapter" data-level="5.2" data-path="hexo.html"><a href="hexo.html"><i class="fa fa-check"></i><b>5.2</b> Hexo</a></li>
+<li class="chapter" data-level="5.3" data-path="rmd-website.html"><a href="rmd-website.html"><i class="fa fa-check"></i><b>5.3</b> Default site generator in rmarkdown</a></li>
+<li class="chapter" data-level="5.4" data-path="pkgdown.html"><a href="pkgdown.html"><i class="fa fa-check"></i><b>5.4</b> pkgdown</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a></li>
+<li class="chapter" data-level="B" data-path="website-basics.html"><a href="website-basics.html"><i class="fa fa-check"></i><b>B</b> Website Basics</a><ul>
+<li class="chapter" data-level="B.1" data-path="html.html"><a href="html.html"><i class="fa fa-check"></i><b>B.1</b> HTML</a></li>
+<li class="chapter" data-level="B.2" data-path="css.html"><a href="css.html"><i class="fa fa-check"></i><b>B.2</b> CSS</a></li>
+<li class="chapter" data-level="B.3" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>B.3</b> JavaScript</a></li>
+<li class="chapter" data-level="B.4" data-path="useful-resources.html"><a href="useful-resources.html"><i class="fa fa-check"></i><b>B.4</b> Useful resources</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="useful-resources.html"><a href="useful-resources.html#file-optimization"><i class="fa fa-check"></i><b>B.4.1</b> File optimization</a></li>
+<li class="chapter" data-level="B.4.2" data-path="useful-resources.html"><a href="useful-resources.html#helping-people-find-your-site"><i class="fa fa-check"></i><b>B.4.2</b> Helping people find your site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="domain-name.html"><a href="domain-name.html"><i class="fa fa-check"></i><b>C</b> Domain Name</a><ul>
+<li class="chapter" data-level="C.1" data-path="registration.html"><a href="registration.html"><i class="fa fa-check"></i><b>C.1</b> Registration</a></li>
+<li class="chapter" data-level="C.2" data-path="nameservers.html"><a href="nameservers.html"><i class="fa fa-check"></i><b>C.2</b> Nameservers</a></li>
+<li class="chapter" data-level="C.3" data-path="dns-records.html"><a href="dns-records.html"><i class="fa fa-check"></i><b>C.3</b> DNS records</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="advanced-topics.html"><a href="advanced-topics.html"><i class="fa fa-check"></i><b>D</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="D.1" data-path="more-global-options.html"><a href="more-global-options.html"><i class="fa fa-check"></i><b>D.1</b> More global options</a></li>
+<li class="chapter" data-level="D.2" data-path="livereload.html"><a href="livereload.html"><i class="fa fa-check"></i><b>D.2</b> LiveReload</a></li>
+<li class="chapter" data-level="D.3" data-path="local-preview.html"><a href="local-preview.html"><i class="fa fa-check"></i><b>D.3</b> Building a website for local preview</a></li>
+<li class="chapter" data-level="D.4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>D.4</b> Functions in the blogdown package</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="functions.html"><a href="functions.html#exported-functions"><i class="fa fa-check"></i><b>D.4.1</b> Exported functions</a></li>
+<li class="chapter" data-level="D.4.2" data-path="functions.html"><a href="functions.html#non-exported-functions"><i class="fa fa-check"></i><b>D.4.2</b> Non-exported functions</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="dep-path.html"><a href="dep-path.html"><i class="fa fa-check"></i><b>D.5</b> Paths of figures and other dependencies</a></li>
+<li class="chapter" data-level="D.6" data-path="html-widgets.html"><a href="html-widgets.html"><i class="fa fa-check"></i><b>D.6</b> HTML widgets</a></li>
+<li class="chapter" data-level="D.7" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>D.7</b> Version control</a></li>
+<li class="chapter" data-level="D.8" data-path="default-template.html"><a href="default-template.html"><i class="fa fa-check"></i><b>D.8</b> The default HTML template</a></li>
+<li class="chapter" data-level="D.9" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>D.9</b> Different building methods</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="personal-experience.html"><a href="personal-experience.html"><i class="fa fa-check"></i><b>E</b> Personal Experience</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">blogdown: Creating Websites with R Markdown</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="templates" class="section level2">
+<h2><span class="header-section-number">2.5</span> Templates</h2>
+<p>A Hugo theme consists of two major components: templates, and web assets. The former is essential, and tells Hugo how to render a page.<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a> The latter is optional but also important. It typically consists of CSS and JavaScript files, as well as other assets like images and videos. These assets determine the appearance and functionality of your website, and some may be embedded in the content of your web pages.</p>
+<p>You can learn more about Hugo templates from the official documentation (<a href="https://gohugo.io/templates/overview/" class="uri">https://gohugo.io/templates/overview/</a>). There are a great many different types of templates. To make it easier for you to master the key ideas, I created a very minimal Hugo theme, which covers most functionalities that an average user may need, but the total number of lines is only about 150, so we can talk about all the source code of this theme in the following subsection.</p>
+<div id="a-minimal-example" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> A minimal example</h3>
+<p><a href="https://github.com/yihui/hugo-xmin">XMin</a> is a Hugo theme I wrote from scratch in about 12 hours. Roughly half an hour was spent on templates, 3.5 hours were spent on tweaking the CSS styles, and 8 hours were spent on the documentation (<a href="https://xmin.yihui.name" class="uri">https://xmin.yihui.name</a>). I think this may be a representative case of how much time you would spend on each part when designing a theme. It is perhaps our nature to spend much more time on cosmetic stuff like CSS than essential stuff like templates. Meanwhile, coding is often easier than documentation.</p>
+<p>We will show the source code of the XMin theme. Because the theme may be updated occasionally in the future, you may follow this link to obtain a fixed version that we will talk about in this section: <a href="https://github.com/yihui/hugo-xmin/tree/4bb305" class="uri">https://github.com/yihui/hugo-xmin/tree/4bb305</a>. Below is a tree view of all files and directories in the theme:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">hugo-xmin/</span>
+├── <span class="ex">LICENSE.md</span>
+├── <span class="ex">README.md</span>
+├── <span class="ex">archetypes</span>
+│   └── <span class="ex">default.md</span>
+├── <span class="ex">layouts</span>
+│   ├── <span class="ex">404.html</span>
+│   ├── <span class="ex">_default</span>
+│   │   ├── <span class="ex">list.html</span>
+│   │   ├── <span class="ex">single.html</span>
+│   │   └── <span class="ex">terms.html</span>
+│   └── <span class="ex">partials</span>
+│       ├── <span class="ex">foot_custom.html</span>
+│       ├── <span class="ex">footer.html</span>
+│       ├── <span class="ex">head_custom.html</span>
+│       └── <span class="ex">header.html</span>
+├── <span class="ex">static</span>
+│   └── <span class="ex">css</span>
+│       ├── <span class="ex">fonts.css</span>
+│       └── <span class="ex">style.css</span>
+└── <span class="ex">exampleSite</span>
+    ├── <span class="ex">config.toml</span>
+    ├── <span class="ex">content</span>
+    │   ├── <span class="ex">_index.md</span>
+    │   ├── <span class="ex">about.md</span>
+    │   ├── <span class="ex">note</span>
+    │   │   ├── <span class="ex">2017-06-13-a-quick-note.md</span>
+    │   │   └── <span class="ex">2017-06-14-another-note.md</span>
+    │   └── <span class="ex">post</span>
+    │       ├── <span class="ex">2015-07-23-lorem-ipsum.md</span>
+    │       └── <span class="ex">2016-02-14-hello-markdown.md</span>
+    ├── <span class="ex">layouts</span>
+    │   └── <span class="ex">partials</span>
+    │       └── <span class="ex">foot_custom.html</span>
+    └── <span class="ex">public</span>
+        └── <span class="ex">...</span></code></pre></div>
+<p><code>LICENSE.md</code> and <code>README.md</code> are not required components of a theme, but you definitely should choose a license for your source code so that other people can properly use your code, and a <code>README</code> can be the brief documentation of your software.</p>
+<p>The file <code>archetypes/default.md</code> defines the default template based on which users can create new posts. In this theme, <code>default.md</code> only provided empty YAML metadata:</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
+<span class="ot">---</span></code></pre></div>
+<p>The most important directories of a theme are <code>layouts/</code> and <code>static/</code>. HTML templates are stored under <code>layouts/</code>, and assets are stored under <code>static/</code>.</p>
+<p>To understand <code>layouts/</code>, you must know some basics about HTML (see Section <a href="html.html#html">B.1</a>) because the templates under this directory are mostly HTML documents or fragments. There are many possible types of subdirectories under <code>layouts/</code>, but we are only going to introduce two here: <code>_default/</code> and <code>partials/</code>.</p>
+<ul>
+<li><p>The <code>_default/</code> directory is where you put the default templates for your web pages. In the XMin theme, we have three templates: <code>single.html</code>, <code>list.html</code>, and <code>terms.html</code>.</p>
+<ul>
+<li><p><code>single.html</code> is a template for rendering single pages. A single page basically corresponds to a Markdown document under <code>content/</code>, and it contains both the (YAML) metadata and content. Typically we want to render the page title, author, date, and the content. Below is the source code of XMin’s <code>single.html</code>:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ partial &quot;header.html&quot; . }}
+<span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;article-meta&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;h1&gt;&lt;span</span><span class="ot"> class=</span><span class="st">&quot;title&quot;</span><span class="kw">&gt;</span>{{ .Title }}<span class="kw">&lt;/span&gt;&lt;/h1&gt;</span>
+{{ with .Params.author }}
+<span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;author&quot;</span><span class="kw">&gt;</span>{{ . }}<span class="kw">&lt;/h2&gt;</span>
+{{ end }}
+{{ if .Params.date }}
+<span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>{{ .Date.Format &quot;2006/01/02&quot; }}<span class="kw">&lt;/h2&gt;</span>
+{{ end }}
+<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;main&gt;</span>
+{{ .Content }}
+<span class="kw">&lt;/main&gt;</span>
+
+{{ partial &quot;footer.html&quot; . }}</code></pre></div>
+<p>You see a lot of pairs of double curly braces <code>{{}}</code>, and that is how you program the templates using Hugo’s variables and functions.</p>
+<p>The template starts with a partial template <code>header.html</code>, for which you will see the source code soon. For now, you can imagine it as all the HTML tags before the body of your page (e.g., <code>&lt;html&gt;&lt;head&gt;</code>). Partial templates are mainly for reusing HTML code. For example, all HTML pages may share very similar <code>&lt;head&gt;&lt;/head&gt;</code> tags, and you can factor out the common parts into partial templates.</p>
+<p>The metadata of a page is included in a <code>&lt;div&gt;</code> element with the class <code>article-meta</code>. We recommend that you assign classes to HTML elements when designing templates, so that it will be easier to apply CSS styles to these elements using class names. In a template, you have access to many variables provided by Hugo, e.g., the <code>.Title</code> variable stores the value of the page title, and we write the title in a <code>&lt;span&gt;</code> in a first-level header <code>&lt;h1&gt;</code>. Similarly, the author and date are written in <code>&lt;h2&gt;</code>, but only if they are provided in the YAML metadata. The syntax <code>{{ with FOO }}{{ . }}{{ end }}</code> is a shorthand of <code>{{if FOO }}{{ FOO }}{{ end }}</code>, i.e., it saves you the effort of typing the expression <code>FOO</code> twice by using <code>{{ . }}</code>. The method <code>.Format</code> can be applied to a date object, and in this theme, we format dates in the form <code>YYYY/mm/dd</code> (<code>2006/01/02</code> is the way to specify the format in Go).</p>
+<p>Then we show the content of a page, which is stored in the variable <code>.Content</code>. The content is wrapped in a semantic HTML tag <code>&lt;main&gt;</code>.</p>
+<p>The template is finished after we include another partial template <code>footer.html</code> (source code to be shown shortly).</p>
+<p>To make it easier to understand how a template works, we show a minimal example post below:</p>
+<div class="sourceCode"><pre class="sourceCode markdown"><code class="sourceCode markdown">---
+title: Hello World
+author: Frida Gomam
+date: 2017-06-19
+---
+
+A single paragraph.</code></pre></div>
+<p>Using the template <code>single.html</code>, it will be converted to an HTML page with source code that looks more or less like this (with the header and footer omitted):</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;article-meta&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;h1&gt;&lt;span</span><span class="ot"> class=</span><span class="st">&quot;title&quot;</span><span class="kw">&gt;</span>Hello World<span class="kw">&lt;/span&gt;&lt;/h1&gt;</span>
+  <span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;author&quot;</span><span class="kw">&gt;</span>Frida Gomam<span class="kw">&lt;/h2&gt;</span>
+  <span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>2017/06/19<span class="kw">&lt;/h2&gt;</span>
+<span class="kw">&lt;/div&gt;</span>
+
+<span class="kw">&lt;main&gt;</span>
+  <span class="kw">&lt;p&gt;</span>A single paragraph.<span class="kw">&lt;/p&gt;</span>
+<span class="kw">&lt;/main&gt;</span></code></pre></div>
+<p>For a full example of a single page, you may see <a href="https://xmin.yihui.name/about/" class="uri">https://xmin.yihui.name/about/</a>.</p></li>
+<li><p><code>list.html</code> is the template for rendering lists of pages, such as a list of blog posts, or a list of pages within a category or tag. Here is its source code:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ partial &quot;header.html&quot; . }}
+
+{{if not .IsHome }}
+<span class="kw">&lt;h1&gt;</span>{{ .Title }}<span class="kw">&lt;/h1&gt;</span>
+{{ end }}
+
+{{ .Content }}
+
+<span class="kw">&lt;ul&gt;</span>
+  {{ range (where .Data.Pages &quot;Section&quot; &quot;!=&quot; &quot;&quot;) }}
+  <span class="kw">&lt;li&gt;</span>
+    <span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>{{ .Date.Format &quot;2006/01/02&quot; }}<span class="kw">&lt;/span&gt;</span>
+    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{{ .URL }}&quot;</span><span class="kw">&gt;</span>{{ .Title }}<span class="kw">&lt;/a&gt;</span>
+  <span class="kw">&lt;/li&gt;</span>
+  {{ end }}
+<span class="kw">&lt;/ul&gt;</span>
+
+{{ partial &quot;footer.html&quot; . }}</code></pre></div>
+<p>Again, it uses two partial templates <code>header.html</code> and <code>footer.html</code>. The expression <code>{{if not .IsHome }}</code> means, if this list is not the home page, show the page title. This is because I do not want to display the title on the homepage. It is just my personal preference. You can certainly display the title in <code>&lt;h1&gt;</code> on the home page if you want.</p>
+<p>The <code>{{ .Content }}</code> shows the content of the list. Please note that typically <code>.Content</code> is empty, which may be surprising. This is because a list page is not generated from a source Markdown file by default. However, there is an exception. When you write a special Markdown file <code>_index.md</code> under a directory corresponding to the list name, the <code>.Content</code> of the list will be the content of this Markdown file. For example, you can define the content of your homepage in <code>content/_index.md</code>, and the content of the post list page under <code>content/post/_index.md</code>.</p>
+<p>Next we generate the list using a loop (<code>range</code>) through all pages filtered by the condition that the section of a page should not be empty. “Section” in Hugo means the first-level subdirectory name under <code>content/</code>. For example, the section of <code>content/post/foo.md</code> is <code>post</code>. Therefore the filter means that we will list all pages under subdirectories of <code>content/</code>. This will exclude pages under the root <code>content/</code> directory, such as <code>content/about.md</code>.</p>
+<p>Please note that the variable <code>.Data</code> is dynamic, and its value changes according to the specific list you want to generate. For example, the list page <a href="https://xmin.yihui.name/post/" class="uri">https://xmin.yihui.name/post/</a> only contains pages under <code>content/post/</code>, and <a href="https://xmin.yihui.name/note/" class="uri">https://xmin.yihui.name/note/</a> only contains pages under <code>content/note/</code>. These list pages are automatically generated by Hugo, and you do not need to explicitly loop through the sections <code>post</code> and <code>note</code>. That is, a single template <code>list.html</code> will generate multiple lists of pages according to the sections and taxonomy terms (e.g., categories and tags) you have on your website.</p>
+<p>The list items are represented by the HTML tags <code>&lt;li&gt;</code> in <code>&lt;ul&gt;</code>. Each item consists of the date, link, and title of a page. You may see <a href="https://xmin.yihui.name/post/" class="uri">https://xmin.yihui.name/post/</a> for a full example of a list page.</p></li>
+<li><p><code>terms.html</code> is the template for the home page of taxonomy terms. For example, you can use it to generate the full list of categories or tags. The source code is below:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ partial &quot;header.html&quot; . }}
+
+<span class="kw">&lt;h1&gt;</span>{{ .Title }}<span class="kw">&lt;/h1&gt;</span>
+
+<span class="kw">&lt;ul</span><span class="ot"> class=</span><span class="st">&quot;terms&quot;</span><span class="kw">&gt;</span>
+  {{ range $key, $value := .Data.Terms }}
+  <span class="kw">&lt;li&gt;</span>
+    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&#39;{{ (print &quot;/&quot; $.Data.Plural &quot;/&quot; $key) | relURL }}&#39;</span><span class="kw">&gt;</span>
+      {{ $key }}
+    <span class="kw">&lt;/a&gt;</span>
+    ({{ len $value }})
+  <span class="kw">&lt;/li&gt;</span>
+  {{ end }}
+<span class="kw">&lt;/ul&gt;</span>
+
+{{ partial &quot;footer.html&quot; . }}</code></pre></div>
+<p>Similar to <code>list.html</code>, it also uses a loop. The variable <code>.Data.Terms</code> stores all terms under a taxonomy, e.g., all category names. You can think of it as a named list in R (called a <code>map</code> in Go), with the names being the terms and the values being lists of pages. The variable <code>$key</code> denotes the term and <code>$value</code> denotes the list of pages associated with this term. What we render in each <code>&lt;li&gt;</code> is a link to the term page as well as the count of posts that used this term (<code>len</code> is a Go function that returns the length of an object).</p>
+<p>Hugo automatically renders all taxonomy pages, and the path names are the plural forms of the taxonomies, e.g., <a href="https://xmin.yihui.name/categories/" class="uri">https://xmin.yihui.name/categories/</a> and <a href="https://xmin.yihui.name/tags/" class="uri">https://xmin.yihui.name/tags/</a>. That is the meaning of <code>.Data.Plural</code>. The leading <code>$</code> is required because we are inside a loop, and need to access variables from the outside scope. The link of the term is passed to the Hugo function <code>relURL</code> via a pipe <code>|</code> to make it relative, which is good practice because relative links are more portable (independent of the domain name).</p></li>
+</ul></li>
+<li><p>The <code>partials/</code> directory is the place to put the HTML fragments to be reused by other templates via the <code>partial</code> function. We have four partial templates under this directory:</p>
+<ul>
+<li><p><code>header.html</code> main defines the <code>&lt;head&gt;</code> tag and the navigation menu in the <code>&lt;nav&gt;</code> tag.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;{{ .Site.LanguageCode }}&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;head&gt;</span>
+    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;title&gt;</span>{{ .Title }} | {{ .Site.Title }}<span class="kw">&lt;/title&gt;</span>
+    <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&#39;{{ &quot;/css/style.css&quot; | relURL }}&#39;</span>
+<span class="ot">      rel=</span><span class="st">&quot;stylesheet&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&#39;{{ &quot;/css/fonts.css&quot; | relURL }}&#39;</span>
+<span class="ot">      rel=</span><span class="st">&quot;stylesheet&quot;</span> <span class="kw">/&gt;</span>
+    {{ partial &quot;head_custom.html&quot; . }}
+  <span class="kw">&lt;/head&gt;</span>
+
+  <span class="kw">&lt;body&gt;</span>
+    <span class="kw">&lt;nav&gt;</span>
+    <span class="kw">&lt;ul</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>
+      {{ range .Site.Menus.main }}
+      <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{{ .URL | relURL }}&quot;</span><span class="kw">&gt;</span>{{ .Name }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+      {{ end }}
+    <span class="kw">&lt;/ul&gt;</span>
+    <span class="kw">&lt;hr/&gt;</span>
+    <span class="kw">&lt;/nav&gt;</span></code></pre></div>
+<p>The <code>&lt;head&gt;</code> area should be easy to understand if you are familiar with HTML. Note that we also included a partial template <code>head_custom.html</code>, which is empty in this theme, but it will make it much easier for users to add customized code to <code>&lt;head&gt;</code> without rewriting the whole template. See Section <a href="custom-layouts.html#custom-layouts">2.6</a> for more details.</p>
+<p>The navigation menu is essentially a list, and each item of the list is read from the variable <code>.Site.Menus.main</code>. This means users can define the menu in <code>config.toml</code>, e.g.,</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript">[[<span class="va">menu</span>.<span class="at">main</span>]]
+    name <span class="op">=</span> <span class="st">&quot;Home&quot;</span>
+    url <span class="op">=</span> <span class="st">&quot;/&quot;</span>
+[[<span class="va">menu</span>.<span class="at">main</span>]]
+    name <span class="op">=</span> <span class="st">&quot;About&quot;</span>
+    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span></code></pre></div>
+<p>It will generate a menu like this:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;ul</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/&quot;</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+  <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/about/&quot;</span><span class="kw">&gt;</span>About<span class="kw">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="kw">&lt;/ul&gt;</span></code></pre></div>
+<p>Hugo has a powerful menu system, and we only used the simplest type of menu in this theme. If you are interested in more features like nested menus, please see the full documentation at <a href="http://gohugo.io/extras/menus/" class="uri">http://gohugo.io/extras/menus/</a>.</p></li>
+<li><p><code>footer.html</code> defines the footer area of a page and closes the HTML document:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">  <span class="kw">&lt;footer&gt;</span>
+  {{ partial &quot;foot_custom.html&quot; . }}
+  {{ with .Site.Params.footer }}
+  <span class="kw">&lt;hr/&gt;</span>
+  {{ . | markdownify }}
+  {{ end }}
+  <span class="kw">&lt;/footer&gt;</span>
+  <span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre></div>
+<p>The purpose of the partial template <code>foot_custom.html</code> is the same as <code>head_custom.html</code>; that is, to allow the user to add customized code to the <code>&lt;footer&gt;</code> without rewriting the whole template.</p>
+<p>Lastly, we use the variable <code>.Site.Params.footer</code> to generate a page footer. Note we used the <code>with</code> function again. Recall that the syntax <code>{{ with .Site.Params.footer }}{{ . }}{{ end }}</code> is a shorthand for <code>{{if .Site.Params.footer }}{{ .Site.Params.footer }}{{ end }}</code>. This syntax saves you from typing the expression <code>.Site.Params.footer</code> twice by using <code>{{ . }}</code> as a placeholder for the variable <code>footer</code>, which is defined as a site parameter in our <code>config.toml</code> file. The additional function <code>markdownify</code> can convert Markdown to HTML (i.e., <code>{{ . | markdownify }}</code>. Altogether, this sequence means we can define a <code>footer</code> option using Markdown under <code>params</code> in <code>config.toml</code>, e.g.,</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript">[params]
+    footer <span class="op">=</span> <span class="st">&quot;&amp;copy; [Yihui Xie](https://yihui.name) 2017&quot;</span></code></pre></div></li>
+</ul></li>
+</ul>
+<p>There is a special template <code>404.html</code>, which Hugo uses to create the 404 page (when a page is not found, this page is displayed):</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ partial &quot;header.html&quot; . }}
+
+404 NOT FOUND
+
+{{ partial &quot;footer.html&quot; . }}</code></pre></div>
+<p>With all templates above, we will be able to generate a website from Markdown source files. You are unlikely to be satisfied with the website, however, because the HTML elements are not styled at all, and the default appearance may not look appealing to most people. You may have noticed that in <code>header.html</code>, we have included two CSS files, <code>/css/style.css</code> and <code>/css/fonts.css</code>.</p>
+<p>You can find many existing open-source CSS frameworks online that may be applied to a Hugo theme. For example, the most popular CSS framework may be Bootstrap: <a href="http://getbootstrap.com" class="uri">http://getbootstrap.com</a>. When I was designing XMin, I wondered how far I could go without using any of these existing frameworks, because they are usually very big. For example, <code>bootstrap.css</code> has nearly 10000 lines of code when not minimized. It turned out that I was able to get a satisfactory appearance with about 50 lines of CSS, which I will explain in detail below:</p>
+<ul>
+<li><p><code>style.css</code> defines all styles except the typefaces:</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css">body <span class="kw">{</span>
+  <span class="kw">max-width:</span> <span class="dt">800px</span><span class="kw">;</span>
+  <span class="kw">margin:</span> <span class="dt">auto</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">1em</span><span class="kw">;</span>
+  <span class="kw">line-height:</span> <span class="dt">1.5em</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre></div>
+<p>The maximum width of the page body is set to 800 pixels because an excessively wide page is difficult to read (<code>800</code> is an arbitrary threshold that I picked). The body is centered using the CSS trick <code>margin: auto</code>, which means the top, right, bottom, and left margins are automatic. When a block element’s left and right margins are <code>auto</code>, it will be centered.</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="co">/* header and footer areas */</span>
+<span class="fl">.menu</span> li <span class="kw">{</span> <span class="kw">display:</span> <span class="dt">inline-block</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.article-meta</span>, <span class="fl">.menu</span> a <span class="kw">{</span>
+  <span class="kw">text-decoration:</span> <span class="dt">none</span><span class="kw">;</span>
+  <span class="kw">background:</span> <span class="dt">#eee</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">5px</span><span class="kw">;</span>
+  <span class="kw">border-radius:</span> <span class="dt">5px</span><span class="kw">;</span>
+<span class="kw">}</span>
+<span class="fl">.menu</span>, <span class="fl">.article-meta</span>, footer <span class="kw">{</span> <span class="kw">text-align:</span> <span class="dt">center</span><span class="kw">;</span> <span class="kw">}</span>
+<span class="fl">.title</span> <span class="kw">{</span> <span class="kw">font-size:</span> <span class="dt">1.1em</span><span class="kw">;</span> <span class="kw">}</span>
+footer a <span class="kw">{</span> <span class="kw">text-decoration:</span> <span class="dt">none</span><span class="kw">;</span> <span class="kw">}</span>
+hr <span class="kw">{</span>
+  <span class="kw">border-style:</span> <span class="dt">dashed</span><span class="kw">;</span>
+  <span class="kw">color:</span> <span class="dt">#ddd</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre></div>
+<p>Remember that our menu element is a list <code>&lt;ul class=&quot;menu&quot;&gt;</code> defined in <code>header.html</code>. I changed the default display style of <code>&lt;li&gt;</code> within the menu to <code>inline-block</code>, so that they will be laid out from left to right as inline elements, instead of being stacked vertically as a bullet list (the default behavior).</p>
+<p>For links (<code>&lt;a&gt;</code>) in the menu and the metadata area of an article, the default text decoration (underlines) is removed, and a light background color is applied. The border radius is set to 5 pixels so that you can see a subtle round-corner rectangle behind each link.</p>
+<p>The horizontal rule (<code>&lt;hr&gt;</code>) is set to a dashed light-gray line to make it less prominent on a page. These rules are used to separate the article body from the header and footer areas.</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="co">/* code */</span>
+pre <span class="kw">{</span>
+  <span class="kw">border:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#ddd</span><span class="kw">;</span>
+  <span class="kw">box-shadow:</span> <span class="dt">5px</span> <span class="dt">5px</span> <span class="dt">5px</span> <span class="dt">#eee</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">1em</span><span class="kw">;</span>
+  <span class="kw">overflow-x:</span> <span class="dt">auto</span><span class="kw">;</span>
+<span class="kw">}</span>
+code <span class="kw">{</span> <span class="kw">background:</span> <span class="dt">#f9f9f9</span><span class="kw">;</span> <span class="kw">}</span>
+pre code <span class="kw">{</span> <span class="kw">background:</span> <span class="dt">none</span><span class="kw">;</span> <span class="kw">}</span></code></pre></div>
+<p>For code blocks (<code>&lt;pre&gt;</code>), I apply light gray borders with drop-shadow effects. Every inline code element has a very light gray background. These decorations are merely out of my own peculiar interest and emphasis in code.</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css"><span class="co">/* misc elements */</span>
+img, iframe, video <span class="kw">{</span> <span class="kw">max-width:</span> <span class="dt">100%</span><span class="kw">;</span> <span class="kw">}</span>
+main <span class="kw">{</span> <span class="kw">hyphens:</span> <span class="dt">auto</span><span class="kw">;</span> <span class="kw">}</span>
+blockquote <span class="kw">{</span>
+  <span class="kw">background:</span> <span class="dt">#f9f9f9</span><span class="kw">;</span>
+  <span class="kw">border-left:</span> <span class="dt">5px</span> <span class="dt">solid</span> <span class="dt">#ccc</span><span class="kw">;</span>
+  <span class="kw">padding:</span> <span class="dt">3px</span> <span class="dt">1em</span> <span class="dt">3px</span><span class="kw">;</span>
+<span class="kw">}</span>
+
+table <span class="kw">{</span>
+  <span class="kw">margin:</span> <span class="dt">auto</span><span class="kw">;</span>
+  <span class="kw">border-top:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#666</span><span class="kw">;</span>
+  <span class="kw">border-bottom:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#666</span><span class="kw">;</span>
+<span class="kw">}</span>
+table thead th <span class="kw">{</span> <span class="kw">border-bottom:</span> <span class="dt">1px</span> <span class="dt">solid</span> <span class="dt">#ddd</span><span class="kw">;</span> <span class="kw">}</span>
+th, td <span class="kw">{</span> <span class="kw">padding:</span> <span class="dt">5px</span><span class="kw">;</span> <span class="kw">}</span>
+tr<span class="dv">:nth-child</span>(even) <span class="kw">{</span> <span class="kw">background:</span> <span class="dt">#eee</span> <span class="kw">}</span></code></pre></div>
+<p>Embedded elements like images and videos that exceed the page margin are often ugly, so I restrict their maximum width to 100%. Hyphenation is turned on for words in <code>&lt;main&gt;</code>. Blockquotes have a gray left sidebar and a light gray background. Tables are centered by default, with only three horizontal rules: the top and bottom borders of the table, and the bottom border of the table head. Table rows are striped to make it easier to read the table especially when the table is wide.</p></li>
+<li><p><code>fonts.css</code> is a separate style sheet because it plays a critical role in the appearance of a website, and it is very likely that you will want to customize this file. In most cases, your readers will spend the most time on reading the text on your pages, so it is important to make the text comfortable to read. I’m not an expert in web design, and I just picked Palatino for the body and Lucida Console or Monaco (whichever is available in your system) for the code. It is common to use Google web fonts nowadays. You may try some web fonts and see if you like any of them.</p>
+<div class="sourceCode"><pre class="sourceCode css"><code class="sourceCode css">body <span class="kw">{</span>
+  <span class="kw">font-family:</span> <span class="st">&quot;Palatino Linotype&quot;</span>, <span class="st">&quot;Book Antiqua&quot;</span>, Palatino, <span class="dt">serif</span><span class="kw">;</span>
+<span class="kw">}</span>
+code <span class="kw">{</span>
+  <span class="kw">font-family:</span> <span class="st">&quot;Lucida Console&quot;</span>, Monaco, <span class="dt">monospace</span><span class="kw">;</span>
+  <span class="kw">font-size:</span> <span class="dt">85%</span><span class="kw">;</span>
+<span class="kw">}</span></code></pre></div></li>
+</ul>
+<p>The two CSS files are placed under the <code>static/css/</code> directory of the theme. In the HTML template <code>header.html</code>, the path <code>/css/style.css</code> refers to the file <code>static/css/style.css</code>.</p>
+<p>Lastly, this theme provided an example site under <code>exampleSite/</code>. The directory structure may be a little confusing because this is a theme instead of a website. In practice, everything under <code>exampleSite/</code> should be under the root directory of a website, and the top-level <code>hugo-xmin/</code> directory should be under the <code>themes/</code> directory of this website, i.e.,</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">├── <span class="ex">config.toml</span>
+├── <span class="ex">content/</span>
+├── <span class="ex">...</span>
+├── <span class="ex">themes/</span>
+│   └── <span class="ex">hugo-xmin/</span>
+│
+└── <span class="ex">...</span></code></pre></div>
+<p>The example site provides a sample <code>config.toml</code>, a home page <code>_index.md</code>, an about page <code>about.md</code>, two posts under <code>note/</code> and two under <code>post/</code>. It also overrides the <code>foot_custom.html</code> in the theme.</p>
+</div>
+<div id="how-to" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Implementing more features</h3>
+<p>The XMin is actually a highly functional theme, but we understand that it may be too minimal for you. There are a few commonly used features (intentionally) missing in this theme, and we will teach you how to add them by yourself if desired. All these features and the source code can be applied to other themes, too.</p>
+<ul>
+<li><p><strong>Enable Google Analytics.</strong> Hugo has provided a built-in partial template. For XMin, you can add</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ template &quot;_internal/google_analytics.html&quot; . }}</code></pre></div>
+<p>to <code>layouts/partials/foot_custom.html</code> under the root directory of your website (instead of <code>themes/hugo-xmin/</code>), and configure <code>googleAnalytics</code> in the <code>config.toml</code>. See <a href="https://github.com/yihui/hugo-xmin/pull/3" class="uri">https://github.com/yihui/hugo-xmin/pull/3</a> for details, and the HTML source of this page for the JavaScript rendered from the template: <a href="https://deploy-preview-3--hugo-xmin.netlify.com" class="uri">https://deploy-preview-3--hugo-xmin.netlify.com</a>.</p></li>
+<li><p><strong>Enable Disqus comments.</strong> Similar to Google Analytics, you can add the built-in template</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ template &quot;_internal/disqus.html&quot; . }}</code></pre></div>
+<p>to <code>foot_custom.html</code>, and configure the Disqus shortname in <code>config.toml</code>. See <a href="https://github.com/yihui/hugo-xmin/pull/4" class="uri">https://github.com/yihui/hugo-xmin/pull/4</a> for details, and a preview at <a href="https://deploy-preview-4--hugo-xmin.netlify.com" class="uri">https://deploy-preview-4--hugo-xmin.netlify.com</a>.</p></li>
+<li><p><strong>Enable syntax highlighting via highlight.js.</strong> Add this to <code>head_custom.html</code></p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&quot;//YOUR-CDN-LINK/styles/github.min.css&quot;</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="kw">&gt;</span></code></pre></div>
+<p>and this to <code>foot_custom.html</code>:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;//YOUR-CDN-LINK/highlight.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;//YOUR-CDN-LINK/languages/r.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>
+
+<span class="kw">&lt;script&gt;</span>
+<span class="va">hljs</span>.<span class="at">configure</span>(<span class="op">{</span><span class="dt">languages</span><span class="op">:</span> []<span class="op">}</span>)<span class="op">;</span>
+<span class="va">hljs</span>.<span class="at">initHighlightingOnLoad</span>()<span class="op">;</span>
+<span class="kw">&lt;/script&gt;</span></code></pre></div>
+<p>Remember to replace <code>YOUR-CDN-LINK</code> with the link to your preferred CDN host of highlight.js, e.g., <code>cdn.bootcss.com/highlight.js/9.12.0</code>. For more information about highlight.js, please see its homepage: <a href="https://highlightjs.org" class="uri">https://highlightjs.org</a>. If you need to use other CDN hosts, cdnjs.com is a good choice: <a href="https://cdnjs.com/libraries/highlight.js" class="uri">https://cdnjs.com/libraries/highlight.js</a> You can also see which languages and CSS themes are supported there.</p>
+<p>You may see <a href="https://github.com/yihui/hugo-xmin/pull/5" class="uri">https://github.com/yihui/hugo-xmin/pull/5</a> for an actual implementation, and a sample page with syntax highlighting at <a href="https://deploy-preview-5--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/" class="uri">https://deploy-preview-5--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/</a>.</p></li>
+<li><p><strong>Support math expressions through MathJax.</strong> Add the code below to <code>foot_custom.html</code>.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;//yihui.name/js/math-code.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;script</span><span class="ot"> async</span>
+<span class="ot">src=</span><span class="st">&quot;//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;</span><span class="kw">&gt;</span>
+<span class="kw">&lt;/script&gt;</span></code></pre></div>
+<p>This requires substantial knowledge of JavaScript and familiarity with MathJax to fully understand the code above, and we will leave the explanation of the code to Section <a href="javascript.html#javascript">B.3</a>.</p>
+<p>Note that bootcss.com is only one possible CDN host of MathJax, and you are free to use other hosts.</p></li>
+<li><p><strong>Show the table of contents (TOC).</strong> To show a TOC for R Markdown posts, you only need to add the output format <code>blogdown::html_page</code> with the option <code>toc: true</code> to YAML:</p>
+<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="fu">output:</span>
+  <span class="fu">blogdown:</span><span class="at">:html_page:</span>
+    <span class="fu">toc:</span><span class="at"> true</span></code></pre></div>
+<p>For plain Markdown posts, you have to modify the template <code>single.html</code>. The TOC of a post is stored in the Hugo template variable <code>.TableOfContents</code>. You may want an option to control whether to show the TOC, e.g., you may add an option <code>toc: true</code> to the YAML metadata of a Markdown post to show the TOC. The code below can be added before the content of a post in <code>single.html</code>:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ if .Params.toc }}
+{{ .TableOfContents }}
+{{ end }}</code></pre></div>
+<p>See <a href="https://github.com/yihui/hugo-xmin/pull/7" class="uri">https://github.com/yihui/hugo-xmin/pull/7</a> for an implementation with examples.</p></li>
+<li><p><strong>Display categories and tags in a post if provided in its YAML.</strong> Add the code below where you want to place the categories and tags in <code>single.html</code>, e.g., in <code>&lt;div class=&quot;article-meta&quot;&gt;&lt;/div&gt;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;terms&quot;</span><span class="kw">&gt;</span>
+  {{ range $i := (slice &quot;categories&quot; &quot;tags&quot;) }}
+  {{ with ($.Param $i) }}
+  {{ $i | title }}:
+  {{ range $k := . }}
+  <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&#39;{{ relURL (print &quot;/&quot; $i &quot;/&quot; $k | urlize) }}&#39;</span><span class="kw">&gt;</span>{{$k}}<span class="kw">&lt;/a&gt;</span>
+  {{ end }}
+  {{ end }}
+  {{ end }}
+<span class="kw">&lt;/p&gt;</span></code></pre></div>
+<p>Basically the code loops through the YAML metadata fields <code>categories</code> and <code>tags</code>, and for each field, its value is obtained from <code>.Param</code>, then we use an inside loop to write out the terms with links of the form <code>&lt;a href=&quot;/tags/foo/&quot;&gt;foo&lt;/a&gt;</code>.</p>
+<p>You may see <a href="https://github.com/yihui/hugo-xmin/pull/2" class="uri">https://github.com/yihui/hugo-xmin/pull/2</a> for the complete implementation and a preview at <a href="https://deploy-preview-2--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/" class="uri">https://deploy-preview-2--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/</a>.</p></li>
+<li><p><strong>Add pagination.</strong> When you have a large number of posts on a website, you may not want to display the full list on a single page, but show N posts (e.g., N = 10) per page. It is easy to add pagination to a website using Hugo’s built-in functions and templates. Instead of looping through all posts in a list template (e.g., <code>range .Data.Pages</code>), you paginate the full list of posts using the function <code>.Paginate</code> (e.g., <code>range (.Paginate .Data.Pages)</code>). Below is a template fragment that you may insert to your template file <code>list.html</code>:</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html"><span class="kw">&lt;ul&gt;</span>
+  {{ $paginator := .Paginate .Data.Pages }}
+  {{ range $paginator.Pages }}
+  <span class="kw">&lt;li&gt;</span>
+    <span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>{{ .Date.Format &quot;2006/01/02&quot; }}<span class="kw">&lt;/span&gt;</span>
+    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{{ .URL }}&quot;</span><span class="kw">&gt;</span>{{ .Title }}<span class="kw">&lt;/a&gt;</span>
+  <span class="kw">&lt;/li&gt;</span>
+  {{ end }}
+<span class="kw">&lt;/ul&gt;</span>
+{{ template &quot;_internal/pagination.html&quot; . }}</code></pre></div>
+<p>See <a href="https://github.com/yihui/hugo-xmin/pull/16" class="uri">https://github.com/yihui/hugo-xmin/pull/16</a> for a full implementation.</p></li>
+<li><p><strong>Add a GitHub Edit button or link to a page.</strong> If none of the above features look exciting to you (which would not surprise me), this little feature is really a great example of showing you the power of plain-text files and static websites, when combined with GitHub (or other services that support the online editing of plain-text files). I believe it would be difficult, if not impossible, to implement this feature in dynamic website frameworks like WordPress.</p>
+<p>Basically, when you browse any text files in a repository on GitHub, you can edit them right on the page by hitting the Edit button (see Figure <a href="templates.html#fig:github-edit">2.3</a> for an example) if you have a GitHub account. If you have write access to the repository, you can commit the changes directly online, otherwise GitHub will fork the repository for you automatically, so that you can edit the file in your own repository, and GitHub will guide you to create a pull request to the original repository. When the original owner sees the pull request, he/she can see the changes you made and decide whether to accept them or not or ask you to make further changes. Although the terminology “pull request” is highly confusing to beginners,<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a> it is probably the single greatest feature invented by GitHub, because it makes it so much easier for people to make contributions.</p>
+<p>What is really handy is that all you need is a URL of a fixed form to edit a file on GitHub: <code>https://github.com/USER/REPO/edit/BRANCH/PATH/TO/FILE</code>. For example, <a href="https://github.com/rbind/yihui/edit/master/content/knitr/faq.md" class="uri">https://github.com/rbind/yihui/edit/master/content/knitr/faq.md</a>, where <code>USER</code> is <code>rbind</code>, <code>REPO</code> is <code>yihui</code>, <code>BRANCH</code> is <code>master</code>, and the file path is <code>content/knitr/faq.md</code>.</p>
+<p>The key to implementing this feature is the variable <code>.File.Path</code>, which gives us the source file path of a page under <code>content/</code>, e.g., <code>post/foo.md</code>. If your website only uses plain Markdown files, the implementation will be very simple. I omitted the full GitHub URL in <code>...</code> below, of which an example could be <code>https://github.com/rbind/yihui/edit/master/content/</code>.</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ with .File.Path }}
+<span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://github.com/.../{{ . }}&quot;</span><span class="kw">&gt;</span>Edit this page<span class="kw">&lt;/a&gt;</span>
+{{ end }}</code></pre></div>
+<p>However, the case is a little more complicated for <strong>blogdown</strong> users, when R Markdown posts are involved. You cannot just use <code>.File.Path</code> because it actually points to the <code>.html</code> output file from an <code>.Rmd</code> file, whereas the <code>.Rmd</code> file is the actual source file. The Edit button or link should not point to the <code>.html</code> file. Below is the complete implementation that you may add to a template file depending on where you want to show the Edit link (e.g., <code>footer.html</code>):</p>
+<div class="sourceCode"><pre class="sourceCode html"><code class="sourceCode html">{{ if .File.Path }}
+
+{{ $Rmd := (print .File.BaseFileName &quot;.Rmd&quot;) }}
+
+{{ if (where (readDir (print &quot;content/&quot; .File.Dir)) &quot;Name&quot; $Rmd) }}
+  {{ $.Scratch.Set &quot;FilePath&quot; (print .File.Dir $Rmd) }}
+{{ else }}
+  {{ $.Scratch.Set &quot;FilePath&quot; .File.Path }}
+{{ end }}
+
+{{ with .Site.Params.GithubEdit}}
+<span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&#39;{{ . }}{{ $.Scratch.Get &quot;FilePath&quot; }}&#39;</span><span class="kw">&gt;</span>Edit this page<span class="kw">&lt;/a&gt;</span>
+{{ end }}
+
+{{ end }}</code></pre></div>
+<p>The basic logic is that for a file, if the same filename with the extension <code>.Rmd</code> exists, we will point the Edit link to the Rmd file. First, we define a variable <code>$Rmd</code> to be the filename with the <code>.Rmd</code> extension. Then we check if it exists. Unfortunately, there is no function in Hugo like <code>file.exists()</code> in R, so we have to use a hack: list all files under the directory and see if the Rmd file is in the list. <a href="http://gohugo.io/extras/scratch/"><code>$.Scratch</code></a> is the way to dynamically store and obtain variables in Hugo templates. Most variables in Hugo are read-only, and you have to use <code>$.Scratch</code> when you want to modify a variable. We set a variable <code>FilePath</code> in <code>$.Scratch</code>, whose value is the full path to the Rmd file when the Rmd file exists, and the path to the Markdown source file otherwise. Finally, we concatenate a custom option <code>GithubEdit</code> in <code>config.toml</code> with the file path to complete the Edit link <code>&lt;a&gt;</code>. Here is an example of the option in <code>config.toml</code>:</p>
+<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript">[params]
+  GithubEdit <span class="op">=</span> <span class="st">&quot;https://github.com/rbind/yihui/edit/master/content/&quot;</span></code></pre></div>
+<p>Please note that if you use Hugo on Windows to build and deploy your site, you may have to change the file path separators from backslashes to forward slashes, e.g., you may need <code>{{ $.Scratch.Set &quot;FilePath&quot; (replace ($.Scratch.Get &quot;FilePath&quot;) &quot;\\&quot; &quot;/&quot;) }}</code> in the template. To avoid this complication, we do not recommend that you deploy your site through Windows (see Chapter <a href="deployment.html#deployment">3</a> for deployment methods).</p>
+<p>You may see <a href="https://github.com/yihui/hugo-xmin/pull/6" class="uri">https://github.com/yihui/hugo-xmin/pull/6</a> for an actual implementation with R Markdown examples, and see the footer of this page for the Edit link: <a href="https://deploy-preview-6--hugo-xmin.netlify.com" class="uri">https://deploy-preview-6--hugo-xmin.netlify.com</a>. You can actually see a link in the footer of every page, except the lists of pages (because they do not have source files).</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:github-edit"></span>
+<img src="images/github-edit.png" alt="Edit a text file online on GitHub." width="100%" />
+<p class="caption">
+FIGURA 2.3: Edit a text file online on GitHub.
+</p>
+</div>
+<p>After you digest the XMin theme and the implementations of additional features, it should be much easier to understand other people’s templates. There are a large number of Hugo themes but the primary differences among them are often in styles. The basic components of templates are often similar.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="26">
+<li id="fn26"><p>The most common functionality of templates is to render HTML pages, but there can also be special templates, for example, for RSS feeds and sitemaps, which are XML files.<a href="templates.html#fnref26">↩</a></p></li>
+<li id="fn27"><p>In my opinion, it really should be called “merge request” instead.<a href="templates.html#fnref27">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="themes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="custom-layouts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/blogdown/edit/master/docs/02-hugo.Rmd",
+"text": "Edit"
+},
+"download": ["blogdown.pdf", "blogdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+book_filename: blogdown
+repo: https://github.com/mamaciasq/libro_blogdown.git
+output_dir: _book
+clean: [packages.bib, blogdown.bbl]
+language:
+  label:
+    fig: "FIGURA "
+    tab: "TABLA "
+  ui:
+    chapter_name: "Capítulo "
+delete_merged_file: true
