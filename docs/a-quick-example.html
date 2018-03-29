@@ -25,7 +25,7 @@
 <meta name="author" content="Yihui Xie, Amber Thomas, Alison Presmanes Hill">
 
 
-<meta name="date" content="2018-02-27">
+<meta name="date" content="2018-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,41 +50,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -217,11 +245,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="a-quick-example" class="section level2">
 <h2><span class="header-section-number">1.2</span> A quick example</h2>
-<p>From our experience, Hugo’s documentation may be a little daunting to read and digest for beginners.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> For example, its “Quickstart” guide used to have 12 steps, and you can easily get lost if you have not used a static website generator before. For <strong>blogdown</strong>, we hope users of all levels can at least get started as quickly as possible. There are many things you may want to tweak for the website later, but the first step is actually fairly simple: create a new project under a new directory in the RStudio IDE (<code>File -&gt; New Project</code>), and call the function in the R console of the new project:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">blogdown<span class="op">::</span><span class="kw">new_site</span>()</code></pre></div>
-<p>Then wait for this function to create a new site, download the default theme, add some sample posts, open them, build the site, and launch it in the RStudio Viewer, so you can immediately preview it. If you do not use the RStudio IDE, you need to make sure you are currently in an empty directory,<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a> in which case <code>new_site()</code> will do the same thing, but the website will be launched in your web browser instead of the RStudio Viewer.</p>
-<p>Now you should see a bunch of directories and files under the RStudio project or your current working directory. Before we explain these new directories and files, let’s introduce an important and helpful technology first: <em>LiveReload.</em> This means your website<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a> will be automatically rebuilt and reloaded in your web browser<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a> when you modify any source file of your website and save it. Basically, once you launch the website in a web browser, you do not need to rebuild it explicitly anymore. All you need to do is edit the source files, such as R Markdown documents, and save them. There is no need to click any buttons or run any commands. LiveReload is implemented via <code>blogdown::serve_site()</code>, which is based on the R package <strong>servr</strong> <span class="citation">(Xie <a href="#ref-R-servr">2017</a>)</span> by default.<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></p>
-<p>The <code>new_site()</code> function has several arguments, and you may check out its R help page (<code>?blogdown::new_site</code>) for details. A minimal default theme named “hugo-lithium-theme” is provided as the default theme of the new site,<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a> and you can see what it looks like in Figure <a href="a-quick-example.html#fig:lithium">1.1</a>.</p>
+<p>From our experience, Hugo’s documentation may be a little daunting to read and digest for beginners.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> For example, its “Quickstart” guide used to have 12 steps, and you can easily get lost if you have not used a static website generator before. For <strong>blogdown</strong>, we hope users of all levels can at least get started as quickly as possible. There are many things you may want to tweak for the website later, but the first step is actually fairly simple: create a new project under a new directory in the RStudio IDE (<code>File -&gt; New Project</code>), and call the function in the R console of the new project:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">blogdown<span class="op">::</span><span class="kw">new_site</span>()</a></code></pre></div>
+<p>Then wait for this function to create a new site, download the default theme, add some sample posts, open them, build the site, and launch it in the RStudio Viewer, so you can immediately preview it. If you do not use the RStudio IDE, you need to make sure you are currently in an empty directory,<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> in which case <code>new_site()</code> will do the same thing, but the website will be launched in your web browser instead of the RStudio Viewer.</p>
+<p>Now you should see a bunch of directories and files under the RStudio project or your current working directory. Before we explain these new directories and files, let’s introduce an important and helpful technology first: <em>LiveReload.</em> This means your website<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> will be automatically rebuilt and reloaded in your web browser<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> when you modify any source file of your website and save it. Basically, once you launch the website in a web browser, you do not need to rebuild it explicitly anymore. All you need to do is edit the source files, such as R Markdown documents, and save them. There is no need to click any buttons or run any commands. LiveReload is implemented via <code>blogdown::serve_site()</code>, which is based on the R package <strong>servr</strong> <span class="citation">(Xie <a href="#ref-R-servr">2018</a><a href="#ref-R-servr">c</a>)</span> by default.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<p>The <code>new_site()</code> function has several arguments, and you may check out its R help page (<code>?blogdown::new_site</code>) for details. A minimal default theme named “hugo-lithium-theme” is provided as the default theme of the new site,<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> and you can see what it looks like in Figure <a href="a-quick-example.html#fig:lithium">1.1</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:lithium"></span>
 <img src="images/lithium-theme.png" alt="The homepage of the default new site." width="90%" />
 <p class="caption">
@@ -231,42 +259,42 @@ FIGURA 1.1: The homepage of the default new site.
 <p>You have to know three most basic concepts for a Hugo-based website:</p>
 <ol style="list-style-type: decimal">
 <li><p>The configuration file <code>config.toml</code>, in which you can specify some global settings for your site. Even if you do not know what TOML is at this point (it will be introduced in Chapter <a href="hugo.html#hugo">2</a>), you may still be able to change some obvious settings. For example, you may see configurations like these in <code>config.toml</code>:</p>
-<div class="sourceCode"><pre class="sourceCode js"><code class="sourceCode javascript">baseurl <span class="op">=</span> <span class="st">&quot;/&quot;</span>
-languageCode <span class="op">=</span> <span class="st">&quot;en-us&quot;</span>
-title <span class="op">=</span> <span class="st">&quot;A Hugo website&quot;</span>
-theme <span class="op">=</span> <span class="st">&quot;hugo-lithium-theme&quot;</span>
-
-[[<span class="va">menu</span>.<span class="at">main</span>]]
-    name <span class="op">=</span> <span class="st">&quot;About&quot;</span>
-    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span>
-[[<span class="va">menu</span>.<span class="at">main</span>]]
-    name <span class="op">=</span> <span class="st">&quot;GitHub&quot;</span>
-    url <span class="op">=</span> <span class="st">&quot;https://github.com/rstudio/blogdown&quot;</span>
-[[<span class="va">menu</span>.<span class="at">main</span>]]
-    name <span class="op">=</span> <span class="st">&quot;Twitter&quot;</span>
-    url <span class="op">=</span> <span class="st">&quot;https://twitter.com/rstudio&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" data-line-number="1">baseurl <span class="op">=</span> <span class="st">&quot;/&quot;</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">languageCode <span class="op">=</span> <span class="st">&quot;en-us&quot;</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">title <span class="op">=</span> <span class="st">&quot;A Hugo website&quot;</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">theme <span class="op">=</span> <span class="st">&quot;hugo-lithium-theme&quot;</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">    name <span class="op">=</span> <span class="st">&quot;About&quot;</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">    name <span class="op">=</span> <span class="st">&quot;GitHub&quot;</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">    url <span class="op">=</span> <span class="st">&quot;https://github.com/rstudio/blogdown&quot;</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">    name <span class="op">=</span> <span class="st">&quot;Twitter&quot;</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">    url <span class="op">=</span> <span class="st">&quot;https://twitter.com/rstudio&quot;</span></a></code></pre></div>
 <p>You can change the website title, e.g., <code>title = &quot;My own cool website&quot;</code>, and update the GitHub and Twitter URLs.</p></li>
 <li><p>The content directory (by default, <code>content/</code>). This is where you write the R Markdown or Markdown source files for your posts and pages. Under <code>content/</code> of the default site, you can see <code>about.md</code> and a <code>post/</code> directory containing a few posts. The organization of the content directory is up to you. You can have arbitrary files and directories there, depending on the website structure you want.</p></li>
-<li><p>The publishing directory (by default, <code>public/</code>). Your website will be generated to this directory, meaning that you do not need to manually add any files to this directory.<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a> Typically it contains a lot of <code>*.html</code> files and dependencies like <code>*.css</code>, <code>*.js</code>, and images. You can upload everything under <code>public/</code> to any web server that can serve static websites, and your website will be up and running. There are many options for publishing static websites, and we will talk more about them in Chapter <a href="deployment.html#deployment">3</a> if you are not familiar with deploying websites.</p></li>
+<li><p>The publishing directory (by default, <code>public/</code>). Your website will be generated to this directory, meaning that you do not need to manually add any files to this directory.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> Typically it contains a lot of <code>*.html</code> files and dependencies like <code>*.css</code>, <code>*.js</code>, and images. You can upload everything under <code>public/</code> to any web server that can serve static websites, and your website will be up and running. There are many options for publishing static websites, and we will talk more about them in Chapter <a href="deployment.html#deployment">3</a> if you are not familiar with deploying websites.</p></li>
 </ol>
 <p>If you are satisfied with this default theme, you are basically ready to start writing and publishing your new website! We will show how to use other themes in Section <a href="other-themes.html#other-themes">1.6</a>. However, please keep in mind that a more complicated and fancier theme may require you to learn more about all the underlying technologies like the Hugo templating language, HTML, CSS, and JavaScript.</p>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
 <div id="ref-R-servr">
-<p>Xie, Yihui. 2017. <em>Servr: A Simple Http Server to Serve Static Files or Dynamic Documents</em>. <a href="https://CRAN.R-project.org/package=servr" class="uri">https://CRAN.R-project.org/package=servr</a>.</p>
+<p>Xie, Yihui. 2018c. <em>Servr: A Simple Http Server to Serve Static Files or Dynamic Documents</em>. <a href="https://CRAN.R-project.org/package=servr" class="uri">https://CRAN.R-project.org/package=servr</a>.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="3">
-<li id="fn3"><p>One day I was almost ready to kill myself when I was trying to figure out how <code>_index.md</code> works by reading the documentation over and over again, and desperately searching on the Hugo forum.<a href="a-quick-example.html#fnref3">↩</a></p></li>
-<li id="fn4"><p>Check the output of <code>list.files('.')</code> in R, and make sure it does not include files other than <code>LICENSE</code>, the RStudio project file (<code>*.Rproj</code>), <code>README</code> or <code>README.md</code>.<a href="a-quick-example.html#fnref4">↩</a></p></li>
-<li id="fn5"><p>Until you set up your website to be deployed, LiveReload only updates the <em>local</em> version of your website. This version is only visible to you. In order to make your website searchable, discoverable, and live on the internet you will need to upload your website’s files to a site builder. See Chapter <a href="deployment.html#deployment">3</a> for details.<a href="a-quick-example.html#fnref5">↩</a></p></li>
-<li id="fn6"><p>You can also think of the RStudio Viewer as a web browser.<a href="a-quick-example.html#fnref6">↩</a></p></li>
-<li id="fn7"><p>Hugo has its own LiveReload implementation. If you want to take advantage of it, you may set the global option <code>options(blogdown.generator.server = TRUE)</code>. See Section <a href="livereload.html#livereload">D.2</a> for more information.<a href="a-quick-example.html#fnref7">↩</a></p></li>
-<li id="fn8"><p>You can find its source on GitHub: <a href="https://github.com/yihui/hugo-lithium-theme" class="uri">https://github.com/yihui/hugo-lithium-theme</a>. This theme was forked from <a href="https://github.com/jrutheiser/hugo-lithium-theme" class="uri">https://github.com/jrutheiser/hugo-lithium-theme</a> and modified to work better with <strong>blogdown</strong>.<a href="a-quick-example.html#fnref8">↩</a></p></li>
-<li id="fn9"><p>By running either <code>serve_site()</code> or <code>build_site()</code>, files will be generated and published in your publishing directory automatically.<a href="a-quick-example.html#fnref9">↩</a></p></li>
+<li id="fn3"><p>One day I was almost ready to kill myself when I was trying to figure out how <code>_index.md</code> works by reading the documentation over and over again, and desperately searching on the Hugo forum.<a href="a-quick-example.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Check the output of <code>list.files('.')</code> in R, and make sure it does not include files other than <code>LICENSE</code>, the RStudio project file (<code>*.Rproj</code>), <code>README</code> or <code>README.md</code>.<a href="a-quick-example.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Until you set up your website to be deployed, LiveReload only updates the <em>local</em> version of your website. This version is only visible to you. In order to make your website searchable, discoverable, and live on the internet you will need to upload your website’s files to a site builder. See Chapter <a href="deployment.html#deployment">3</a> for details.<a href="a-quick-example.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>You can also think of the RStudio Viewer as a web browser.<a href="a-quick-example.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Hugo has its own LiveReload implementation. If you want to take advantage of it, you may set the global option <code>options(blogdown.generator.server = TRUE)</code>. See Section <a href="livereload.html#livereload">D.2</a> for more information.<a href="a-quick-example.html#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>You can find its source on GitHub: <a href="https://github.com/yihui/hugo-lithium-theme" class="uri">https://github.com/yihui/hugo-lithium-theme</a>. This theme was forked from <a href="https://github.com/jrutheiser/hugo-lithium-theme" class="uri">https://github.com/jrutheiser/hugo-lithium-theme</a> and modified to work better with <strong>blogdown</strong>.<a href="a-quick-example.html#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn9"><p>By running either <code>serve_site()</code> or <code>build_site()</code>, files will be generated and published in your publishing directory automatically.<a href="a-quick-example.html#fnref9" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

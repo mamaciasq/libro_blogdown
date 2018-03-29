@@ -25,7 +25,7 @@
 <meta name="author" content="Yihui Xie, Amber Thomas, Alison Presmanes Hill">
 
 
-<meta name="date" content="2018-02-27">
+<meta name="date" content="2018-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,41 +50,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -217,33 +245,33 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="custom-layouts" class="section level2">
 <h2><span class="header-section-number">2.6</span> Custom layouts</h2>
-<p>It is very likely that you want to customize a theme unless you designed it. The most straightforward way is to simply make changes directly in the theme,<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a> but the problem is that a Hugo theme may be constantly updated by its original author for improvements or bug fixes. Similar to the “you break it, you buy it” policy (the <a href="https://en.wikipedia.org/wiki/Pottery_Barn_rule">Pottery Barn rule</a>), once you touch someone else’s source code, you will be responsible for its future maintenance, and the original author should not be responsible for the changes you made on your side. That means it may not be easy to pull future updates of this theme to your website (you have to carefully read the changes and make sure they do not conflict with your changes), but if you are completely satisfied with the current state of the theme and do not want future updates, it is fine to modify the theme files directly.</p>
+<p>It is very likely that you want to customize a theme unless you designed it. The most straightforward way is to simply make changes directly in the theme,<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> but the problem is that a Hugo theme may be constantly updated by its original author for improvements or bug fixes. Similar to the “you break it, you buy it” policy (the <a href="https://en.wikipedia.org/wiki/Pottery_Barn_rule">Pottery Barn rule</a>), once you touch someone else’s source code, you will be responsible for its future maintenance, and the original author should not be responsible for the changes you made on your side. That means it may not be easy to pull future updates of this theme to your website (you have to carefully read the changes and make sure they do not conflict with your changes), but if you are completely satisfied with the current state of the theme and do not want future updates, it is fine to modify the theme files directly.</p>
 <p>A theme author who is aware of the fact that users may customize her theme will typically provide two ways: one is to provide options in <code>config.toml</code>, so that you can change these options without touching the template files; the other is to leave a few lightweight template files under <code>layouts/</code> in the theme, so that you can override them without touching the core template files. Take the XMin theme for example:</p>
 <p>I have two empty HTML files <code>head_custom.html</code> and <code>foot_custom.html</code> under <code>layouts/partials/</code> in the theme. The former will be added inside <code>&lt;head&gt;&lt;/head&gt;</code> of a page, e.g., you can load JavaScript libraries or include CSS style sheets via <code>&lt;link&gt;</code>. The latter will be added before the footer of a page, e.g., you may load additional JavaScript libraries or embed Disqus comments there.</p>
 <p>The way that you customize these two files is not to edit them directly in the theme folder, but to create a directory <code>layouts/partials/</code> under the root directory of your website, e.g., your directory structure may look like this:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">your-website/</span>
-├── <span class="ex">config.toml</span>
-├── <span class="ex">...</span>
-├── <span class="ex">themes/</span>
-│   └── <span class="ex">hugo-xmin/</span>
-│       ├── <span class="ex">...</span>
-│       └── <span class="ex">layouts/</span>
-│           ├── <span class="ex">...</span>
-│           └── <span class="ex">partials</span>
-│               ├── <span class="ex">foot_custom.html</span>
-│               ├── <span class="ex">footer.html</span>
-│               ├── <span class="ex">head_custom.html</span>
-│               └── <span class="ex">header.html</span>
-└── <span class="ex">layouts</span>
-    └── <span class="ex">partials</span>
-        ├── <span class="ex">foot_custom.html</span>
-        └── <span class="ex">head_custom.html</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="ex">your-website/</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">├── <span class="ex">config.toml</span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">├── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">├── <span class="ex">themes/</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5">│   └── <span class="ex">hugo-xmin/</span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6">│       ├── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb60-7" data-line-number="7">│       └── <span class="ex">layouts/</span></a>
+<a class="sourceLine" id="cb60-8" data-line-number="8">│           ├── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb60-9" data-line-number="9">│           └── <span class="ex">partials</span></a>
+<a class="sourceLine" id="cb60-10" data-line-number="10">│               ├── <span class="ex">foot_custom.html</span></a>
+<a class="sourceLine" id="cb60-11" data-line-number="11">│               ├── <span class="ex">footer.html</span></a>
+<a class="sourceLine" id="cb60-12" data-line-number="12">│               ├── <span class="ex">head_custom.html</span></a>
+<a class="sourceLine" id="cb60-13" data-line-number="13">│               └── <span class="ex">header.html</span></a>
+<a class="sourceLine" id="cb60-14" data-line-number="14">└── <span class="ex">layouts</span></a>
+<a class="sourceLine" id="cb60-15" data-line-number="15">    └── <span class="ex">partials</span></a>
+<a class="sourceLine" id="cb60-16" data-line-number="16">        ├── <span class="ex">foot_custom.html</span></a>
+<a class="sourceLine" id="cb60-17" data-line-number="17">        └── <span class="ex">head_custom.html</span></a></code></pre></div>
 <p>All files under <code>layouts/</code> under the root directory will override files with the same relative paths under <code>themes/hugo-xmin/layouts/</code>, e.g., the file <code>layouts/partials/foot_custom.html</code>, when provided, will override <code>themes/hugo-xmin/layouts/partials/foot_custom.html</code>. That means you only need to create and maintain at most two files under <code>layouts/</code> instead of maintaining all files under <code>themes/</code>. Note that this overriding mechanism applies to all files under <code>layouts/</code>, and is not limited to the <code>partials/</code> directory. It also applies to any Hugo theme that you actually use for your website, and is not limited to <code>hugo-xmin</code>.</p>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="28">
-<li id="fn28"><p>If you are new to web development, be careful changing content within the theme. Minor changes like colors and font sizes can be found within the CSS files of the theme and can be altered simply with minimal risk of breaking the theme’s functionality.<a href="custom-layouts.html#fnref28">↩</a></p></li>
+<li id="fn28"><p>If you are new to web development, be careful changing content within the theme. Minor changes like colors and font sizes can be found within the CSS files of the theme and can be altered simply with minimal risk of breaking the theme’s functionality.<a href="custom-layouts.html#fnref28" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

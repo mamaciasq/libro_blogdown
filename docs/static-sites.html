@@ -25,7 +25,7 @@
 <meta name="author" content="Yihui Xie, Amber Thomas, Alison Presmanes Hill">
 
 
-<meta name="date" content="2018-02-27">
+<meta name="date" content="2018-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,41 +50,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -221,7 +249,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>For a static site, each URL you visit often has a corresponding HTML file stored on the server, so there is no need to compute anything before serving the file to visitors. This means static sites tend to be faster in response time than dynamic sites, and they are also much easier to deploy, since deployment simply means copying static files to a server. A dynamic site often relies on databases, and you will have to install more software packages to serve a dynamic site. For more advantages of static sites, please read the <a href="https://gohugo.io/overview/introduction/">introduction</a> on Hugo’s website.</p>
 <p>There are many existing static site generators, including Hugo, <a href="http://jekyllrb.com">Jekyll,</a> and <a href="https://hexo.io">Hexo,</a> etc. Most of them can build general-purpose websites but are often used to build blogs.</p>
 <p>We love Hugo for many reasons, but there are a few that stand out. Unlike other static site generators, the installation of Hugo is very simple because it provides a single executable without dependencies for most operating systems (see Section <a href="installation.html#installation">1.1</a>). It was also designed to render hundreds of pages of content faster than comparable static site generators and can reportedly render a single page in approximately 1 millisecond. Lastly, the community of Hugo users is very active both on the <a href="https://discuss.gohugo.io">Hugo discussion forum</a> and on <a href="https://github.com/gohugoio/hugo/issues">GitHub issues.</a></p>
-<p>Although we think Hugo is a fantastic static site generator, there is really one and only one major missing feature: the support for R Markdown. That is basically the whole point of the <strong>blogdown</strong> package.<a href="#fn20" class="footnoteRef" id="fnref20"><sup>20</sup></a> This missing feature means that you cannot easily generate results using R code on your web pages, since you can only use static Markdown documents. Besides, Hugo’s default Markdown engine is “Blackfriday”, which is less powerful than Pandoc.<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a></p>
+<p>Although we think Hugo is a fantastic static site generator, there is really one and only one major missing feature: the support for R Markdown. That is basically the whole point of the <strong>blogdown</strong> package.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> This missing feature means that you cannot easily generate results using R code on your web pages, since you can only use static Markdown documents. Besides, Hugo’s default Markdown engine is “Blackfriday”, which is less powerful than Pandoc.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
 <p>Hugo uses a special file and folder structure to create your website (Figure <a href="static-sites.html#fig:folders">2.1</a>). The rest of this chapter will give more details on the following files and folders:</p>
 <ul>
 <li><code>config.toml</code></li>
@@ -241,8 +269,8 @@ FIGURA 2.1: Possible files and folders created when you create a new site using 
 <div class="footnotes">
 <hr />
 <ol start="20">
-<li id="fn20"><p>Another motivation was an easier way to create new pages or posts. Static site generators often provide commands to create new posts, but you often have to open and modify the new file created by hand after using these commands. I was very frustrated by this, because I was looking for a graphical user interface where I can just fill out the title, author, date, and other information about a page, then I can start writing the content right away. That is why I provided the RStudio addin “New Post” and the function <code>blogdown::new_post()</code>. In the past few years, I hated it every time I was about to create a new post either by hand or via the Jekyll command line. Finally, I felt addicted to blogging again after I finished the RStudio addin.<a href="static-sites.html#fnref20">↩</a></p></li>
-<li id="fn21"><p>The Pandoc support has been added in a Hugo pull request: <a href="https://github.com/gohugoio/hugo/pull/4060" class="uri">https://github.com/gohugoio/hugo/pull/4060</a>. However, I think the support is quite limited, and I’d recommend that you use the R Markdown format instead, because with the official Pandoc support in Hugo, you cannot customize the Pandoc command-line options, rendering is not cached (it could be slow), and you will not be able to use any Markdown extensions from the <strong>bookdown</strong> package (such as numbering figure captions).<a href="static-sites.html#fnref21">↩</a></p></li>
+<li id="fn20"><p>Another motivation was an easier way to create new pages or posts. Static site generators often provide commands to create new posts, but you often have to open and modify the new file created by hand after using these commands. I was very frustrated by this, because I was looking for a graphical user interface where I can just fill out the title, author, date, and other information about a page, then I can start writing the content right away. That is why I provided the RStudio addin “New Post” and the function <code>blogdown::new_post()</code>. In the past few years, I hated it every time I was about to create a new post either by hand or via the Jekyll command line. Finally, I felt addicted to blogging again after I finished the RStudio addin.<a href="static-sites.html#fnref20" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p>The Pandoc support has been added in a Hugo pull request: <a href="https://github.com/gohugoio/hugo/pull/4060" class="uri">https://github.com/gohugoio/hugo/pull/4060</a>. However, I think the support is quite limited, and I’d recommend that you use the R Markdown format instead, because with the official Pandoc support in Hugo, you cannot customize the Pandoc command-line options, rendering is not cached (it could be slow), and you will not be able to use any Markdown extensions from the <strong>bookdown</strong> package (such as numbering figure captions).<a href="static-sites.html#fnref21" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

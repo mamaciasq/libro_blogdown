@@ -25,7 +25,7 @@
 <meta name="author" content="Yihui Xie, Amber Thomas, Alison Presmanes Hill">
 
 
-<meta name="date" content="2018-02-27">
+<meta name="date" content="2018-03-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,41 +50,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
@@ -218,23 +246,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">blogdown: Creating Websites with R Markdown</h1>
 <h4 class="author"><em>Yihui Xie, Amber Thomas, Alison Presmanes Hill</em></h4>
-<h4 class="date"><em>2018-02-27</em></h4>
+<h4 class="date"><em>2018-03-28</em></h4>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
-<p><a href="https://www.crcpress.com/p/book/9780815363729" target="_blank"><img src="images/cover.png" width="50%" style="display: block; margin: auto;" /></a></p>
-<p>In the summer of 2012, I did my internship at AT&amp;T Labs Research,<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> where I attended a talk given by Carlos Scheidegger (<a href="https://cscheid.net" class="uri">https://cscheid.net</a>), and Carlos said something along the lines of “if you don’t have a website nowadays, you don’t exist.” Later I paraphrased it as:</p>
+<p>In the summer of 2012, I did my internship at AT&amp;T Labs Research,<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> where I attended a talk given by Carlos Scheidegger (<a href="https://cscheid.net" class="uri">https://cscheid.net</a>), and Carlos said something along the lines of “if you don’t have a website nowadays, you don’t exist.” Later I paraphrased it as:</p>
 <blockquote>
 <p>“I web, therefore I am <del>a spiderman</del>.”</p>
 </blockquote>
 <p>Carlos’s words resonated very well with me, although they were a little exaggerated. A well-designed and maintained website can be extremely helpful for other people to know you, and you do not need to wait for suitable chances at conferences or other occasions to introduce yourself in person to other people. On the other hand, a website is also highly useful for yourself to keep track of what you have done and thought. Sometimes you may go back to a certain old post of yours to relearn the tricks or methods you once mastered in the past but have forgotten.</p>
-<p><a href="https://github.com/rstudio/blogdown" target="_blank"><img src="images/logo.png" style="display: block; margin: auto;" /></a></p>
 <p>We introduce an R package, <strong>blogdown</strong>, in this short book, to teach you how to create websites using R Markdown and Hugo. If you have experience with creating websites, you may naturally ask what the benefits of using R Markdown are, and how <strong>blogdown</strong> is different from existing popular website platforms, such as WordPress. There are two major highlights of <strong>blogdown</strong>:</p>
 <ol style="list-style-type: decimal">
 <li><p>It produces a static website, meaning the website only consists of static files such as HTML, CSS, JavaScript, and images, etc. You can host the website on any web server (see Chapter <a href="deployment.html#deployment">3</a> for details). The website does not require server-side scripts such as PHP or databases like WordPress does. It is just one folder of static files. We will explain more benefits of static websites in Chapter <a href="hugo.html#hugo">2</a>, when we introduce the static website generator Hugo.</p></li>
 <li><p>The website is generated from R Markdown documents (R is optional, i.e., you can use plain Markdown documents without R code chunks). This brings a huge amount of benefits, especially if your website is related to data analysis or (R) programming. Being able to use Markdown implies simplicity and more importantly, <em>portability</em> (e.g., you are giving yourself the chance to convert your blog posts to PDF and publish to journals or even books in the future). R Markdown gives you the benefits of dynamic documents — all your results, such as tables, graphics, and inline values, can be computed and rendered dynamically from R code, hence the results you present on your website are more likely to be reproducible. An additional yet important benefit of using R Markdown is that you will be able to write technical documents easily, due to the fact that <strong>blogdown</strong> inherits the HTML output format from <strong>bookdown</strong> <span class="citation">(Xie <a href="#ref-xie2016">2016</a>)</span>. For example, it is possible to write LaTeX math equations, BibTeX citations, and even theorems and proofs if you want.</p></li>
 </ol>
-<p>Please do not be misled by the word “blog” in the package name: <strong>blogdown</strong> is for general-purpose websites, and not only for blogs. For example, all authors of this book have their personal websites, where you can find information about their projects, blogs, package documentations, and so on.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> All their pages are built from <strong>blogdown</strong> and Hugo.</p>
+<p>Please do not be misled by the word “blog” in the package name: <strong>blogdown</strong> is for general-purpose websites, and not only for blogs. For example, all authors of this book have their personal websites, where you can find information about their projects, blogs, package documentations, and so on.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> All their pages are built from <strong>blogdown</strong> and Hugo.</p>
 <p>If you do not prefer using Hugo, there are other options, too. Chapter <a href="other-generators.html#other-generators">5</a> presents possibilities of using other site generators, such as Jekyll and <strong>rmarkdown</strong>’s default site generator.</p>
 <p>This book has been published by <a href="https://www.crcpress.com/p/book/9780815363729">Chapman &amp; Hall/CRC</a>. The online version of this book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p> 
 </div>
@@ -247,8 +273,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>In this book, “I” and “my” refer to Yihui unless otherwise noted.<a href="index.html#fnref1">↩</a></p></li>
-<li id="fn2"><p>Yihui’s homepage is at <a href="https://yihui.name" class="uri">https://yihui.name</a>. He writes blog posts in both Chinese (<a href="https://yihui.name/cn/" class="uri">https://yihui.name/cn/</a>) and English (<a href="https://yihui.name/en/" class="uri">https://yihui.name/en/</a>), and documents his software packages such as <strong>knitr</strong> (<a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a>) and <strong>animation</strong> (<a href="https://yihui.name/animation/" class="uri">https://yihui.name/animation/</a>). Occasionally he also writes articles like <a href="https://yihui.name/rlp/" class="uri">https://yihui.name/rlp/</a> when he finds interesting topics but does not bother with a formal journal submission. Amber’s homepage is at <a href="https://amber.rbind.io" class="uri">https://amber.rbind.io</a>, where you can find her blog and project pages. Alison’s website is at <a href="https://alison.rbind.io" class="uri">https://alison.rbind.io</a>, which uses an academic theme at the moment.<a href="index.html#fnref2">↩</a></p></li>
+<li id="fn1"><p>In this book, “I” and “my” refer to Yihui unless otherwise noted.<a href="index.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Yihui’s homepage is at <a href="https://yihui.name" class="uri">https://yihui.name</a>. He writes blog posts in both Chinese (<a href="https://yihui.name/cn/" class="uri">https://yihui.name/cn/</a>) and English (<a href="https://yihui.name/en/" class="uri">https://yihui.name/en/</a>), and documents his software packages such as <strong>knitr</strong> (<a href="https://yihui.name/knitr/" class="uri">https://yihui.name/knitr/</a>) and <strong>animation</strong> (<a href="https://yihui.name/animation/" class="uri">https://yihui.name/animation/</a>). Occasionally he also writes articles like <a href="https://yihui.name/rlp/" class="uri">https://yihui.name/rlp/</a> when he finds interesting topics but does not bother with a formal journal submission. Amber’s homepage is at <a href="https://amber.rbind.io" class="uri">https://amber.rbind.io</a>, where you can find her blog and project pages. Alison’s website is at <a href="https://alison.rbind.io" class="uri">https://alison.rbind.io</a>, which uses an academic theme at the moment.<a href="index.html#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>

@@ -1,3 +1,7 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
 \documentclass[12pt,]{krantz}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -6,12 +10,9 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
+  \usepackage{unicode-math}
   \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
     \setmonofont[Mapping=tex-ansi,Scale=0.7]{Source Code Pro}
 \fi
@@ -22,9 +23,14 @@
 \usepackage[]{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
-\usepackage[unicode=true]{hyperref}
-\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{xcolor}
+\usepackage{hyperref}
 \hypersetup{
             pdftitle={blogdown: Creating Websites with R Markdown},
             pdfauthor={Yihui Xie, Amber Thomas, Alison Presmanes Hill},
@@ -34,8 +40,6 @@
             urlcolor=Blue,
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
-\usepackage{natbib}
-\bibliographystyle{apalike}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -45,40 +49,40 @@
 \usepackage{framed}
 \definecolor{shadecolor}{RGB}{248,248,248}
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -91,12 +95,6 @@
 \usepackage[normalem]{ulem}
 % avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -206,10 +204,12 @@
 \makeindex
 
 \urlstyle{tt}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
 
 \title{blogdown: Creating Websites with R Markdown}
 \author{Yihui Xie, Amber Thomas, Alison Presmanes Hill}
-\date{2018-02-27}
+\date{2018-03-28}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -239,13 +239,14 @@ To ...
 \frontmatter
 
 {
-\hypersetup{linkcolor=black}
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
 \listoftables
 \listoffigures
-\chapter*{Preface}\label{preface}
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
 
 
 In the summer of 2012, I did my internship at AT\&T Labs
@@ -333,7 +334,8 @@ Hall/CRC}. The online version of this book is licensed under the
 \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative
 Commons Attribution-NonCommercial-ShareAlike 4.0 International License}.
 
-\section*{Structure of the book}\label{structure-of-the-book}
+\hypertarget{structure-of-the-book}{%
+\section*{Structure of the book}\label{structure-of-the-book}}
 
 
 Chapter \ref{get-started} aims at getting you started with a new website
@@ -370,7 +372,8 @@ your own domain name, Appendix \ref{domain-name} provides an
 introduction to how it works. We have also covered some optional topics
 in Appendix \ref{advanced-topics} for advanced users.
 
-\section*{Software information and conventions}\label{software-info}
+\hypertarget{software-info}{%
+\section*{Software information and conventions}\label{software-info}}
 
 
 The R session information when compiling this book is shown below:
@@ -396,8 +399,8 @@ The R session information when compiling this book is shown below:
 ## [6] base     
 ## 
 ## loaded via a namespace (and not attached):
-## [1] bookdown_0.7     blogdown_0.5     rmarkdown_1.8.10
-## [4] htmltools_0.3.6  knitr_1.20
+## [1] bookdown_0.7    blogdown_0.5    rmarkdown_1.9  
+## [4] htmltools_0.3.6 knitr_1.20
 \end{verbatim}
 
 We do not add prompts (\texttt{\textgreater{}} and \texttt{+}) to R
@@ -444,7 +447,8 @@ subdomain of \texttt{example.com}. It could be \texttt{foo.example.com}
 or \texttt{123.example.com}. Actually, \texttt{foo} and \texttt{bar}
 also indicate arbitrary characters or objects.
 
-\section*{Acknowledgments}\label{acknowledgments}
+\hypertarget{acknowledgments}{%
+\section*{Acknowledgments}\label{acknowledgments}}
 
 
 Originally I planned to write only one sentence in this section: ``I
@@ -510,7 +514,8 @@ Yihui Xie\\
 Elkhorn, Nebraska
 \EndKnitrBlock{flushright}
 
-\chapter*{About the Authors}\label{author}
+\hypertarget{author}{%
+\chapter*{About the Authors}\label{author}}
 
 
 Yihui is the main developer of the \textbf{blogdown} package. He did not
@@ -534,7 +539,8 @@ other.
 
 Hopefully, you can better see why you should have a website now.
 
-\section*{Yihui Xie}\label{yihui-xie}
+\hypertarget{yihui-xie}{%
+\section*{Yihui Xie}\label{yihui-xie}}
 
 
 Yihui Xie (\url{https://yihui.name}) is a software engineer at RStudio
@@ -564,7 +570,8 @@ and most of the time you can find him on GitHub
 
 He enjoys spicy food as much as classical Chinese literature.
 
-\section*{Amber Thomas}\label{amber-thomas}
+\hypertarget{amber-thomas}{%
+\section*{Amber Thomas}\label{amber-thomas}}
 
 
 Amber Thomas (\url{https://amber.rbind.io}) is a data journalist and
@@ -592,7 +599,8 @@ inbox, Amber is usually getting some fresh Seattle air or cuddling with
 her dog, Sherlock. If you are looking for her in the digital world, try
 \url{https://twitter.com/ProQuesAsker}.
 
-\section*{Alison Presmanes Hill}\label{alison-presmanes-hill}
+\hypertarget{alison-presmanes-hill}{%
+\section*{Alison Presmanes Hill}\label{alison-presmanes-hill}}
 
 
 Alison (\url{https://alison.rbind.io}) is a professor of pediatrics at
@@ -623,7 +631,8 @@ of most Emily Arrow songs (for private audiences only).
 
 \mainmatter
 
-\chapter{Get Started}\label{get-started}
+\hypertarget{get-started}{%
+\chapter{Get Started}\label{get-started}}
 
 In this chapter, we show how to create a simple website from scratch.
 The website will contain a home page, an ``About'' page, one R Markdown
@@ -634,7 +643,8 @@ required. The RStudio IDE can make a few things easier, but you are free
 to use any editor if you do not care about the extra benefits in
 RStudio.
 
-\section{Installation}\label{installation}
+\hypertarget{installation}{%
+\section{Installation}\label{installation}}
 
 We assume you have already installed R (\url{https://www.r-project.org})
 \citep{R-base} and the RStudio IDE (\url{https://www.rstudio.com}). If
@@ -671,7 +681,8 @@ For macOS users, \texttt{install\_hugo()} uses the package manager
 Homebrew (\url{https://brew.sh}) if it has already been installed,
 otherwise it just downloads the Hugo binary directly.
 
-\subsection{Update}\label{update}
+\hypertarget{update}{%
+\subsection{Update}\label{update}}
 
 To upgrade or reinstall Hugo, you may use
 \texttt{blogdown::update\_hugo()}, which is equivalent to
@@ -679,7 +690,8 @@ To upgrade or reinstall Hugo, you may use
 version via \texttt{blogdown::hugo\_version()}, and find the latest
 version of Hugo at \url{https://github.com/gohugoio/hugo/releases}.
 
-\section{A quick example}\label{a-quick-example}
+\hypertarget{a-quick-example}{%
+\section{A quick example}\label{a-quick-example}}
 
 From our experience, Hugo's documentation may be a little daunting to
 read and digest for beginners.\footnote{One day I was almost ready to
@@ -819,7 +831,8 @@ that a more complicated and fancier theme may require you to learn more
 about all the underlying technologies like the Hugo templating language,
 HTML, CSS, and JavaScript.
 
-\section{RStudio IDE}\label{rstudio-ide}
+\hypertarget{rstudio-ide}{%
+\section{RStudio IDE}\label{rstudio-ide}}
 
 There are a few essential RStudio addins\index{RStudio addins} to make
 it easy to edit and preview your website, and you can find them in the
@@ -980,8 +993,9 @@ change,'' since this option is not really useful after you call
 \caption{RStudio project options.}\label{fig:project-options}
 \end{figure}
 
+\hypertarget{global-options}{%
 \section{\texorpdfstring{Global
-options\index{Global Options}}{Global options}}\label{global-options}
+options\index{Global Options}}{Global options}}\label{global-options}}
 
 Depending on your personal preferences, you can set a few global options
 before you work on your website. These options should be set using
@@ -1066,7 +1080,8 @@ exists. Author-specific options can be set in the global
 \end{Highlighting}
 \end{Shaded}
 
-\section{R Markdown vs.~Markdown}\label{output-format}
+\hypertarget{output-format}{%
+\section{R Markdown vs.~Markdown}\label{output-format}}
 
 If you are not familiar with R Markdown\index{R Markdown}, please see
 Appendix \ref{r-markdown} for a quick tutorial. When you create a new
@@ -1320,7 +1335,8 @@ If you are working on an R Markdown post, but do not want
 extension from \texttt{.Rmd} to another unknown extension such as
 \texttt{.Rmkd}.
 
-\section{Other themes}\label{other-themes}
+\hypertarget{other-themes}{%
+\section{Other themes}\label{other-themes}}
 
 In Hugo, themes\index{Themes} control the entire appearance and
 functionality of your site. So, if you care a lot about the appearance
@@ -1415,7 +1431,8 @@ but keep on digging, even with tears.
   unless you have logged in).}}{}
 \end{quote}
 
-\section{A recommended workflow}\label{workflow}
+\hypertarget{workflow}{%
+\section{A recommended workflow}\label{workflow}}
 
 There are a lot of ways to start building a website and deploy it.
 Because of the sheer number of technologies that you need to learn to
@@ -1499,7 +1516,8 @@ approach, you do not need to run \texttt{blogdown::hugo\_build()}
 locally, because the website can be built on Netlify via Hugo. See
 Chapter \ref{deployment} for more information.
 
-\chapter{Hugo}\label{hugo}
+\hypertarget{hugo}{%
+\chapter{Hugo}\label{hugo}}
 
 In this chapter, we will briefly introduce\index{Hugo} Hugo
 (\url{https://gohugo.io}), the static site generator on which
@@ -1508,7 +1526,8 @@ official Hugo documentation, but provide a guide to those who are just
 getting started with Hugo. When in doubt, please consult the official
 Hugo documentation.
 
-\section{Static sites and Hugo}\label{static-sites}
+\hypertarget{static-sites}{%
+\section{Static sites and Hugo}\label{static-sites}}
 
 A static site\index{Static Site} often consists of HTML files (with
 optional external dependencies like images and JavaScript libraries),
@@ -1608,7 +1627,8 @@ details on the following files and folders:
 site using \textbf{blogdown}.}\label{fig:folders}
 \end{figure}
 
-\section{Configuration}\label{configuration}
+\hypertarget{configuration}{%
+\section{Configuration}\label{configuration}}
 
 The first file that you may want to look at is the
 configuration\index{config.toml} or \texttt{config} file in your root
@@ -1644,7 +1664,8 @@ The Hugo documentation does not use TOML or YAML consistently in its
 examples, which can be confusing. Please pay close attention to the
 configuration format when copying examples to your own website.
 
-\subsection{TOML Syntax}\label{toml-syntax}
+\hypertarget{toml-syntax}{%
+\subsection{TOML Syntax}\label{toml-syntax}}
 
 If you are not familiar with the TOML Syntax, we will give a brief
 overview and you may read the
@@ -1724,7 +1745,8 @@ that when you choose a theme, you read its documentation thoroughly to
 get an understanding of what each of the configuration options does
 (more on themes in Section \ref{themes}).
 
-\subsection{Options}\label{options}
+\hypertarget{options}{%
+\subsection{Options}\label{options}}
 
 All built-in options\index{options} that you may set for Hugo are listed
 at \url{https://gohugo.io/overview/configuration/}. You can change any
@@ -1864,7 +1886,8 @@ themes, so that users can easily edit a single config file to apply the
 theme to their websites, instead of going through many HTML files and
 making changes one by one.
 
-\section{Content}\label{content}
+\hypertarget{content}{%
+\section{Content}\label{content}}
 
 The structure of the \texttt{content/} directory can be arbitrary. A
 common structure is that there are a few static pages under the root of
@@ -1884,7 +1907,8 @@ posts:
 \end{Highlighting}
 \end{Shaded}
 
-\subsection{YAML metadata}\label{yaml-metadata}
+\hypertarget{yaml-metadata}{%
+\subsection{YAML metadata}\label{yaml-metadata}}
 
 Each page should start with YAML\index{YAML} metadata specifying
 information like the title, date, author, categories, tags, and so on.
@@ -1917,14 +1941,16 @@ Among all YAML fields, we want to bring these to your attention:
   (see Section \ref{options}).
 \end{itemize}
 
-\subsection{Body}\label{body}
+\hypertarget{body}{%
+\subsection{Body}\label{body}}
 
 As we mentioned in Section \ref{output-format}, your post can be written
 in either R Markdown or plain Markdown. Please be cautious about the
 syntax differences between the two formats when you write the body of a
 post.
 
-\subsection{Shortcode}\label{shortcode}
+\hypertarget{shortcode}{%
+\subsection{Shortcode}\label{shortcode}}
 
 Besides all Markdown features, Hugo provides a useful feature named
 ``shortcodes.'' You can use a shortcode\index{Shortcode} in the body of
@@ -1991,7 +2017,8 @@ function \texttt{blogdown::shortcode()}, e.g.,
 \end{Highlighting}
 \end{Shaded}
 
-\section{Themes}\label{themes}
+\hypertarget{themes}{%
+\section{Themes}\label{themes}}
 
 A Hugo theme\index{Themes} is a collection of template files and
 optional website assets such as CSS and JavaScript files. In a nutshell,
@@ -2011,7 +2038,8 @@ In this section, we will explain how the default theme in
 \textbf{blogdown} works, which may also give you some ideas about how to
 get started with other themes.
 
-\subsection{The default theme}\label{the-default-theme}
+\hypertarget{the-default-theme}{%
+\subsection{The default theme}\label{the-default-theme}}
 
 The default theme in \textbf{blogdown},
 hugo-lithium-theme\index{Hugo Lithium Theme}, is hosted on GitHub at
@@ -2192,7 +2220,8 @@ If you want to be a theme developer and fully understand all the
 technical details about these options, you have to understand Hugo
 templates, which we will introduce in Section \ref{templates}.
 
-\section{Templates}\label{templates}
+\hypertarget{templates}{%
+\section{Templates}\label{templates}}
 
 A Hugo theme consists of two major components:
 templates\index{Templates}, and web assets. The former is essential, and
@@ -2213,7 +2242,8 @@ functionalities that an average user may need, but the total number of
 lines is only about 150, so we can talk about all the source code of
 this theme in the following subsection.
 
-\subsection{A minimal example}\label{a-minimal-example}
+\hypertarget{a-minimal-example}{%
+\subsection{A minimal example}\label{a-minimal-example}}
 
 \href{https://github.com/yihui/hugo-xmin}{XMin} is a Hugo
 theme\index{XMin Theme} I wrote from scratch in about 12 hours. Roughly
@@ -2694,12 +2724,12 @@ below:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{body }\KeywordTok{\{}
-  \KeywordTok{max-width:} \DataTypeTok{800px}\KeywordTok{;}
-  \KeywordTok{margin:} \DataTypeTok{auto}\KeywordTok{;}
-  \KeywordTok{padding:} \DataTypeTok{1em}\KeywordTok{;}
-  \KeywordTok{line-height:} \DataTypeTok{1.5em}\KeywordTok{;}
-\KeywordTok{\}}
+\NormalTok{body \{}
+  \KeywordTok{max-width}\NormalTok{: }\DecValTok{800px}\NormalTok{;}
+  \KeywordTok{margin}\NormalTok{: }\DecValTok{auto}\NormalTok{;}
+  \KeywordTok{padding}\NormalTok{: }\DecValTok{1em}\NormalTok{;}
+  \KeywordTok{line-height}\NormalTok{: }\DecValTok{1.5em}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2713,20 +2743,20 @@ below:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{/* header and footer areas */}
-\FloatTok{.menu}\NormalTok{ li }\KeywordTok{\{} \KeywordTok{display:} \DataTypeTok{inline-block}\KeywordTok{;} \KeywordTok{\}}
-\FloatTok{.article-meta}\NormalTok{, }\FloatTok{.menu}\NormalTok{ a }\KeywordTok{\{}
-  \KeywordTok{text-decoration:} \DataTypeTok{none}\KeywordTok{;}
-  \KeywordTok{background:} \DataTypeTok{#eee}\KeywordTok{;}
-  \KeywordTok{padding:} \DataTypeTok{5px}\KeywordTok{;}
-  \KeywordTok{border-radius:} \DataTypeTok{5px}\KeywordTok{;}
-\KeywordTok{\}}
-\FloatTok{.menu}\NormalTok{, }\FloatTok{.article-meta}\NormalTok{, footer }\KeywordTok{\{} \KeywordTok{text-align:} \DataTypeTok{center}\KeywordTok{;} \KeywordTok{\}}
-\FloatTok{.title} \KeywordTok{\{} \KeywordTok{font-size:} \DataTypeTok{1.1em}\KeywordTok{;} \KeywordTok{\}}
-\NormalTok{footer a }\KeywordTok{\{} \KeywordTok{text-decoration:} \DataTypeTok{none}\KeywordTok{;} \KeywordTok{\}}
-\NormalTok{hr }\KeywordTok{\{}
-  \KeywordTok{border-style:} \DataTypeTok{dashed}\KeywordTok{;}
-  \KeywordTok{color:} \DataTypeTok{#ddd}\KeywordTok{;}
-\KeywordTok{\}}
+\FunctionTok{.menu}\NormalTok{ li \{ }\KeywordTok{display}\NormalTok{: }\DecValTok{inline-block}\NormalTok{; \}}
+\FunctionTok{.article-meta}\NormalTok{, }\FunctionTok{.menu}\NormalTok{ a \{}
+  \KeywordTok{text-decoration}\NormalTok{: }\DecValTok{none}\NormalTok{;}
+  \KeywordTok{background}\NormalTok{: }\DecValTok{#eee}\NormalTok{;}
+  \KeywordTok{padding}\NormalTok{: }\DecValTok{5px}\NormalTok{;}
+  \KeywordTok{border-radius}\NormalTok{: }\DecValTok{5px}\NormalTok{;}
+\NormalTok{\}}
+\FunctionTok{.menu}\NormalTok{, }\FunctionTok{.article-meta}\NormalTok{, footer \{ }\KeywordTok{text-align}\NormalTok{: }\DecValTok{center}\NormalTok{; \}}
+\FunctionTok{.title}\NormalTok{ \{ }\KeywordTok{font-size}\NormalTok{: }\DecValTok{1.1em}\NormalTok{; \}}
+\NormalTok{footer a \{ }\KeywordTok{text-decoration}\NormalTok{: }\DecValTok{none}\NormalTok{; \}}
+\NormalTok{hr \{}
+  \KeywordTok{border-style}\NormalTok{: }\DecValTok{dashed}\NormalTok{;}
+  \KeywordTok{color}\NormalTok{: }\DecValTok{#ddd}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2752,14 +2782,14 @@ below:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{/* code */}
-\NormalTok{pre }\KeywordTok{\{}
-  \KeywordTok{border:} \DataTypeTok{1px} \DataTypeTok{solid} \DataTypeTok{#ddd}\KeywordTok{;}
-  \KeywordTok{box-shadow:} \DataTypeTok{5px} \DataTypeTok{5px} \DataTypeTok{5px} \DataTypeTok{#eee}\KeywordTok{;}
-  \KeywordTok{padding:} \DataTypeTok{1em}\KeywordTok{;}
-  \KeywordTok{overflow-x:} \DataTypeTok{auto}\KeywordTok{;}
-\KeywordTok{\}}
-\NormalTok{code }\KeywordTok{\{} \KeywordTok{background:} \DataTypeTok{#f9f9f9}\KeywordTok{;} \KeywordTok{\}}
-\NormalTok{pre code }\KeywordTok{\{} \KeywordTok{background:} \DataTypeTok{none}\KeywordTok{;} \KeywordTok{\}}
+\NormalTok{pre \{}
+  \KeywordTok{border}\NormalTok{: }\DecValTok{1px} \DecValTok{solid} \DecValTok{#ddd}\NormalTok{;}
+  \KeywordTok{box-shadow}\NormalTok{: }\DecValTok{5px} \DecValTok{5px} \DecValTok{5px} \DecValTok{#eee}\NormalTok{;}
+  \KeywordTok{padding}\NormalTok{: }\DecValTok{1em}\NormalTok{;}
+  \KeywordTok{overflow-x}\NormalTok{: }\DecValTok{auto}\NormalTok{;}
+\NormalTok{\}}
+\NormalTok{code \{ }\KeywordTok{background}\NormalTok{: }\DecValTok{#f9f9f9}\NormalTok{; \}}
+\NormalTok{pre code \{ }\KeywordTok{background}\NormalTok{: }\DecValTok{none}\NormalTok{; \}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2771,22 +2801,22 @@ below:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{/* misc elements */}
-\NormalTok{img, iframe, video }\KeywordTok{\{} \KeywordTok{max-width:} \DataTypeTok{100%}\KeywordTok{;} \KeywordTok{\}}
-\NormalTok{main }\KeywordTok{\{} \KeywordTok{hyphens:} \DataTypeTok{auto}\KeywordTok{;} \KeywordTok{\}}
-\NormalTok{blockquote }\KeywordTok{\{}
-  \KeywordTok{background:} \DataTypeTok{#f9f9f9}\KeywordTok{;}
-  \KeywordTok{border-left:} \DataTypeTok{5px} \DataTypeTok{solid} \DataTypeTok{#ccc}\KeywordTok{;}
-  \KeywordTok{padding:} \DataTypeTok{3px} \DataTypeTok{1em} \DataTypeTok{3px}\KeywordTok{;}
-\KeywordTok{\}}
+\NormalTok{img, iframe, video \{ }\KeywordTok{max-width}\NormalTok{: }\DecValTok{100%}\NormalTok{; \}}
+\NormalTok{main \{ }\KeywordTok{hyphens}\NormalTok{: }\DecValTok{auto}\NormalTok{; \}}
+\NormalTok{blockquote \{}
+  \KeywordTok{background}\NormalTok{: }\DecValTok{#f9f9f9}\NormalTok{;}
+  \KeywordTok{border-left}\NormalTok{: }\DecValTok{5px} \DecValTok{solid} \DecValTok{#ccc}\NormalTok{;}
+  \KeywordTok{padding}\NormalTok{: }\DecValTok{3px} \DecValTok{1em} \DecValTok{3px}\NormalTok{;}
+\NormalTok{\}}
 
-\NormalTok{table }\KeywordTok{\{}
-  \KeywordTok{margin:} \DataTypeTok{auto}\KeywordTok{;}
-  \KeywordTok{border-top:} \DataTypeTok{1px} \DataTypeTok{solid} \DataTypeTok{#666}\KeywordTok{;}
-  \KeywordTok{border-bottom:} \DataTypeTok{1px} \DataTypeTok{solid} \DataTypeTok{#666}\KeywordTok{;}
-\KeywordTok{\}}
-\NormalTok{table thead th }\KeywordTok{\{} \KeywordTok{border-bottom:} \DataTypeTok{1px} \DataTypeTok{solid} \DataTypeTok{#ddd}\KeywordTok{;} \KeywordTok{\}}
-\NormalTok{th, td }\KeywordTok{\{} \KeywordTok{padding:} \DataTypeTok{5px}\KeywordTok{;} \KeywordTok{\}}
-\NormalTok{tr}\DecValTok{:nth-child}\NormalTok{(even) }\KeywordTok{\{} \KeywordTok{background:} \DataTypeTok{#eee} \KeywordTok{\}}
+\NormalTok{table \{}
+  \KeywordTok{margin}\NormalTok{: }\DecValTok{auto}\NormalTok{;}
+  \KeywordTok{border-top}\NormalTok{: }\DecValTok{1px} \DecValTok{solid} \DecValTok{#666}\NormalTok{;}
+  \KeywordTok{border-bottom}\NormalTok{: }\DecValTok{1px} \DecValTok{solid} \DecValTok{#666}\NormalTok{;}
+\NormalTok{\}}
+\NormalTok{table thead th \{ }\KeywordTok{border-bottom}\NormalTok{: }\DecValTok{1px} \DecValTok{solid} \DecValTok{#ddd}\NormalTok{; \}}
+\NormalTok{th, td \{ }\KeywordTok{padding}\NormalTok{: }\DecValTok{5px}\NormalTok{; \}}
+\NormalTok{tr}\InformationTok{:nth-child}\NormalTok{(even) \{ }\KeywordTok{background}\NormalTok{: }\DecValTok{#eee}\NormalTok{ \}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2811,13 +2841,13 @@ below:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{body }\KeywordTok{\{}
-  \KeywordTok{font-family:} \StringTok{"Palatino Linotype"}\NormalTok{, }\StringTok{"Book Antiqua"}\NormalTok{, Palatino, }\DataTypeTok{serif}\KeywordTok{;}
-\KeywordTok{\}}
-\NormalTok{code }\KeywordTok{\{}
-  \KeywordTok{font-family:} \StringTok{"Lucida Console"}\NormalTok{, Monaco, }\DataTypeTok{monospace}\KeywordTok{;}
-  \KeywordTok{font-size:} \DataTypeTok{85%}\KeywordTok{;}
-\KeywordTok{\}}
+\NormalTok{body \{}
+  \KeywordTok{font-family}\NormalTok{: }\StringTok{"Palatino Linotype"}\NormalTok{, }\StringTok{"Book Antiqua"}\NormalTok{, Palatino, }\DecValTok{serif}\NormalTok{;}
+\NormalTok{\}}
+\NormalTok{code \{}
+  \KeywordTok{font-family}\NormalTok{: }\StringTok{"Lucida Console"}\NormalTok{, Monaco, }\DecValTok{monospace}\NormalTok{;}
+  \KeywordTok{font-size}\NormalTok{: }\DecValTok{85%}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 \end{itemize}
@@ -2851,7 +2881,8 @@ The example site provides a sample \texttt{config.toml}, a home page
 \texttt{note/} and two under \texttt{post/}. It also overrides the
 \texttt{foot\_custom.html} in the theme.
 
-\subsection{Implementing more features}\label{how-to}
+\hypertarget{how-to}{%
+\subsection{Implementing more features}\label{how-to}}
 
 The XMin is actually a highly functional theme, but we understand that
 it may be too minimal for you. There are a few commonly used features
@@ -3170,7 +3201,8 @@ templates. There are a large number of Hugo themes but the primary
 differences among them are often in styles. The basic components of
 templates are often similar.
 
-\section{Custom layouts}\label{custom-layouts}
+\hypertarget{custom-layouts}{%
+\section{Custom layouts}\label{custom-layouts}}
 
 It is very likely that you want to customize a theme unless you designed
 it. The most straightforward way is to simply make changes directly in
@@ -3247,7 +3279,8 @@ files under \texttt{layouts/}, and is not limited to the
 \texttt{partials/} directory. It also applies to any Hugo theme that you
 actually use for your website, and is not limited to \texttt{hugo-xmin}.
 
-\section{Static files}\label{static-files}
+\hypertarget{static-files}{%
+\section{Static files}\label{static-files}}
 
 All files under the \texttt{static/} directory\index{Static Directory}
 are copied to \texttt{public/} when Hugo renders a website. This
@@ -3273,12 +3306,12 @@ theme, e.g.,
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{body }\KeywordTok{\{}
-  \KeywordTok{font-family:} \StringTok{"Comic Sans MS"}\NormalTok{, }\DataTypeTok{cursive}\NormalTok{, }\DataTypeTok{sans-serif}\KeywordTok{;}
-\KeywordTok{\}}
-\NormalTok{code }\KeywordTok{\{}
-  \KeywordTok{font-family:} \StringTok{"Courier New"}\NormalTok{, Courier, }\DataTypeTok{monospace}\KeywordTok{;}
-\KeywordTok{\}}
+\NormalTok{body \{}
+  \KeywordTok{font-family}\NormalTok{: }\StringTok{"Comic Sans MS"}\NormalTok{, }\DecValTok{cursive}\NormalTok{, }\DecValTok{sans-serif}\NormalTok{;}
+\NormalTok{\}}
+\NormalTok{code \{}
+  \KeywordTok{font-family}\NormalTok{: }\StringTok{"Courier New"}\NormalTok{, Courier, }\DecValTok{monospace}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3327,7 +3360,8 @@ output from the latter will overwrite the former (both Hugo and you will
 generate an output file with the same name
 \texttt{public/about/index.html}).
 
-\chapter{Deployment}\label{deployment}
+\hypertarget{deployment}{%
+\chapter{Deployment}\label{deployment}}
 
 Since the website is basically a folder containing static files, it is
 much easier to deploy than websites that require dynamic server-side
@@ -3370,7 +3404,8 @@ mentioned before, one great advantage of \textbf{blogdown} is that your
 website will be a folder of static files that you can move to any web
 server.
 
-\section{Netlify}\label{netlify}
+\hypertarget{netlify}{%
+\section{Netlify}\label{netlify}}
 
 As we just mentioned, Netlify\index{Netlify} allows you to quickly
 publish a website by uploading the \texttt{public/} folder through its
@@ -3443,7 +3478,7 @@ some background knowledge on domain names.
 
 If you are not familiar with domain names or do not want to learn more
 about them, something to consider is a free subdomain
-\texttt{*.rbind.io} offered by RStudio, Inc. Please visit the Rbind
+\texttt{*.rbind.io} offered by RStudio, Inc.~Please visit the Rbind
 support website \url{https://support.rbind.io} to learn how to apply for
 a subdomain. In fact, the Rbind organization also offers free help on
 how to set up a website based on \textbf{blogdown}, thanks to a lot of
@@ -3463,7 +3498,8 @@ the root directory, specify \texttt{.} as the publish directory
 instead). Then Netlify simply uploads all files under this directory to
 its servers without rebuilding your website.
 
-\section{Updog}\label{updog}
+\hypertarget{updog}{%
+\section{Updog}\label{updog}}
 
 Updog (\url{https://updog.co}) provides\index{Updog} a simple service:
 it turns a specified Dropbox (or Google Drive) folder into a website.
@@ -3496,7 +3532,8 @@ Updog subdomain, and you only need to point the CNAME record of your
 domain name to the Updog subdomain.\footnote{See Appendix
   \ref{domain-name} for more information.}
 
-\section{GitHub Pages}\label{github-pages}
+\hypertarget{github-pages}{%
+\section{GitHub Pages}\label{github-pages}}
 
 GitHub Pages (\url{https://pages.github.com}) \index{GitHub Pages} is a
 very popular way to host static websites (especially those built with
@@ -3635,7 +3672,8 @@ under the same parent directory. In this case, you need to set the
 option \texttt{publishDir:\ "../username.github.io"} in
 \texttt{source/config.toml}.
 
-\section{Travis + GitHub}\label{travis-github}
+\hypertarget{travis-github}{%
+\section{Travis + GitHub}\label{travis-github}}
 
 If \index{Travis CI} you decide not to follow our recommendation to use
 Netlify to deploy your website, we should warn you that the approach in
@@ -3801,7 +3839,8 @@ the target from GitHub Pages to Amazon S3. For more information, please
 see the documentation on Travis:
 \url{https://docs.travis-ci.com/user/deployment/s3/}.
 
-\section{GitLab Pages}\label{gitlab-pages}
+\hypertarget{gitlab-pages}{%
+\section{GitLab Pages}\label{gitlab-pages}}
 
 GitLab (\url{http://gitlab.com}) is a very popular way to host the
 source code of your project. GitLab has a
@@ -3848,7 +3887,8 @@ and options are similar to \texttt{.travis.yml} in Section
 \ref{travis-github}. The above example generates the website at
 \url{https://rgaiacs.gitlab.io/blogdown-gitlab}.
 
-\chapter{Migration}\label{migration}
+\hypertarget{migration}{%
+\chapter{Migration}\label{migration}}
 
 Usually, it is easier to start a new website than
 migrating\index{Site Migration} an old one to a new framework, but you
@@ -3912,7 +3952,8 @@ Hugo renders different links for your pages and posts. In that case, you
 may either fix the permanent links (e.g., by tweaking the slug of a
 post), or use 301 redirects (e.g., on Netlify).
 
-\section{From Jekyll}\label{from-jekyll}
+\hypertarget{from-jekyll}{%
+\section{From Jekyll}\label{from-jekyll}}
 
 When converting a Jekyll\index{Jekyll} website to Hugo, the most
 challenging part is the theme. If you want to keep exactly the same
@@ -4089,7 +4130,8 @@ YAML metadata is below, which looks much cleaner:
 \end{Highlighting}
 \end{Shaded}
 
-\section{From WordPress}\label{from-wordpress}
+\hypertarget{from-wordpress}{%
+\section{From WordPress}\label{from-wordpress}}
 
 From our experience, the best way to import WordPress\index{WordPress}
 blog posts to Hugo is to import them to Jekyll, and write an R script to
@@ -4139,7 +4181,8 @@ there may be remaining HTML tags in your posts, such as
 \texttt{\textless{}blockquote\textgreater{}}. You will need to manually
 clean them, if any exist.
 
-\section{From other systems}\label{from-other-systems}
+\hypertarget{from-other-systems}{%
+\section{From other systems}\label{from-other-systems}}
 
 If you have a website built by other applications or systems, your best
 way to go may be to import your website to WordPress first, export it to
@@ -4163,7 +4206,8 @@ I have actually tried this way on a website, but was not satisfied,
 since I still had to heavily clean up the Markdown files. If your
 website is simpler, this approach may work better for you.
 
-\chapter{Other Generators}\label{other-generators}
+\hypertarget{other-generators}{%
+\chapter{Other Generators}\label{other-generators}}
 
 We mentioned the possibility to bypass Hugo and use your own building
 method in Section \ref{methods}. Basically you have to build the site
@@ -4175,7 +4219,8 @@ languages, there is actually a simple site generator written in R
 provided in the \textbf{rmarkdown} package \citep{R-rmarkdown}, and we
 will introduce it in Section \ref{rmd-website}.
 
-\section{Jekyll}\label{jekyll}
+\hypertarget{jekyll}{%
+\section{Jekyll}\label{jekyll}}
 
 For Jekyll (\url{https://jekyllrb.com}) \index{Jekyll}users, I have
 prepared a minimal example in the GitHub repository
@@ -4379,7 +4424,8 @@ It may be possible for us to remove these limitations in a future
 version of \textbf{blogdown}, if there are enough happy Jekyll users in
 the R community.
 
-\section{Hexo}\label{hexo}
+\hypertarget{hexo}{%
+\section{Hexo}\label{hexo}}
 
 The ideas of using\index{Hexo} Hexo (\url{https://hexo.io}) are very
 similar to what we have applied to Jekyll in the previous section. I
@@ -4457,7 +4503,8 @@ Netlify. For example, this example repository uses the command
 repository), and \texttt{hexo\ generate} is the command to build the
 website from \texttt{source/} to \texttt{public/}.
 
-\section{Default site generator in rmarkdown}\label{rmd-website}
+\hypertarget{rmd-website}{%
+\section{Default site generator in rmarkdown}\label{rmd-website}}
 
 Before \textbf{blogdown} was invented\index{R Markdown Site Generator},
 there was actually a relatively simple way to render websites using
@@ -4519,7 +4566,8 @@ Please note that the \textbf{rmarkdown} site generator is extensible,
 too. For example, the \textbf{bookdown} package \citep{R-bookdown} is
 essentially a custom site generator to generate books as websites.
 
-\section{pkgdown}\label{pkgdown}
+\hypertarget{pkgdown}{%
+\section{pkgdown}\label{pkgdown}}
 
 The \textbf{pkgdown} package\index{pkgdown} (\citet{R-pkgdown},
 \url{https://github.com/hadley/pkgdown}) can help you quickly turn the R
@@ -4530,12 +4578,14 @@ mention it in this book because it is very easy to use, and also highly
 useful. You can find the instructions on its website or in its GitHub
 repository.
 
-\cleardoublepage 
+\cleardoublepage
 
-\appendix \addcontentsline{toc}{chapter}{\appendixname}
+\hypertarget{appendix-appendix}{%
+\appendix \addcontentsline{toc}{chapter}{\appendixname}}
 
 
-\chapter{R Markdown}\label{r-markdown}
+\hypertarget{r-markdown}{%
+\chapter{R Markdown}\label{r-markdown}}
 
 R Markdown\index{R Markdown} \citep{R-rmarkdown} is a plain-text
 document format consisting of two components: R (or other computing
@@ -4629,7 +4679,8 @@ web pages can be updated accordingly and automatically. There is no need
 to run the code separately and cut-and-paste again. Besides the
 convenience, you gain reproducibility at the same time.
 
-\chapter{Website Basics}\label{website-basics}
+\hypertarget{website-basics}{%
+\chapter{Website Basics}\label{website-basics}}
 
 If you want to tweak the appearance of your website, or even design your
 own theme, you must have some basic knowledge of web development. In
@@ -4690,7 +4741,8 @@ helpful for learning web development. These tools are indispensable to
 me when I develop anything related to web pages. I learned a great deal
 about CSS and JavaScript by playing with these tools.
 
-\section{HTML}\label{html}
+\hypertarget{html}{%
+\section{HTML}\label{html}}
 
 HTML\index{HTML} stands for Hyper Text Markup Language, and it is the
 language behind most web pages you see. You can use the menu
@@ -4906,7 +4958,8 @@ HTML:
   \end{itemize}
 \end{itemize}
 
-\section{CSS}\label{css}
+\hypertarget{css}{%
+\section{CSS}\label{css}}
 
 The Cascading Stylesheets\index{CSS} (CSS) language is used to describe
 the look and formatting of documents written in HTML. CSS is responsible
@@ -4967,9 +5020,9 @@ in your HTML:
 \begin{Highlighting}[]
 \KeywordTok{<html>}
 \KeywordTok{<style>} 
-\FloatTok{#favorite} \KeywordTok{\{}
-    \KeywordTok{font-style:} \DataTypeTok{italic}\KeywordTok{;}
-\KeywordTok{\}}
+\PreprocessorTok{#favorite}\NormalTok{ \{}
+    \KeywordTok{font-style}\NormalTok{: }\DecValTok{italic}\NormalTok{;}
+\NormalTok{\}}
 \KeywordTok{</style>}
 \KeywordTok{<ul}\OtherTok{ id=}\StringTok{"tea-list"}\KeywordTok{>}
   \KeywordTok{<li>}\NormalTok{Earl Grey}\KeywordTok{</li>}
@@ -5007,10 +5060,10 @@ structure for a rule}:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{/* CSS pseudo-code */}
-\NormalTok{selectorlist }\KeywordTok{\{}
-    \KeywordTok{property:}\NormalTok{ value}\KeywordTok{;}
+\NormalTok{selectorlist \{}
+\NormalTok{    property: value;}
     \CommentTok{/* more property: value; pairs*/}
-\KeywordTok{\}}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5021,19 +5074,19 @@ can be based on HTML element types or attributes, such as \texttt{id} or
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{/* by element type */}
-\NormalTok{li }\KeywordTok{\{} 
-    \KeywordTok{color:} \DataTypeTok{yellow}\KeywordTok{;} \CommentTok{/* all <li> elements are yellow */}
-\KeywordTok{\}}
+\NormalTok{li \{ }
+    \KeywordTok{color}\NormalTok{: }\DecValTok{yellow}\NormalTok{; }\CommentTok{/* all <li> elements are yellow */}
+\NormalTok{\}}
 
 \CommentTok{/* by ID with the # symbol */}
-\FloatTok{#my-id} \KeywordTok{\{} 
-    \KeywordTok{color:} \DataTypeTok{yellow}\KeywordTok{;} \CommentTok{/* elements with id = "my-id" are yellow */}
-\KeywordTok{\}}
+\PreprocessorTok{#my-id}\NormalTok{ \{ }
+    \KeywordTok{color}\NormalTok{: }\DecValTok{yellow}\NormalTok{; }\CommentTok{/* elements with id = "my-id" are yellow */}
+\NormalTok{\}}
 
 \CommentTok{/* by class with the . symbol */}
-\FloatTok{.my-class} \KeywordTok{\{} 
-    \KeywordTok{color:} \DataTypeTok{yellow}\KeywordTok{;} \CommentTok{/* elements with class = "my-class" are yellow  */}
-\KeywordTok{\}}
+\FunctionTok{.my-class}\NormalTok{ \{ }
+    \KeywordTok{color}\NormalTok{: }\DecValTok{yellow}\NormalTok{; }\CommentTok{/* elements with class = "my-class" are yellow  */}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5075,10 +5128,10 @@ yellow, so our CSS would look like this:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{.favorite} \KeywordTok{\{}
-  \KeywordTok{font-weight:} \DataTypeTok{bold}\KeywordTok{;}
-  \KeywordTok{background-color:} \DataTypeTok{yellow}\KeywordTok{;}
-\KeywordTok{\}}
+\FunctionTok{.favorite}\NormalTok{ \{}
+  \KeywordTok{font-weight}\NormalTok{: }\DecValTok{bold}\NormalTok{;}
+  \KeywordTok{background-color}\NormalTok{: }\DecValTok{yellow}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5087,10 +5140,10 @@ background, you can set up another rule:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{li }\KeywordTok{\{} 
-  \KeywordTok{font-style:} \DataTypeTok{italic}\KeywordTok{;}
-  \KeywordTok{background-color:} \DataTypeTok{white}\KeywordTok{;}
-\KeywordTok{\}}
+\NormalTok{li \{ }
+  \KeywordTok{font-style}\NormalTok{: }\DecValTok{italic}\NormalTok{;}
+  \KeywordTok{background-color}\NormalTok{: }\DecValTok{white}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5105,9 +5158,9 @@ selectors:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ul}\FloatTok{#tea-list}\NormalTok{ li}\FloatTok{.favorite} \KeywordTok{\{}
-  \KeywordTok{background-color:} \DataTypeTok{white}\KeywordTok{;}
-\KeywordTok{\}}
+\NormalTok{ul}\PreprocessorTok{#tea-list}\NormalTok{ li}\FunctionTok{.favorite}\NormalTok{ \{}
+  \KeywordTok{background-color}\NormalTok{: }\DecValTok{white}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5139,9 +5192,9 @@ make dramatic changes:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FloatTok{.img-circle} \KeywordTok{\{}
-  \KeywordTok{border-radius:} \DataTypeTok{50%}\KeywordTok{;}
-\KeywordTok{\}}
+\FunctionTok{.img-circle}\NormalTok{ \{}
+  \KeywordTok{border-radius}\NormalTok{: }\DecValTok{50%}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 \item
@@ -5150,9 +5203,9 @@ make dramatic changes:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tr}\DecValTok{:nth-child}\NormalTok{(even) }\KeywordTok{\{}
-  \KeywordTok{background:} \DataTypeTok{#eee}\KeywordTok{;}
-\KeywordTok{\}}
+\NormalTok{tr}\InformationTok{:nth-child}\NormalTok{(even) \{}
+  \KeywordTok{background}\NormalTok{: }\DecValTok{#eee}\NormalTok{;}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 \item
@@ -5162,7 +5215,8 @@ make dramatic changes:
   \url{https://github.com/rstudio/blogdown/issues/80}.
 \end{itemize}
 
-\section{JavaScript}\label{javascript}
+\hypertarget{javascript}{%
+\section{JavaScript}\label{javascript}}
 
 It is way more challenging to briefly introduce
 JavaScript\index{JavaScript} than HTML and CSS, since it is a
@@ -5343,9 +5397,11 @@ readers to figure out why the \texttt{for} loop is not the usual form
 quite a few minutes to realize my mistake when I wrote the loop in the
 usual form.
 
-\section{Useful resources}\label{useful-resources}
+\hypertarget{useful-resources}{%
+\section{Useful resources}\label{useful-resources}}
 
-\subsection{File optimization}\label{file-optimization}
+\hypertarget{file-optimization}{%
+\subsection{File optimization}\label{file-optimization}}
 
 Although\index{Optimization} static websites are fast in general, you
 can certainly further optimize them. You may search for ``CSS and
@@ -5369,8 +5425,9 @@ Note that Netlify has provided the optimization features on the server
 side for free at the moment, so you may just want to enable them there
 instead of doing all the hard work by yourself.
 
+\hypertarget{helping-people-find-your-site}{%
 \subsection{Helping people find your
-site}\label{helping-people-find-your-site}
+site}\label{helping-people-find-your-site}}
 
 Once your site is up and running, you probably want people to find it.
 SEO --- Search Engine Optimization --- is the art of making a website
@@ -5415,7 +5472,8 @@ Search Engine Optimization Starter Guide
   \texttt{my-guide-to-fun-things-to-do}.
 \end{enumerate}
 
-\chapter{Domain Name}\label{domain-name}
+\hypertarget{domain-name}{%
+\chapter{Domain Name}\label{domain-name}}
 
 While you can use the free subdomain names\index{Domain Name} like those
 provided by GitHub or Netlify, it may be a better idea to own a domain
@@ -5443,7 +5501,8 @@ server is reached, the server will look for the file
 name, and return its content in the response. That is basically how you
 can see a web page.
 
-\section{Registration}\label{registration}
+\hypertarget{registration}{%
+\section{Registration}\label{registration}}
 
 You can purchase a domain name from many domain name registrars. To stay
 neutral, we are not going to make recommendations here. You can use your
@@ -5474,7 +5533,8 @@ registrar:
   require an extra payment.
 \end{itemize}
 
-\section{Nameservers}\label{nameservers}
+\hypertarget{nameservers}{%
+\section{Nameservers}\label{nameservers}}
 
 The main reason why we need nameservers\index{Nameservers} is that we
 want to use domains instead of IP addresses, although a domain is not
@@ -5503,7 +5563,8 @@ feature for free. Basically, all you need to do is to point the
 nameservers of your domain to the nameservers provided by Cloudflare (of
 the form \texttt{*.ns.cloudflare.com}).
 
-\section{DNS records}\label{dns-records}
+\hypertarget{dns-records}{%
+\section{DNS records}\label{dns-records}}
 
 There are many types of DNS\index{DNS Records} records, and you may see
 a full list on
@@ -5580,12 +5641,14 @@ accounts (such as Gmail) if you do not care about an actual custom
 mailbox. Migadu has provided detailed instructions on how to set the MX
 records for your domain.
 
-\chapter{Advanced Topics}\label{advanced-topics}
+\hypertarget{advanced-topics}{%
+\chapter{Advanced Topics}\label{advanced-topics}}
 
 In this appendix, we talk about a few advanced topics that may be of
 interest to developers and advanced users.
 
-\section{More global options}\label{more-global-options}
+\hypertarget{more-global-options}{%
+\section{More global options}\label{more-global-options}}
 
 There are a few more advanced global options\index{Global Options} in
 addition to those introduced in Section \ref{global-options}, and they
@@ -5641,7 +5704,8 @@ HTML widgets will be changed to incremental IDs in the HTML output, so
 these IDs are unlikely to change every time you recompile your website;
 otherwise, every time you will get different random IDs.
 
-\section{LiveReload}\label{livereload}
+\hypertarget{livereload}{%
+\section{LiveReload}\label{livereload}}
 
 As we briefly mentioned\index{LiveReload} in Section
 \ref{a-quick-example}, you can use \texttt{blogdown::serve\_site()} to
@@ -5709,7 +5773,8 @@ the \texttt{public/} folder manually, you will have to manually build
 the website via \texttt{blogdown::hugo\_build()} or
 \texttt{blogdown::build\_site()}.
 
-\section{Building a website for local preview}\label{local-preview}
+\hypertarget{local-preview}{%
+\section{Building a website for local preview}\label{local-preview}}
 
 The function\index{blogdown::build\_site()}
 \texttt{blogdown::build\_site()} has an argument \texttt{local} that
@@ -5801,7 +5866,8 @@ to be more careful:
   publish the new site.
 \end{itemize}
 
-\section{Functions in the blogdown package}\label{functions}
+\hypertarget{functions}{%
+\section{Functions in the blogdown package}\label{functions}}
 
 There are about 20 exported functions\index{Functions} in the
 \textbf{blogdown} package, and many more non-exported functions.
@@ -5817,7 +5883,8 @@ You may take a look at the source code
 about a non-exported function. In this section, we selectively list some
 exported and non-exported functions in the package for your reference.
 
-\subsection{Exported functions}\label{exported-functions}
+\hypertarget{exported-functions}{%
+\subsection{Exported functions}\label{exported-functions}}
 
 Installation: You can install Hugo with \texttt{install\_hugo()}, update
 Hugo with \texttt{update\_hugo()}, and install a Hugo theme with
@@ -5861,7 +5928,8 @@ functions based on \texttt{find\_yaml()} to match specific tags and
 categories in content files, respectively; \texttt{count\_yaml()} can be
 used to calculate the frequencies of specified fields.
 
-\subsection{Non-exported functions}\label{non-exported-functions}
+\hypertarget{non-exported-functions}{%
+\subsection{Non-exported functions}\label{non-exported-functions}}
 
 Some functions are not exported in this package because average users
 are unlikely to use them directly, and we list a subset of them below:
@@ -5902,7 +5970,8 @@ are unlikely to use them directly, and we list a subset of them below:
   \ref{other-generators}.
 \end{itemize}
 
-\section{Paths of figures and other dependencies}\label{dep-path}
+\hypertarget{dep-path}{%
+\section{Paths of figures and other dependencies}\label{dep-path}}
 
 One of the most challenging tasks in developing the \textbf{blogdown}
 package is to properly handle dependency files\index{Dependency Files}
@@ -5982,7 +6051,8 @@ permanent links and clean URLs (e.g., \texttt{/about.html} instead of
 \texttt{/about/}). With this choice, you can also customize the
 \texttt{fig.path} option for code chunks if you want.
 
-\section{HTML widgets}\label{html-widgets}
+\hypertarget{html-widgets}{%
+\section{HTML widgets}\label{html-widgets}}
 
 We do not recommend that you use different HTML
 widgets\index{HTML Widgets} from many R packages on the same page,
@@ -6017,7 +6087,8 @@ embedded, there will not be any JavaScript conflicts.
 A widget is typically not of full width on the page. To set its width to
 100\%, you can use the chunk option \texttt{out.width\ =\ "100\%"}.
 
-\section{Version control}\label{version-control}
+\hypertarget{version-control}{%
+\section{Version control}\label{version-control}}
 
 If your website source files are under version
 control\index{Version Control}, we recommend that you add at least these
@@ -6083,7 +6154,8 @@ need to manage the theme using GIT submodules. Future updates in the
 upstream repository may not really be what you want. In that case, a
 physical and fixed copy of the theme is more appropriate for you.
 
-\section{The default HTML template}\label{default-template}
+\hypertarget{default-template}{%
+\section{The default HTML template}\label{default-template}}
 
 As we mentioned in Section \ref{output-format}, the default output
 format for an Rmd document in \textbf{blogdown} is
@@ -6202,7 +6274,8 @@ e.g.,
 \end{Highlighting}
 \end{Shaded}
 
-\section{Different building methods}\label{methods}
+\hypertarget{methods}{%
+\section{Different building methods}\label{methods}}
 
 If your website does not contain any Rmd files, it is very
 straightforward to render it --- just a system call to the \texttt{hugo}
@@ -6265,7 +6338,8 @@ When \texttt{R/build.R} exists and
 Markdown files are knitted first, then the script \texttt{R/build.R} is
 executed, and lastly Hugo is called to build the website.
 
-\chapter{Personal Experience}\label{personal-experience}
+\hypertarget{personal-experience}{%
+\chapter{Personal Experience}\label{personal-experience}}
 
 I started blogging at blogchina.com in 2005, moved to blog.com.cn, then
 MSN Space, and finally purchased my own domain \texttt{yihui.name} and a
