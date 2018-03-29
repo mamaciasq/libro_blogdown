@@ -89,161 +89,162 @@ Hay algunos complementos básicos de RStudio\index{Complementos de RStudio} para
 
 - "Serve Site": este complemento llama a `blogdown::serve_site()` para presentar continuamente su sitio web localmente utilizando la tecnología LiveReload, para que pueda ver en vivo el sitio web. Puede seguir editando material para su sitio mientras lo está viendo, pero esta función bloqueará su consola de R de manera predeterminada, lo que significa que no podrá usar su consola de R una vez que inicie este servidor web local. Para desbloquear la consola, haga clic en el signo de stop rojo en la esquina superior derecha de la ventana de la consola. Si prefiere evitar este comportamiento por completo, establezca la opción `options(servr.daemon = TRUE)`, antes de hacer clic en este complemento o llame a la función `serve_site()`, para que el servidor sea demonizado y no bloquee su consola de R.^ [Hemos oído de casos en los que el servidor demonizado bloquea R en Windows. Si tiene problemas con el servidor daemonizado, existen tres soluciones alternativas, y puede probar una de ellas: (1) instalar el paquete **later** a través de `install.packages("later")` y volver a iniciar el servidor; (2) use el servidor de Hugo (vea la sección \@ref(livereload)); (3) llame `blogdown::serve_site()` en una sesión de R separada, y puede obtener una vista previa de su sitio web en su navegador web, pero aún puede editar el sitio web en RStudio.]
 
-- "New Post": This addin provides a dialog box for you to enter the metadata of your blog post, including the title, author, date, and so on. See Figure \@ref(fig:new-post) for an example. This addin actually calls the function `blogdown::new_post()` under the hood, but does a few things automatically:
+- "New Post": este complemento proporciona un cuadro de diálogo para que ingrese los metadatos de la publicación de su blog, incluidos el título, el autor, la fecha, etc. Ver la Figura \@ref(fig:new-post) para un ejemplo. Este complemento realmente llama a la función `blogdown::new_post()`, pero hace algunas cosas automáticamente:
 
-    - As you type the title of the post, it will generate a filename for you, and you can edit it if you do not like the automatically generated one. In fact, you can also use this addin to create normal pages under any directories under `content/`. For example, if you want to add a resume page, you can change the filename to `resume.md` from the default `post/YYYY-mm-dd-resume.md`.
+    - A medida que escribe el título de la publicación, generará un nombre de archivo para usted, y puede editarlo si no le gusta el generado automáticamente. De hecho, también puede usar este complemento para crear páginas normales en cualquier directorio bajo `content/`. Por ejemplo, si desea agregar una página de currículum, puede cambiar el nombre del archivo a `resume.md` del 'post/YYYY-mm-dd-resume.md` predeterminado.
 
-    - You can select the date from a calendar widget provided by Shiny.^[Shiny is an R package for building interactive web apps using R. Using this addin, the calendar widget allows you to view an interactive calendar by month to select dates. This is a simple use of Shiny, but you can read more about Shiny apps here: https://shiny.rstudio.com.]
+    - Puede seleccionar la fecha desde un widget de calendario proporcionado por Shiny.^[Shiny es un paquete R para crear aplicaciones web interactivas usando R. Usando este complemento, el widget de calendario le permite ver un calendario interactivo por mes para seleccionar fechas. Este es un uso simple de Shiny, pero puede leer más acerca de las aplicaciones Shiny aquí: https://shiny.rstudio.com.]
 
-    - It will scan the categories and tags of existing posts, so when you want to input categories or tags, you can select them from the dropdown menus, or create new ones.
+    - Esto escaneará las categorías y etiquetas de las publicaciones existentes, por lo que cuando quiera ingresar categorías o etiquetas, puede seleccionarlas de los menús desplegables o crear otras nuevas.
     
-    - After a new post is created, it will be automatically opened, so you can start writing the content immediately.
+    - Después de crear una nueva publicación, se abrirá automáticamente, por lo que puede comenzar a escribir el contenido de inmediato.
 
-- "Update Metadata": This addin allows you to update the YAML metadata of the currently opened post. See Figure \@ref(fig:update-meta) for an example. The main advantage of this addin is that you can select categories and tags from dropdown menus instead of having to remember them.
+- "Update Metadata": Este complemento le permite actualizar los metadatos YAML de la publicación abierta actualmente. Ver la Figura \@ref(fig: update-meta) para un ejemplo. La principal ventaja de este complemento es que puede seleccionar categorías y etiquetas de los menús desplegables en lugar de tener que recordarlas.
 
-```{r new-post, fig.cap='Create a new post using the RStudio addin.', fig.align='center', out.width='80%', echo=FALSE}
+```{r new-post, fig.cap='Crear una nueva publicación usando el complemento de RStudio.', fig.align='center', out.width='80%', echo=FALSE}
 knitr::include_graphics('images/new-post.png')
 ```
 
-```{r update-meta, fig.cap='Update the metadata of an existing post using the RStudio addin.', fig.align='center', out.width='70%', echo=FALSE}
+```{r update-meta, fig.cap='Actualizar los metadatos de una publicación existente usando el complemento de RStudio.', fig.align='center', out.width='70%', echo=FALSE}
 knitr::include_graphics('images/update-meta.png')
 ```
 
-With these addins, you should rarely need to run any R commands manually after you have set up your website, since all your posts will be automatically compiled whenever you create a new post or modify an existing post due to the LiveReload feature.
+Con estos complementos, rara vez deberá ejecutar los comandos en R manualmente después de haber configurado su sitio web, ya que todas sus publicaciones se compilarán automáticamente cada vez que cree una nueva publicación o modifique una existente debido a la función LiveReload.
 
-If your RStudio version is at least v1.1.383,^[You may download all RStudio official releases including v1.1.383 from <https://www.rstudio.com/products/rstudio/download/>.] you can actually create a website project directly from the menu `File -> New Project -> New Directory` (see Figure \@ref(fig:new-project) and \@ref(fig:blogdown-project)).
+Si su versión de RStudio es por lo menos la v1.1.383,^[Puede descargar todas las versiones del sitio oficial de RStudio incluyendo la v1.1.383 desde <https://www.rstudio.com/products/rstudio/download/>.] puede actualmente crear un proyecto de página web directamente desde el menú `File -> New Project -> New Directory` (vea la Figura \@ref(fig:new-project) y \@ref(fig:blogdown-project)).
 
-```{r new-project, echo=FALSE, fig.cap='Create a new website project in RStudio.', out.width='80%', fig.align='center'}
+```{r new-project, echo=FALSE, fig.cap='Crear un nuevo proyecto de página web en RStudio.', out.width='80%', fig.align='center'}
 knitr::include_graphics('images/new-project.png')
 ```
 
-```{r blogdown-project, echo=FALSE, fig.cap='Create a website project based on blogdown.', out.width='80%', fig.align='center'}
+```{r blogdown-project, echo=FALSE, fig.cap='Crear un proyecto de página web basado en blogdown.', out.width='80%', fig.align='center'}
 knitr::include_graphics('images/blogdown-project.png')
 ```
 
-If your website was created using the function `blogdown::new_site()` instead of the RStudio menu for the first time, you can quit RStudio and open the project again. If you go to the menu `Tools -> Project Options`, your project type should be "Website" like what you can see in Figure \@ref(fig:project-options).
+Si su sitio web se creó utilizando la función `blogdown::new_site()` en lugar del menú de RStudio por primera vez, puede salir de RStudio y volver a abrir el proyecto. Si accede al menú `Tools -> Project Options`, su tipo de proyecto debería ser "Website" como lo puede ver en la Figura \@ref(fig:project-options).
 
-Then you will see a pane in RStudio named "Build," and there is a button "Build Website." When you click this button, RStudio will call `blogdown::build_site()` to build the website. This will automatically generate files in the `public/` directory.^[Or wherever your publishing directory is located. It is `public/` by default, but it can be changed by specifying the `publishDir = "myNewDirectory"` in the `config.toml` file.] If you want to build the website and publish the output files under the `public/` manually, you are recommended to restart your R session and click this "Build Website" button every time before you publish the website, instead of publishing the `public/` folder generated continuously and automatically by `blogdown::serve_site()`, because the latter calls `blogdown::build_site(local = TRUE)`, which has some subtle differences with `blogdown::build_site(local = FALSE)` (see Section \@ref(local-preview) for details).
+Luego verá un panel en RStudio llamado "Build" y hay un botón "Build Website". Al hacer clic en este botón, RStudio llamará a `blogdown::build_site ()` para construir el sitio web. Esto generará automáticamente archivos en el directorio `public/`.^[O donde sea que esté ubicado su directorio de publicación. Es `public/` de forma predeterminada, pero se puede cambiar especificando `publishDir ="myNewDirectory"` en el archivo `config.toml`.] Si desea compilar el sitio web y publicar los archivos de salida en `public/` manualmente, se recomienda reiniciar su sesión de R y hacer clic en este botón "Build Website" antes de publicar el sitio web, en lugar de publicar la carpeta `public/` generada de forma continua y automática por `blogdown::serve_site()`, porque este último llama a `blogdown::build_site(local = TRUE)`, que tiene algunas diferencias sutiles con `blogdown::build_site(local = FALSE)` (ver la sección \@ref(local-preview) para más detalles).
 
-We strongly recommend that you uncheck the option "Preview site after building" in your RStudio project options (Figure \@ref(fig:project-options)).^[In case you wonder why: unless you have set the option `relativeurls` to `true` in `config.toml`, it requires a web server to preview the website locally, otherwise even if you can see the homepage of your website in the RStudio Viewer, most links like those links to CSS and JavaScript files are unlikely to work. When the RStudio Viewer shows you the preview, it does not actually launch a web server.] You can also uncheck the option "Re-knit current preview when supporting files change," since this option is not really useful after you call `serve_site()`.
+Recomendamos mucho que desmarque la opción "Preview site after building" en las opciones de proyecto de RStudio (Figura \@ref(fig:project-options)).^[En caso de que se pregunte por qué: a menos que haya establecido la opción `relativeurls` a `true` en `config.toml`, requiere un servidor web para obtener una vista previa del sitio local, de lo contrario, incluso si puede ver la página de inicio de su sitio web en RStudio Viewer, la mayoría de los enlaces como los enlaces a archivos CSS y JavaScript son poco probables que funcionen. Cuando RStudio Viewer le muestra la vista previa, en realidad no ejecuta un servidor web.] También puede desmarcar la opción "Re-knit current preview when supporting files change", ya que esta opción no es realmente útil después de llamar a `serve_site()`.
 
-```{r project-options, echo=FALSE, fig.cap='RStudio project options.', out.width='80%', fig.align='center'}
+
+```{r project-options, echo=FALSE, fig.cap='Opciones de proyecto de RStudio.', out.width='80%', fig.align='center'}
 knitr::include_graphics('images/project-options.png')
 ```
 
-## Global options\index{Global Options}
+## Opciones globales\index{Global Options}
 
-Depending on your personal preferences, you can set a few global options before you work on your website. These options should be set using `options(name = value)`, and currently available options are presented in Table \@ref(tab:global-options).
+Dependiendo de sus preferencias personales, puede establecer algunas opciones globales antes de trabajar en su sitio web. Estas opciones se deben configurar usando `options(name = value)`, y las opciones disponibles actualmente se presentan en Table \@ref(tab:global-options).
+
 
 ```{r global-options, echo=FALSE}
 knitr::kable(matrix(c(
-  'servr.daemon', 'FALSE', 'Whether to use a daemonized server',
-  'blogdown.author', '', 'The default author of new posts',
-  'blogdown.ext', '.md', 'Default extension of new posts',
-  'blogdown.subdir', 'post', 'A subdirectory under content/',
-  'blogdown.yaml.empty', TRUE, 'Preserve empty fields in YAML?',
+  'servr.daemon', 'FALSE', 'Si debe usar un servidor demonizado',
+  'blogdown.author', '', 'El autor por defecto de nuevas publicaciones',
+  'blogdown.ext', '.md', 'Extensión por defecto de nuevas publicaciones',
+  'blogdown.subdir', 'post', 'Un subdirectorio bajo content/',
+  'blogdown.yaml.empty', TRUE, 'Preservar campos vacíos en YAML?',
   NULL
-), ncol = 3, byrow = TRUE, dimnames = list(NULL, c('Option name', 'Default', 'Meaning'))), booktabs = TRUE, caption = 'Global options that affect the behavior of blogdown.')
+), ncol = 3, byrow = TRUE, dimnames = list(NULL, c('Option name', 'Default', 'Meaning'))), booktabs = TRUE, caption = 'Opciones globales que afectan el comportamiento de blogdown.')
 ```
 
-We recommend that you set these options in your R startup profile file. You can check out the help page `?Rprofile` for more details, and here is a simplified introduction. A startup profile file is basically an R script that is executed when your R session is started. This is a perfect place to set global options, so you do not need to type these options again every time you start a new R session. You can use a global profile file `~/.Rprofile`,^[The tilde `~` denotes your home directory in your system.] or a per-project file `.Rprofile` under the root directory of your RStudio project. The former will be applied to all R sessions that you start, unless you have provided the latter to override it. The easiest way to create such a file is to use `file.edit()` in RStudio, e.g.,
+Le recomendamos que configure estas opciones en su archivo de perfil de inicio de R. Puede consultar la página de ayuda `?Rprofile` para más detalles, y aquí hay una introducción simplificada. Un archivo de perfil de inicio es básicamente un script en R que se ejecuta cuando se inicia la sesión de R. Este es un lugar perfecto para establecer opciones globales, por lo que no necesita escribir estas opciones nuevamente cada vez que inicie una nueva sesión en R. Puede usar un archivo de perfil global `~/.Rprofile`,^[La tilde `~` indica el directorio principal en su sistema.] O un archivo por proyecto `.Rprofile` en el directorio raíz de su proyecto de RStudio. El primero se aplicará a todas las sesiones de R que inicie, a menos que haya proporcionado el último para anularlo. La forma más fácil de crear un archivo de este tipo es usar `file.edit()` en RStudio, por ejemplo,
 
 ```{r eval=FALSE}
 file.edit('~/.Rprofile')
-# or file.edit('.Rprofile')
+# o file.edit('.Rprofile')
 ```
 
-Suppose you always prefer the daemonized server and want the author of new posts to be "John Doe" by default. You can set these options in the profile file:
+Supongamos que siempre prefiere el servidor demonizado y quiere que el autor de las nuevas publicaciones sea "John Doe" de manera predeterminada. Puede establecer estas opciones en el archivo de perfil:
 
 ```{r eval=FALSE}
 options(servr.daemon = TRUE, blogdown.author = 'John Doe')
 ```
 
-A nice consequence of setting these options is that when you use the RStudio addin "New Post," the fields "Author," "Subdirectory," and "Format" will be automatically populated, so you do not need to manipulate them every time unless you want to change the defaults (occasionally).
+Una buena consecuencia de establecer estas opciones es que cuando usa el complemento de RStudio "New post", los campos "Author", "Subdirectory" y "Format" se completarán automáticamente, por lo que no tendrá que manipularlos todas las veces a menos que desea cambiar los valores predeterminados (ocasionalmente).
 
-R only reads one startup profile file. For example, if you have a `.Rprofile` under the current directory and a global `~/.Rprofile`, only the former one will be executed when R starts up from the current directory. This may make it inconvenient for multiple authors collaborating on the same website project, since you cannot set author-specific options. In particular, it is not possible to set the `blogdown.author` option in a single `.Rprofile`, because this option should be different for different authors. One workaround is to set common options in `.Rprofile` under the root directory of the website project, and also execute the global `~/.Rprofile` if it exists. Author-specific options can be set in the global `~/.Rprofile` on each author's computer.
+R solo lee un archivo de perfil de inicio. Por ejemplo, si tiene un `.Rprofile` en el directorio actual y un `~/.Rprofile` global, solo el anterior se ejecutará cuando R se inicie desde el directorio actual. Esto puede hacer que sea inconveniente para varios autores que colaboran en el mismo proyecto de un sitio web, ya que no puede establecer opciones específicas del autor. En particular, no es posible establecer la opción `blogdown.author` en un solo `.Rprofile`, porque esta opción debería ser diferente para diferentes autores. Una solución consiste en establecer opciones comunes en `.Rprofile` bajo del directorio raíz del proyecto del sitio web, y también ejecutar el `~/.Rprofile` global si existe. Las opciones específicas del autor se pueden establecer en el `~/.Rprofile` global en la computadora de cada autor.
 
 ```{r eval=FALSE}
-# in .Rprofile of the website project
+# en el .Rprofile del proyecto de la página web
 if (file.exists('~/.Rprofile')) {
   base::sys.source('~/.Rprofile', envir = environment())
 }
-# then set options(blogdown.author = 'Your Name') in ~/.Rprofile
+# luego configure options(blogdown.author = 'Your Name') en ~/.Rprofile
 ```
 
 ## R Markdown vs. Markdown {#output-format}
 
-If you are not familiar with R Markdown\index{R Markdown}, please see Appendix \@ref(r-markdown) for a quick tutorial. When you create a new post, you have to decide whether you want to use R Markdown or plain Markdown\index{Markdown}, as you can see from Figure \@ref(fig:new-post). The main differences are:
+Si no está familiarizado con R Markdown \index{R Markdown}, consulte el Apéndice \@ref(r-markdown) para obtener un tutorial rápido. Cuando crea una nueva publicación, debe decidir si desea usar R Markdown o Markdown simple \index{Markdown}, como puede ver en Figure \@ref(fig:new-post). Las principales diferencias son:
 
-1. You cannot execute any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```` ```{r} ````). However, you can still embed R code in plain Markdown using the syntax for fenced code blocks ```` ```r ```` (note there are no curly braces `{}`). Such code blocks will not be executed and may be suitable for pure demonstration purposes. Below is an example of an R code chunk in R Markdown:
+1. No puede ejecutar ningún código en R en un documento de Markdown simple, mientras que en un documento de Markdown R, puede incrustar fragmentos de código R (```` ```{r}````). Sin embargo, aún puede incrustar código de R en Markdown simple usando la sintaxis para bloques de código delimitados ```` ```r````(tenga en cuenta que no hay llaves `{}`). Tales bloques de código no se ejecutarán y pueden ser adecuados para propósitos de demostración pura. A continuación se muestra un ejemplo de un fragmento de código de R en R Markdown:
 
 
     ````markdown
     `r ''````{r cool-plot, fig.width='80%', fig.cap='A cool plot.'}
-    plot(cars, pch = 20)  # not really cool
+    plot(cars, pch = 20)  # no es muy chévere
     ```
     ````
     
-    And here is an example of an R code block in plain Markdown:
+    Y aquí hay un ejemplo de un bloque de código de R en Markdown simple:
     
     ````markdown
     ```r
-    1 + 1  # not executed
+    1 + 1  # no ejecutada
     ```
     ````
 
 
-2. A plain Markdown post is rendered to HTML through [Blackfriday](https://gohugo.io/overview/configuration/) \index{Blackfriday}(a package written in the Go language and adopted by Hugo). An R Markdown document is compiled through the packages **rmarkdown**, **bookdown**, and Pandoc\index{Pandoc}, which means you can use most features of [Pandoc's Markdown](http://pandoc.org/MANUAL.html#pandocs-markdown) and [**bookdown**'s Markdown extensions](https://bookdown.org/yihui/bookdown/components.html) in **blogdown**. If you use R Markdown [@R-rmarkdown] with **blogdown**, we recommend that you read the documentation of Pandoc and **bookdown** at least once to know all the possible features. We will not repeat the details in this book, but list the features briefly below, which are also demonstrated on the example website https://blogdown-demo.rbind.io.
+2. Una publicación en Markdown simple es ejecutada en HTML a través de [Blackfriday](https://gohugo.io/overview/configuration/) \index{Blackfriday}(un paquete escrito en lenguaje Go y adoptado por Hugo). Un documento R Markdown se compila a través de los paquetes **rmarkdown**, **bookdown**, y Pandoc\index{Pandoc}, lo que significa que puede usar la mayoría de las características de [Markdown de Pandoc](http://pandoc.org/MANUAL.html#pandocs-markdown) y [extensiones de Markdown para **bookdown**](https://bookdown.org/yihui/bookdown/components.html) en **blogdown**. Si usa R Markdown [@R-rmarkdown] con **blogdown**, le recomendamos que lea la documentación de Pandoc y **bookdown** al menos una vez para conocer todas las características posibles. No repetiremos los detalles en este libro, pero enumeraremos las características brevemente a continuación, que también se muestran en el sitio web de ejemplo: https://blogdown-demo.rbind.io.
 
-    - Inline formatting: `_italic_` / `**bold**` text and `` `inline code` ``.
+    - Formateo en línea: texto en `_italica_` / `**negrita**` y `` `código en línea` ``.
     
-    - Inline elements: subscripts (e.g., `H~2~0`) and superscripts (e.g., `R^2^`); links (`[text](url)`) and images `![title](url)`; footnotes `text^[footnote]`.
+    - Elementos en línea: subíndices (e.g., `H~2~0`) y superíndices (e.g., `R^2^`); links (`[texto](url)`) e imágenes `![título](url)`; notas al pie `texto^[nota al pie]`.
     
-    - Block-level elements: paragraphs; numbered and unnumbered section headers; ordered and unordered lists; block quotations; fenced code blocks; tables; horizontal rules.
+    - Elementos de nivel bloque: párrafos; encabezados de sección numerados y no numerados; listas ordenadas y no ordenadas; citas en bloque; bloques de código; tablas; reglas horizontales.
     
-    - Math expressions and equations.
+    - Expresiones matemáticas y ecuaciones.
     
-    - Theorems and proofs.
+    - Teoremas y demostraciones.
     
-    - R code blocks that can be used to produce text output (including tables) and graphics. Note that equations, theorems, tables, and figures can be numbered and cross-referenced.
+    - Bloques de código en R que se pueden usar para producir salida de texto (incluidas tablas) y gráficos. Tenga en cuenta que las ecuaciones, teoremas, tablas y figuras se pueden numerar y referenciadas cruzadamente.
     
-    - Citations and bibliography.
+    - Citas y bibliografía.
     
-    - HTML widgets, and Shiny apps embedded via `<iframe>`.
+    - HTML widgets, y aplicaciones en Shiny incrustadas mediante `<iframe>`.
 
-There are many differences in syntax between Blackfriday's Markdown and Pandoc's Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:
+Hay muchas diferencias en la sintaxis entre el Markdown de Blackfriday y el Markdown de Pandoc. Por ejemplo, puede escribir una lista de tareas con Blackfriday, pero no con Pandoc:
 
 ```markdown
-- [x] Write an R package.
-- [ ] Write a book.
+- [x] Escribir un paquete en R.
+- [ ] Escribir un libro.
 - [ ] ...
-- [ ] Profit!
+- [ ] Beneficio!
 ```
 
+Del mismo modo, Blackfriday no admite matemática en LaTeX y Pandoc sí. Hemos agregado el soporte [MathJax](https://www.mathjax.org/#docs) \index {MathJax} al tema predeterminado ([hugo-lithium-theme](https://github.com/yihui/hugo-lithium-theme) en **blogdown** para compilar matemática en LaTeX en páginas HTML, pero hay una advertencia para las publicaciones simples de Markdown: debe incluir expresiones matemáticas en línea con un par de comillas `` `$math$` ``, por ejemplo, `` `$S_n = \ um_{i=1}^n X_i$` ``. Del mismo modo, las expresiones matemáticas del estilo de visualización deben escribirse en `` `$$math$$` ``. Para las publicaciones de R Markdown, puede usar `$math$` para expresiones matemáticas en línea, y `$$math$$` para expresiones de estilo de visualización.^[El motivo por el que necesitamos los respaldos para documentos de Markdown simples es que tenemos que evitar que Blackfriday interprete el código LaTeX como Markdown. Las comillas asegurarán que el contenido interno no se traduzca como Markdown a HTML, por ejemplo, `` `$$x *y* z$$` `` se convertirá en `<code> $$x *y* z$$</code>`. Sin las comillas, se convertirá en `$$x <em>y</em> z$$`, que no es una expresión matemática en LaTeX válida para MathJax. Problemas similares pueden surgir cuando tenga otros caracteres especiales como guiones bajos en sus expresiones matemáticas.]
 
-Similarly, Blackfriday does not support LaTeX math and Pandoc does. We have added the [MathJax](https://www.mathjax.org/#docs) \index{MathJax} support to the default theme ([hugo-lithium-theme](https://github.com/yihui/hugo-lithium-theme)) in **blogdown** to render LaTeX math on HTML pages, but there is a caveat for plain Markdown posts: you have to include inline math expressions in a pair of backticks `` `$math$` ``, e.g., `` `$S_n = \sum_{i=1}^n X_i$` ``. Similarly, math expressions of the display style have to be written in `` `$$math$$` ``. For R Markdown posts, you can use `$math$` for inline math expressions, and `$$math$$` for display-style expressions.^[The reason that we need the backticks for plain Markdown documents is that we have to prevent the LaTeX code from being interpreted as Markdown by Blackfriday. Backticks will make sure the inner content is not translated as Markdown to HTML, e.g., `` `$$x *y* z$$` `` will be converted to `<code>$$x *y* z$$</code>`. Without the backticks, it will be converted to `$$x <em>y</em> z$$`, which is not a valid LaTeX math expression for MathJax. Similar issues can arise when you have other special characters like underscores in your math expressions.]
+Si considera que es un dolor tener que recordar las diferencias entre R Markdown y Markdown, una opción conservadora es usar siempre R Markdown, incluso si su documento no contiene ningún fragmento de código en R. Markdown de Pandoc es mucho más rico que Blackfriday, y solo hay un pequeño número de características no disponibles en Pandoc pero presentes en Blackfriday. Las principales desventajas de usar R Markdown son:
 
-If you find it is a pain to have to remember the differences between R Markdown and Markdown, a conservative choice is to always use R Markdown, even if your document does not contain any R code chunks. Pandoc's Markdown is much richer than Blackfriday, and there are only a small number of features unavailable in Pandoc but present in Blackfriday. The main disadvantages of using R Markdown are:
+1. Puede sacrificar algo de velocidad en la renderización del sitio web, pero esto puede no ser notorio debido a un mecanismo de almacenamiento en caché en **blogdown** (lea más sobre esto en la sección \@ref(local-preview)). Hugo es muy rápido cuando procesa archivos de Markdown simples, y típicamente debería tomar menos de un segundo para renderizar unos cientos de archivos de Markdown.
 
-1. You may sacrifice some speed in rendering the website, but this may not be noticeable due to a caching mechanism in **blogdown** (more on this in Section \@ref(local-preview)). Hugo is very fast when processing plain Markdown files, and typically it should take less than one second to render a few hundred Markdown files.
+1. Tendrá algunos archivos HTML intermedios en el directorio fuente de su sitio web, porque **blogdown** tiene que llamar a **rmarkdown** para renderizar previamente los archivos `*.Rmd` `*.html`. También tendrá carpetas intermedias para las figuras (`*_files/`) y la memoria caché (`*_cache/`) si tiene una salida de trazado en fragmentos de código en R o ha habilitado el almacenamiento en cache de **knitr**. A menos que le importe mucho la "limpieza" del repositorio fuente de su sitio web (especialmente cuando usa una herramienta de control de versiones como GIT), estos archivos intermedios no deberían importar.
 
-1. You will have some intermediate HTML files in the source directory of your website, because **blogdown** has to call **rmarkdown** to pre-render `*.Rmd` files `*.html`. You will also have intermediate folders for figures (`*_files/`) and cache (`*_cache/`) if you have plot output in R code chunks or have enabled **knitr**'s caching. Unless you care a lot about the "cleanness" of the source repository of your website (especially when you use a version control tool like GIT), these intermediate files should not matter.
+En este libro, generalmente nos referimos a los archivos `.Rmd` cuando decimos "Documentos de R Markdown", que se compilan a `.html` de forma predeterminada. Sin embargo, hay otro tipo de documento de R Markdown con la extensión de nombre de archivo `.Rmarkdown`. Dichos documentos de R Markdown se compilan para los documentos Markdown con la extensión `.markdown`, que serán procesados por Hugo en lugar de por Pandoc. Hay dos limitaciones principales de usar `.Rmarkdown` en comparación con` .Rmd`:
 
-In this book, we usually mean `.Rmd` files when we say "R Markdown documents," which are compiled to `.html` by default. However, there is another type of R Markdown document with the filename extension `.Rmarkdown`. Such R Markdown documents are compiled to Markdown documents with the extension `.markdown`, which will be processed by Hugo instead of Pandoc. There are two major limitations of using `.Rmarkdown` compared to `.Rmd`:
+- No puede usar las funciones de reducción solo compatibles con Pandoc, como las citas. Las expresiones matemáticas solo funcionan si ha instalado el paquete **xaringan** [@R-xaringan] y ha aplicado la solución de JavaScript mencionada en la sección \@ref(javascript).
 
-- You cannot use Markdown features only supported by Pandoc, such as citations. Math expressions only work if you have installed the **xaringan** package [@R-xaringan] and applied the JavaScript solution mentioned in Section \@ref(javascript).
+- Los widgets HTML no son compatibles.
 
-- HTML widgets are not supported.
+La principal ventaja de usar `.Rmarkdown` es que los archivos de salida son más limpios porque son archivos Markdown. Puede ser más fácil para usted leer la salida de sus publicaciones sin mirar las páginas web reales renderizadas. Esto puede ser particularmente útil al revisar los pull requests de GitHub. Tenga en cuenta que las tablas, figuras, ecuaciones y teoremas numerados también son compatibles. No puede usar directamente la sintaxis de Markdown en las leyendas de tabla o figura, pero puede usar referencias de texto como una solución alternativa (consulte la documentación de **bookdown**).
 
-The main advantage of using `.Rmarkdown` is that the output files are cleaner because they are Markdown files. It can be easier for you to read the output of your posts without looking at the actual web pages rendered. This can be particularly helpful when reviewing GitHub pull requests. Note that numbered tables, figures, equations, and theorems are also supported. You cannot directly use Markdown syntax in table or figure captions, but you can use text references as a workaround (see **bookdown**'s documentation).
+Para cualquier documento de R Markdown (no específico de **blogdown**), debe especificar un formato de salida. Hay muchos posibles [formatos de salida](http://rmarkdown.rstudio.com/lesson-9.html) en el paquete **rmarkdown** (como `html_document` y `pdf_document`) y otros paquetes de extensión (tales como `tufte::tufte_html` y `bookdown::gitbook`). Por supuesto, el formato de salida para los sitios web debe ser HTML. Hemos proporcionado una función de formato de salida `blogdown::html_page` en **blogdown**, y todos los archivos R Markdown se renderizan con este formato. Se basa en el formato de salida `bookdown::html_document2`, lo que significa que ha heredado muchas características de **bookdown** además de las características en Pandoc. Por ejemplo, puede numerar y hacer referencias cruzadas de ecuaciones matemáticas, figuras, tablas y teoremas, etc. Consulte el Capítulo 2 del libro **bookdown** [@xie2016] para obtener más detalles sobre la sintaxis.
 
-For any R Markdown documents (not specific to **blogdown**), you have to specify an output format. There are many [possible output formats](http://rmarkdown.rstudio.com/lesson-9.html) in the **rmarkdown** package (such as `html_document` and `pdf_document`) and other extension packages (such as `tufte::tufte_html` and `bookdown::gitbook`). Of course, the output format for websites should be HTML. We have provided an output format function `blogdown::html_page` in **blogdown**, and all R Markdown files are rendered using this format. It is based on the output format `bookdown::html_document2`, which means it has inherited a lot of features from **bookdown** in addition to features in Pandoc. For example, you can number and cross-reference math equations, figures, tables, and theorems, etc. See Chapter 2 of the **bookdown** book [@xie2016] for more details on the syntax.
-
-Note that the output format `bookdown::html_document2` in turn inherits from `rmarkdown::html_document`, so you need to see the help page `?rmarkdown::html_document` for all possible options for the format `blogdown::html_page`. If you want to change the default values of the options of this output format, you can add an `output` field to your YAML metadata. For example, we can add a table of contents to a page, set the figure width to be 6 inches, and use the `svg` device for plots by setting these options in YAML:
+Note que el formato de salida `bookdown::html_document2` a su vez hereda de `rmarkdown::html_document`, entonces necesita ver la página de ayuda `?rmarkdown::html_document` para todas las opciones posibles para el formato  `blogdown::html_page`. Si desea cambiar los valores predeterminados de las opciones de este formato de salida, puede agregar un campo `output` a sus metadatos YAML. Por ejemplo, podemos agregar una tabla de contenido a una página, establecer el ancho de la figura en 6 pulgadas y usar el dispositivo `svg` para los gráficos estableciendo estas opciones en YAML:
 
 ```yaml
 ---
-title: "My Awesome Post"
+title: "Mi grandiosa publicación"
 author: "John Doe"
 date: "2017-02-14"
 output:
@@ -254,7 +255,7 @@ output:
 ---
 ```
 
-To set options for `blogdown::html_page()` globally (i.e., apply certain options to all Rmd files), you can create a `_output.yml` file under the root directory of your website. This YAML file should contain the output format directly (do not put the output format under the `output` option), e.g.,
+Para establecer opciones para `blogdown::html_page()` globalmente (es decir, aplicar ciertas opciones a todos los archivos Rmd), puede crear un archivo `_output.yml` en el directorio raíz de su sitio web. Este archivo YAML debe contener el formato de salida directamente (no coloque el formato de salida bajo la opción `output`), por ejemplo,
 
 ```yaml
 blogdown::html_page:
@@ -263,69 +264,69 @@ blogdown::html_page:
   dev: "svg"
 ```
 
-At the moment, not all features of `rmarkdown::html_document` are supported in **blogdown**, such as `df_print`, `code_folding`, `code_download`, and so on.
+Por el momento, no todas las funciones de `rmarkdown::html_document` son compatibles con **blogdown**, como `df_print`, `code_folding`,` code_download`, etc.
 
-If your code chunk has graphics output, we recommend that you avoid special characters like spaces in the chunk label. Ideally, you should only use alphanumeric characters and dashes, e.g., ```` ```{r, my-label}```` instead of ```` ```{r, my label}````.
+Si su trozo de código tiene salida de gráficos, le recomendamos que evite caracteres especiales como espacios en la etiqueta de fragmentos. Lo ideal es que solo use caracteres alfanuméricos y guiones, por ejemplo, ```` ```{r, my-label}```` en lugar de ```` ```{r, my label}````.
 
-It is not recommended to change the **knitr** chunk options `fig.path` or `cache.path` in R Markdown. The default values of these options work best with **blogdown**. Please read Section \@ref(dep-path) to know the technical reasons if you prefer.
+No se recomienda cambiar las opciones **knitr** chunk `fig.path` o `cache.path` en R Markdown. Los valores predeterminados de estas opciones funcionan mejor con **blogdown**. Lea la sección \@ref(dep-path) para conocer los motivos técnicos, si lo prefiere.
 
-If you are working on an R Markdown post, but do not want **blogdown** to compile it, you can temporarily change its filename extension from `.Rmd` to another unknown extension such as `.Rmkd`.
+Si está trabajando en una publicación de R Markdown, pero no quiere que **blogdown** la compile, puede cambiar temporalmente su extensión de nombre de archivo de `.Rmd` a otra extensión desconocida como `.Rmkd`.
 
-## Other themes
+## Otros temas
 
-In Hugo, themes\index{Themes} control the entire appearance and functionality of your site. So, if you care a lot about the appearance of your website, you will probably spend quite a bit of time in the beginning looking for a Hugo theme that you like from the collection listed at http://themes.gohugo.io. Please note that not all themes have been tested against **blogdown**. If you find a certain theme does not work well with **blogdown**, you may report to https://github.com/rstudio/blogdown/issues, and we will try to investigate the reason, but it can be time-consuming to learn and understand how a new theme works, so we recommend that you learn more about Hugo by yourself before asking, and we also encourage users to help each other there.
+En Hugo, los temas \index{Temas} controlan toda la apariencia y funcionalidad de su sitio. Entonces, si le importa mucho el aspecto de su sitio web, probablemente pasará bastante tiempo al principio buscando un tema de Hugo que le guste de la colección que figura en http://themes.gohugo.io. Tenga en cuenta que no todos los temas se han probado en **blogdown**. Si encuentra que un determinado tema no funciona bien con **blogdown**, puede informar a https://github.com/rstudio/blogdown/issues, e intentaremos investigar el motivo, pero puede ser una cuestión de tiempo aprender y comprender cómo funciona un nuevo tema, por lo que le recomendamos que aprenda más acerca de Hugo por su cuenta antes de preguntar, y también alentamos a los usuarios a ayudarse mutuamente allí.
 
-After you have found a satisfactory theme, you need to figure out its GitHub username and repository name,^[For most themes, you can find this by navigating to the theme of your choice from http://themes.gohugo.io and then clicking on `Homepage`.] then either install the theme via\index{blogdown::install\_theme()} `blogdown::install_theme()`, or just create a new site under another new directory and pass the GitHub repository name to the `theme` argument of `new_site()`. We recommend that you use the second approach, because Hugo themes could be very complicated and the usage of each theme can be very different and highly dependent on `config.toml`. If you install a theme using `install_theme()` instead of `new_site()` you’ll need to manually create the `config.toml` file in the root directory of your website to match the newly installed theme.^[In a workaround, if you used `install_theme()` and set the `theme_example` argument to TRUE, then you can access an example `config.toml` file. In the `themes/` directory, navigate to the file for your newly downloaded theme and find `exampleSite/config.toml`. This file can be copied to your root directory (to replace the `config.toml` file from your original theme) or used as a template to correctly write a new `config.toml` file for your new theme.]
+Después de haber encontrado un tema satisfactorio, debe averiguar su nombre de usuario y el nombre del repositorio de GitHub,^[Para la mayoría de los temas, puede encontrar esto navegando al tema de su elección desde http://themes.gohugo.io y luego haciendo clic en `Homepage`.] luego instale el tema a través de\index{blogdown::install\_theme()} `blogdown::install_theme()`, o simplemente cree un nuevo sitio bajo otro directorio nuevo y pase el nombre del repositorio de GitHub al argumento `theme` de `new_site()`. Recomendamos que use el segundo enfoque, porque los temas de Hugo podrían ser muy complicados y el uso de cada tema puede ser muy diferente y muy dependiente del `config.toml`. Si instala un tema con `install_theme()` en lugar de `new_site ()`, deberá crear manualmente el archivo `config.toml` en el directorio raíz de su sitio web para que coincida con el tema recién instalado.^[Una solución alternativa, si usó `install_theme()` y establece el argumento `theme_example` en TRUE, entonces puede acceder a un archivo `config.toml` de ejemplo. En el directorio `themes/`, vaya al archivo del tema que acaba de descargar y busque `exampleSite/config.toml`. Este archivo puede copiarse en su directorio raíz (para reemplazar el archivo `config.toml` de su tema original) o usarse como una plantilla para escribir correctamente un nuevo archivo `config.toml` para su nuevo tema.]
 
 ```{r eval=FALSE}
-# for example, create a new site with the academic theme
+# por ejemplo, cree un sitio nuevo con el tema academic
 blogdown::new_site(theme = 'gcushen/hugo-academic')
 ```
 
-To save you some time, we list a few themes below that match our taste:
+Para ahorrarle tiempo, enumeramos algunos temas a continuación que coinciden con nuestro gusto:
 
-- Simple/minimal themes: [XMin,](https://github.com/yihui/hugo-xmin) [Tanka,](https://github.com/road2stat/hugo-tanka) [simple-a,](https://github.com/AlexFinn/simple-a) and [ghostwriter.](https://github.com/jbub/ghostwriter)
+- Temas Simples/mínimos: [XMin,](https://github.com/yihui/hugo-xmin) [Tanka,](https://github.com/road2stat/hugo-tanka) [simple-a,](https://github.com/AlexFinn/simple-a) and [ghostwriter.](https://github.com/jbub/ghostwriter)
 
-- Sophisticated themes: [hugo-academic](https://github.com/gcushen/hugo-academic) (strongly recommended for users in academia), [hugo-tranquilpeak-theme,](https://github.com/kakawait/hugo-tranquilpeak-theme) [hugo-creative-portfolio-theme,](https://github.com/kishaningithub/hugo-creative-portfolio-theme) and [hugo-universal-theme.](https://github.com/devcows/hugo-universal-theme)
+- Temas sofisticados: [hugo-academic](https://github.com/gcushen/hugo-academic) (fuertemente recomendado para usuarios de la academia), [hugo-tranquilpeak-theme,](https://github.com/kakawait/hugo-tranquilpeak-theme) [hugo-creative-portfolio-theme,](https://github.com/kishaningithub/hugo-creative-portfolio-theme) and [hugo-universal-theme.](https://github.com/devcows/hugo-universal-theme)
 
-- Multimedia content themes: If you are interested in adding multimedia content to your site (such as audio files of a podcast), the [castanet](https://github.com/mattstratton/castanet) theme provides an excellent framework tailored for this application.  An example of a site using **blogdown** with the castanet theme is the [R-Podcast.](https://www.r-podcast.org)
+- Temas que contienen multimedia: Si está interesado en agregar contenido multimedia a su sitio (como archivos de audio de un podcast), el tema [castanet](https://github.com/mattstratton/castanet) proporciona un excelente marco adaptado para esta aplicación. Un ejemplo de un sitio que usa **blogdown** con el tema castanet es [R-Podcast](https://www.r-podcast.org)
 
-If you do not understand HTML, CSS, or JavaScript, and have no experience with Hugo themes or templates, it may take you about 10 minutes to get started with your new website, since you have to accept everything you are given (such as the default theme); if you do have the knowledge and experience (and desire to highly customize your site), it may take you several days to get started. Hugo is really powerful. Be cautious with power.
+Si no entiende HTML, CSS o JavaScript, y no tiene experiencia con los temas o plantillas de Hugo, puede tardar unos 10 minutos en comenzar a usar su nuevo sitio web, ya que debe aceptar todo lo que le ofrecen (como el tema predeterminado); Si tiene el conocimiento y la experiencia (y desea personalizar su sitio al máximo), puede tardar varios días en comenzar. Hugo es realmente poderoso. Tenga cuidado con el poder.
 
-Another thing to keep in mind is that the more effort you make in a complicated theme, the more difficult it is to switch to other themes in the future, because you may have customized a lot of things that are not straightforward to port to another theme. So please ask yourself seriously, "Do I like this fancy theme so much that I will definitely not change it in the next couple of years?"
+Otra cosa a tener en cuenta es que cuanto más esfuerzo hagas en un tema complicado, más difícil será cambiar a otros temas en el futuro, porque es posible que haya personalizado muchas cosas que no son fáciles de transferir a otro tema. Por lo tanto, pregúntese seriamente: "¿Me gusta tanto este tema tan elegante que definitivamente no lo cambiaré en los próximos años?".
 
-> If you choose to dig a rather deep hole, someday you will have no choice but keep on digging, even with tears.
+> Si elige cavar un hoyo bastante profundo, algún día no tendrá más remedio que seguir cavando, incluso con lágrimas.
 >
-> --- Liyun Chen^[Translated from her Chinese Weibo: http://weibo.com/1406511850/Dhrb4toHc (you cannot view this page unless you have logged in).]
+> --- Liyun Chen^[Traducido de su weibo Chino: http://weibo.com/1406511850/Dhrb4toHc (no puede ver esta página a menos que haya iniciado sesión).]
 
-## A recommended workflow {#workflow}
+## Un flujo de trabajo recomendado {#workflow}
 
-There are a lot of ways to start building a website and deploy it. Because of the sheer number of technologies that you need to learn to fully understand how a website works, we'd like to recommend one workflow to beginners, so that hopefully they do not need to digest the rest of this book. This is definitely not the most optimal workflow, but requires you to know the fewest technical details.
+Hay muchas maneras de comenzar a construir un sitio web y presentarlo. Debido a la gran cantidad de tecnologías que necesita aprender para comprender completamente cómo funciona un sitio web, nos gustaría recomendar un flujo de trabajo a los principiantes, por lo que es de esperar que no necesiten digerir el resto de este libro. Definitivamente este no es el flujo de trabajo más óptimo, pero requiere que conozca la menor cantidad de detalles técnicos.
 
-To start a new website:
+Para comenzar un nuevo sitio web:
 
-1. Carefully pick a theme at http://themes.gohugo.io, and find the link to its GitHub repository, which is of the form `https://github.com/user/repo`.
+1. Elija cuidadosamente un tema en http://themes.gohugo.io, y encuentre el enlace a su repositorio GitHub, que tiene la forma `https://github.com/user/repo`.
 
-1. Create a new project in RStudio, and type the code `blogdown::new_site(theme = 'user/repo')` in the R console, where `user/repo` is from the link in Step 1.
+1. Cree un nuevo proyecto en RStudio y escriba el código `blogdown::new_site (theme = 'user/repo')` en la consola R, donde `user/repo` proviene del enlace en el paso 1.
 
-1. Play with the new site for a while and if you do not like it, you can repeat the above steps, otherwise edit the options in `config.toml`. If you do not understand certain options, go to the documentation of the theme, which is often the README page of the GitHub repository. Not all options have to be changed.
+1. Juegue con el nuevo sitio por un tiempo y si no le gusta, puede repetir los pasos anteriores, de lo contrario edite las opciones en `config.toml`. Si no comprende ciertas opciones, vaya a la documentación del tema, que a menudo es la página README del repositorio de GitHub. No todas las opciones tienen que ser cambiadas.
 
-To edit a website:
+Para editar una página web:
 
-1. Set `options(servr.daemon = TRUE)` unless you have already set it in `.Rprofile`. If this option does not work for you (e.g., it crashes your R session), see Section \@ref(global-options) for a workaround.
+1. Establezca `options(servr.daemon = TRUE)` a menos que ya lo haya configurado en `.Rprofile`. Si esta opción no funciona para usted (por ejemplo, bloquea su sesión en R), consulte la sección \@ref(opciones-globales) para obtener una solución alternativa.
 
-1. Click the RStudio addin "Serve Site" to preview the site in RStudio Viewer. This only needs to be done once every time you open the RStudio project or restart your R session. Do not click the Knit button on the RStudio toolbar.
+1. Haga clic en el complemento de RStudio "Serve Site" para obtener una vista previa del sitio en RStudio Viewer. Esto solo debe hacerse una vez cada vez que abra el proyecto RStudio o reinicie su sesión en R. No haga clic en el botón knit en la barra de herramientas de RStudio.
 
-1. Use the "New Post" addin to create a new post or page, then start writing the content.
+1. Use el complemento "New Post" para crear una nueva publicación o página, luego empiece a escribir el contenido.
 
-1. Use the "Update Metadata" addin to modify the YAML metadata if necessary.
+1. Use el complemento "Update Metadata" para modificar los metadatos del YAML, si es necesario.
 
-To publish a website if you are not familiar with GIT or GitHub:
+Para publicar un sitio web, si no está familiarizado con GIT o GitHub:
 
-1. Restart the R session, and run `blogdown::hugo_build()`. You should get a `public/` directory under the root directory of your project.
+1. Reinicie la sesión de R, y ejecute `blogdown::hugo_build()`. Debería obtener un directorio `public/` bajo el directorio raiz de su proyecto.
 
-1. Log into\index{Netlify} https://www.netlify.com (you can use a GitHub account if you have one). If this is the first time you have published this website, you can create a new site, otherwise you may update the existing site you created last time. You can drag and drop the `public/` folder from your file viewer to the indicated area on the Netlify web page, where it says "Drag a folder with a static site here."
+1. Inicie sesión en\index{Netlify} https://www.netlify.com (puede usar una cuenta de GitHub, si la tiene). Si esta es la primera vez que publica este sitio web, puede crear un sitio nuevo; de lo contrario, puede actualizar el sitio existente que creó la última vez. Puede arrastrar y soltar la carpeta `public/` desde su visor de archivos al área indicada en la página web de Netlify, donde dice "Drag a folder with a static site here".
 
-1. Wait for a few seconds for Netlify to deploy the files, and it will assign a random subdomain of the form `random-word-12345.netlify.com` to you. You can (and should) change this random subdomain to a more meaningful one if it is still available.
+1. Espere unos segundos para que Netlify despliegue los archivos y le asignará un subdominio aleatorio de la forma `random-word-12345.netlify.com`. Puede (y debería) cambiar este subdominio aleatorio a uno más significativo si todavía está disponible.
 
-It can be much easier to publish a website if you are familiar with GIT and GitHub. We recommend that you create a new site on Netlify from your GitHub repository that contains the source files of your website, so that you can enjoy the benefits of continuous deployment instead of manually uploading the `public/` folder every time. With this approach, you do not need to run `blogdown::hugo_build()` locally, because the website can be built on Netlify via Hugo. See Chapter \@ref(deployment) for more information.
+Puede ser mucho más fácil publicar un sitio web si está familiarizado con GIT y GitHub. Recomendamos que cree un nuevo sitio en Netlify desde su repositorio de GitHub que contenga los archivos fuente de su sitio web, para que pueda disfrutar los beneficios de la implementación continua en lugar de cargar manualmente la carpeta `public/` cada vez. Con este enfoque, no es necesario ejecutar `blogdown::hugo_build()` localmente, ya que el sitio web se puede construir en Netlify a través de Hugo. Consulte el capítulo \@ref(implementación) para obtener más información.
