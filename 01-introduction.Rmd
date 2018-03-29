@@ -1,60 +1,62 @@
 \mainmatter
 
-# Get Started
+# Comienzo
 
-In this chapter, we show how to create a simple website from scratch. The website will contain a home page, an "About" page, one R Markdown post, and a plain Markdown post. You will learn the basic concepts for creating websites with **blogdown**. For beginners, we recommend that you get started with the RStudio IDE, but it is not really required. The RStudio IDE can make a few things easier, but you are free to use any editor if you do not care about the extra benefits in RStudio.
+En este capítulo, mostramos cómo crear un sitio web simple desde cero. El sitio web contendrá una página de inicio, una página "Acerca de", una publicación de R Markdown y una publicación de markdown normal. Aprenderá los conceptos básicos para crear sitios web con **blogdown**. Para principiantes, le recomendamos que comience con RStudio IDE, pero realmente no es necesario. RStudio IDE puede facilitar algunas cosas, pero puede usar cualquier editor si no le importan los beneficios adicionales en RStudio.
 
-## Installation
+## Instalación
 
-We assume you have already installed R (https://www.r-project.org) [@R-base] and the RStudio IDE (https://www.rstudio.com). If you do not have RStudio IDE installed, please install Pandoc\index{Pandoc} (http://pandoc.org). Next we need to install the **blogdown** package in R. It is available on CRAN and GitHub, and you can install it with:
+Asumimos que ya ha instalado R (https://www.r-project.org) [@R-base] y RStudio IDE (https://www.rstudio.com). Si no tiene instalado RStudio IDE, instale Pandoc\index{Pandoc} (http://pandoc.org). A continuación, tenemos que instalar el paquete **blogdown** en R. Está disponible en CRAN y GitHub, y puede instalarlo con:
+
 
 ```{r eval=FALSE}
-## Install from CRAN
+## Intalación desde el CRAN
 install.packages('blogdown') 
-## Or, install from GitHub
+## O, instalación desde GitHub
 if (!requireNamespace("devtools")) install.packages('devtools')
 devtools::install_github('rstudio/blogdown')
 ```
 
-Since **blogdown** is based on the static site generator Hugo (https://gohugo.io), you also need to install Hugo\index{Hugo}. There is a helper function in **blogdown** to download and install it automatically on major operating systems (Windows, macOS, and Linux):
+Como **blogdown** se basa en el generador de sitios estáticos Hugo (https://gohugo.io), también debe instalar Hugo\index{Hugo}. Hay una función auxiliar en **blogdown** para descargar e instalar automáticamente en los principales sistemas operativos (Windows, MacOS y Linux):
+
 
 ```{r eval=FALSE}
 blogdown::install_hugo()
 ```
 
-By default, it installs the latest version of Hugo, but you can choose a specific version through the `version` argument if you prefer.
+Por defecto, instala la última versión de Hugo, pero puede elegir una versión específica a través del argumento `versión`, si lo prefiere.
 
-For macOS users, `install_hugo()` uses the package manager Homebrew (https://brew.sh) if it has already been installed, otherwise it just downloads the Hugo binary directly.
+Para los usuarios de macOS, `install_hugo()` usa el administrador de paquetes Homebrew (https://brew.sh) si ya se ha instalado, de lo contrario solo descarga el binario de Hugo directamente.
 
-### Update
+### Actualización
 
-To upgrade or reinstall Hugo, you may use `blogdown::update_hugo()`, which is equivalent to `install_hugo(force = TRUE)`. You can check the installed Hugo version via `blogdown::hugo_version()`, and find the latest version of Hugo at <https://github.com/gohugoio/hugo/releases>.
+Para actualizar o reinstalarHugo, use `blogdown::update_hugo()`, que es equivalente a `install_hugo(force = TRUE)`. Puede verificar la versión de Hugo instalada mediante `blogdown::hugo_version()`, y encontrar la última versión de Hugo en <https://github.com/gohugoio/hugo/releases>.
 
 <!--
-To update **blogdown**, use `update.packages()` or `install.packages('blogdown')`.
+Para actualizar **blogdown**, use `update.packages()` o `install.packages('blogdown')`.
 -->
 
-## A quick example
+## Un ejemplo rápido
 
-From our experience, Hugo's documentation may be a little daunting to read and digest for beginners.^[One day I was almost ready to kill myself when I was trying to figure out how `_index.md` works by reading the documentation over and over again, and desperately searching on the Hugo forum.] For example, its "Quickstart" guide used to have 12 steps, and you can easily get lost if you have not used a static website generator before. For **blogdown**, we hope users of all levels can at least get started as quickly as possible. There are many things you may want to tweak for the website later, but the first step is actually fairly simple: create a new project under a new directory in the RStudio IDE (`File -> New Project`), and call the function in the R console of the new project\index{blogdown::new\_site()}:
+Según nuestra experiencia, la documentación de Hugo puede ser un poco desalentadora para leer y digerir para principiantes.^[Un día Yihui estaba casi listo para suicidarme cuando intentaba averiguar cómo funciona `_index.md` leyendo la documentación una y otra vez, y buscando desesperadamente en el foro de Hugo.] Por ejemplo, su guía de "Inicio rápido" solía tener 12 pasos, y usted puede perderse fácilmente si no ha utilizado un generador de sitio web estático antes. Para **blogdown**, esperamos que los usuarios de todos los niveles al menos puedan comenzar lo más rápido posible. Hay muchas cosas que puede desear modificar para el sitio web más adelante, pero el primer paso es bastante simple: crear un nuevo proyecto en un directorio nuevo en RStudio IDE (`File -> New Project`) y llamar a la función en la consola de R del nuevo proyecto\index{blogdown::new\_site ()}:
 
 ```{r eval=FALSE}
 blogdown::new_site()
 ```
 
-Then wait for this function to create a new site, download the default theme, add some sample posts, open them, build the site, and launch it in the RStudio Viewer, so you can immediately preview it. If you do not use the RStudio IDE, you need to make sure you are currently in an empty directory,^[Check the output of `list.files('.')` in R, and make sure it does not include files other than `LICENSE`, the RStudio project file (`*.Rproj`), `README` or `README.md`.] in which case `new_site()` will do the same thing, but the website will be launched in your web browser instead of the RStudio Viewer.
+Luego espere a que esta función cree un sitio nuevo, descargue el tema predeterminado, agregue algunas publicaciones de muestra, ábralas, cree el sitio y ejecútelo en RStudio Viewer, para que pueda obtener una vista previa de inmediato. Si no usa RStudio IDE, necesita asegurarse de que se encuentra actualmente en un directorio vacío,^[En R, compruebe la salida de `list.files('.')` y asegúrese de que no incluya archivos distintos a `LICENSE`, el archivo de proyecto de RStudio (`*.Rproj`), `README` o `README.md`.] en cuyo caso `new_site()` hará lo mismo, pero el sitio web se lanzará en su navegador web en lugar de RStudio Viewer.
 
-Now you should see a bunch of directories and files under the RStudio project or your current working directory. Before we explain these new directories and files, let's introduce an important and helpful technology first: _LiveReload._\index{LiveReload} This means your website^[Until you set up your website to be deployed, LiveReload only updates the *local* version of your website. This version is only visible to you. In order to make your website searchable, discoverable, and live on the internet you will need to upload your website's files to a site builder. See Chapter \@ref(deployment) for details.] will be automatically rebuilt and reloaded in your web browser^[You can also think of the RStudio Viewer as a web browser.] when you modify any source file of your website and save it. Basically, once you launch the website in a web browser, you do not need to rebuild it explicitly anymore. All you need to do is edit the source files, such as R Markdown documents, and save them. There is no need to click any buttons or run any commands. LiveReload is implemented via `blogdown::serve_site()`\index{blogdown::serve\_site()}, which is based on the R package **servr** [@R-servr] by default.^[Hugo has its own LiveReload implementation. If you want to take advantage of it, you may set the global option `options(blogdown.generator.server = TRUE)`. See Section \@ref(livereload) for more information.]
+Ahora debería ver un grupo de directorios y archivos en el proyecto RStudio o en su directorio de trabajo actual. Antes de explicar estos nuevos directorios y archivos, primero introduzcamos una tecnología importante y útil: _LiveReload._\index{LiveReload} Esto significa que su sitio web^[Hasta que configure su sitio web para ser implementado, LiveReload solo actualiza la versión *local* de su sitio web. Esta versión solo es visible para usted. Para que su sitio web pueda buscarse, descubrirse y vivir en Internet, tendrá que cargar los archivos de su sitio web en un creador de sitios. Consulte el capítulo \@ref(implementación) para obtener más detalles.] Se reconstruirá y volverá a cargar automáticamente en su navegador web^[También puede pensar en RStudio Viewer como un navegador web.] Cuando modifique cualquier archivo fuente de su sitio web y lo guarde. Básicamente, una vez que inicie el sitio web en un navegador web, ya no necesita volver a generarlo explícitamente. Todo lo que necesita hacer es editar los archivos fuente, como los documentos R Markdown, y guardarlos. No es necesario hacer clic en ningún botón ni ejecutar ningún comando. LiveReload se implementa a través de `blogdown::serve_site()`\index{blogdown::serve\_site()}, que está basado en el paquete de R **servr** [@R-servr] de manera predeterminada.^[Hugo tiene su propia implementación LiveReload. Si desea aprovecharlo, puede establecer la opción global `options(blogdown.generator.server = TRUE)`. Ver la sección\@ref(livereload) para más información.]
 
-The `new_site()` function has several arguments, and you may check out its R help page (`?blogdown::new_site`) for details. A minimal default theme named "hugo-lithium-theme" is provided as the default theme of the new site,^[You can find its source on GitHub: https://github.com/yihui/hugo-lithium-theme. This theme was forked from https://github.com/jrutheiser/hugo-lithium-theme and modified to work better with **blogdown**.] and you can see what it looks like in Figure \@ref(fig:lithium).
+La función `new_site()` tiene varios argumentos, y puede revisar su página de ayuda de R (`?blogdown::new_site`) para más detalles. Un tema predeterminado mínimo llamado "hugo-lithium-theme" se proporciona como el tema predeterminado del nuevo sitio,^[Puede encontrar su código fuente en GitHub: https://github.com/yihui/hugo-lithium-theme. Este tema se bifurcó de https://github.com/jrutheiser/hugo-lithium-theme y se modificó para que funcione mejor con **blogdown**.] Y se puede ver cómo se ve en Figure \@ref(fig:lithium).
 
-```{r lithium, fig.cap='The homepage of the default new site.', echo=FALSE, fig.align='center', out.width='90%'}
+```{r lithium, fig.cap='La página de inicio del nuevo sitio por defecto.', echo=FALSE, fig.align='center', out.width='90%'}
 knitr::include_graphics('images/lithium-theme.png')
 ```
 
-You have to know three most basic concepts for a Hugo-based website:
+Tiene que saber tres conceptos más básicos para un sitio web basado en Hugo:
 
-1. The configuration file `config.toml`\index{config.toml}, in which you can specify some global settings for your site. Even if you do not know what TOML is at this point (it will be introduced in Chapter \@ref(hugo)), you may still be able to change some obvious settings. For example, you may see configurations like these in `config.toml`:
+1. El archivo de configuración `config.toml`\index{config.toml}, en el que puede especificar algunas configuraciones globales para su sitio. Incluso si no sabe qué es TOML en este momento (se presentará en el capítulo \@ref(hugo)), aún podrá cambiar algunas configuraciones obvias. Por ejemplo, puede ver configuraciones como estas en `config.toml`:
 
     ```js
     baseurl = "/"
@@ -73,19 +75,19 @@ You have to know three most basic concepts for a Hugo-based website:
         url = "https://twitter.com/rstudio"
     ```
 
-    You can change the website title, e.g., `title = "My own cool website"`, and update the GitHub and Twitter URLs.\index{Directories}
+    Puede cambiar el título de la página web, e.g., `title = "Mi propia página web chévere"`, y actualizar las URL de GitHub y Twitter.\index{Directories}
 
-1. The content directory (by default, `content/`). This is where you write the R Markdown or Markdown source files for your posts and pages. Under `content/` of the default site, you can see `about.md` and a `post/` directory containing a few posts. The organization of the content directory is up to you. You can have arbitrary files and directories there, depending on the website structure you want.
+1. El directorio de contenido (por defecto, `content/`). Aquí es donde usted escribe los archivos de origen R Markdown o Markdown para sus publicaciones y páginas. Bajo `content/` del sitio predeterminado, puede ver `about.md` y un directorio` post/` que contiene algunas publicaciones. La organización del directorio de contenido depende de usted. Puede tener archivos y directorios arbitrarios allí, según la estructura del sitio web que desee.
 
-1. The publishing directory (by default, `public/`). Your website will be generated to this directory, meaning that you do not need to manually add any files to this directory.^[By running either `serve_site()` or `build_site()`, files will be generated and published in your publishing directory automatically.] Typically it contains a lot of `*.html` files and dependencies like `*.css`, `*.js`, and images. You can upload everything under `public/` to any web server that can serve static websites, and your website will be up and running. There are many options for publishing static websites, and we will talk more about them in Chapter \@ref(deployment) if you are not familiar with deploying websites.
+1. El directorio de publicación (por defecto, `public/`). Su sitio web se generará en este directorio, lo que significa que no necesita agregar manualmente ningún archivo a este directorio.^[Ejecutando `serve_site()` o `build_site()`, los archivos se generarán y publicarán en su directorio de publicación automáticamente.] Por lo general, contiene una gran cantidad de archivos `*.html` y dependencias como `*.css`, `*.js` e imágenes. Puede cargar todo en `public/` a cualquier servidor web que pueda publicar sitios web estáticos, y su sitio web estará en funcionamiento. Hay muchas opciones para publicar sitios web estáticos, y hablaremos más sobre ellos en el capítulo \@ref(implementación) si no está familiarizado con la implementación de sitios web.
 
-If you are satisfied with this default theme, you are basically ready to start writing and publishing your new website! We will show how to use other themes in Section \@ref(other-themes). However, please keep in mind that a more complicated and fancier theme may require you to learn more about all the underlying technologies like the Hugo templating language, HTML, CSS, and JavaScript.
+Si está satisfecho con este tema predeterminado, ¡está básicamente listo para comenzar a escribir y publicar su nuevo sitio web! Mostraremos cómo usar otros temas en la sección \@ref(otros-temas). Sin embargo, tenga en cuenta que un tema más complicado y elegante puede requerir que aprenda más sobre todas las tecnologías subyacentes, como el lenguaje de plantillas de Hugo, HTML, CSS y JavaScript.
 
 ## RStudio IDE
 
-There are a few essential RStudio addins\index{RStudio addins} to make it easy to edit and preview your website, and you can find them in the menu "Addins" on the RStudio toolbar:
+Hay algunos complementos básicos de RStudio\index{Complementos de RStudio} para facilitar la edición y la vista previa de su sitio web, y puede encontrarlos en el menú "Addins" en la barra de herramientas de RStudio:
 
-- "Serve Site": This addin calls `blogdown::serve_site()` to continuously serve your website locally using the LiveReload technology, so you can live preview the website. You can continue to edit material for your site while you are previewing it, but this function will block your R console by default, meaning that you will not be able to use your R console once you start this local web server. To unblock your console, click on the red stop sign in the top right corner of the console window. If you would rather avoid this behavior altogether, set the option `options(servr.daemon = TRUE)` before you click this addin or call the function `serve_site()`, so that the server is daemonized and will not block your R console.^[We have heard of cases where the daemonized server crashed R on Windows. If you run into problems with the daemonized server, there are three workarounds, and you can try one of them: (1) install the **later** package via `install.packages("later")` and start the server again; (2) use Hugo's server (see Section \@ref(livereload)); (3) call `blogdown::serve_site()` in a separate R session, and you can preview your website in your web browser but can still edit the website in RStudio.]
+- "Serve Site": este complemento llama a `blogdown::serve_site()` para presentar continuamente su sitio web localmente utilizando la tecnología LiveReload, para que pueda ver en vivo el sitio web. Puede seguir editando material para su sitio mientras lo está viendo, pero esta función bloqueará su consola de R de manera predeterminada, lo que significa que no podrá usar su consola de R una vez que inicie este servidor web local. Para desbloquear la consola, haga clic en el signo de stop rojo en la esquina superior derecha de la ventana de la consola. Si prefiere evitar este comportamiento por completo, establezca la opción `options(servr.daemon = TRUE)`, antes de hacer clic en este complemento o llame a la función `serve_site()`, para que el servidor sea demonizado y no bloquee su consola de R.^ [Hemos oído de casos en los que el servidor demonizado bloquea R en Windows. Si tiene problemas con el servidor daemonizado, existen tres soluciones alternativas, y puede probar una de ellas: (1) instalar el paquete **later** a través de `install.packages("later")` y volver a iniciar el servidor; (2) use el servidor de Hugo (vea la sección \@ref(livereload)); (3) llame `blogdown::serve_site()` en una sesión de R separada, y puede obtener una vista previa de su sitio web en su navegador web, pero aún puede editar el sitio web en RStudio.]
 
 - "New Post": This addin provides a dialog box for you to enter the metadata of your blog post, including the title, author, date, and so on. See Figure \@ref(fig:new-post) for an example. This addin actually calls the function `blogdown::new_post()` under the hood, but does a few things automatically:
 
