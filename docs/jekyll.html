@@ -32,7 +32,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="other-generators.html">
+<link rel="prev" href="otros-generadores.html">
 <link rel="next" href="hexo.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -185,7 +185,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="desde-wordpress.html"><a href="desde-wordpress.html"><i class="fa fa-check"></i><b>4.2</b> Desde WordPress</a></li>
 <li class="chapter" data-level="4.3" data-path="desde-otros-sistemas.html"><a href="desde-otros-sistemas.html"><i class="fa fa-check"></i><b>4.3</b> Desde otros sistemas</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="other-generators.html"><a href="other-generators.html"><i class="fa fa-check"></i><b>5</b> Other Generators</a><ul>
+<li class="chapter" data-level="5" data-path="otros-generadores.html"><a href="otros-generadores.html"><i class="fa fa-check"></i><b>5</b> Otros generadores</a><ul>
 <li class="chapter" data-level="5.1" data-path="jekyll.html"><a href="jekyll.html"><i class="fa fa-check"></i><b>5.1</b> Jekyll</a></li>
 <li class="chapter" data-level="5.2" data-path="hexo.html"><a href="hexo.html"><i class="fa fa-check"></i><b>5.2</b> Hexo</a></li>
 <li class="chapter" data-level="5.3" data-path="rmd-website.html"><a href="rmd-website.html"><i class="fa fa-check"></i><b>5.3</b> Default site generator in rmarkdown</a></li>
@@ -245,18 +245,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="jekyll" class="section level2">
 <h2><span class="header-section-number">5.1</span> Jekyll</h2>
-<p>For Jekyll (<a href="https://jekyllrb.com" class="uri">https://jekyllrb.com</a>) users, I have prepared a minimal example in the GitHub repository <a href="https://github.com/yihui/blogdown-jekyll">yihui/blogdown-jekyll.</a> If you clone or download this repository and open <code>blogdown-jekyll.Rproj</code> in RStudio, you can still use all addins mentioned in Section <a href="rstudio-ide.html#rstudio-ide">1.3</a>, such as “New Post,” “Serve Site,” and “Update Metadata,” but it is Jekyll instead of Hugo that builds the website behind the scenes now.</p>
-<p>I assume you are familiar with Jekyll, and I’m not going to introduce the basics of Jekyll in this section. For example, you should know what the <code>_posts/</code> and <code>_site/</code> directories mean.</p>
-<p>The key pieces of this <strong>blogdown-jekyll</strong> project are the files <code>.Rprofile</code>, <code>R/build.R</code>, and <code>R/build_one.R</code>. I have set some global R options for this project in <code>.Rprofile</code>:<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
+<p>Para los usuarios de Jekyll (<a href="https://jekyllrb.com)\index%7BJekyll%7D" class="uri">https://jekyllrb.com)\index{Jekyll}</a>, he preparado un ejemplo mínimo en el repositorio de GitHub <a href="https://github.com/yihui/blogdown-jekyll">yihui/blogdown-jekyll.</a>. Si clona o descarga este repositorio y abre <code>blogdown-jekyll.Rproj</code> en RStudio, puede usar todos los complementos mencionados en la sección <a href="rstudio-ide.html#rstudio-ide">1.3</a>, como “New Post”, &quot; Serve Site&quot; y “Update Metadata”, pero ahora es Jekyll en lugar de Hugo quien crea el sitio web tras bambalinas.</p>
+<p>Supongo que está familiarizado con Jekyll, y no voy a presentar los conceptos básicos de Jekyll en esta sección. Por ejemplo, debe saber lo que significan los directorios <code>_posts/</code> y <code>_site/</code>.</p>
+<p>Las piezas clave de este proyecto <strong>blogdown-jekyll</strong> son los archivos <code>.Rprofile</code>, <code>R/build.R</code>, y <code>R/build_one.R</code>. He configurado algunas opciones en R globales para este proyecto en <code>.Rprofile</code>:<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">options</span>(</a>
 <a class="sourceLine" id="cb81-2" data-line-number="2">  <span class="dt">blogdown.generator =</span> <span class="st">&quot;jekyll&quot;</span>,</a>
 <a class="sourceLine" id="cb81-3" data-line-number="3">  <span class="dt">blogdown.method =</span> <span class="st">&quot;custom&quot;</span>,</a>
 <a class="sourceLine" id="cb81-4" data-line-number="4">  <span class="dt">blogdown.subdir =</span> <span class="st">&quot;_posts&quot;</span></a>
 <a class="sourceLine" id="cb81-5" data-line-number="5">)</a></code></pre></div>
-<p>First, the website generator was set to <code>jekyll</code> using the option <code>blogdown.generator</code>, so that <strong>blogdown</strong> knows that it should use Jekyll to build the site. Second, the build method <code>blogdown.method</code> was set to <code>custom</code>, so that we can define our custom R script <code>R/build.R</code> to build the Rmd files (I will explain the reason later). Third, the default subdirectory for new posts was set to <code>_posts</code>, which is Jekyll’s convention. After you set this option, the “New Post” addin will create new posts under the <code>_posts/</code> directory.</p>
-<p>When the option <code>blogdown.method</code> is <code>custom</code>, <strong>blogdown</strong> will call the R script <code>R/build.R</code> to build the site. You have full freedom to do whatever you want in this script. Below is an example script:</p>
+<p>En primer lugar, el generador del sitio web se configuró en <code>jekyll</code> con la opción <code>blogdown.generator</code>, por lo que <strong>blogdown</strong> sabe que debe usar Jekyll para construir el sitio. En segundo lugar, el método de compilación <code>blogdown.method</code> se configuró como <code>custom</code>, por lo que podemos definir nuestro guión en R personalizado <code>R/build.R</code> para compilar los archivos Rmd (explicaré el motivo más adelante). En tercer lugar, el subdirectorio predeterminado para las nuevas publicaciones se estableció en <code>_posts</code>, que es la convención de Jekyll. Después de configurar esta opción, el complemento “New message” creará nuevas publicaciones en el directorio <code>_posts/</code>.</p>
+<p>Cuando la opción <code>blogdown.method</code> es <code>custom</code>, <strong>blogdown</strong> llamará al script R <code>R/build.R</code> para construir el sitio. Tiene plena libertad para hacer lo que quiera en este script. A continuación hay un script de ejemplo:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">build_one =<span class="st"> </span><span class="cf">function</span>(io) {</a>
-<a class="sourceLine" id="cb82-2" data-line-number="2">  <span class="co"># if output is not older than input, skip the compilation</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2">  <span class="co"># si la salida no es más antigua que la entrada, omita la compilación</span></a>
 <a class="sourceLine" id="cb82-3" data-line-number="3">  <span class="cf">if</span> (<span class="op">!</span>blogdown<span class="op">:::</span><span class="kw">require_rebuild</span>(io[<span class="dv">2</span>], io[<span class="dv">1</span>])) <span class="kw">return</span>()</a>
 <a class="sourceLine" id="cb82-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb82-5" data-line-number="5">  <span class="kw">message</span>(<span class="st">&#39;* knitting &#39;</span>, io[<span class="dv">1</span>])</a>
@@ -266,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb82-9" data-line-number="9">  }</a>
 <a class="sourceLine" id="cb82-10" data-line-number="10">}</a>
 <a class="sourceLine" id="cb82-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="co"># Rmd files under the root directory</span></a>
+<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="co"># Los archivos Rmd bajo el directorio raiz</span></a>
 <a class="sourceLine" id="cb82-13" data-line-number="13">rmds =<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;[.]Rmd$&#39;</span>, <span class="dt">recursive =</span> T, <span class="dt">full.names =</span> T)</a>
 <a class="sourceLine" id="cb82-14" data-line-number="14">files =<span class="st"> </span><span class="kw">cbind</span>(rmds, xfun<span class="op">::</span><span class="kw">with_ext</span>(rmds, <span class="st">&#39;.md&#39;</span>))</a>
 <a class="sourceLine" id="cb82-15" data-line-number="15"></a>
@@ -274,11 +274,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb82-17" data-line-number="17"></a>
 <a class="sourceLine" id="cb82-18" data-line-number="18"><span class="kw">system2</span>(<span class="st">&#39;jekyll&#39;</span>, <span class="st">&#39;build&#39;</span>)</a></code></pre></div>
 <ul>
-<li><p>Basically it contains a function <code>build_one()</code> that takes an argument <code>io</code>, which is a character vector of length 2. The first element is the input (Rmd) filename, and the second element is the output filename.</p></li>
-<li><p>Then we search for all Rmd files under the current directory, prepare the output filenames by substituting the Rmd file extensions with <code>.md</code>, and build the Rmd files one by one. Note there is a caching mechanism in <code>build_one()</code> that makes use of an internal <strong>blogdown</strong> function <code>require_rebuild()</code>. This function returns <code>FALSE</code> if the output file is not older than the input file in terms of the modification time. This can save you some time because those Rmd files that have been compiled before will not be compiled again every time. The key step in <code>build_one()</code> is to run the R script <code>R/build_one.R</code>, which we will explain later.</p></li>
-<li><p>Lastly, we build the website through a system call of the command <code>jekyll build</code>.</p></li>
+<li><p>Básicamente contiene una función <code>build_one()</code> que toma un argumento <code>io</code>, que es un vector de caracteres de longitud 2. El primer elemento es el nombre de archivo de entrada (Rmd) y el segundo elemento es el nombre del archivo de salida.</p></li>
+<li><p>Luego buscamos todos los archivos Rmd bajo el directorio actual, preparamos los nombres de los archivos de salida sustituyendo las extensiones de archivo Rmd por <code>.md</code>, y compilamos los archivos Rmd uno por uno. Tenga en cuenta que hay un mecanismo de almacenamiento en caché en <code>build_one()</code> que hace uso de una función interna de <strong>blogdown</strong> <code>require_rebuild()</code>. Esta función devuelve <code>FALSE</code> si el archivo de salida no es anterior al archivo de entrada en términos del tiempo de modificación. Esto puede ahorrarle algo de tiempo porque esos archivos Rmd que se han compilado anteriormente no se compilarán nuevamente cada vez. El paso clave en <code>build_one()</code> es ejecutar el script en R <code>R/build_one.R</code>, que explicaremos más adelante.</p></li>
+<li><p>Por último, creamos el sitio web a través de una llamada al sistema del comando <code>jekyll build</code>.</p></li>
 </ul>
-<p>The script <code>R/build_one.R</code> looks like this (I have omitted some non-essential settings for simplicity):</p>
+<p>El script <code>R/build_one.R</code> se ve así (he omitido algunas configuraciones no esenciales por simplicidad):</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">local</span>({</a>
 <a class="sourceLine" id="cb83-2" data-line-number="2">  <span class="co"># fall back on &quot;/&quot; if baseurl is not specified</span></a>
 <a class="sourceLine" id="cb83-3" data-line-number="3">  baseurl =<span class="st"> </span>blogdown<span class="op">:::</span><span class="kw">get_config2</span>(<span class="st">&quot;baseurl&quot;</span>, <span class="dt">default =</span> <span class="st">&quot;/&quot;</span>)</a>
@@ -298,25 +298,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb83-17" data-line-number="17">  )</a>
 <a class="sourceLine" id="cb83-18" data-line-number="18">})</a></code></pre></div>
 <ul>
-<li><p>The script is wrapped in <code>local()</code> so that an Rmd file is knitted in a clean global environment, and the variables such as <code>baseurl</code>, <code>a</code>, and <code>d</code> will not be created in the global environment, i.e., <code>globalenv()</code> used by <code>knitr::knit()</code> below.</p></li>
-<li><p>The <strong>knitr</strong> package option <code>base.url</code> is a URL to be prepended to figure paths. We need to set this option to make sure figures generated from R code chunks can be found when they are displayed on a web page. A normal figure path is often like <code>figure/foo.png</code>, and it may not work when the image is rendered to an HTML file, because <code>figure/foo.png</code> is a relative path, and there is no guarantee that this image file will be copied to the directory of the final HTML file. For example, for an Rmd source file <code>_posts/2015-07-23-hello.Rmd</code> that generates <code>figure/foo.png</code> (under <code>_posts/</code>), the final HTML file may be <code>_site/2015/07/23/hello/index.html</code>. Jekyll knows how to render an HTML file to this location, but it does not understand the image dependency and will not copy the image file to this location. To solve this issue, we render figures at the root directory <code>/figure/</code>, which will be copied to <code>_site/</code> by Jekyll. To refer to an image under <code>_site/figure/</code>, we need the leading slash (<code>baseurl</code>), e.g., <code>&lt;img src=&quot;/figure/foo.png&quot;&gt;</code>. This is an absolute path, so no matter where the HTML is rendered, this path always works.</p></li>
-<li><p>What <code>knitr::render_jekyll()</code> does is mainly to set up some <strong>knitr</strong> output hooks so that source code and text output from R code chunks will be wrapped in Liquid tags <code>{% highlight %}</code> and <code>{% end highlight %}</code>.</p></li>
-<li><p>Remember in <code>build.R</code>, we passed the variable <code>io</code> to the Rscript call <code>blogdown:::Rscript</code>. Here in <code>build_one.R</code>, we can receive them from <code>commandArgs(TRUE)</code>. The variable <code>a</code> contains an <code>.Rmd</code> and an <code>.md</code> file path. We removed the possible leading underscore (<code>^_</code>) and the extension (<code>[.][a-zA-Z]$</code>) in the path. Next we set figure and cache paths using this string. For example, for a post <code>_posts/foo.Rmd</code>, its figures will be written to <code>figure/foo/</code> and its cache databases (if there are any) will be stored under <code>cache/foo/</code>. Both directories are under the root directory of the project.</p></li>
-<li><p>Lastly, we call <code>knitr::knit()</code> to knit the Rmd file to a Markdown output file, which will be processed by Jekyll later.</p></li>
+<li><p>La secuencia de comandos se envuelve en <code>local()</code> para que un archivo Rmd se teja en un entorno global limpio, y las variables como <code>baseurl</code>, <code>a</code> y <code>d</code> no se crearán en el entorno global, es decir, <code>globalenv()</code> utilizado por <code>knitr::knit()</code> a continuación.</p></li>
+<li><p>La opción del paquete <strong>knitr</strong> <code>base.url</code> es una URL que se agregará previamente a las rutas de las figuras. Necesitamos configurar esta opción para asegurarnos de que las cifras generadas a partir de los fragmentos de código en R puedan encontrarse cuando se muestran en una página web. Una ruta de figura normal es a menudo como <code>figure/foo.png</code>, y puede no funcionar cuando la imagen se representa en un archivo HTML, porque <code>figure/foo.png</code> es una ruta relativa, y no hay garantía de que esto el archivo de imagen se copiará en el directorio del archivo HTML final. Por ejemplo, para un archivo fuente Rmd <code>_posts/2015-07-23-hello.Rmd</code> que genera <code>figure/foo.png</code> (en <code>_posts/</code>), el archivo HTML final puede ser <code>_site/2015/07/23/hello/index.html</code>. Jekyll sabe cómo renderizar un archivo HTML en esta ubicación, pero no entiende la dependencia de la imagen y no copiará el archivo de imagen en esta ubicación. Para resolver este problema, presentamos figuras en el directorio raíz <code>/figure/</code>, que Jekyll copiará a <code>_site/</code>. Para hacer referencia a una imagen en <code>_site/figure/</code>, necesitamos la barra diagonal (<code>baseurl</code>), por ejemplo, <code>&lt;img src=&quot;/figure/foo.png&quot;&gt;</code>. Esta es una ruta absoluta, por lo que no importa dónde se represente el HTML, esta ruta siempre funciona.</p></li>
+<li><p>Lo que <code>knitr::render_jekyll()</code> hace es principalmente configurar algunos hooks de salida <strong>knitr</strong> para que el código fuente y la salida de texto de los fragmentos de código en R se envuelvan en las etiquetas liquid <code>{% highlight %}</code> y <code>{% end highlight %}</code>.</p></li>
+<li><p>Recuerde que en <code>build.R</code>, pasamos la variable <code>io</code> a la llamada Rscript <code>blogdown:::Rscript</code>. Aquí en <code>build_one.R</code>, podemos recibirlos desde <code>commandArgs(TRUE)</code>. La variable <code>a</code> contiene una ruta de archivo <code>.Rmd</code> y <code>.md</code>. Eliminamos el posible guion bajo principal (<code>^_</code>) y la extensión (<code>[.] [a-zA-Z]$</code> en la ruta. A continuación, establecemos rutas de figura y caché utilizando esta cadena. Por ejemplo, para una publicación <code>_posts/foo.Rmd</code>, sus figuras se escribirán en <code>figure/foo/</code> y sus bases de datos de caché (si las hay) se almacenarán bajo <code>cache/foo/</code>. Ambos directorios están bajo el directorio raíz del proyecto.</p></li>
+<li><p>Por último, llamamos a <code>knitr::knit()</code> para unir el archivo Rmd a un archivo de salida Markdown, que será procesado posteriormente por Jekyll.</p></li>
 </ul>
-<p>A small caveat is that since we have both <code>.Rmd</code> and <code>.md</code> files, Jekyll will treat both types of files as Markdown files by default. You have to ask Jekyll to ignore <code>.Rmd</code> files and only build <code>.md</code> files. You can set the option <code>exclude</code> in <code>_config.yml</code>:</p>
+<p>Una pequeña advertencia es que, dado que tenemos los dos archivos <code>.Rmd</code> y <code>.md</code>, Jekyll tratará ambos tipos de archivos como archivos Markdown de forma predeterminada. Tiene que pedirle a Jekyll que ignore los archivos <code>.Rmd</code> y que solo cree archivos <code>.md</code>. Puede establecer la opción <code>exclude</code> en <code>_config.yml</code>:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="fu">exclude:</span><span class="at"> </span><span class="kw">[</span><span class="st">&#39;*.Rmd&#39;</span><span class="kw">]</span></a></code></pre></div>
-<p>Compared to the Hugo support in <strong>blogdown</strong>, this approach is limited in a few aspects:</p>
+<p>Comparado con el soporte de Hugo en <strong>blogdown</strong>, este enfoque es limitado en algunos aspectos:</p>
 <ol style="list-style-type: decimal">
-<li><p>It does not support Pandoc, so you cannot use Pandoc’s Markdown. Since it uses the <strong>knitr</strong> package instead of <strong>rmarkdown</strong>, you cannot use any of <strong>bookdown</strong>’s Markdown features, either. You are at the mercy of the Markdown renderers supported by Jekyll.</p></li>
-<li><p>Without <strong>rmarkdown</strong>, you cannot use HTML widgets. Basically, all you can have are dynamic text output and R graphics output from R code chunks. They may or may not suffice, depending on your specific use cases.</p></li>
+<li><p>No es compatible con Pandoc, por lo que no puede usar el Markdown de Pandoc. Como usa el paquete <strong>knitr</strong> en lugar de <strong>rmarkdown</strong>, tampoco puede usar ninguna de las funciones de Markdown <strong>blogdown</strong>. Usted está a merced de los renderizadores de Markdown apoyados por Jekyll.</p></li>
+<li><p>Sin <strong>rmarkdown</strong>, no puede usar widgets HTML. Básicamente, todo lo que puede tener es salida de texto dinámico y salida de gráficos en R a partir de fragmentos de código R. Pueden o no ser suficientes, dependiendo de sus casos de uso específicos.</p></li>
 </ol>
-<p>It may be possible for us to remove these limitations in a future version of <strong>blogdown</strong>, if there are enough happy Jekyll users in the R community.</p>
+<p>Es posible que podamos eliminar estas limitaciones en una versión futura de <strong>blogdown</strong>, si hay suficientes usuarios felices de Jekyll en la comunidad R.</p>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="40">
-<li id="fn40"><p>If you are not familiar with this file, please read Section <a href="#global-options"><strong>??</strong></a>.<a href="jekyll.html#fnref40" class="footnote-back">↩</a></p></li>
+<li id="fn40"><p>Si no está familiarizado con este archivo, lea la sección @ref(opciones globales).<a href="jekyll.html#fnref40" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -324,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="other-generators.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="otros-generadores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="hexo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

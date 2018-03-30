@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="jekyll.html">
-<link rel="next" href="rmd-website.html">
+<link rel="prev" href="desde-otros-sistemas.html">
+<link rel="next" href="jekyll.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,48 +243,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hexo" class="section level2">
-<h2><span class="header-section-number">5.2</span> Hexo</h2>
-<p>The ideas of using Hexo (<a href="https://hexo.io" class="uri">https://hexo.io</a>) are very similar to what we have applied to Jekyll in the previous section. I have also prepared a minimal example in the GitHub repository <a href="https://github.com/yihui/blogdown-hexo">yihui/blogdown-hexo.</a></p>
-<p>The key components of this repository are still <code>.Rprofile</code>, <code>R/build.R</code>, and <code>R/build_one.R</code>. We set the option <code>blogdown.generator</code> to <code>hexo</code>, the <code>build.method</code> to <code>custom</code>, and the default subdirectory for new posts to <code>source/_posts</code>.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">options</span>(</a>
-<a class="sourceLine" id="cb85-2" data-line-number="2">  <span class="dt">blogdown.generator =</span> <span class="st">&#39;hexo&#39;</span>,</a>
-<a class="sourceLine" id="cb85-3" data-line-number="3">  <span class="dt">blogdown.method =</span> <span class="st">&#39;custom&#39;</span>,</a>
-<a class="sourceLine" id="cb85-4" data-line-number="4">  <span class="dt">blogdown.subdir =</span> <span class="st">&#39;source/_posts&#39;</span></a>
-<a class="sourceLine" id="cb85-5" data-line-number="5">)</a></code></pre></div>
-<p>The script <code>R/build.R</code> is similar to the one in the <code>blogdown-jekyll</code> repository. The main differences are:</p>
-<ol style="list-style-type: decimal">
-<li><p>We find all Rmd files under the <code>source/</code> directory instead of the root directory, because Hexo’s convention is to put all source files under <code>source/</code>.</p></li>
-<li><p>We call <code>system2('hexo', 'generate')</code> to build the website.</p></li>
-</ol>
-<p>For the script <code>R/build_one.R</code>, the major difference with the script in the <code>blogdown-jekyll</code> repository is that we set the <code>base.dir</code> option for <strong>knitr</strong>, so that all R figures are generated to the <code>source/</code> directory. This is because Hexo copies everything under <code>source/</code> to <code>public/</code>, whereas Jekyll copies everything under the root directory to <code>_site/</code>.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">local</span>({</a>
-<a class="sourceLine" id="cb86-2" data-line-number="2">  <span class="co"># fall back on &#39;/&#39; if baseurl is not specified</span></a>
-<a class="sourceLine" id="cb86-3" data-line-number="3">  baseurl =<span class="st"> </span>blogdown<span class="op">:::</span><span class="kw">get_config2</span>(<span class="st">&#39;root&#39;</span>, <span class="st">&#39;/&#39;</span>)</a>
-<a class="sourceLine" id="cb86-4" data-line-number="4">  knitr<span class="op">::</span>opts_knit<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb86-5" data-line-number="5">    <span class="dt">base.url =</span> baseurl, <span class="dt">base.dir =</span> <span class="kw">normalizePath</span>(<span class="st">&#39;source&#39;</span>)</a>
-<a class="sourceLine" id="cb86-6" data-line-number="6">  )</a>
-<a class="sourceLine" id="cb86-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb86-8" data-line-number="8">  <span class="co"># input/output filenames as two arguments to Rscript</span></a>
-<a class="sourceLine" id="cb86-9" data-line-number="9">  a =<span class="st"> </span><span class="kw">commandArgs</span>(<span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb86-10" data-line-number="10">  d =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&#39;^source/_?|[.][a-zA-Z]+$&#39;</span>, <span class="st">&#39;&#39;</span>, a[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb86-11" data-line-number="11">  knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb86-12" data-line-number="12">    <span class="dt">fig.path   =</span> <span class="kw">sprintf</span>(<span class="st">&#39;figure/%s/&#39;</span>, d),</a>
-<a class="sourceLine" id="cb86-13" data-line-number="13">    <span class="dt">cache.path =</span> <span class="kw">sprintf</span>(<span class="st">&#39;cache/%s/&#39;</span>, d)</a>
-<a class="sourceLine" id="cb86-14" data-line-number="14">  )</a>
-<a class="sourceLine" id="cb86-15" data-line-number="15">  knitr<span class="op">::</span><span class="kw">knit</span>(</a>
-<a class="sourceLine" id="cb86-16" data-line-number="16">    a[<span class="dv">1</span>], a[<span class="dv">2</span>], <span class="dt">quiet =</span> <span class="ot">TRUE</span>, <span class="dt">encoding =</span> <span class="st">&#39;UTF-8&#39;</span>, <span class="dt">envir =</span> .GlobalEnv</a>
-<a class="sourceLine" id="cb86-17" data-line-number="17">  )</a>
-<a class="sourceLine" id="cb86-18" data-line-number="18">})</a></code></pre></div>
-<p>This repository is also automatically built and deployed through Netlify when I push changes to it. Since Hexo is a Node package, and Netlify supports Node, you can easily install Hexo on Netlify. For example, this example repository uses the command <code>npm install &amp;&amp; hexo generate</code> to build the website; <code>npm install</code> will install the Node packages specified in <code>packages.json</code> (a file under the root directory of the repository), and <code>hexo generate</code> is the command to build the website from <code>source/</code> to <code>public/</code>.</p>
+<div id="otros-generadores" class="section level1">
+<h1><span class="header-section-number">Capítulo 5</span> Otros generadores</h1>
+<p>Mencionamos la posibilidad de evitar Hugo y usar su propio método de construcción en la sección <a href="#métodos"><strong>??</strong></a>. Básicamente, tiene que construir el sitio usando <code>blogdown::build_site(method=&quot;custom&quot;)</code>, y proporcionar su propio script de construcción <code>/R/build.R</code>. En este capítulo, le mostramos cómo trabajar con otros generadores de sitios estáticos populares como Jekyll y Hexo. Además de estos generadores de sitios estáticos escritos en otros idiomas, en realidad hay un generador de sitios simple escrito en R proporcionado en el paquete <strong>rmarkdown</strong> <span class="citation">(Allaire et al. <a href="#ref-R-rmarkdown">2018</a>)</span>, y lo presentaremos en la sección <a href="rmd-website.html#rmd-website">5.3</a></p> 
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-rmarkdown">
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="jekyll.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="rmd-website.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="desde-otros-sistemas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="jekyll.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

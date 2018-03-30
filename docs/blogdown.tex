@@ -4401,40 +4401,44 @@ que de todas formas tenía que limpiar mucho los archivos de Markdown. Si
 su sitio web es más simple, este enfoque puede funcionar mejor para
 usted.
 
-\hypertarget{other-generators}{%
-\chapter{Other Generators}\label{other-generators}}
+\hypertarget{otros-generadores}{%
+\chapter{Otros generadores}\label{otros-generadores}}
 
-We mentioned the possibility to bypass Hugo and use your own building
-method in Section \ref{methods}. Basically you have to build the site
-using \texttt{blogdown::build\_site(method\ =\ "custom")}, and provide
-your own building script \texttt{/R/build.R}. In this chapter, we show
-you how to work with other popular static site generators like Jekyll
-and Hexo. Besides these static site generators written in other
-languages, there is actually a simple site generator written in R
-provided in the \textbf{rmarkdown} package \citep{R-rmarkdown}, and we
-will introduce it in Section \ref{rmd-website}.
+Mencionamos la posibilidad de evitar Hugo y usar su propio método de
+construcción en la sección \ref{métodos}. Básicamente, tiene que
+construir el sitio usando
+\texttt{blogdown::build\_site(method="custom")}, y proporcionar su
+propio script de construcción \texttt{/R/build.R}. En este capítulo, le
+mostramos cómo trabajar con otros generadores de sitios estáticos
+populares como Jekyll y Hexo. Además de estos generadores de sitios
+estáticos escritos en otros idiomas, en realidad hay un generador de
+sitios simple escrito en R proporcionado en el paquete
+\textbf{rmarkdown} \citep{R-rmarkdown}, y lo presentaremos en la sección
+\ref{rmd-website}
 
 \hypertarget{jekyll}{%
 \section{Jekyll}\label{jekyll}}
 
-For Jekyll (\url{https://jekyllrb.com}) \index{Jekyll}users, I have
-prepared a minimal example in the GitHub repository
-\href{https://github.com/yihui/blogdown-jekyll}{yihui/blogdown-jekyll.}
-If you clone or download this repository and open
-\texttt{blogdown-jekyll.Rproj} in RStudio, you can still use all addins
-mentioned in Section \ref{rstudio-ide}, such as ``New Post,'' ``Serve
-Site,'' and ``Update Metadata,'' but it is Jekyll instead of Hugo that
-builds the website behind the scenes now.
+Para los usuarios de Jekyll
+(\url{https://jekyllrb.com)/index\%7BJekyll\%7D}, he preparado un
+ejemplo mínimo en el repositorio de GitHub
+\href{https://github.com/yihui/blogdown-jekyll}{yihui/blogdown-jekyll.}.
+Si clona o descarga este repositorio y abre
+\texttt{blogdown-jekyll.Rproj} en RStudio, puede usar todos los
+complementos mencionados en la sección \ref{rstudio-ide}, como ``New
+Post'', " Serve Site" y ``Update Metadata'', pero ahora es Jekyll en
+lugar de Hugo quien crea el sitio web tras bambalinas.
 
-I assume you are familiar with Jekyll, and I'm not going to introduce
-the basics of Jekyll in this section. For example, you should know what
-the \texttt{\_posts/} and \texttt{\_site/} directories mean.
+Supongo que está familiarizado con Jekyll, y no voy a presentar los
+conceptos básicos de Jekyll en esta sección. Por ejemplo, debe saber lo
+que significan los directorios \texttt{\_posts/} y \texttt{\_site/}.
 
-The key pieces of this \textbf{blogdown-jekyll} project are the files
-\texttt{.Rprofile}, \texttt{R/build.R}, and \texttt{R/build\_one.R}. I
-have set some global R options for this project in
-\texttt{.Rprofile}:\footnote{If you are not familiar with this file,
-  please read Section \ref{global-options}.}
+Las piezas clave de este proyecto \textbf{blogdown-jekyll} son los
+archivos \texttt{.Rprofile}, \texttt{R/build.R}, y
+\texttt{R/build\_one.R}. He configurado algunas opciones en R globales
+para este proyecto en \texttt{.Rprofile}:\footnote{Si no está
+  familiarizado con este archivo, lea la sección @ref(opciones
+  globales).}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4446,25 +4450,27 @@ have set some global R options for this project in
 \end{Highlighting}
 \end{Shaded}
 
-First, the website generator was set to \texttt{jekyll} using the option
-\texttt{blogdown.generator}, so that \textbf{blogdown} knows that it
-should use Jekyll to build the site. Second, the build method
-\texttt{blogdown.method} was set to \texttt{custom}, so that we can
-define our custom R script \texttt{R/build.R} to build the Rmd files (I
-will explain the reason later). Third, the default subdirectory for new
-posts was set to \texttt{\_posts}, which is Jekyll's convention. After
-you set this option, the ``New Post'' addin will create new posts under
-the \texttt{\_posts/} directory.
+En primer lugar, el generador del sitio web se configuró en
+\texttt{jekyll} con la opción \texttt{blogdown.generator}, por lo que
+\textbf{blogdown} sabe que debe usar Jekyll para construir el sitio. En
+segundo lugar, el método de compilación \texttt{blogdown.method} se
+configuró como \texttt{custom}, por lo que podemos definir nuestro guión
+en R personalizado \texttt{R/build.R} para compilar los archivos Rmd
+(explicaré el motivo más adelante). En tercer lugar, el subdirectorio
+predeterminado para las nuevas publicaciones se estableció en
+\texttt{\_posts}, que es la convención de Jekyll. Después de configurar
+esta opción, el complemento ``New message'' creará nuevas publicaciones
+en el directorio \texttt{\_posts/}.
 
-When the option \texttt{blogdown.method} is \texttt{custom},
-\textbf{blogdown} will call the R script \texttt{R/build.R} to build the
-site. You have full freedom to do whatever you want in this script.
-Below is an example script:
+Cuando la opción \texttt{blogdown.method} es \texttt{custom},
+\textbf{blogdown} llamará al script R \texttt{R/build.R} para construir
+el sitio. Tiene plena libertad para hacer lo que quiera en este script.
+A continuación hay un script de ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{build_one =}\StringTok{ }\ControlFlowTok{function}\NormalTok{(io) \{}
-  \CommentTok{# if output is not older than input, skip the compilation}
+  \CommentTok{# si la salida no es más antigua que la entrada, omita la compilación}
   \ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{blogdown}\OperatorTok{:::}\KeywordTok{require_rebuild}\NormalTok{(io[}\DecValTok{2}\NormalTok{], io[}\DecValTok{1}\NormalTok{])) }\KeywordTok{return}\NormalTok{()}
 
   \KeywordTok{message}\NormalTok{(}\StringTok{'* knitting '}\NormalTok{, io[}\DecValTok{1}\NormalTok{])}
@@ -4474,7 +4480,7 @@ Below is an example script:
 \NormalTok{  \}}
 \NormalTok{\}}
 
-\CommentTok{# Rmd files under the root directory}
+\CommentTok{# Los archivos Rmd bajo el directorio raiz}
 \NormalTok{rmds =}\StringTok{ }\KeywordTok{list.files}\NormalTok{(}\StringTok{'.'}\NormalTok{, }\StringTok{'[.]Rmd$'}\NormalTok{, }\DataTypeTok{recursive =}\NormalTok{ T, }\DataTypeTok{full.names =}\NormalTok{ T)}
 \NormalTok{files =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(rmds, xfun}\OperatorTok{::}\KeywordTok{with_ext}\NormalTok{(rmds, }\StringTok{'.md'}\NormalTok{))}
 
@@ -4486,29 +4492,31 @@ Below is an example script:
 
 \begin{itemize}
 \item
-  Basically it contains a function\index{blogdown::build\_one()}
-  \texttt{build\_one()} that takes an argument \texttt{io}, which is a
-  character vector of length 2. The first element is the input (Rmd)
-  filename, and the second element is the output filename.
+  Básicamente contiene una función\index{blogdown::build\_one()}
+  \texttt{build\_one()} que toma un argumento \texttt{io}, que es un
+  vector de caracteres de longitud 2. El primer elemento es el nombre de
+  archivo de entrada (Rmd) y el segundo elemento es el nombre del
+  archivo de salida.
 \item
-  Then we search for all Rmd files under the current directory, prepare
-  the output filenames by substituting the Rmd file extensions with
-  \texttt{.md}, and build the Rmd files one by one. Note there is a
-  caching mechanism in \texttt{build\_one()} that makes use of an
-  internal \textbf{blogdown} function \texttt{require\_rebuild()}. This
-  function returns \texttt{FALSE} if the output file is not older than
-  the input file in terms of the modification time. This can save you
-  some time because those Rmd files that have been compiled before will
-  not be compiled again every time. The key step in
-  \texttt{build\_one()} is to run the R script \texttt{R/build\_one.R},
-  which we will explain later.
+  Luego buscamos todos los archivos Rmd bajo el directorio actual,
+  preparamos los nombres de los archivos de salida sustituyendo las
+  extensiones de archivo Rmd por \texttt{.md}, y compilamos los archivos
+  Rmd uno por uno. Tenga en cuenta que hay un mecanismo de
+  almacenamiento en caché en \texttt{build\_one()} que hace uso de una
+  función interna de \textbf{blogdown} \texttt{require\_rebuild()}. Esta
+  función devuelve \texttt{FALSE} si el archivo de salida no es anterior
+  al archivo de entrada en términos del tiempo de modificación. Esto
+  puede ahorrarle algo de tiempo porque esos archivos Rmd que se han
+  compilado anteriormente no se compilarán nuevamente cada vez. El paso
+  clave en \texttt{build\_one()} es ejecutar el script en R
+  \texttt{R/build\_one.R}, que explicaremos más adelante.
 \item
-  Lastly, we build the website through a system call of the command
-  \texttt{jekyll\ build}.
+  Por último, creamos el sitio web a través de una llamada al sistema
+  del comando \texttt{jekyll\ build}.
 \end{itemize}
 
-The script \texttt{R/build\_one.R} looks like this (I have omitted some
-non-essential settings for simplicity):
+El script \texttt{R/build\_one.R} se ve así (he omitido algunas
+configuraciones no esenciales por simplicidad):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4535,61 +4543,65 @@ non-essential settings for simplicity):
 
 \begin{itemize}
 \item
-  The script is wrapped in \texttt{local()} so that an Rmd file is
-  knitted in a clean global environment, and the variables such as
-  \texttt{baseurl}, \texttt{a}, and \texttt{d} will not be created in
-  the global environment, i.e., \texttt{globalenv()} used by
-  \texttt{knitr::knit()} below.
+  La secuencia de comandos se envuelve en \texttt{local()} para que un
+  archivo Rmd se teja en un entorno global limpio, y las variables como
+  \texttt{baseurl}, \texttt{a} y \texttt{d} no se crearán en el entorno
+  global, es decir, \texttt{globalenv()} utilizado por
+  \texttt{knitr::knit()} a continuación.
 \item
-  The \textbf{knitr} package option \texttt{base.url} is a URL to be
-  prepended to figure paths. We need to set this option to make sure
-  figures generated from R code chunks can be found when they are
-  displayed on a web page. A normal figure path is often like
-  \texttt{figure/foo.png}, and it may not work when the image is
-  rendered to an HTML file, because \texttt{figure/foo.png} is a
-  relative path, and there is no guarantee that this image file will be
-  copied to the directory of the final HTML file. For example, for an
-  Rmd source file \texttt{\_posts/2015-07-23-hello.Rmd} that generates
-  \texttt{figure/foo.png} (under \texttt{\_posts/}), the final HTML file
-  may be \texttt{\_site/2015/07/23/hello/index.html}. Jekyll knows how
-  to render an HTML file to this location, but it does not understand
-  the image dependency and will not copy the image file to this
-  location. To solve this issue, we render figures at the root directory
-  \texttt{/figure/}, which will be copied to \texttt{\_site/} by Jekyll.
-  To refer to an image under \texttt{\_site/figure/}, we need the
-  leading slash (\texttt{baseurl}), e.g.,
-  \texttt{\textless{}img\ src="/figure/foo.png"\textgreater{}}. This is
-  an absolute path, so no matter where the HTML is rendered, this path
-  always works.
+  La opción del paquete \textbf{knitr} \texttt{base.url} es una URL que
+  se agregará previamente a las rutas de las figuras. Necesitamos
+  configurar esta opción para asegurarnos de que las cifras generadas a
+  partir de los fragmentos de código en R puedan encontrarse cuando se
+  muestran en una página web. Una ruta de figura normal es a menudo como
+  \texttt{figure/foo.png}, y puede no funcionar cuando la imagen se
+  representa en un archivo HTML, porque \texttt{figure/foo.png} es una
+  ruta relativa, y no hay garantía de que esto el archivo de imagen se
+  copiará en el directorio del archivo HTML final. Por ejemplo, para un
+  archivo fuente Rmd \texttt{\_posts/2015-07-23-hello.Rmd} que genera
+  \texttt{figure/foo.png} (en \texttt{\_posts/}), el archivo HTML final
+  puede ser \texttt{\_site/2015/07/23/hello/index.html}. Jekyll sabe
+  cómo renderizar un archivo HTML en esta ubicación, pero no entiende la
+  dependencia de la imagen y no copiará el archivo de imagen en esta
+  ubicación. Para resolver este problema, presentamos figuras en el
+  directorio raíz \texttt{/figure/}, que Jekyll copiará a
+  \texttt{\_site/}. Para hacer referencia a una imagen en
+  \texttt{\_site/figure/}, necesitamos la barra diagonal
+  (\texttt{baseurl}), por ejemplo,
+  \texttt{\textless{}img\ src="/figure/foo.png"\textgreater{}}. Esta es
+  una ruta absoluta, por lo que no importa dónde se represente el HTML,
+  esta ruta siempre funciona.
 \item
-  What \texttt{knitr::render\_jekyll()}
-  does\index{knitr::render\_jekyll()} is mainly to set up some
-  \textbf{knitr} output hooks so that source code and text output from R
-  code chunks will be wrapped in Liquid tags
-  \texttt{\{\%\ highlight\ \%\}} and
+  Lo que \texttt{knitr::render\_jekyll()}
+  hace\index{knitr::render\_jekyll()} es principalmente configurar
+  algunos hooks de salida \textbf{knitr} para que el código fuente y la
+  salida de texto de los fragmentos de código en R se envuelvan en las
+  etiquetas liquid \texttt{\{\%\ highlight\ \%\}} y
   \texttt{\{\%\ end\ highlight\ \%\}}.
 \item
-  Remember in \texttt{build.R}, we passed the variable \texttt{io} to
-  the Rscript call \texttt{blogdown:::Rscript}. Here in
-  \texttt{build\_one.R}, we can receive them from
-  \texttt{commandArgs(TRUE)}. The variable \texttt{a} contains an
-  \texttt{.Rmd} and an \texttt{.md} file path. We removed the possible
-  leading underscore (\texttt{\^{}\_}) and the extension
-  (\texttt{{[}.{]}{[}a-zA-Z{]}\$}) in the path. Next we set figure and
-  cache paths using this string. For example, for a post
-  \texttt{\_posts/foo.Rmd}, its figures will be written to
-  \texttt{figure/foo/} and its cache databases (if there are any) will
-  be stored under \texttt{cache/foo/}. Both directories are under the
-  root directory of the project.
+  Recuerde que en \texttt{build.R}, pasamos la variable \texttt{io} a la
+  llamada Rscript \texttt{blogdown:::Rscript}. Aquí en
+  \texttt{build\_one.R}, podemos recibirlos desde
+  \texttt{commandArgs(TRUE)}. La variable \texttt{a} contiene una ruta
+  de archivo \texttt{.Rmd} y \texttt{.md}. Eliminamos el posible guion
+  bajo principal (\texttt{\^{}\_}) y la extensión
+  (\texttt{{[}.{]}\ {[}a-zA-Z{]}\$} en la ruta. A continuación,
+  establecemos rutas de figura y caché utilizando esta cadena. Por
+  ejemplo, para una publicación \texttt{\_posts/foo.Rmd}, sus figuras se
+  escribirán en \texttt{figure/foo/} y sus bases de datos de caché (si
+  las hay) se almacenarán bajo \texttt{cache/foo/}. Ambos directorios
+  están bajo el directorio raíz del proyecto.
 \item
-  Lastly, we call \texttt{knitr::knit()} to knit the Rmd file to a
-  Markdown output file, which will be processed by Jekyll later.
+  Por último, llamamos a \texttt{knitr::knit()} para unir el archivo Rmd
+  a un archivo de salida Markdown, que será procesado posteriormente por
+  Jekyll.
 \end{itemize}
 
-A small caveat is that since we have both \texttt{.Rmd} and \texttt{.md}
-files, Jekyll will treat both types of files as Markdown files by
-default. You have to ask Jekyll to ignore \texttt{.Rmd} files and only
-build \texttt{.md} files. You can set the option \texttt{exclude} in
+Una pequeña advertencia es que, dado que tenemos los dos archivos
+\texttt{.Rmd} y \texttt{.md}, Jekyll tratará ambos tipos de archivos
+como archivos Markdown de forma predeterminada. Tiene que pedirle a
+Jekyll que ignore los archivos \texttt{.Rmd} y que solo cree archivos
+\texttt{.md}. Puede establecer la opción \texttt{exclude} en
 \texttt{\_config.yml}:
 
 \begin{Shaded}
@@ -4598,26 +4610,27 @@ build \texttt{.md} files. You can set the option \texttt{exclude} in
 \end{Highlighting}
 \end{Shaded}
 
-Compared to the Hugo support in \textbf{blogdown}, this approach is
-limited in a few aspects:
+Comparado con el soporte de Hugo en \textbf{blogdown}, este enfoque es
+limitado en algunos aspectos:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  It does not support Pandoc, so you cannot use Pandoc's Markdown. Since
-  it uses the \textbf{knitr} package instead of \textbf{rmarkdown}, you
-  cannot use any of \textbf{bookdown}'s Markdown features, either. You
-  are at the mercy of the Markdown renderers supported by Jekyll.
+  No es compatible con Pandoc, por lo que no puede usar el Markdown de
+  Pandoc. Como usa el paquete \textbf{knitr} en lugar de
+  \textbf{rmarkdown}, tampoco puede usar ninguna de las funciones de
+  Markdown \textbf{blogdown}. Usted está a merced de los renderizadores
+  de Markdown apoyados por Jekyll.
 \item
-  Without \textbf{rmarkdown}, you cannot use HTML widgets. Basically,
-  all you can have are dynamic text output and R graphics output from R
-  code chunks. They may or may not suffice, depending on your specific
-  use cases.
+  Sin \textbf{rmarkdown}, no puede usar widgets HTML. Básicamente, todo
+  lo que puede tener es salida de texto dinámico y salida de gráficos en
+  R a partir de fragmentos de código R. Pueden o no ser suficientes,
+  dependiendo de sus casos de uso específicos.
 \end{enumerate}
 
-It may be possible for us to remove these limitations in a future
-version of \textbf{blogdown}, if there are enough happy Jekyll users in
-the R community.
+Es posible que podamos eliminar estas limitaciones en una versión futura
+de \textbf{blogdown}, si hay suficientes usuarios felices de Jekyll en
+la comunidad R.
 
 \hypertarget{hexo}{%
 \section{Hexo}\label{hexo}}
