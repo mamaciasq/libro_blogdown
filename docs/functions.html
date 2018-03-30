@@ -181,9 +181,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="gitlab-pages.html"><a href="gitlab-pages.html"><i class="fa fa-check"></i><b>3.5</b> GitLab Pages</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="migration.html"><a href="migration.html"><i class="fa fa-check"></i><b>4</b> Migration</a><ul>
-<li class="chapter" data-level="4.1" data-path="from-jekyll.html"><a href="from-jekyll.html"><i class="fa fa-check"></i><b>4.1</b> From Jekyll</a></li>
-<li class="chapter" data-level="4.2" data-path="from-wordpress.html"><a href="from-wordpress.html"><i class="fa fa-check"></i><b>4.2</b> From WordPress</a></li>
-<li class="chapter" data-level="4.3" data-path="from-other-systems.html"><a href="from-other-systems.html"><i class="fa fa-check"></i><b>4.3</b> From other systems</a></li>
+<li class="chapter" data-level="4.1" data-path="desde-jekyll.html"><a href="desde-jekyll.html"><i class="fa fa-check"></i><b>4.1</b> Desde Jekyll</a></li>
+<li class="chapter" data-level="4.2" data-path="desde-wordpress.html"><a href="desde-wordpress.html"><i class="fa fa-check"></i><b>4.2</b> Desde WordPress</a></li>
+<li class="chapter" data-level="4.3" data-path="desde-otros-sistemas.html"><a href="desde-otros-sistemas.html"><i class="fa fa-check"></i><b>4.3</b> Desde otros sistemas</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="other-generators.html"><a href="other-generators.html"><i class="fa fa-check"></i><b>5</b> Other Generators</a><ul>
 <li class="chapter" data-level="5.1" data-path="jekyll.html"><a href="jekyll.html"><i class="fa fa-check"></i><b>5.1</b> Jekyll</a></li>
@@ -261,8 +261,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Some functions are not exported in this package because average users are unlikely to use them directly, and we list a subset of them below:</p>
 <ul>
 <li><p>You can find the path to the Hugo executable via <code>blogdown:::find_hugo()</code>. If the executable can be found via the <code>PATH</code> environment variable, it just returns <code>'hugo'</code>.</p></li>
-<li><p>The helper function <code>modify_yaml()</code> can be used to modify the YAML metadata of a file. It has a <code>...</code> argument that takes arbitrary YAML fields, e.g., <code>blogdown:::modify_yaml('foo.md', author = 'Frida Gomam', date = '2015-07-23')</code> will change the <code>author</code> field in the file <code>foo.md</code> to <code>Frida Gomam</code>, and <code>date</code> to <code>2015-07-23</code>. We have shown the advanced usage of this function in Section <a href="from-jekyll.html#from-jekyll">4.1</a>.</p></li>
-<li><p>We have also mentioned a series of functions to clean up Markdown posts in Section <a href="from-jekyll.html#from-jekyll">4.1</a>. They include <code>process_file()</code>, <code>remove_extra_empty_lines()</code>, <code>process_bare_urls()</code>, <code>normalize_chars()</code>, <code>remove_highlight_tags()</code>, and <code>fix_img_tags()</code>.</p></li>
+<li><p>The helper function <code>modify_yaml()</code> can be used to modify the YAML metadata of a file. It has a <code>...</code> argument that takes arbitrary YAML fields, e.g., <code>blogdown:::modify_yaml('foo.md', author = 'Frida Gomam', date = '2015-07-23')</code> will change the <code>author</code> field in the file <code>foo.md</code> to <code>Frida Gomam</code>, and <code>date</code> to <code>2015-07-23</code>. We have shown the advanced usage of this function in Section <a href="#from-jekyll"><strong>??</strong></a>.</p></li>
+<li><p>We have also mentioned a series of functions to clean up Markdown posts in Section <a href="#from-jekyll"><strong>??</strong></a>. They include <code>process_file()</code>, <code>remove_extra_empty_lines()</code>, <code>process_bare_urls()</code>, <code>normalize_chars()</code>, <code>remove_highlight_tags()</code>, and <code>fix_img_tags()</code>.</p></li>
 <li><p>In Section <a href="local-preview.html#local-preview">D.3</a>, we mentioned a caching mechanism based on the file modification time. It is implemented in <code>blogdown:::require_rebuild()</code>, which takes two arguments of filenames. The first file is the output file, and the second is the source file. When the source file is older than the output file, or the output file does not exist or is empty, this function returns <code>TRUE</code>.</p></li>
 <li><p>The function <code>blogdown:::Rscript()</code> is a wrapper function to execute the command <code>Rscript</code>, which basically means to execute an R script in a new R session. We mentioned this function in Chapter <a href="other-generators.html#other-generators">5</a>.</p></li>
 </ul>

@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="other-generators.html">
-<link rel="next" href="hexo.html">
+<link rel="prev" href="migration.html">
+<link rel="next" href="desde-wordpress.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,89 +243,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="jekyll" class="section level2">
-<h2><span class="header-section-number">5.1</span> Jekyll</h2>
-<p>For Jekyll (<a href="https://jekyllrb.com" class="uri">https://jekyllrb.com</a>) users, I have prepared a minimal example in the GitHub repository <a href="https://github.com/yihui/blogdown-jekyll">yihui/blogdown-jekyll.</a> If you clone or download this repository and open <code>blogdown-jekyll.Rproj</code> in RStudio, you can still use all addins mentioned in Section <a href="rstudio-ide.html#rstudio-ide">1.3</a>, such as “New Post,” “Serve Site,” and “Update Metadata,” but it is Jekyll instead of Hugo that builds the website behind the scenes now.</p>
-<p>I assume you are familiar with Jekyll, and I’m not going to introduce the basics of Jekyll in this section. For example, you should know what the <code>_posts/</code> and <code>_site/</code> directories mean.</p>
-<p>The key pieces of this <strong>blogdown-jekyll</strong> project are the files <code>.Rprofile</code>, <code>R/build.R</code>, and <code>R/build_one.R</code>. I have set some global R options for this project in <code>.Rprofile</code>:<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">options</span>(</a>
-<a class="sourceLine" id="cb81-2" data-line-number="2">  <span class="dt">blogdown.generator =</span> <span class="st">&quot;jekyll&quot;</span>,</a>
-<a class="sourceLine" id="cb81-3" data-line-number="3">  <span class="dt">blogdown.method =</span> <span class="st">&quot;custom&quot;</span>,</a>
-<a class="sourceLine" id="cb81-4" data-line-number="4">  <span class="dt">blogdown.subdir =</span> <span class="st">&quot;_posts&quot;</span></a>
-<a class="sourceLine" id="cb81-5" data-line-number="5">)</a></code></pre></div>
-<p>First, the website generator was set to <code>jekyll</code> using the option <code>blogdown.generator</code>, so that <strong>blogdown</strong> knows that it should use Jekyll to build the site. Second, the build method <code>blogdown.method</code> was set to <code>custom</code>, so that we can define our custom R script <code>R/build.R</code> to build the Rmd files (I will explain the reason later). Third, the default subdirectory for new posts was set to <code>_posts</code>, which is Jekyll’s convention. After you set this option, the “New Post” addin will create new posts under the <code>_posts/</code> directory.</p>
-<p>When the option <code>blogdown.method</code> is <code>custom</code>, <strong>blogdown</strong> will call the R script <code>R/build.R</code> to build the site. You have full freedom to do whatever you want in this script. Below is an example script:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">build_one =<span class="st"> </span><span class="cf">function</span>(io) {</a>
-<a class="sourceLine" id="cb82-2" data-line-number="2">  <span class="co"># if output is not older than input, skip the compilation</span></a>
-<a class="sourceLine" id="cb82-3" data-line-number="3">  <span class="cf">if</span> (<span class="op">!</span>blogdown<span class="op">:::</span><span class="kw">require_rebuild</span>(io[<span class="dv">2</span>], io[<span class="dv">1</span>])) <span class="kw">return</span>()</a>
-<a class="sourceLine" id="cb82-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb82-5" data-line-number="5">  <span class="kw">message</span>(<span class="st">&#39;* knitting &#39;</span>, io[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb82-6" data-line-number="6">  <span class="cf">if</span> (blogdown<span class="op">:::</span><span class="kw">Rscript</span>(<span class="kw">shQuote</span>(<span class="kw">c</span>(<span class="st">&#39;R/build_one.R&#39;</span>, io))) <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb82-7" data-line-number="7">    <span class="kw">unlink</span>(io[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb82-8" data-line-number="8">    <span class="kw">stop</span>(<span class="st">&#39;Failed to compile &#39;</span>, io[<span class="dv">1</span>], <span class="st">&#39; to &#39;</span>, io[<span class="dv">2</span>])</a>
-<a class="sourceLine" id="cb82-9" data-line-number="9">  }</a>
-<a class="sourceLine" id="cb82-10" data-line-number="10">}</a>
-<a class="sourceLine" id="cb82-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="co"># Rmd files under the root directory</span></a>
-<a class="sourceLine" id="cb82-13" data-line-number="13">rmds =<span class="st"> </span><span class="kw">list.files</span>(<span class="st">&#39;.&#39;</span>, <span class="st">&#39;[.]Rmd$&#39;</span>, <span class="dt">recursive =</span> T, <span class="dt">full.names =</span> T)</a>
-<a class="sourceLine" id="cb82-14" data-line-number="14">files =<span class="st"> </span><span class="kw">cbind</span>(rmds, xfun<span class="op">::</span><span class="kw">with_ext</span>(rmds, <span class="st">&#39;.md&#39;</span>))</a>
-<a class="sourceLine" id="cb82-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb82-16" data-line-number="16"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_len</span>(<span class="kw">nrow</span>(files))) <span class="kw">build_one</span>(files[i, ])</a>
-<a class="sourceLine" id="cb82-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb82-18" data-line-number="18"><span class="kw">system2</span>(<span class="st">&#39;jekyll&#39;</span>, <span class="st">&#39;build&#39;</span>)</a></code></pre></div>
-<ul>
-<li><p>Basically it contains a function <code>build_one()</code> that takes an argument <code>io</code>, which is a character vector of length 2. The first element is the input (Rmd) filename, and the second element is the output filename.</p></li>
-<li><p>Then we search for all Rmd files under the current directory, prepare the output filenames by substituting the Rmd file extensions with <code>.md</code>, and build the Rmd files one by one. Note there is a caching mechanism in <code>build_one()</code> that makes use of an internal <strong>blogdown</strong> function <code>require_rebuild()</code>. This function returns <code>FALSE</code> if the output file is not older than the input file in terms of the modification time. This can save you some time because those Rmd files that have been compiled before will not be compiled again every time. The key step in <code>build_one()</code> is to run the R script <code>R/build_one.R</code>, which we will explain later.</p></li>
-<li><p>Lastly, we build the website through a system call of the command <code>jekyll build</code>.</p></li>
-</ul>
-<p>The script <code>R/build_one.R</code> looks like this (I have omitted some non-essential settings for simplicity):</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1"><span class="kw">local</span>({</a>
-<a class="sourceLine" id="cb83-2" data-line-number="2">  <span class="co"># fall back on &quot;/&quot; if baseurl is not specified</span></a>
-<a class="sourceLine" id="cb83-3" data-line-number="3">  baseurl =<span class="st"> </span>blogdown<span class="op">:::</span><span class="kw">get_config2</span>(<span class="st">&quot;baseurl&quot;</span>, <span class="dt">default =</span> <span class="st">&quot;/&quot;</span>)</a>
-<a class="sourceLine" id="cb83-4" data-line-number="4">  knitr<span class="op">::</span>opts_knit<span class="op">$</span><span class="kw">set</span>(<span class="dt">base.url =</span> baseurl)</a>
-<a class="sourceLine" id="cb83-5" data-line-number="5">  knitr<span class="op">::</span><span class="kw">render_jekyll</span>()  <span class="co"># set output hooks</span></a>
-<a class="sourceLine" id="cb83-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb83-7" data-line-number="7">  <span class="co"># input/output filenames as two arguments to Rscript</span></a>
-<a class="sourceLine" id="cb83-8" data-line-number="8">  a =<span class="st"> </span><span class="kw">commandArgs</span>(<span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb83-9" data-line-number="9">  d =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;^_|[.][a-zA-Z]+$&quot;</span>, <span class="st">&quot;&quot;</span>, a[<span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb83-10" data-line-number="10">  knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</a>
-<a class="sourceLine" id="cb83-11" data-line-number="11">    <span class="dt">fig.path   =</span> <span class="kw">sprintf</span>(<span class="st">&quot;figure/%s/&quot;</span>, d),</a>
-<a class="sourceLine" id="cb83-12" data-line-number="12">    <span class="dt">cache.path =</span> <span class="kw">sprintf</span>(<span class="st">&quot;cache/%s/&quot;</span>, d)</a>
-<a class="sourceLine" id="cb83-13" data-line-number="13">  )</a>
-<a class="sourceLine" id="cb83-14" data-line-number="14">  knitr<span class="op">::</span><span class="kw">knit</span>(</a>
-<a class="sourceLine" id="cb83-15" data-line-number="15">    a[<span class="dv">1</span>], a[<span class="dv">2</span>], <span class="dt">quiet =</span> <span class="ot">TRUE</span>, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>,</a>
-<a class="sourceLine" id="cb83-16" data-line-number="16">    <span class="dt">envir =</span> <span class="kw">globalenv</span>()</a>
-<a class="sourceLine" id="cb83-17" data-line-number="17">  )</a>
-<a class="sourceLine" id="cb83-18" data-line-number="18">})</a></code></pre></div>
-<ul>
-<li><p>The script is wrapped in <code>local()</code> so that an Rmd file is knitted in a clean global environment, and the variables such as <code>baseurl</code>, <code>a</code>, and <code>d</code> will not be created in the global environment, i.e., <code>globalenv()</code> used by <code>knitr::knit()</code> below.</p></li>
-<li><p>The <strong>knitr</strong> package option <code>base.url</code> is a URL to be prepended to figure paths. We need to set this option to make sure figures generated from R code chunks can be found when they are displayed on a web page. A normal figure path is often like <code>figure/foo.png</code>, and it may not work when the image is rendered to an HTML file, because <code>figure/foo.png</code> is a relative path, and there is no guarantee that this image file will be copied to the directory of the final HTML file. For example, for an Rmd source file <code>_posts/2015-07-23-hello.Rmd</code> that generates <code>figure/foo.png</code> (under <code>_posts/</code>), the final HTML file may be <code>_site/2015/07/23/hello/index.html</code>. Jekyll knows how to render an HTML file to this location, but it does not understand the image dependency and will not copy the image file to this location. To solve this issue, we render figures at the root directory <code>/figure/</code>, which will be copied to <code>_site/</code> by Jekyll. To refer to an image under <code>_site/figure/</code>, we need the leading slash (<code>baseurl</code>), e.g., <code>&lt;img src=&quot;/figure/foo.png&quot;&gt;</code>. This is an absolute path, so no matter where the HTML is rendered, this path always works.</p></li>
-<li><p>What <code>knitr::render_jekyll()</code> does is mainly to set up some <strong>knitr</strong> output hooks so that source code and text output from R code chunks will be wrapped in Liquid tags <code>{% highlight %}</code> and <code>{% end highlight %}</code>.</p></li>
-<li><p>Remember in <code>build.R</code>, we passed the variable <code>io</code> to the Rscript call <code>blogdown:::Rscript</code>. Here in <code>build_one.R</code>, we can receive them from <code>commandArgs(TRUE)</code>. The variable <code>a</code> contains an <code>.Rmd</code> and an <code>.md</code> file path. We removed the possible leading underscore (<code>^_</code>) and the extension (<code>[.][a-zA-Z]$</code>) in the path. Next we set figure and cache paths using this string. For example, for a post <code>_posts/foo.Rmd</code>, its figures will be written to <code>figure/foo/</code> and its cache databases (if there are any) will be stored under <code>cache/foo/</code>. Both directories are under the root directory of the project.</p></li>
-<li><p>Lastly, we call <code>knitr::knit()</code> to knit the Rmd file to a Markdown output file, which will be processed by Jekyll later.</p></li>
-</ul>
-<p>A small caveat is that since we have both <code>.Rmd</code> and <code>.md</code> files, Jekyll will treat both types of files as Markdown files by default. You have to ask Jekyll to ignore <code>.Rmd</code> files and only build <code>.md</code> files. You can set the option <code>exclude</code> in <code>_config.yml</code>:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="fu">exclude:</span><span class="at"> </span><span class="kw">[</span><span class="st">&#39;*.Rmd&#39;</span><span class="kw">]</span></a></code></pre></div>
-<p>Compared to the Hugo support in <strong>blogdown</strong>, this approach is limited in a few aspects:</p>
-<ol style="list-style-type: decimal">
-<li><p>It does not support Pandoc, so you cannot use Pandoc’s Markdown. Since it uses the <strong>knitr</strong> package instead of <strong>rmarkdown</strong>, you cannot use any of <strong>bookdown</strong>’s Markdown features, either. You are at the mercy of the Markdown renderers supported by Jekyll.</p></li>
-<li><p>Without <strong>rmarkdown</strong>, you cannot use HTML widgets. Basically, all you can have are dynamic text output and R graphics output from R code chunks. They may or may not suffice, depending on your specific use cases.</p></li>
-</ol>
-<p>It may be possible for us to remove these limitations in a future version of <strong>blogdown</strong>, if there are enough happy Jekyll users in the R community.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="40">
-<li id="fn40"><p>If you are not familiar with this file, please read Section <a href="#global-options"><strong>??</strong></a>.<a href="jekyll.html#fnref40" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="desde-jekyll" class="section level2">
+<h2><span class="header-section-number">4.1</span> Desde Jekyll</h2>
+<p>Al convertir un sitio web de Jekyll en Hugo, la parte más desafiante es el tema. Si desea mantener exactamente el mismo tema, deberá volver a escribir las plantillas de Jekyll utilizando la sintaxis de Hugo (consulte la sección <a href="#templates"><strong>??</strong></a>). Sin embargo, si puede encontrar un tema existente en Hugo (<a href="https://themes.gohugo.io" class="uri">https://themes.gohugo.io</a>), las cosas serán mucho más fáciles, y usted solo necesita mover el contenido de su sitio web a Hugo, lo cual es relativamente fácil. Básicamente, copie las páginas y publicaciones de Markdown en el directorio <code>content/</code> en Hugo y modifique estos archivos de texto.</p>
+<p>Usualmente, las publicaciones en Jekyll están bajo el directorio <code>_posts/</code>, y puedes moverlas a <code>content/post/</code> (puede usar otros directorios). Luego, debe definir una regla personalizada para las URL permanentes en <code>config.toml</code> (consulte la sección <a href="configuracion.html#opciones">2.2.2</a>):</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb71-1" data-line-number="1">[permalinks]</a>
+<a class="sourceLine" id="cb71-2" data-line-number="2">    post <span class="op">=</span> <span class="st">&quot;/:year/:month/:day/:slug/&quot;</span></a></code></pre></div>
+<p>Esto depende del formato de las URL que utilizó en Jekyll (consulte la opción <code>permalink</code> en su <code>_config.yml</code>).</p>
+<p>Si hay archivos estáticos como imágenes, se pueden mover al directorio <code>static/</code> en Hugo.</p>
+<p>Luego necesita usar su herramienta favorita con algunas técnicas de manipulación de cadenas de caracteres para procesar todos los archivos Markdown. Si usa R, puede listar todos los archivos Markdown y procesarlos uno por uno en un bucle. A continuación se muestra un boceto del código:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">files =<span class="st"> </span><span class="kw">list.files</span>(</a>
+<a class="sourceLine" id="cb72-2" data-line-number="2">  <span class="st">&#39;content/&#39;</span>, <span class="st">&#39;[.](md|markdown)$&#39;</span>, <span class="dt">full.names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb72-3" data-line-number="3">  <span class="dt">recursive =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb72-5" data-line-number="5"><span class="cf">for</span> (f <span class="cf">in</span> files) {</a>
+<a class="sourceLine" id="cb72-6" data-line-number="6">  blogdown<span class="op">:::</span><span class="kw">process_file</span>(f, <span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb72-7" data-line-number="7">    <span class="co"># process x here and return the modified x</span></a>
+<a class="sourceLine" id="cb72-8" data-line-number="8">    x</a>
+<a class="sourceLine" id="cb72-9" data-line-number="9">  })</a>
+<a class="sourceLine" id="cb72-10" data-line-number="10">}</a></code></pre></div>
+<p>La función <code>process_file()</code> es una función auxiliar interna en <strong>blogdown</strong>. Se necesita un nombre de archivo y una función de procesador para manipular el contenido del archivo y escribe el texto modificado de nuevo en el archivo.</p>
+<p>Para darle una idea de cómo puede ser una función de procesador, proporcioné algunas funciones simples de ayuda en <strong>blogdown</strong>, y a continuación hay dos de ellas:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">blogdown<span class="op">:::</span>remove_extra_empty_lines</a></code></pre></div>
+<pre><code>function (f) 
+process_file(f, function(x) {
+    x = paste(gsub(&quot;\\s+$&quot;, &quot;&quot;, x), collapse = &quot;\n&quot;)
+    trim_ws(gsub(&quot;\n{3,}&quot;, &quot;\n\n&quot;, x))
+})
+&lt;environment: namespace:blogdown&gt;</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">blogdown<span class="op">:::</span>process_bare_urls</a></code></pre></div>
+<pre><code>function (f) 
+process_file(f, function(x) {
+    gsub(&quot;\\[([^]]+)]\\(\\1/?\\)&quot;, &quot;&lt;\\1&gt;&quot;, x)
+})
+&lt;environment: namespace:blogdown&gt;</code></pre>
+<p>La primera función sustituye dos o más líneas vacías con una sola línea vacía. La segunda función reemplaza los enlaces de la forma <code>[url](url)</code> con <code>&lt;url&gt;</code>. Sin embargo, no hay nada de malo con las líneas vacías excesivas o la sintaxis <code>[url](url)</code>. Estas funciones auxiliares pueden hacer que su texto de Markdown sea un poco más limpio. Puede encontrar todas las funciones auxiliares en <a href="https://github.com/rstudio/blogdown/blob/master/R/clean.R" class="uri">https://github.com/rstudio/blogdown/blob/master/R/clean.R</a>. Tenga en cuenta que no se exportan de <strong>blogdown</strong>, por lo que necesita tres puntos y coma para acceder a ellos.</p>
+<p>Es posible que los metadatos YAML de sus publicaciones no estén completamente limpios, especialmente cuando su sitio web Jekyll se convirtió de un sitio web anterior de WordPress. La función auxiliar interna <code>blogdown:::modify_yaml()</code> puede ayudarlo a limpiar los metadatos. Por ejemplo, a continuación se muestran los metadatos YAML de una publicación de blog de Simply Statistics cuando se creó en Jekyll:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="fu">id:</span><span class="at"> 4155</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="fu">title:</span><span class="at"> Announcing the JHU Data Science Hackathon 2015</span></a>
+<a class="sourceLine" id="cb77-4" data-line-number="4"><span class="fu">date:</span><span class="at"> 2015-07-28T13:31:04+00:00</span></a>
+<a class="sourceLine" id="cb77-5" data-line-number="5"><span class="fu">author:</span><span class="at"> Roger Peng</span></a>
+<a class="sourceLine" id="cb77-6" data-line-number="6"><span class="fu">layout:</span><span class="at"> post</span></a>
+<a class="sourceLine" id="cb77-7" data-line-number="7"><span class="fu">guid:</span><span class="at"> http://simplystatistics.org/?p=4155</span></a>
+<a class="sourceLine" id="cb77-8" data-line-number="8"><span class="fu">permalink:</span><span class="at"> /2015/07/28/announcing-the-jhu-data-science-hackathon-2015</span></a>
+<a class="sourceLine" id="cb77-9" data-line-number="9"><span class="fu">pe_theme_meta:</span></a>
+<a class="sourceLine" id="cb77-10" data-line-number="10">  <span class="kw">-</span> <span class="st">&#39;O:8:&quot;stdClass&quot;:2:{s:7:&quot;gallery&quot;;O:8:&quot;stdClass&quot;:...}&#39;</span></a>
+<a class="sourceLine" id="cb77-11" data-line-number="11"><span class="fu">al2fb_facebook_link_id:</span></a>
+<a class="sourceLine" id="cb77-12" data-line-number="12">  <span class="kw">-</span> 136171103105421_837886222933902</a>
+<a class="sourceLine" id="cb77-13" data-line-number="13"><span class="fu">al2fb_facebook_link_time:</span></a>
+<a class="sourceLine" id="cb77-14" data-line-number="14">  <span class="kw">-</span> <span class="fu">2015-07-28T17:</span><span class="at">31:11+00:00</span></a>
+<a class="sourceLine" id="cb77-15" data-line-number="15"><span class="fu">al2fb_facebook_link_picture:</span></a>
+<a class="sourceLine" id="cb77-16" data-line-number="16">  <span class="kw">-</span> <span class="fu">post=http:</span><span class="at">//simplystatistics.org/?al2fb_image=1</span></a>
+<a class="sourceLine" id="cb77-17" data-line-number="17"><span class="fu">dsq_thread_id:</span></a>
+<a class="sourceLine" id="cb77-18" data-line-number="18">  <span class="kw">-</span> 3980278933</a>
+<a class="sourceLine" id="cb77-19" data-line-number="19"><span class="fu">categories:</span></a>
+<a class="sourceLine" id="cb77-20" data-line-number="20">  <span class="kw">-</span> Uncategorized</a>
+<a class="sourceLine" id="cb77-21" data-line-number="21"><span class="ot">---</span></a></code></pre></div>
+<p>Puede descartar los campos YAML que no son útiles en Hugo. Por ejemplo, solo puede mantener los campos <code>title</code>, <code>author</code>, <code>date</code>, <code>categories</code> y <code>tags</code>, y descartar otros campos. En realidad, es posible que también desee agregar un campo <code>slug</code> que tome el nombre de archivo base de la publicación (sin la fecha inicial). Por ejemplo, cuando el nombre del archivo postal es <code>2015-07-28-announceing-the-jhu-data-science-hackathon-2015.md</code>, es posible que desee agregar <code>slug: announcing-the-jhu-data-science-hackathon-2015</code> para asegurarse de que la URL de la publicación en el nuevo sitio siga siendo la misma.</p>
+<p>Aquí está el código para procesar los metadatos YAML de todas las publicaciones:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="cf">for</span> (f <span class="cf">in</span> files) {</a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">  blogdown<span class="op">:::</span><span class="kw">modify_yaml</span>(f, <span class="dt">slug =</span> <span class="cf">function</span>(old, yaml) {</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3">    <span class="co"># YYYY-mm-dd-name.md -&gt; name</span></a>
+<a class="sourceLine" id="cb78-4" data-line-number="4">    <span class="kw">gsub</span>(<span class="st">&#39;^</span><span class="ch">\\</span><span class="st">d{4}-</span><span class="ch">\\</span><span class="st">d{2}-</span><span class="ch">\\</span><span class="st">d{2}-|[.](md|markdown)&#39;</span>, <span class="st">&#39;&#39;</span>, f)</a>
+<a class="sourceLine" id="cb78-5" data-line-number="5">  }, <span class="dt">categories =</span> <span class="cf">function</span>(old, yaml) {</a>
+<a class="sourceLine" id="cb78-6" data-line-number="6">    <span class="co"># remove the Uncategorized category</span></a>
+<a class="sourceLine" id="cb78-7" data-line-number="7">    <span class="kw">setdiff</span>(old, <span class="st">&#39;Uncategorized&#39;</span>)</a>
+<a class="sourceLine" id="cb78-8" data-line-number="8">  }, <span class="dt">.keep_fields =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb78-9" data-line-number="9">    <span class="st">&#39;title&#39;</span>, <span class="st">&#39;author&#39;</span>, <span class="st">&#39;date&#39;</span>, <span class="st">&#39;categories&#39;</span>, <span class="st">&#39;tags&#39;</span>, <span class="st">&#39;slug&#39;</span></a>
+<a class="sourceLine" id="cb78-10" data-line-number="10">  ), <span class="dt">.keep_empty =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb78-11" data-line-number="11">}</a></code></pre></div>
+<p>Puede pasar una ruta de archivo a <code>modify_yaml()</code>, definir nuevos valores YAML (o funciones para devolver nuevos valores basados en los valores anteriores) y decidir qué campos conservar (<code>.keep_fields</code>). Puede descartar campos vacíos a través de <code>.keep_empty = FALSE</code>. Los metadatos YAML procesados están a continuación, lo que parece mucho más limpio:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="fu">title:</span><span class="at"> Announcing the JHU Data Science Hackathon 2015</span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="fu">author:</span><span class="at"> Roger Peng</span></a>
+<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="fu">date:</span><span class="at"> </span><span class="st">&#39;2015-07-28T13:31:04+00:00&#39;</span></a>
+<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="fu">slug:</span><span class="at"> announcing-the-jhu-data-science-hackathon-2015</span></a>
+<a class="sourceLine" id="cb79-6" data-line-number="6"><span class="ot">---</span></a></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="other-generators.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="hexo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="migration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="desde-wordpress.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -355,7 +357,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown05-custom.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown04-migration.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

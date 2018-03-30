@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="gitlab-pages.html">
-<link rel="next" href="from-jekyll.html">
+<link rel="next" href="desde-jekyll.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -181,9 +181,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="gitlab-pages.html"><a href="gitlab-pages.html"><i class="fa fa-check"></i><b>3.5</b> GitLab Pages</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="migration.html"><a href="migration.html"><i class="fa fa-check"></i><b>4</b> Migration</a><ul>
-<li class="chapter" data-level="4.1" data-path="from-jekyll.html"><a href="from-jekyll.html"><i class="fa fa-check"></i><b>4.1</b> From Jekyll</a></li>
-<li class="chapter" data-level="4.2" data-path="from-wordpress.html"><a href="from-wordpress.html"><i class="fa fa-check"></i><b>4.2</b> From WordPress</a></li>
-<li class="chapter" data-level="4.3" data-path="from-other-systems.html"><a href="from-other-systems.html"><i class="fa fa-check"></i><b>4.3</b> From other systems</a></li>
+<li class="chapter" data-level="4.1" data-path="desde-jekyll.html"><a href="desde-jekyll.html"><i class="fa fa-check"></i><b>4.1</b> Desde Jekyll</a></li>
+<li class="chapter" data-level="4.2" data-path="desde-wordpress.html"><a href="desde-wordpress.html"><i class="fa fa-check"></i><b>4.2</b> Desde WordPress</a></li>
+<li class="chapter" data-level="4.3" data-path="desde-otros-sistemas.html"><a href="desde-otros-sistemas.html"><i class="fa fa-check"></i><b>4.3</b> Desde otros sistemas</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="other-generators.html"><a href="other-generators.html"><i class="fa fa-check"></i><b>5</b> Other Generators</a><ul>
 <li class="chapter" data-level="5.1" data-path="jekyll.html"><a href="jekyll.html"><i class="fa fa-check"></i><b>5.1</b> Jekyll</a></li>
@@ -245,13 +245,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="migration" class="section level1">
 <h1><span class="header-section-number">Capítulo 4</span> Migration</h1>
-<p>Usually, it is easier to start a new website than migrating an old one to a new framework, but you may have to do it anyway because of the useful content on the old website that should not simply be discarded. A lazy solution is to leave the old website as is, start a new website with a new domain, and provide a link to the old website. This may be a hassle to your readers, and they may not be able to easily discover the gems that you created on your old website, so I recommend that you migrate your old posts and pages to the new website if possible.</p>
-<p>This process may be easy or hard, depending on how complicated your old website is. The bad news is that there is unlikely to be a universal or magical solution, but I have provided some helper functions in <strong>blogdown</strong> as well as a Shiny application to assist you, which may make it a little easier for you to migrate from Jekyll and WordPress sites.</p>
-<p>To give you an idea about the possible amount of work required, I can tell you that it took me a whole week (from the morning to midnight every day) to migrate several of my personal Jekyll-based websites to Hugo and <strong>blogdown</strong>. The complication in my case was not only Jekyll, but also the fact that I built several separate Jekyll websites (because I did not have a choice in Jekyll) and I wanted to unite them in the same repository. Now my two blogs (Chinese and English), the <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-R-knitr">2018</a><a href="#ref-R-knitr">b</a>)</span> package documentation, and the <strong>animation</strong> package <span class="citation">(<span class="citeproc-not-found" data-reference-id="R-animation"><strong>???</strong></span>)</span> documentation are maintained in the same repository: <a href="https://github.com/rbind/yihui" class="uri">https://github.com/rbind/yihui</a>. I have about 1000 pages on this website, most of which are blog posts. It used to take me more than 30 seconds to preview my blog in Jekyll, and now it takes less than 2 seconds to build the site in Hugo.</p>
-<p>Another complicated example is the website of Rob J Hyndman (<a href="https://robjhyndman.com" class="uri">https://robjhyndman.com</a>). He started his website in 1993 (12 years before me), and had accumulated a lot of content over the years. You can read the post <a href="https://support.rbind.io/2017/05/15/converting-robjhyndman-to-blogdown/" class="uri">https://support.rbind.io/2017/05/15/converting-robjhyndman-to-blogdown/</a> for the stories about how he migrated his WordPress website to <strong>blogdown</strong>. The key is that you probably need a long international flight when you want to migrate a complicated website.</p>
-<p>A simpler example is the Simply Statistics blog (<a href="https://simplystatistics.org" class="uri">https://simplystatistics.org</a>). Originally it was built on Jekyll<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a> and the source was hosted in the GitHub repository <a href="https://github.com/simplystats/simplystats.github.io" class="uri">https://github.com/simplystats/simplystats.github.io</a>. I volunteered to help them move to <strong>blogdown</strong>, and it took me about four hours. My time was mostly spent on cleaning up the YAML metadata of posts and tweaking the Hugo theme. They had about 1000 posts, which sounds like a lot, but the number does not really matter, because I wrote an R script to process all posts automatically. The new repository is at <a href="https://github.com/rbind/simplystats" class="uri">https://github.com/rbind/simplystats</a>.</p>
-<p>If you do not really have too many pages (e.g., under 20), I recommend that you cut and paste them to Markdown files, because it may actually take longer to write a script to process these pages.</p>
-<p>It is likely that some links will be broken after the migration because Hugo renders different links for your pages and posts. In that case, you may either fix the permanent links (e.g., by tweaking the slug of a post), or use 301 redirects (e.g., on Netlify).</p> 
+<p>Por lo general, es más fácil iniciar un nuevo sitio web que migrar un antiguo a un nuevo framework, pero puede que tenga que hacerlo de todos modos debido al contenido útil en el viejo sitio web que no debe descartarse simplemente. Una solución perezosa es abandonar el sitio web antiguo tal como está, iniciar un nuevo sitio web con un nuevo dominio y proporcionar un enlace al sitio web anterior. Esto puede ser molesto para sus lectores, y es posible que no puedan descubrir fácilmente las gemas que usted creó en su sitio web antiguo, por lo que le recomendamos que migre sus publicaciones y páginas anteriores al nuevo sitio web si es posible.</p>
+<p>Este proceso puede ser fácil o difícil, dependiendo de lo complicado que sea el sitio web anterior. La mala noticia es que no es probable que haya una solución universal o mágica, pero he proporcionado algunas funciones de ayuda en <strong>blogdown</strong> y una aplicación Shiny para ayudarlo, lo que puede hacer que sea un poco más fácil para usted migrar de los sitios de Jekyll y WordPress.</p>
+<p>Para darle una idea sobre la posible cantidad de trabajo requerido, le puedo decir que me tomó una semana entera (de la mañana a la medianoche todos los días) migrar varios de mis sitios web personales basados en Jekyll a Hugo y <strong>blogdown</strong>. La complicación en mi caso no era solo Jekyll, sino también el hecho de que construí varios sitios web de Jekyll (porque no tenía opción en Jekyll) y quería unirlos en el mismo repositorio. Ahora mis dos blogs (chino e inglés), la documentación del paquete <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-R-knitr">2018</a><a href="#ref-R-knitr">b</a>)</span> y la documentación del paquete <strong>animation</strong> <span class="citation">(<span class="citeproc-not-found" data-reference-id="R-animation"><strong>???</strong></span>)</span> se mantienen en el mismo repositorio: <a href="https://github.com/rbind/yihui" class="uri">https://github.com/rbind/yihui</a>. Tengo alrededor de 1000 páginas en este sitio web, la mayoría de las cuales son publicaciones de blog. Solía llevarme más de 30 segundos obtener una vista previa de mi blog en Jekyll, y ahora toma menos de 2 segundos construir el sitio en Hugo.</p>
+<p>Otro ejemplo complicado es el sitio web de Rob J Hyndman (<a href="https://robjhyndman.com" class="uri">https://robjhyndman.com</a>). Comenzó su sitio web en 1993 (12 años antes que yo), y había acumulado una gran cantidad de contenido a lo largo de los años. Puede leer la publicación <a href="https://support.rbind.io/2017/05/15/converting-robjhyndman-to-blogdown/" class="uri">https://support.rbind.io/2017/05/15/converting-robjhyndman-to-blogdown/</a> para las historias sobre cómo migró su sitio web de WordPress a <strong>blogdown</strong>. La clave es que probablemente necesite un vuelo internacional largo cuando desee migrar un sitio web complicado.</p>
+<p>Un ejemplo más simple es el blog Simply Statistics (<a href="https://simplystatistics.org" class="uri">https://simplystatistics.org</a>). Originalmente fue construido en Jekyll<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a> Y la fuente se alojó en el repositorio de GitHub <a href="https://github.com/simplystats/simplystats.github.io" class="uri">https://github.com/simplystats/simplystats.github.io</a>. Me ofrecí como voluntario para ayudarlos a pasar a <strong>blogdown</strong>, y me tomó aproximadamente cuatro horas. Mi tiempo se gastó principalmente en limpiar los metadatos YAML de publicaciones y retocar el tema Hugo. Tenían alrededor de 1000 publicaciones, lo que parece mucho, pero el número en realidad no importa, porque escribí un guión en R para procesar todas las publicaciones automáticamente. El nuevo repositorio está en <a href="https://github.com/rbind/simplystats" class="uri">https://github.com/rbind/simplystats</a>.</p>
+<p>Si realmente no tiene demasiadas páginas (por ejemplo, menos de 20), le recomiendo que las corte y las pegue en los archivos Markdown, porque en realidad puede llevar más tiempo escribir un script para procesar estas páginas.</p>
+<p>Es probable que algunos enlaces se rompan después de la migración porque Hugo genera diferentes enlaces para sus páginas y publicaciones. En ese caso, puede corregir los enlaces permanentes (por ejemplo, ajustando la barra de una publicación) o usar 301 redireccionamientos (por ejemplo, en Netlify).</p> 
 </div>
 <h3>References</h3>
 <div id="refs" class="references">
@@ -262,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="footnotes">
 <hr />
 <ol start="38">
-<li id="fn38"><p>It was migrated from WordPress a few years ago. The WordPress site was actually migrated from an earlier Tumblr blog.<a href="migration.html#fnref38" class="footnote-back">↩</a></p></li>
+<li id="fn38"><p>Fue migrado de WordPress hace unos años. El sitio de WordPress en realidad se migró de un blog anterior de Tumblr.<a href="migration.html#fnref38" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="gitlab-pages.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="from-jekyll.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="desde-jekyll.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

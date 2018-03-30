@@ -268,13 +268,6 @@ lo que ha hecho y ha pensado. A veces puede regresar a una determinada
 publicación anterior suya para volver a aprender los trucos o métodos
 que una vez dominó en el pasado pero que olvidó.
 
-We introduce an R package, \textbf{blogdown}, in this short book, to
-teach you how to create websites using R Markdown and Hugo. If you have
-experience with creating websites, you may naturally ask what the
-benefits of using R Markdown are, and how \textbf{blogdown} is different
-from existing popular website platforms, such as WordPress. There are
-two major highlights of \textbf{blogdown}:
-
 En este libro, se presenta un paquete de R, \textbf{blogdown}, para
 enseñarle cómo crear sitios web usando R Markdown y Hugo. Si tiene
 experiencia en la creación de sitios web, naturalmente puede preguntarse
@@ -4078,85 +4071,92 @@ sección \ref{travis-github}. El ejemplo anterior genera el sitio web en
 \hypertarget{migration}{%
 \chapter{Migration}\label{migration}}
 
-Usually, it is easier to start a new website than
-migrating\index{Site Migration} an old one to a new framework, but you
-may have to do it anyway because of the useful content on the old
-website that should not simply be discarded. A lazy solution is to leave
-the old website as is, start a new website with a new domain, and
-provide a link to the old website. This may be a hassle to your readers,
-and they may not be able to easily discover the gems that you created on
-your old website, so I recommend that you migrate your old posts and
-pages to the new website if possible.
+Por lo general, es más fácil iniciar un nuevo sitio web que
+migrar\index{Migración del sitio} un antiguo a un nuevo framework, pero
+puede que tenga que hacerlo de todos modos debido al contenido útil en
+el viejo sitio web que no debe descartarse simplemente. Una solución
+perezosa es abandonar el sitio web antiguo tal como está, iniciar un
+nuevo sitio web con un nuevo dominio y proporcionar un enlace al sitio
+web anterior. Esto puede ser molesto para sus lectores, y es posible que
+no puedan descubrir fácilmente las gemas que usted creó en su sitio web
+antiguo, por lo que le recomendamos que migre sus publicaciones y
+páginas anteriores al nuevo sitio web si es posible.
 
-This process may be easy or hard, depending on how complicated your old
-website is. The bad news is that there is unlikely to be a universal or
-magical solution, but I have provided some helper functions in
-\textbf{blogdown} as well as a Shiny application to assist you, which
-may make it a little easier for you to migrate from Jekyll and WordPress
-sites.
+Este proceso puede ser fácil o difícil, dependiendo de lo complicado que
+sea el sitio web anterior. La mala noticia es que no es probable que
+haya una solución universal o mágica, pero he proporcionado algunas
+funciones de ayuda en \textbf{blogdown} y una aplicación Shiny para
+ayudarlo, lo que puede hacer que sea un poco más fácil para usted migrar
+de los sitios de Jekyll y WordPress.
 
-To give you an idea about the possible amount of work required, I can
-tell you that it took me a whole week (from the morning to midnight
-every day) to migrate several of my personal Jekyll-based websites to
-Hugo and \textbf{blogdown}. The complication in my case was not only
-Jekyll, but also the fact that I built several separate Jekyll websites
-(because I did not have a choice in Jekyll) and I wanted to unite them
-in the same repository. Now my two blogs (Chinese and English), the
-\textbf{knitr} \citep{R-knitr} package documentation, and the
-\textbf{animation} package \citep{R-animation} documentation are
-maintained in the same repository: \url{https://github.com/rbind/yihui}.
-I have about 1000 pages on this website, most of which are blog posts.
-It used to take me more than 30 seconds to preview my blog in Jekyll,
-and now it takes less than 2 seconds to build the site in Hugo.
+Para darle una idea sobre la posible cantidad de trabajo requerido, le
+puedo decir que me tomó una semana entera (de la mañana a la medianoche
+todos los días) migrar varios de mis sitios web personales basados en
+Jekyll a Hugo y \textbf{blogdown}. La complicación en mi caso no era
+solo Jekyll, sino también el hecho de que construí varios sitios web de
+Jekyll (porque no tenía opción en Jekyll) y quería unirlos en el mismo
+repositorio. Ahora mis dos blogs (chino e inglés), la documentación del
+paquete \textbf{knitr} \citep{R-knitr} y la documentación del paquete
+\textbf{animation} \citep{R-animation} se mantienen en el mismo
+repositorio: \url{https://github.com/rbind/yihui}. Tengo alrededor de
+1000 páginas en este sitio web, la mayoría de las cuales son
+publicaciones de blog. Solía llevarme más de 30 segundos obtener una
+vista previa de mi blog en Jekyll, y ahora toma menos de 2 segundos
+construir el sitio en Hugo.
 
-Another complicated example is the website of Rob J Hyndman
-(\url{https://robjhyndman.com}). He started his website in 1993 (12
-years before me), and had accumulated a lot of content over the years.
-You can read the post
+Otro ejemplo complicado es el sitio web de Rob J Hyndman
+(\url{https://robjhyndman.com}). Comenzó su sitio web en 1993 (12 años
+antes que yo), y había acumulado una gran cantidad de contenido a lo
+largo de los años. Puede leer la publicación
 \url{https://support.rbind.io/2017/05/15/converting-robjhyndman-to-blogdown/}
-for the stories about how he migrated his WordPress website to
-\textbf{blogdown}. The key is that you probably need a long
-international flight when you want to migrate a complicated website.
+para las historias sobre cómo migró su sitio web de WordPress a
+\textbf{blogdown}. La clave es que probablemente necesite un vuelo
+internacional largo cuando desee migrar un sitio web complicado.
 
-A simpler example is the Simply Statistics blog
-(\url{https://simplystatistics.org}). Originally it was built on
-Jekyll\footnote{It was migrated from WordPress a few years ago. The
-  WordPress site was actually migrated from an earlier Tumblr blog.} and
-the source was hosted in the GitHub repository
-\url{https://github.com/simplystats/simplystats.github.io}. I
-volunteered to help them move to \textbf{blogdown}, and it took me about
-four hours. My time was mostly spent on cleaning up the YAML metadata of
-posts and tweaking the Hugo theme. They had about 1000 posts, which
-sounds like a lot, but the number does not really matter, because I
-wrote an R script to process all posts automatically. The new repository
-is at \url{https://github.com/rbind/simplystats}.
+Un ejemplo más simple es el blog Simply Statistics
+(\url{https://simplystatistics.org}). Originalmente fue construido en
+Jekyll\footnote{Fue migrado de WordPress hace unos años. El sitio de
+  WordPress en realidad se migró de un blog anterior de Tumblr.} Y la
+fuente se alojó en el repositorio de GitHub
+\url{https://github.com/simplystats/simplystats.github.io}. Me ofrecí
+como voluntario para ayudarlos a pasar a \textbf{blogdown}, y me tomó
+aproximadamente cuatro horas. Mi tiempo se gastó principalmente en
+limpiar los metadatos YAML de publicaciones y retocar el tema Hugo.
+Tenían alrededor de 1000 publicaciones, lo que parece mucho, pero el
+número en realidad no importa, porque escribí un guión en R para
+procesar todas las publicaciones automáticamente. El nuevo repositorio
+está en \url{https://github.com/rbind/simplystats}.
 
-If you do not really have too many pages (e.g., under 20), I recommend
-that you cut and paste them to Markdown files, because it may actually
-take longer to write a script to process these pages.
+Si realmente no tiene demasiadas páginas (por ejemplo, menos de 20), le
+recomiendo que las corte y las pegue en los archivos Markdown, porque en
+realidad puede llevar más tiempo escribir un script para procesar estas
+páginas.
 
-It is likely that some links will be broken after the migration because
-Hugo renders different links for your pages and posts. In that case, you
-may either fix the permanent links (e.g., by tweaking the slug of a
-post), or use 301 redirects (e.g., on Netlify).
+Es probable que algunos enlaces se rompan después de la migración porque
+Hugo genera diferentes enlaces para sus páginas y publicaciones. En ese
+caso, puede corregir los enlaces permanentes (por ejemplo, ajustando la
+barra de una publicación) o usar 301 redireccionamientos (por ejemplo,
+en Netlify).
 
-\hypertarget{from-jekyll}{%
-\section{From Jekyll}\label{from-jekyll}}
+\hypertarget{desde-jekyll}{%
+\section{Desde Jekyll}\label{desde-jekyll}}
 
-When converting a Jekyll\index{Jekyll} website to Hugo, the most
-challenging part is the theme. If you want to keep exactly the same
-theme, you will have to rewrite your Jekyll templates using Hugo's
-syntax (see Section \ref{templates}). However, if you can find an
-existing theme in Hugo (\url{https://themes.gohugo.io}), things will be
-much easier, and you only need to move the content of your website to
-Hugo, which is relatively easy. Basically, you copy the Markdown pages
-and posts to the \texttt{content/} directory in Hugo and tweak these
-text files.
+Al convertir un sitio web de Jekyll\index{Jekyll} en Hugo, la parte más
+desafiante es el tema. Si desea mantener exactamente el mismo tema,
+deberá volver a escribir las plantillas de Jekyll utilizando la sintaxis
+de Hugo (consulte la sección \ref{templates}). Sin embargo, si puede
+encontrar un tema existente en Hugo (\url{https://themes.gohugo.io}),
+las cosas serán mucho más fáciles, y usted solo necesita mover el
+contenido de su sitio web a Hugo, lo cual es relativamente fácil.
+Básicamente, copie las páginas y publicaciones de Markdown en el
+directorio \texttt{content/} en Hugo y modifique estos archivos de
+texto.
 
-Usually, posts in Jekyll are under the \texttt{\_posts/} directory, and
-you can move them to \texttt{content/post/} (you are free to use other
-directories). Then you need to define a custom rule for permanent URLs
-in \texttt{config.toml} like (see Section \ref{options}):
+Usualmente, las publicaciones en Jekyll están bajo el directorio
+\texttt{\_posts/}, y puedes moverlas a \texttt{content/post/} (puede
+usar otros directorios). Luego, debe definir una regla personalizada
+para las URL permanentes en \texttt{config.toml} (consulte la sección
+\ref{opciones}):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4165,16 +4165,17 @@ in \texttt{config.toml} like (see Section \ref{options}):
 \end{Highlighting}
 \end{Shaded}
 
-This depends on the format of the URLs you used in Jekyll (see the
-\texttt{permalink} option in your \texttt{\_config.yml}).
+Esto depende del formato de las URL que utilizó en Jekyll (consulte la
+opción \texttt{permalink} en su \texttt{\_config.yml}).
 
-If there are static assets like images, they can be moved to the
-\texttt{static/} directory in Hugo.
+Si hay archivos estáticos como imágenes, se pueden mover al directorio
+\texttt{static/} en Hugo.
 
-Then you need to use your favorite tool with some string manipulation
-techniques to process all Markdown files. If you use R, you can list all
-Markdown files and process them one by one in a loop. Below is a sketch
-of the code:
+Luego necesita usar su herramienta favorita con algunas técnicas de
+manipulación de cadenas de caracteres para procesar todos los archivos
+Markdown. Si usa R, puede listar todos los archivos Markdown y
+procesarlos uno por uno en un bucle. A continuación se muestra un boceto
+del código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4191,14 +4192,14 @@ of the code:
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{process\_file()} function is an internal helper function in
-\textbf{blogdown}. It takes a filename and a processor function to
-manipulate the content of the file, and writes the modified text back to
-the file.
+La función \texttt{process\_file()} es una función auxiliar interna en
+\textbf{blogdown}. Se necesita un nombre de archivo y una función de
+procesador para manipular el contenido del archivo y escribe el texto
+modificado de nuevo en el archivo.
 
-To give you an idea of what a processor function may look like, I
-provided a few simple helper functions in \textbf{blogdown}, and below
-are two of them:
+Para darle una idea de cómo puede ser una función de procesador,
+proporcioné algunas funciones simples de ayuda en \textbf{blogdown}, y a
+continuación hay dos de ellas:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4229,22 +4230,23 @@ process_file(f, function(x) {
 <environment: namespace:blogdown>
 \end{verbatim}
 
-The first function substitutes two or more empty lines with a single
-empty line. The second function replaces links of the form
-\texttt{{[}url{]}(url)} with \texttt{\textless{}url\textgreater{}}.
-There is nothing wrong with excessive empty lines or the syntax
-\texttt{{[}url{]}(url)}, though. These helper functions may make your
-Markdown text a little cleaner. You can find all such helper functions
-at \url{https://github.com/rstudio/blogdown/blob/master/R/clean.R}. Note
-they are not exported from \textbf{blogdown}, so you need triple colons
-to access them.
+La primera función sustituye dos o más líneas vacías con una sola línea
+vacía. La segunda función reemplaza los enlaces de la forma
+\texttt{{[}url{]}(url)} con \texttt{\textless{}url\textgreater{}}. Sin
+embargo, no hay nada de malo con las líneas vacías excesivas o la
+sintaxis \texttt{{[}url{]}(url)}. Estas funciones auxiliares pueden
+hacer que su texto de Markdown sea un poco más limpio. Puede encontrar
+todas las funciones auxiliares en
+\url{https://github.com/rstudio/blogdown/blob/master/R/clean.R}. Tenga
+en cuenta que no se exportan de \textbf{blogdown}, por lo que necesita
+tres puntos y coma para acceder a ellos.
 
-The YAML metadata of your posts may not be completely clean, especially
-when your Jekyll website was actually converted from an earlier
-WordPress website. The internal helper function
-\texttt{blogdown:::modify\_yaml()} may help you clean up the metadata.
-For example, below is the YAML metadata of a blog post of Simply
-Statistics when it was built on Jekyll:
+Es posible que los metadatos YAML de sus publicaciones no estén
+completamente limpios, especialmente cuando su sitio web Jekyll se
+convirtió de un sitio web anterior de WordPress. La función auxiliar
+interna \texttt{blogdown:::modify\_yaml()} puede ayudarlo a limpiar los
+metadatos. Por ejemplo, a continuación se muestran los metadatos YAML de
+una publicación de blog de Simply Statistics cuando se creó en Jekyll:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4272,18 +4274,20 @@ Statistics when it was built on Jekyll:
 \end{Highlighting}
 \end{Shaded}
 
-You can discard the YAML fields that are not useful in Hugo. For
-example, you may only keep the fields \texttt{title}, \texttt{author},
-\texttt{date}, \texttt{categories}, and \texttt{tags}, and discard other
-fields. Actually, you may also want to add a \texttt{slug} field that
-takes the base filename of the post (with the leading date removed). For
-example, when the post filename is
-\texttt{2015-07-28-announcing-the-jhu-data-science-hackathon-2015.md},
-you may want to add
-\texttt{slug:\ announcing-the-jhu-data-science-hackathon-2015} to make
-sure the URL of the post on the new site remains the same.
+Puede descartar los campos YAML que no son útiles en Hugo. Por ejemplo,
+solo puede mantener los campos \texttt{title}, \texttt{author},
+\texttt{date}, \texttt{categories} y \texttt{tags}, y descartar otros
+campos. En realidad, es posible que también desee agregar un campo
+\texttt{slug} que tome el nombre de archivo base de la publicación (sin
+la fecha inicial). Por ejemplo, cuando el nombre del archivo postal es
+\texttt{2015-07-28-announceing-the-jhu-data-science-hackathon-2015.md},
+es posible que desee agregar
+\texttt{slug:\ announcing-the-jhu-data-science-hackathon-2015} para
+asegurarse de que la URL de la publicación en el nuevo sitio siga siendo
+la misma.
 
-Here is the code to process the YAML metadata of all posts:
+Aquí está el código para procesar los metadatos YAML de todas las
+publicaciones:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4301,11 +4305,12 @@ Here is the code to process the YAML metadata of all posts:
 \end{Highlighting}
 \end{Shaded}
 
-You can pass a file path to \texttt{modify\_yaml()}, define new YAML
-values (or functions to return new values based on the old values), and
-decide which fields to preserve (\texttt{.keep\_fields}). You may
-discard empty fields via \texttt{.keep\_empty\ =\ FALSE}. The processed
-YAML metadata is below, which looks much cleaner:
+Puede pasar una ruta de archivo a \texttt{modify\_yaml()}, definir
+nuevos valores YAML (o funciones para devolver nuevos valores basados en
+los valores anteriores) y decidir qué campos conservar
+(\texttt{.keep\_fields}). Puede descartar campos vacíos a través de
+\texttt{.keep\_empty\ =\ FALSE}. Los metadatos YAML procesados están a
+continuación, lo que parece mucho más limpio:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4318,69 +4323,70 @@ YAML metadata is below, which looks much cleaner:
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{from-wordpress}{%
-\section{From WordPress}\label{from-wordpress}}
+\hypertarget{desde-wordpress}{%
+\section{Desde WordPress}\label{desde-wordpress}}
 
-From our experience, the best way to import WordPress\index{WordPress}
-blog posts to Hugo is to import them to Jekyll, and write an R script to
-clean up the YAML metadata of all pages if necessary, instead of using
-the migration tools listed on the
-\href{https://gohugo.io/tools/}{official guide,} including the WordPress
-plugin \texttt{wordpress-to-hugo-exporter}.
+Según nuestra experiencia, la mejor manera de importar publicaciones de
+blog de WordPress\index{WordPress} a Hugo es importarlas a Jekyll, y
+escribir un script en R para limpiar los metadatos YAML de todas las
+páginas si es necesario, en lugar de usar las herramientas de migración
+listadas en la \href{https://gohugo.io/tools/}{guía oficial,} incluyendo
+el plugin de WordPress \texttt{wordpress-to-hugo-exporter}.
 
-To our knowledge, the best tool to convert a WordPress website to Jekyll
-is the Python tool \href{https://github.com/thomasf/exitwp}{Exitwp.} Its
-author has provided detailed instructions on how to use it. You have to
-know how to install Python libraries and execute Python scripts. If you
-do not, I have provided an online tool at
-\url{https://github.com/yihui/travis-exitwp}. You can upload your
-WordPress XML file there, and get a download link to a ZIP archive that
-contains your posts in Markdown.
+Hasta donde sabemos, la mejor herramienta para convertir un sitio web de
+WordPress a Jekyll es la herramienta de Python
+\href{https://github.com/thomasf/exitwp}{Exitwp.}. Su autor ha
+proporcionado instrucciones detalladas sobre cómo usarlo. Debe saber
+cómo instalar las librerías de Python y ejecutar las secuencias de
+comandos de Python. Si no lo hace, he proporcionado una herramienta en
+línea en \url{https://github.com/yihui/travis-exitwp}. Puede cargar su
+archivo XML de WordPress allí y obtener un enlace de descarga a un
+archivo ZIP que contenga sus publicaciones en Markdown.
 
-The biggest challenge in converting WordPress posts to Hugo is to clean
-up the post content in Markdown. Fortunately, I have done this for three
-different WordPress blogs,\footnote{The RViews blog
-  (\url{https://rviews.rstudio.com}), the RStudio blog
-  (\url{https://blog.rstudio.com}), and Karl Broman's blog
-  (\url{http://kbroman.org}). The RViews blog took me a few days. The
-  RStudio blog took me one day. Karl Broman's blog took me an hour.} and
-I think I have managed to automate this process as much as possible. You
-may refer to the pull request I submitted to Karl Broman to convert his
-WordPress posts to Markdown
-(\url{https://github.com/kbroman/oldblog_xml/pull/1}), in which I
-provided both the R script and the Markdown files. I recommend that you
-go to the ``Commits'' tab and view all my GIT commits one by one to see
-the full process.
+El mayor desafío al convertir publicaciones de WordPress a Hugo es
+limpiar el contenido de la publicación en Markdown. Afortunadamente, he
+hecho esto para tres blogs de WordPress diferentes,\footnote{El blog de
+  RViews (\url{https://rviews.rstudio.com}), el blog de RStudio
+  (\url{https://blog.rstudio.com}) y el blog de Karl Broman
+  (\url{http://kbroman.org}). El blog RViews me llevó unos días. El blog
+  de RStudio me llevó un día. El blog de Karl Broman me llevó una hora.}
+Y creo que he logrado automatizar este proceso tanto como sea posible.
+Puede consultar el pull request que presenté a Karl Broman para
+convertir sus publicaciones de WordPress a Markdown
+(\url{https://github.com/kbroman/oldblog_xml/pull/1}), en las que
+proporcioné el guión en R y los archivos Markdown. Le recomiendo que
+vaya a la pestaña ``Commits'' y vea todos mis commit de GIT uno por uno
+para ver el proceso completo.
 
-The key is the R script
-\url{https://github.com/yihui/oldblog_xml/blob/master/convert.R}, which
-converts the WordPress XML file to Markdown posts and cleans them.
-Before you run this script on your XML file, you have to adjust a few
-parameters, such as the XML filename, your old WordPress site's URL, and
-your new blog's URL.
+La clave es el script en R
+\url{https://github.com/yihui/oldblog_xml/blob/master/convert.R}, que
+convierte el archivo XML de WordPress en publicaciones de Markdown y las
+limpia. Antes de ejecutar esta secuencia de comandos en su archivo XML,
+debe ajustar algunos parámetros, como el nombre del archivo XML, la URL
+de su sitio anterior de WordPress y la URL de su nuevo blog.
 
-Note that this script depends on the Exitwp tool. If you do not know how
-to run Exitwp, please use the online tool I mentioned before
-(travis-exitwp), and skip the R code that calls Exitwp.
+Tenga en cuenta que este script depende de la herramienta Exitwp. Si no
+sabe cómo ejecutar Exitwp, utilice la herramienta en línea que mencioné
+anteriormente (travis-exitwp) y omita el código en R que llama a Exitwp.
 
-The Markdown posts should be fairly clean after the conversion, but
-there may be remaining HTML tags in your posts, such as
-\texttt{\textless{}table\textgreater{}} and
-\texttt{\textless{}blockquote\textgreater{}}. You will need to manually
-clean them, if any exist.
+Las publicaciones de Markdown deben estar bastante limpias después de la
+conversión, pero puede haber etiquetas HTML restantes en sus
+publicaciones, como \texttt{\textless{}table\textgreater{}} y
+\texttt{\textless{}blockquote\textgreater{}}. Tendrá que limpiarlos
+manualmente, si existen.
 
-\hypertarget{from-other-systems}{%
-\section{From other systems}\label{from-other-systems}}
+\hypertarget{desde-otros-sistemas}{%
+\section{Desde otros sistemas}\label{desde-otros-sistemas}}
 
-If you have a website built by other applications or systems, your best
-way to go may be to import your website to WordPress first, export it to
-Jekyll, and clean up the Markdown files. You can try to search for
-solutions like ``how to import blogger.com to WordPress'' or ``how to
-import Tumblr to WordPress.''
+Si tiene un sitio web creado por otras aplicaciones o sistemas, su mejor
+opción es importar primero su sitio web a WordPress, exportarlo a Jekyll
+y limpiar los archivos Markdown. Puede intentar buscar soluciones sobre
+``cómo importar blogger.com a WordPress'' o ``cómo importar Tumblr a
+WordPress''.
 
-If you are very familiar with web scraping techniques, you can also
-scrape the HTML pages of your website, and convert them to Markdown via
-Pandoc, e.g.,
+Si está familiarizado con las técnicas de web scrapping, también puede
+hacer scrape a las páginas HTML de su sitio web y convertirlas a
+Markdown a través de Pandoc, por ejemplo,
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4390,9 +4396,10 @@ Pandoc, e.g.,
 \end{Highlighting}
 \end{Shaded}
 
-I have actually tried this way on a website, but was not satisfied,
-since I still had to heavily clean up the Markdown files. If your
-website is simpler, this approach may work better for you.
+De hecho, lo he intentado en un sitio web, pero no quedé satisfecho, ya
+que de todas formas tenía que limpiar mucho los archivos de Markdown. Si
+su sitio web es más simple, este enfoque puede funcionar mejor para
+usted.
 
 \hypertarget{other-generators}{%
 \chapter{Other Generators}\label{other-generators}}
