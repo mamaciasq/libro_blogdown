@@ -1,20 +1,22 @@
 # Hugo
 
-In this chapter, we will briefly introduce\index{Hugo} Hugo (https://gohugo.io), the static site generator on which **blogdown** is based. This chapter is not meant to replace the official Hugo documentation, but provide a guide to those who are just getting started with Hugo. When in doubt, please consult the official Hugo documentation.
+En este capítulo, presentaremos brevemente\index{Hugo} Hugo (https://gohugo.io), el generador de sitios estáticos en el que se basa **blogdown**. Este capítulo no pretende reemplazar la documentación oficial de Hugo, sino proporcionar una guía para aquellos que recién están comenzando con Hugo. En caso de duda, consulte la documentación oficial de Hugo.
 
-## Static sites and Hugo {#static-sites}
+## Sitios estáticos y Hugo {#static-sites}
 
-A static site\index{Static Site} often consists of HTML files (with optional external dependencies like images and JavaScript libraries), and the web server sends exactly the same content to the web browser no matter who visits the web pages. There is no dynamic computing on the server when a page is requested. By comparison, a dynamic site relies on a server-side language to do certain computing and sends potentially different content depending on different conditions. A common language is PHP, and a typical example of a dynamic site is a web forum. For example, each user has a profile page, but typically this does not mean the server has stored a different HTML profile page for every single user. Instead, the server will fetch the user data from a database, and render the profile page dynamically.
+Un sitio estático\index{Sitio estático} a menudo consiste en archivos HTML (con dependencias externas opcionales como imágenes y bibliotecas de JavaScript), y el servidor web envía exactamente el mismo contenido al navegador web sin importar quién visita las páginas web. No hay computación dinámica en el servidor cuando se solicita una página. En contraste, un sitio dinámico se basa en un lenguaje del lado del servidor para hacer cierta informática y envía contenido potencialmente diferente dependiendo de las diferentes condiciones. Un lenguaje común es PHP, y un ejemplo típico de un sitio dinámico es un foro web. Por ejemplo, cada usuario tiene una página de perfil, pero generalmente esto no significa que el servidor haya almacenado una página de perfil HTML diferente para cada usuario. En cambio, el servidor obtendrá los datos del usuario de una base de datos y renderizará la página de perfil de forma dinámica.
 
-For a static site, each URL you visit often has a corresponding HTML file stored on the server, so there is no need to compute anything before serving the file to visitors. This means static sites tend to be faster in response time than dynamic sites, and they are also much easier to deploy, since deployment simply means copying static files to a server. A dynamic site often relies on databases, and you will have to install more software packages to serve a dynamic site. For more advantages of static sites, please read the [introduction](https://gohugo.io/overview/introduction/) on Hugo's website.
+Para un sitio estático, cada URL que visita a menudo tiene un archivo HTML correspondiente almacenado en el servidor, por lo que no es necesario calcular nada antes de presentar el archivo a los visitantes. Esto significa que los sitios estáticos tienden a ser más rápidos en tiempo de respuesta que los sitios dinámicos, y también son mucho más fáciles de implementar, ya que la implementación simplemente significa copiar archivos estáticos a un servidor. Un sitio dinámico a menudo se basa en bases de datos, y tendrá que instalar más paquetes de software para presentar un sitio dinámico. Para obtener más ventajas de los sitios estáticos, lea la [introducción](https://gohugo.io/overview/introduction/) en el sitio web de Hugo.
 
-There are many existing static site generators, including Hugo, [Jekyll,](http://jekyllrb.com) and [Hexo,](https://hexo.io) etc. Most of them can build general-purpose websites but are often used to build blogs.
 
-We love Hugo for many reasons, but there are a few that stand out. Unlike other static site generators, the installation of Hugo is very simple because it provides a single executable without dependencies for most operating systems (see Section \@ref(installation)). It was also designed to render hundreds of pages of content faster than comparable static site generators and can reportedly render a single page in approximately 1 millisecond. Lastly, the community of Hugo users is very active both on the [Hugo discussion forum](https://discuss.gohugo.io) and on [GitHub issues.](https://github.com/gohugoio/hugo/issues)
+Existen muchos generadores de sitios estáticos existentes, incluyendo Hugo, [Jekyll,](http://jekyllrb.com) y [Hexo,](https://hexo.io) etc. La mayoría de ellos puede construir sitios web de propósito general, pero a menudo se utilizan para construir blogs.
 
-Although we think Hugo is a fantastic static site generator, there is really one and only one major missing feature: the support for R Markdown. That is basically the whole point of the **blogdown** package.^[Another motivation was an easier way to create new pages or posts. Static site generators often provide commands to create new posts, but you often have to open and modify the new file created by hand after using these commands. I was very frustrated by this, because I was looking for a graphical user interface where I can just fill out the title, author, date, and other information about a page, then I can start writing the content right away. That is why I provided the RStudio addin "New Post" and the function `blogdown::new_post()`. In the past few years, I hated it every time I was about to create a new post either by hand or via the Jekyll command line. Finally, I felt addicted to blogging again after I finished the RStudio addin.] This missing feature means that you cannot easily generate results using R code on your web pages, since you can only use static Markdown documents. Besides, Hugo's default Markdown engine is "Blackfriday", which is less powerful than Pandoc.^[The Pandoc support has been added in a Hugo pull request: https://github.com/gohugoio/hugo/pull/4060. However, I think the support is quite limited, and I'd recommend that you use the R Markdown format instead, because with the official Pandoc support in Hugo, you cannot customize the Pandoc command-line options, rendering is not cached (it could be slow), and you will not be able to use any Markdown extensions from the **bookdown** package (such as numbering figure captions).]
+Amamos a Hugo por muchas razones, pero hay algunas que se destacan. A diferencia de otros generadores de sitios estáticos, la instalación de Hugo es muy simple porque proporciona un único archivo ejecutable sin dependencias para la mayoría de los sistemas operativos (consulte la sección \@ref(instalación)). También se diseñó para procesar cientos de páginas de contenido más rápido que los generadores de sitios estáticos comparables y, según los informes, puede presentar una página en aproximadamente 1 milisegundo. Por último, la comunidad de usuarios de Hugo es muy activa tanto en el [foro de discusión de Hugo](https://discuss.gohugo.io) y en los [issues de GitHub.](https://github.com/gohugoio/hugo/issues)
 
-Hugo uses a special file and folder structure to create your website (Figure \@ref(fig:folders)). The rest of this chapter will give more details on the following files and folders:
+Aunque creemos que Hugo es un fantástico generador de sitios estáticos, en realidad hay una única característica importante que falta: el soporte para R Markdown. Ese es básicamente el objetivo del paquete **blogdown**.^[Otra motivación fue una manera más fácil de crear nuevas páginas o publicaciones. Los generadores de sitios estáticos a menudo proporcionan comandos para crear nuevas publicaciones, pero a menudo tiene que abrir y modificar el nuevo archivo creado a mano después de usar estos comandos. Estaba muy frustrado por esto, porque estaba buscando una interfaz gráfica de usuario donde simplemente pudiera completar el título, el autor, la fecha y otra información sobre una página, luego poder comenzar a escribir el contenido de inmediato. Es por eso que proporcioné el complemento de RStudio "New Post" y la función `blogdown::new_post()`. En los últimos años, lo odié cada vez que estaba a punto de crear una nueva publicación, ya sea a mano o a través de la línea de comandos de Jekyll. Finalmente, me volví adicto a los blogs una vez que terminé el complemento de RStudio.] Esta función faltante significa que no puede generar resultados fácilmente usando el código de R en sus páginas web, ya que solo puede usar documentos estáticos de Markdown. Además, el motor de Markdown predeterminado de Hugo es "Blackfriday", que es menos poderoso que Pandoc.^[El soporte de Pandoc se ha agregado en un pull request de Hugo: https://github.com/gohugoio/hugo/pull/4060. Sin embargo, creo que el soporte es bastante limitado, y le recomiendo que use el formato R Markdown, porque con el soporte oficial de Pandoc en Hugo, no puede personalizar las opciones de la línea de comandos de Pandoc, la renderización no está en caché (podría ser lento), y no podrá usar ninguna extensión de Markdown del paquete **bookdown** (como la numeración de los títulos de las figuras).]
+
+
+Hugo usa una estructura especial de archivos y carpetas para crear su sitio web (Figura \@ref(fig:folders)). El resto de este capítulo brindará más detalles sobre los siguientes archivos y carpetas:
 
 - `config.toml`
 - `content/`
@@ -22,45 +24,45 @@ Hugo uses a special file and folder structure to create your website (Figure \@r
 - `themes/`
 - `layouts/`
 
-(ref:folders) Possible files and folders created when you create a new site using **blogdown**.
+(ref:folders) Posibles archivos y carpetas creados cuando crea un nuevo sitio usando **blogdown**.
 
 ```{r folders, fig.cap='(ref:folders)', echo=FALSE, fig.align='center', out.width='100%'}
 knitr::include_graphics('images/folder-structure.png')
 ```
 
-## Configuration
+## Configuración
 
-The first file that you may want to look at is the configuration\index{config.toml} or `config` file in your root directory, in which you can set global configurations of your site. It may contain options like the title and description of your site, as well as other global options like links to your social networks, the navigation menu, and the base URL for your website.
+El primer archivo que puede ver es el archivo configuration\index{config.toml} o `config` en su directorio raíz, en el que puede establecer configuraciones globales de su sitio. Puede contener opciones como el título y la descripción de su sitio, así como otras opciones globales como enlaces a sus redes sociales, el menú de navegación y la URL base de su sitio web.
 
-When generating your site, Hugo will search for a file called `config.toml` first. If it cannot find one, it will continue to search for `config.yaml`.^[Hugo also supports `config.json`, but **blogdown** does not support it, so we do not recommend that you use it.] Since most Hugo themes contain example sites that ship `config.toml` files, and the TOML\index{TOML} (Tom's Obvious, Minimal Language) format appears to be more popular in the Hugo community, we will mainly discuss `config.toml` here.
+Al generar su sitio, Hugo buscará primero un archivo llamado `config.toml`. Si no puede encontrar uno, continuará buscando `config.yaml`.^[Hugo también admite `config.json`, pero **blogdown** no lo admite, por lo que no recomendamos que lo use.] Como la mayoría de los temas de Hugo contienen sitios de ejemplo que envían archivos `config.toml`, y el formato TOML\index{TOML} (Tom's Obvious, Minimal Language) parece ser más popular en la comunidad de Hugo, hablaremos principalmente de `config.toml` aquí.
 
-We recommend that you use the TOML syntax only for the config file (you can also use YAML if you prefer), and use YAML as the data format for the metadata of (R) Markdown pages and posts, because R Markdown and **blogdown** fully support only YAML\index{YAML}.^[TOML has its advantages, but I feel they are not significant in the context of Hugo websites. It is a pain to have to know yet another language, TOML, when YAML stands for "Yet Another Markup Language." I'm not sure if the XKCD comic applies in this case: https://xkcd.com/927/.] If you have a website that has already used TOML, you may use `blogdown::hugo_convert(unsafe = TRUE)` to convert TOML data to YAML, but please first make sure you have backed up the website because it will overwrite your Markdown files.
+Recomendamos que utilice la sintaxis TOML solo para el archivo de configuración (también puede usar YAML si lo prefiere), y use YAML como el formato de datos para los metadatos de las páginas y publicaciones de R Markdown, porque R Markdown y **blogdown** son totalmente compatibles solo con YAML\index{YAML}.^[TOML tiene sus ventajas, pero creo que no son significativas en el contexto de los sitios web de Hugo. Es un dolor tener que conocer otro idioma, TOML, cuando YAML significa "Yet Another Markup Language". No estoy seguro de si el cómic XKCD se aplica en este caso: https://xkcd.com/927/.] Si tiene un sitio web que ya ha utilizado TOML, puede usar `blogdown::hugo_convert (unsafe = TRUE)` para convertir los datos de TOML a YAML, pero primero asegúrese de hacer una copia de seguridad del sitio web porque sobrescribirá los archivos de Markdown.
 
-The Hugo documentation does not use TOML or YAML consistently in its examples, which can be confusing. Please pay close attention to the configuration format when copying examples to your own website.
+La documentación de Hugo no utiliza TOML o YAML consistentemente en sus ejemplos, lo que puede ser confuso. Preste mucha atención al formato de configuración al copiar ejemplos en su propio sitio web.
 
-### TOML Syntax
+### Sintaxis TOML
 
-If you are not familiar with the TOML Syntax, we will give a brief overview and you may read the [full documentation](https://github.com/toml-lang/toml) to know the details.
+Si no está familiarizado con la sintaxis de TOML, le daremos una breve descripción general y podrá leer la [documentación completa](https://github.com/toml-lang/toml) para conocer los detalles.
 
-TOML is made up of key-value pairs separated by equal signs:
+TOML se compone de pares clave-valor separados por signos iguales:
 
 ```js
 key = value
 ```
 
-When you want to edit a configuration in the TOML file, simply change the value. Values that are character strings should be in quotes, whereas Boolean values should be lowercase and bare. 
+Cuando desee editar una configuración en el archivo TOML, simplemente cambie el valor. Los valores que son cadenas de caracteres deben estar entre comillas, mientras que los valores booleanos deben estar minúsculos y descubiertos.
 
-For example, if you want to give your website the title "My Awesome Site," and use relative URLs instead of the default absolute URLs, you may have the following entries in your `config.toml` file.
+Por ejemplo, si desea darle a su sitio el título "Mi Sitio Impresionante" y usar URL relativas en lugar de las URL absolutas predeterminadas, puede tener las siguientes entradas en su archivo `config.toml`.
 
 ```js
-title = "My Awesome Site"
+title = "Mi sitio impresionante"
 
 relativeURLs = true
 ```
 
-Most of your website's global variables are entered in the `config.toml` file in exactly this manner. 
+La mayoría de las variables globales de su sitio web se ingresan en el archivo `config.toml` exactamente de esta manera.
 
-Further into your `config` file, you may notice some values in brackets like this:
+Más adelante en su archivo `config`, puede observar algunos valores entre paréntesis como este:
 
 ```js
 [social]
@@ -68,9 +70,9 @@ Further into your `config` file, you may notice some values in brackets like thi
     twitter = "https://twitter.com/rstudio"
 ```
 
-This is a table in the TOML language and Hugo uses them to fill in information on other pages within your site. For instance, the above table will populate the `.Site.Social` variable in your site's templates (more information on this in Section \@ref(templates)).
+Esta es una tabla en el lenguaje TOML y Hugo los usa para completar información en otras páginas dentro de su sitio. Por ejemplo, la tabla anterior rellenará la variable `.Site.Social` en las plantillas de su sitio (más información sobre esto en la sección \@ref(templates)).
 
-Lastly, you may find some values in double brackets like this:
+Por último, puede encontrar algunos valores en corchetes dobles como este:
 
 ```js
 [[menu.main]]
@@ -86,47 +88,47 @@ Lastly, you may find some values in double brackets like this:
     url = "/about/"
 ```
 
-In TOML, double brackets are used to indicate an array of tables. Hugo interprets this information as a menu. If the code above was found in a `config.toml` file, the resulting website would have links to Blog, Categories, and About pages in the site's main menu. The location and styling of that menu are specified elsewhere, but the names of each menu's choices and the links to each section are defined here. 
- 
-The `config.toml` file is different for each theme. Make sure that when you choose a theme, you read its documentation thoroughly to get an understanding of what each of the configuration options does (more on themes in Section \@ref(themes)).
+En TOML, los corchetes dobles se usan para indicar una matriz de tablas. Hugo interpreta esta información como un menú. Si el código anterior se encuentra en un archivo `config.toml`, el sitio web resultante tendrá enlaces a las páginas Blog, Categorías y Acerca de en el menú principal del sitio. La ubicación y el estilo de ese menú se especifican en otra parte, pero aquí se definen los nombres de las opciones de cada menú y los enlaces a cada sección.
 
-### Options
+El archivo `config.toml` es diferente para cada tema. Asegúrese de que cuando elija un tema, lea su documentación a fondo para comprender lo que hace cada una de las opciones de configuración (más sobre los temas en la sección \@ref(temas)).
 
-All built-in options\index{options} that you may set for Hugo are listed at https://gohugo.io/overview/configuration/. You can change any of these options except `contentDir`, which is hard-coded to `content` in **blogdown**. Our general recommendation is that you'd better not modify the defaults unless you understand the consequences. We list a few options that may be of interest to you:
+### Opciones
 
-- `baseURL`: Normally you have to change the value of this option to the base URL\index{baseURL} of your website. Some Hugo themes may have it set to `http://replace-this-with-your-hugo-site.com/` or `http://www.example.com/` in their example sites, but please make sure to replace them with your own URL (see Chapter \@ref(deployment) and Appendix \@ref(domain-name) for more information on publishing websites and obtaining domain names). Note that this option can be a URL with a subpath, if your website is to be published under a subpath of a domain name, e.g., `http://www.example.com/docs/`.
+Todas las opciones incorporadas\index{opciones} que puede establecer para Hugo se enumeran en https://gohugo.io/overview/configuration/. Puede cambiar cualquiera de estas opciones, excepto `contentDir`, que está codificado en `content` en **blogdown**. Nuestra recomendación general es que será mejor que no modifique los valores predeterminados a menos que comprenda las consecuencias. Enumeramos algunas opciones que pueden ser de su interés:
 
-- `enableEmoji`: You\index{Emoji} may set it to `true` so that you can use [Emoji emoticons](http://www.emoji-cheat-sheet.com) like `:smile:` in Markdown.
+- `baseURL`: Normalmente tiene que cambiar el valor de esta opción a la URL base\index{baseURL} de su sitio web. Algunos temas de Hugo pueden tenerlo configurado para `http://replace-this-with-your-hugo-site.com/` o `http://www.example.com/` en sus sitios de ejemplo, pero asegúrese de reemplazarlos con su propia URL (consulte el capítulo \@ref(implementación) y el apéndice \@ref(nombre-de-dominio) para obtener más información sobre la publicación de sitios web y la obtención de nombres de dominio). Tenga en cuenta que esta opción puede ser una URL con un subtrayecto, si su sitio web se publicará en una subruta de un nombre de dominio, e.g., `http://www.example.com/docs/`.
 
-- `permalinks`: Rules to generate permanent links\index{permalinks} of your pages. By default, Hugo uses full filenames under `content/` to generate links, e.g., `content/about.md` will be rendered to `public/about/index.html`, and `content/post/2015-07-23-foo.md` will be rendered to `public/post/2015-07-23-foo/index.html`, so the actual links are `/about/` and `/post/2015-07-23-foo/` on the website. Although it is not required to set custom rules for permanent links, it is common to see links of the form `/YYYY/mm/dd/post-title/`. Hugo allows you to use several pieces of information about a source file to generate a link, such as the date (year, month, and day), title, and filename, etc. The link can be independent of the actual filename. For example, you may ask Hugo to render pages under `content/post/` using the date and title for their links:
+- `enableEmoji`: Puede\index{Emoji} configurarlo en `true` para que pueda usar [Emoticones Emoji ](http://www.emoji-cheat-sheet.com) como `:smile:` en Markdown.
+
+- `permalinks`: Reglas para generar enlaces permanentes\index{permalinks} de sus páginas. Por defecto, Hugo usa nombres de archivos completos bajo `content/` para generar links, e.g., `content/about.md` será renderizado a `public/about/index.html`, y `content/post/2015-07-23-foo.md` será renderizado a `public/post/2015-07-23-foo/index.html`, entonces los enlaces reales son `/about/` y `/post/2015-07-23-foo/` en el sitio web. Aunque no es necesario establecer reglas personalizadas para enlaces permanentes, es común ver enlaces de la forma `/YYYY/mm/dd/post-title/`. Hugo le permite usar varias piezas de información sobre un archivo fuente para generar un enlace, como la fecha (año, mes y día), título y nombre de archivo, etc. El enlace puede ser independiente del nombre del archivo. Por ejemplo, puede pedirle a Hugo que presente páginas bajo `content/post/` usando la fecha y el título de sus enlaces:
 
     ```js
     [permalinks]
         post = "/:year/:month/:day/:title/"
     ```
     
-    Personally, I recommend that you use the\index{Slug} `:slug` variable^[A slug is simply a character string that you can use to identify a specific post. A slug will not change, even if the title changes. For instance, if you decide to change the title of your post from "I love blogdown" to "Why blogdown is the best package ever," and you used the post's title in the URL, your old links will now be broken. If instead, you specified the URL via a slug (something like "blogdown-love"), then you can change the title as many times as you'd like and you will not end up with any broken links.] instead of `:title`:
+    Personalmente, le recomiendo que use la variable \index{Slug} `:slug`^[Una slug es simplemente una cadena de caracteres que puede usar para identificar una publicación específica. Una slug no cambiará, incluso si el título cambia. Por ejemplo, si decide cambiar el título de su publicación de "Me encanta el blogdown" a "Por qué blogdown es el mejor paquete de la historia" y usó el título de la publicación en la URL, sus enlaces anteriores ahora se romperán. Si, en cambio, especifica la URL a través de un slug (algo así como "blogdown-love"), puede cambiar el título tantas veces como quiera y no terminará con enlaces rotos.] En lugar de `:títle`:
     
     ```js
     [permalinks]
         post = "/:year/:month/:day/:slug/"
     ```
     
-    This is because your post title may change, and you probably do not want the link to the post to change, otherwise you have to redirect the old link to the new link, and there will other types of trouble like Disqus comments. The `:slug` variable falls back to `:title` if a field named `slug` is not set in the YAML metadata of the post. You can set a fixed slug so that the link to the post is always fixed and you will have the freedom to update the title of your post.
+    Esto se debe a que el título de su publicación puede cambiar, y es probable que no desee que el enlace a la publicación cambie; de lo contrario, debe redirigir el enlace anterior al nuevo enlace, y habrá otros tipos de problemas, como los comentarios de Disqus. La variable `:slug` vuelve a `:title` si un campo llamado `slug` no está establecido en los metadatos YAML de la publicación. Puede establecer un slug fijo para que el enlace a la publicación siempre sea fijo y tendrá la libertad de actualizar el título de su publicación.
     
-    You may find a list of all possible variables that you can use in the `permalinks` option at https://gohugo.io/extras/permalinks/. 
+    Puede encontrar una lista de todas las posibles variables que usted puede usar en la opción `permalinks` en https://gohugo.io/extras/permalinks/. 
 
-- `publishDir`: The directory under which you want to generate the website.
+- `publishDir`: El directorio bajo el cual quiere generar el sitio web.
 
-- `theme`: The directory name of the Hugo theme under `themes/`.
+- `theme`: El nombre del directorio de Hugo bajo `themes/`.
 
-- `ignoreFiles`: A list of filename patterns (regular expressions) for Hugo to ignore\index{ignoreFiles} certain files when building the site. I recommend that you specify at least these patterns `["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]`. You should ignore `.Rmd` files because **blogdown** will compile them to `.html`, and it suffices for Hugo to use the `.html` files. There is no need for Hugo to build `.Rmd` files, and actually Hugo does not know how. Directories with suffixes `_files` and `_cache` should be ignored because they contain auxiliary files after an Rmd file is compiled, and **blogdown** will store them. Hugo should not copy them again to the `public/` directory.
+- `ignoreFiles`: Una lista de patrones de archivo (expresiones regulares) para Hugo con el fin de que ignore\index{ignoreFiles} ciertos archivos cuando se construye el sitio. Recomiendo que especifique al menos estos patrones `["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]`. Debería ignorar los archivos  `.Rmd` porque **blogdown** los compilará a `.html`, y le basta a Hugo usar los archivos `.html`. No hay necesidad de que Hugo construya archivos `.Rmd`, y actualmente Hugo no sabe cómo. Los directorios con sufijos `_files` y `_cache` deberían ser ignorados porque contienen archivos auxiliares una vez que un archivo Rmd se compila, y **blogdown** los almacenará. Hugo no los debería copiar de nuevo al directorio `public/`.
 
-- `uglyURLs`: By default, Hugo generates "clean" URLs\index{uglyURLs}. This may be a little surprising and requires that you understand how URLs work when your browser fetches a page from a server. Basically, Hugo generates `foo/index.html` for `foo.md` by default instead of `foo.html`, because the former allows you to visit the page via the clean URL `foo/` without `index.html`. Most web servers understand requests like `http://www.example.com/foo/` and will present `index.html` under `foo/` to you. If you prefer the strict mapping from `*.md` to `*.html`, you may enable "ugly" URLs by setting `uglyURLs` to `true`.
+- `uglyURLs`: Por defecto, Hugo genera URLs "limpias"\index {uglyURLs}. Esto puede ser un poco sorprendente y requiere que comprenda cómo funcionan las URL cuando su buscador obtiene una página de un servidor. Básicamente, Hugo genera `foo/index.html` para `foo.md` de forma predeterminada en lugar de `foo.html`, porque el primero le permite visitar la página a través de la URL limpia `foo/` sin `index.html`. La mayoría de los servidores web entienden solicitudes como `http://www.example.com/foo/` y presentan `index.html` bajo `foo/`. Si prefiere el mapeo estricto de `*.md` a `*.html`, puede habilitar las URL "feas" configurando `uglyURLs` en `true`. 
 
-- `hasCJKLanguage`: If your website is primarily in CJK\index{hasCJKLanguage} (Chinese, Korean, and Japanese), I recommend that you set this option to `true`, so that Hugo's automatic summary and word count work better.
+- `hasCJKLanguage`: Si su sitio web se encuentra principalmente en CJK\index{hasCJKLanguage} (chino, coreano y japonés), le recomiendo que configure esta opción en `true`, para que el resumen automático y el recuento de palabras de Hugo funcionen mejor.
 
-Besides the built-in Hugo options, you can set other arbitrary options in `config.toml`. For example, it is very common to see an option named `params`, which is widely used in many Hugo themes. When you see a variable `.Site.Params.FOO` in a Hugo theme, it means an option `FOO` that you set under `[params]` in `config.toml`, e.g., `.Site.Params.author` is `Frida Gomam` with the following config file:
+Además de las opciones incorporadas de Hugo, puede establecer otras opciones arbitrarias en `config.toml`. Por ejemplo, es muy común ver una opción llamada `params`, que se usa ampliamente en muchos temas de Hugo. Cuando vea una variable `.Site.Params.FOO` en un tema de Hugo, significa una opción `FOO` que se establece bajo `[params]` en `config.toml`, por ejemplo, `.Site.Params.author` es `Frida Gomam` con el siguiente archivo de configuración:
 
 ```js
 [params]
@@ -134,11 +136,11 @@ Besides the built-in Hugo options, you can set other arbitrary options in `confi
     dateFormat = "2006/01/02"
 ```
 
-The goal of all these options is to avoid hard-coding anything in Hugo themes, so that users can easily edit a single config file to apply the theme to their websites, instead of going through many HTML files and making changes one by one.
+El objetivo de todas estas opciones es evitar cualquier problema de codificación en los temas de Hugo, de modo que los usuarios puedan editar fácilmente un único archivo de configuración para aplicar el tema a sus sitios web, en lugar de pasar por muchos archivos HTML y realizar cambios uno por uno.
 
-## Content
+## Contenido
 
-The structure of the `content/` directory can be arbitrary. A common structure is that there are a few static pages under the root of `content/`, and a subdirectory `post/` containing blog posts:
+La estructura del directorio `content/` puede ser arbitraria. Una estructura común es que hay algunas páginas estáticas bajo la raíz de `content/`, y un subdirectorio `post/` que contiene publicaciones de blog:
 
 ```bash
 ├── _index.md
@@ -151,27 +153,27 @@ The structure of the `content/` directory can be arbitrary. A common structure i
 └── ...
 ```
 
-### YAML metadata
+### Metadatos YAML
 
-Each page should start with YAML\index{YAML} metadata specifying information like the title, date, author, categories, tags, and so on. Depending on the specific Hugo theme and templates you use, some of these fields may be optional.
+Cada página debe comenzar con los metadatos YAML\index {YAML} que especifican información como el título, la fecha, el autor, las categorías, las etiquetas, etc. Según el tema específico de Hugo y las plantillas que use, algunos de estos campos pueden ser opcionales.
 
-Among all YAML fields, we want to bring these to your attention:
+Entre todos los campos de YAML, queremos llamar su atención sobre estos:
 
-- `draft`: You can mark a document as a draft\index{Draft} by setting `draft: true` in its YAML metadata. Draft posts will not be rendered if the site is built via `blogdown::build_site()` or `blogdown::hugo_build()`, but will be rendered in the local preview mode (see Section \@ref(local-preview)).
+- `draft`: Puede marcar un documento como borrador\index {Borrador} configurando `draft: true` en sus metadatos YAML. Los borradores de mensajes no se mostrarán si el sitio se compila mediante `blogdown::build_site()` o `blogdown::hugo_build ()`, pero se presentarán en el modo de vista previa local (consulte la sección \@ref(local-preview))
 
-- `publishdate`: You may specify a future date\index{Publish Date} to publish a post. Similar to draft posts, future posts are only rendered in the local preview mode.
+- `publishdate`: Puede especificar una fecha futura \index{Publicar fecha} para publicar un post. Al igual que en las publicaciones preliminares, las publicaciones futuras solo se presentan en el modo de vista previa local.
 
-- `weight`: This field can take a numeric value to tell Hugo the order of pages when sorting them\index{Post Weight}, e.g., when you generate a list of all pages under a directory, and two posts have the same date, you may assign different weights to them to get your desired order on the list.
+- `weight`: Este campo puede tomar un valor numérico para indicarle a Hugo el orden de las páginas al ordenarlas \index{Peso del Post}; por ejemplo, cuando genera una lista de todas las páginas debajo de un directorio y dos publicaciones tienen la misma fecha, puede asignar diferentes ponderaciones para obtener el orden deseado en la lista.
 
-- `slug`: A character string as the tail of the URL. It is particularly useful when you define custom rules for permanent URLs (see Section \@ref(options)).
+- `slug`: Una cadena de caracteres como la cola de la URL. Es particularmente útil cuando define reglas personalizadas para URL permanentes (vea la sección \@ref(opciones)).
 
-### Body
+### Cuerpo
 
-As we mentioned in Section \@ref(output-format), your post can be written in either R Markdown or plain Markdown. Please be cautious about the syntax differences between the two formats when you write the body of a post.
+Como mencionamos en la sección \@ref(formato de salida), su publicación puede escribirse en R o Markdown. Tenga cuidado con las diferencias de sintaxis entre los dos formatos cuando escribe el cuerpo de una publicación.
 
-### Shortcode
+### Código corto
 
-Besides all Markdown features, Hugo provides a useful feature named "shortcodes." You can use a shortcode\index{Shortcode} in the body of your post. When Hugo renders the post, it can automatically generate an HTML snippet based on the parameters you pass to the shortcode. This is convenient because you do not have to type or embed a large amount of HTML code in your post. For example, Hugo has a built-in shortcode for embedding Twitter cards. Normally, this is how you embed a Twitter card (Figure \@ref(fig:jtleek-tweet)) on a page:
+Además de todas las características de Markdown, Hugo proporciona una característica útil llamada "códigos abreviados". Puede usar un shortcode\index{Shortcode} en el cuerpo de su publicación. Cuando Hugo presenta la publicación, puede generar automáticamente un fragmento de HTML basado en los parámetros que pasa al código corto. Esto es conveniente porque no tiene que escribir o insertar una gran cantidad de código HTML en su publicación. Por ejemplo, Hugo tiene un código abreviado incorporado para incrustar tarjetas de Twitter. Normalmente, así es como inserta una tarjeta de Twitter (Figura \@ref(fig: jtleek-tweet)) en una página:
 
 ```html
 <blockquote class="twitter-tweet">
@@ -196,15 +198,15 @@ Besides all Markdown features, Hugo provides a useful feature named "shortcodes.
 knitr::include_graphics('images/jtleek-tweet.png')
 ```
 
-If you use the shortcode, all you need in the Markdown source document is:
+Si usa el código abreviado, todo lo que necesita en el documento fuente de reducción es:
 
 ```go
 {{< tweet 852205086956818432 >}}
 ```
 
-Basically, you only need to pass the ID of the tweet to a shortcode named `tweet`. Hugo will fetch the tweet automatically and render the HTML snippet for you. For more about shortcodes, see https://gohugo.io/extras/shortcodes/.
+Básicamente, solo necesita pasar el ID del tweet a un código corto llamado `tweet`. Hugo buscará el tweet automáticamente y renderizará el fragmento de HTML por usted. Para obtener más información sobre los códigos abreviados, consulte https://gohugo.io/extras/shortcodes/.
 
-Shortcodes are supposed to work in plain Markdown documents only. To use shortcodes in R Markdown instead of plain Markdown, you have to call the function `blogdown::shortcode()`, e.g.,
+Se supone que los códigos cortos funcionan solo en documentos de Markdown. Para usar códigos abreviados en R Markdown en lugar de Markdown simple, debe llamar a la función `blogdown::shortcode()`, e.g.,
 
 ````markdown
 `r ''````{r echo=FALSE}
@@ -212,21 +214,21 @@ blogdown::shortcode('tweet', '852205086956818432')
 ```
 ````
 
-## Themes
+## Temas
 
-A Hugo theme\index{Themes} is a collection of template files and optional website assets such as CSS and JavaScript files. In a nutshell, a theme defines what your website looks like after your source content is rendered through the templates.
+Un tema de Hugo\index{Temas} es una colección de plantillas y archivos opcionales del sitio web, como archivos CSS y JavaScript. En pocas palabras, un tema define el aspecto de su sitio web después de que su contenido fuente se presente a través de las plantillas.
 
-Hugo has provided a large number of user-contributed themes at https://themes.gohugo.io. Unless you are an experienced web designer, you'd better start from an existing theme here. The quality and complexity of these themes vary a lot, and you should choose one with caution. For example, you may take a look at the number of stars of a theme repository on GitHub, as well as whether the repository is still relatively active. We do not recommend that you use a theme that has not been updated for more than a year.
+Hugo ha proporcionado una gran cantidad de temas aportados por los usuarios en https://themes.gohugo.io. A menos que sea un diseñador web experimentado, es mejor que comience desde un tema existente aquí. La calidad y la complejidad de estos temas varían mucho, y debe elegir uno con precaución. Por ejemplo, puede ver el número de estrellas de un repositorio de temas en GitHub, así como si el repositorio todavía está relativamente activo. No recomendamos utilizar un tema que no se haya actualizado durante más de un año.
 
-In this section, we will explain how the default theme in **blogdown** works, which may also give you some ideas about how to get started with other themes.
+En esta sección, explicaremos cómo funciona el tema predeterminado en **blogdown**, que también puede brindarle algunas ideas sobre cómo comenzar con otros temas.
 
-### The default theme
+### El tema por defecto
 
-The default theme in **blogdown**, hugo-lithium-theme\index{Hugo Lithium Theme}, is hosted on GitHub at https://github.com/yihui/hugo-lithium-theme. It was originally written by Jonathan Rutheiser, and I have made several changes to it. This theme is suitable for those who prefer minimal styles, and want to build a website with a few pages and some blog posts.
+El tema predeterminado en **blogdown**, hugo-lithium-theme\index{Hugo Lithium Theme}, está alojado en GitHub en https://github.com/yihui/hugo-lithium-theme. Fue escrito originalmente por Jonathan Rutheiser, y he realizado varios cambios en él. Este tema es adecuado para quienes prefieren estilos mínimos y desean crear un sitio web con algunas páginas y algunas publicaciones en el blog.
 
-Typically a theme repository on GitHub has a `README` file, which also serves as the documentation of the theme. After you read it, the next file to look for is `config.toml` under the `exampleSite` directory, which contains sample configurations for a website based on this theme. If a theme does not have a `README` file or `exampleSite` directory, you probably should not use it.
+Normalmente, un repositorio de temas en GitHub tiene un archivo `README`, que también sirve como la documentación del tema. Después de leerlo, el siguiente archivo para buscar es `config.toml` en el directorio `exampleSite`, que contiene configuraciones de muestra para un sitio web basado en este tema. Si un tema no tiene un archivo `README` o` exampleSite`, probablemente no debería usarlo.
 
-The `config.toml` of the theme hugo-lithium-theme contains the following options:
+El `config.toml` del tema hugo-lithium-theme contiene las siguientes opciones:
 
 ```js
 baseurl = "/"
@@ -269,23 +271,23 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown", "_files$", "_cache$"]
     alt = "Logo"
 ```
 
-Some of these options may be obvious to understand, and some may need explanations:
+Algunas de estas opciones pueden ser obvias para comprender, y algunas pueden necesitar explicaciones:
 
-- `baseurl`: You\index{baseURL} can configure this option later, after you have a domain name for your website. Do not forget the trailing slash.
+- `baseurl`: Puede\index{baseURL} configurar esta opción después, después de tener un nombre de dominio para su sitio web. No olvide la barra inclinada.
 
-- `relativeurls`: This is optional. You may want to set it to `true` only if you intend to view your website locally through your file viewer, e.g., double-click on an HTML file and view it in your browser. This option defaults to `false` in Hugo, and it means your website must be viewed through a web server, e.g., `blogdown::serve_site()` has provided a local web server, so you can preview your website locally when `relativeurls = false`.
+- `relativeurls`: Esto es opcional. Puede configurarlo como `true` solo si tiene la intención de ver su sitio web localmente a través de su visor de archivos, por ejemplo, hacer doble clic en un archivo HTML y verlo en su navegador. Esta opción tiene como valor predeterminado `false` en Hugo, y significa que su sitio web debe ser visto a través de un servidor web, por ejemplo, `blogdown::serve_site()` ha proporcionado un servidor web local, por lo que puede obtener una vista previa localmente cuando `relativeurls = false`.
 
-- `title`: The title of your website. Typically this is displayed in a web browser's title bar or on a page tab.
+- `title`: El título de su sitio web. Típicamente esto se muestra en la barra de título del buscador web o sobre una pestaña de página.
 
-- `theme`: The directory name of the theme. You need to be very careful when changing themes, because one theme can be drastically different from another theme in terms of the configurations. It is quite possible that a different theme will not work with your current `config.toml`. Again, you have to read the documentation of a theme to know what options are supported or required.
+- `theme`: El nombre del directorio del tema. Debe tener mucho cuidado al cambiar los temas, porque un tema puede ser drásticamente diferente de otro tema en términos de configuraciones. Es muy posible que un tema diferente no funcione con su `config.toml` actual. De nuevo, debe leer la documentación de un tema para saber qué opciones son compatibles o requeridas.
 
-- `googleAnalytics`: The Google Analytics\index{Google Analytics} tracking ID (like `UA-000000-2`). You can sign up at https://analytics.google.com to obtain a tracking ID.
+- `googleAnalytics`: El ID de seguimiento de Google Analytics\index{Google Analytics} (por ejemplo, `UA-000000-2`). Puede inscribirse en https://analytics.google.com para obtener un IDde seguimiento.
 
-- `disqusShortname`: The Disqus ID\index{Disqus Comments} that you created during the account setup process at https://disqus.com. This is required to enable commenting on your site.^[As we mentioned in Section \@ref(static-sites), **blogdown** generates static and unchanging content. To add something dynamic and always changing (like the ability for your fans to leave comments), you must incorporate an outside commenting system like Disqus.] Please note that you have to set up a functional `baseurl` and publish your website before Disqus comments can work.
+- `disqusShortname`: El ID de Disqus\index{Comentarios de Disqus} que creó durante el proceso de configuración de la cuenta en https://disqus.com. Esto es necesario para habilitar los comentarios en su sitio.^[Como mencionamos en la sección \@ref(sitios estáticos), **blogdown** genera contenido estático e inmutable. Para agregar algo dinámico y siempre cambiante (como la posibilidad de que sus seguidores dejen comentarios), debe incorporar un sistema de comentarios externo como Disqus.] Tenga en cuenta que debe configurar un `baseurl` funcional y publicar su sitio web antes de que los comentarios de Disqus pueda funcionar.
 
-- `ignoreFiles` and `permalinks`: These options have been explained in Section \@ref(options).
+- `ignoreFiles` y `permalinks`: Estas opciones han sido explicadas en la sección \@ref(opciones).
 
-- `menu`: This list of options specifies the text and URL of menu items at the top. See Figure \@ref(fig:lithium) for a sample page. You can change or add more menu items. If you want to order the items, you may assign a `weight` to each item, e.g.,
+- `menu`: Esta lista de opciones especifica el texto y la URL de los elementos del menú en la parte superior. Ver la figura \@ref(fig:lithium) para una página de muestra. Puede cambiar o agregar más elementos de menú. Si desea ordenar los artículos, puede asignar un `peso` a cada artículo, e.g.,
 
     ```js
     [[menu.main]]
@@ -310,21 +312,21 @@ Some of these options may be obvious to understand, and some may need explanatio
         weight = 5
     ```
     
-    In the above example, I added a menu item `CV` with the URL `/vitae/`, and there is supposed to be a corresponding source file `vitae.md` under the `content/` directory to generate the page `/vitae/index.html`, so the link will actually function.
+    En el ejemplo anterior, agregué un elemento de menú `CV` con la URL `/vitae/`, y se supone que hay un archivo fuente correspondiente `vitae.md` debajo del directorio `content/` para generar la página `/vitae/index.html`, por lo que el enlace realmente funcionará.
 
-- `params`: Miscellaneous parameters\index{params} for the theme.
+- `params`: Diversos parámetros\index{params} del tema.
 
-    - `description`: A brief description of your website. It is not visible on web pages (you can only see it from the HTML source), but should give search engines a hint about your website.
+    - `description`: Una breve descripción de su sitio web. No es visible en las páginas web (solo puede verlo desde la fuente HTML), pero debe dar a los motores de búsqueda una pista sobre su sitio web.
     
-    - `highlightjs*`: These options are used to configure the JavaScript library\index{Syntax Highlighting} [highlight.js](https://highlightjs.org) for syntax highlighting of code blocks on the web pages. You can change the version (e.g., `9.12.0`), the CND host (e.g., using [cdnjs](https://cdnjs.com): `//cdnjs.cloudflare.com/ajax/libs`), add more languages (e.g., `["r", "yaml", "tex"]`), and change the theme (e.g., `atom-one-light`). See https://highlightjs.org/static/demo/ for all languages and themes that highlight.js supports.
+    - `highlightjs*`: Estas opciones se usan para configurar las librerías de JavaScript\index{Syntax Highlighting} [highlight.js](https://highlightjs.org) para resaltar la sintaxis de los bloques de código sobre las páginas web. Puede cambiar la versión (e.g., `9.12.0`), el hosto CND (e.g., usando [cdnjs](https://cdnjs.com): `//cdnjs.cloudflare.com/ajax/libs`), agregar más lenguajes (e.g., `["r", "yaml", "tex"]`), y cambiar el tema (e.g., `atom-one-light`). Vea https://highlightjs.org/static/demo/ para todos los lenguajes y temas que highlight.js soporta.
     
-    - `MathJax*`: The JavaScript library MathJax\index{MathJax} can render LaTeX math expressions on web pages. Similar to `highlightjsCDN`, you can specify the CDN host of MathJax, e.g., `//cdnjs.cloudflare.com/ajax/libs`, and you can also specify the version of MathJax.
+    - `MathJax*`: La librería de JavaScript MathJax\index{MathJax} puede renderizar expresiones matemáticas en LaTeX sobre páginas web. De la misma forma que `highlightjsCDN`, puede especificar el host CDN de MathJax, e.g., `//cdnjs.cloudflare.com/ajax/libs`, y puede especificar la versión de MathJax.
     
-    - `logo`: A list of options to define the logo\index{Logo} of the website. By default, the image `logo.png` under the `static/` directory is used.
+    - `logo`: Una lista de opciones para definir el logo\index{Logo} del sitio web. Por defecto, la imagen `logo.png` bajo el directorio `static/` se usa.
 
-If you want to be a theme developer and fully understand all the technical details about these options, you have to understand Hugo templates, which we will introduce in Section \@ref(templates).
+Si quiere ser un desarrollador de temas y comprender completamente todos los detalles técnicos sobre estas opciones, debe comprender las plantillas de Hugo, que presentaremos en la sección \@ref(plantillas).
 
-## Templates
+## Plantillas
 
 A Hugo theme consists of two major components: templates\index{Templates}, and web assets. The former is essential, and tells Hugo how to render a page.^[The most common functionality of templates is to render HTML pages, but there can also be special templates, for example, for RSS feeds and sitemaps, which are XML files.] The latter is optional but also important. It typically consists of CSS and JavaScript files, as well as other assets like images and videos. These assets determine the appearance and functionality of your website, and some may be embedded in the content of your web pages.
 
