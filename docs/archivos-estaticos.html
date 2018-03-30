@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="default-template.html">
-<link rel="next" href="personal-experience.html">
+<link rel="prev" href="layouts-personalizados.html">
+<link rel="next" href="implementacion.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,30 +243,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methods" class="section level2">
-<h2><span class="header-section-number">D.9</span> Different building methods</h2>
-<p>If your website does not contain any Rmd files, it is very straightforward to render it — just a system call to the <code>hugo</code> command. When your website contains Rmd files, <strong>blogdown</strong> has provided two rendering methods to compile these Rmd files. A website can be built using the function <code>blogdown::build_site()</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">build_site</span>(<span class="dt">local =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;custom&quot;</span>),</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2">  <span class="dt">run_hugo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>As mentioned in Section <a href="#global-options"><strong>??</strong></a>, the default value of the <code>method</code> argument is determined by the global option <code>blogdown.method</code>, and you can set this option in <code>.Rprofile</code>.</p>
-<p>For <code>method = 'html'</code>, <code>build_site()</code> renders <code>*.Rmd</code> to <code>*.html</code>, and <code>*.Rmarkdown</code> to <code>*.markdown</code>, and keeps the <code>*.html</code>/<code>*.markdown</code> output files under the same directory as <code>*.Rmd</code>/<code>*.Rmarkdown</code> files.</p>
-<p>An Rmd file may generate two directories for figures (<code>*_files/</code>) and cache (<code>*_cache/</code>), respectively, if you have plot output or HTML widgets <span class="citation">(Vaidyanathan et al. <a href="#ref-R-htmlwidgets">2018</a>)</span> in your R code chunks, or enabled the chunk option <code>cache = TRUE</code> for caching. In the figure directory, there will be a subdirectory <code>figure-html/</code> that contains your plot output files, and possibly other subdirectories containing HTML dependencies from HTML widgets (e.g., <code>jquery/</code>). The figure directory is moved to <code>/static/</code>, and the cache directory is moved to <code>/blogdown/</code>.</p>
-<p>After you run <code>build_site()</code>, your website is ready to be compiled by Hugo. This gives you the freedom to use deploying services like Netlify (Chapter <a href="#deployment"><strong>??</strong></a>), where neither R nor <strong>blogdown</strong> is available, but Hugo is.</p>
-<p>For <code>method = 'custom'</code>, <code>build_site()</code> will not process any R Markdown files, nor will it call Hugo to build the site. No matter which method you choose to use, <code>build_site()</code> will always look for an R script <code>/R/build.R</code> and execute it if it exists. This gives you the complete freedom to do anything you want for the website. For example, you can call <code>knitr::knit()</code> to compile Rmd to Markdown (<code>*.md</code>) in this R script instead of using <code>rmarkdown::render()</code>. This feature is designed for advanced users who are really familiar with the <strong>knitr</strong> package<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> and Hugo or other static website generators (see Chapter <a href="other-generators.html#other-generators">5</a>).</p>
-<p>When <code>R/build.R</code> exists and <code>method = 'html'</code>, the R Markdown files are knitted first, then the script <code>R/build.R</code> is executed, and lastly Hugo is called to build the website.</p>
+<div id="archivos-estaticos" class="section level2">
+<h2><span class="header-section-number">2.7</span> Archivos estáticos</h2>
+<p>Todos los archivos bajo el directorio <code>static/</code> se copian a <code>public/</code> cuando Hugo procesa un sitio web. Este directorio se usa a menudo para almacenar archivos web estáticos como imágenes, CSS y archivos de JavaScript. Por ejemplo, una imagen <code>static/foo/bar.png</code> se puede incrustar en su publicación usando la sintaxis Markdown <code>![](/foo/bar.png)</code>.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
+<p>Por lo general, un tema tiene una carpeta <code>static/</code>, y puede anular parcialmente sus archivos utilizando el mismo mecanismo que reemplaza a los <code>layouts/</code> archivos, es decir, <code>static/file</code> anulará <code>themes/theme-name/static/file</code> . En el tema XMin, tengo dos archivos CSS <code>style.css</code> y <code>fonts.css</code>. El primero es la hoja de estilo principal, y el último es un archivo bastante pequeño para definir tipos de letra solamente. Es posible que desee definir sus propios tipos de letra, y solo puede proporcionar un <code>static/css/fonts.css</code> para anular el del tema, por ejemplo,</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb61-1" data-line-number="1">body {</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">  <span class="kw">font-family</span>: <span class="st">&quot;Comic Sans MS&quot;</span>, <span class="dv">cursive</span>, <span class="dv">sans-serif</span>;</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb61-4" data-line-number="4">code {</a>
+<a class="sourceLine" id="cb61-5" data-line-number="5">  <span class="kw">font-family</span>: <span class="st">&quot;Courier New&quot;</span>, Courier, <span class="dv">monospace</span>;</a>
+<a class="sourceLine" id="cb61-6" data-line-number="6">}</a></code></pre></div>
+<p>Para los usuarios de R Markdown, otra aplicación importante del directorio <code>static/</code> es construir documentos Rmd con formatos de salida personalizados, es decir, documentos Rmd que no utilizan el formato <code>blogdown::html_page()</code> (ver sección <a href="#formatos-de-salida"><strong>??</strong></a>). Por ejemplo, puede generar un PDF o presentaciones de documentos Rmd en este directorio, para que Hugo no los postprocesa, sino que simplemente los copie en <code>public/</code> para su publicación. Para compilar estos archivos Rmd, debe proporcionar un script de compilación personalizado <code>R/build.R</code> (consulte la sección <a href="#métodos"><strong>??</strong></a>). Puede escribir una sola línea de código en este script:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">blogdown<span class="op">::</span><span class="kw">build_dir</span>(<span class="st">&quot;static&quot;</span>)</a></code></pre></div>
+<p>La función <code>build_dir()</code> busca todos los archivos Rmd bajo un directorio y llama a <code>rmarkdown::render()</code> para compilarlos en los formatos de salida especificados en los metadatos YAML de los archivos Rmd. Si sus archivos Rmd no se deben presentar con una simple llamada <code>rmarkdown::render()</code>, puede proporcionar su propio código para presentarlos en <code>R/build.R</code>. Hay un mecanismo de caché integrado en la función <code>dir_desarrollo()</code>: un archivo Rmd no se compilará si es anterior a su archivo(s) de salida. Si no desea este comportamiento, puede obligar a todos los archivos Rmd a volver a compilarse cada vez: <code>build_dir(force = TRUE)</code>.</p>
+<p>He proporcionado un ejemplo mínimo en el repositorio de GitHub <a href="https://github.com/yihui/blogdown-static">yihui/blogdown-static,</a> donde puede encontrar dos ejemplos de Rmd en el directorio <code>static/</code>. Una es una presentación HTML5 basada en el paquete <strong>xaringan</strong>, y la otra es un documento PDF basado en <strong>bookdown</strong>.</p>
+<p>Debe tener precaución con los archivos arbitrarios en <code>static/</code>, debido al mecanismo predominante de Hugo. Es decir, todo en <code>static/</code> se copiará en <code>public/</code>. Debe asegurarse de que los archivos que procesa en <code>static/</code> no entrarán en conflicto con los archivos generados automáticamente por Hugo a partir de <code>content/</code>. Por ejemplo, si tiene un archivo fuente <code>content/about.md</code> y un archivo Rmd <code>static/about/index.Rmd</code> al mismo tiempo, el resultado HTML de este último sobrescribirá el anterior (tanto Hugo como usted generarán un archivo de salida con el mismo nombre <code>public/about/index.html</code>).</p>
 
 </div>
 <!-- </div> -->
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-htmlwidgets">
-<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
-</div>
-</div>
 <div class="footnotes">
 <hr />
-<ol start="46">
-<li id="fn46"><p>Honestly, it was originally designed for Yihui himself to build his own website, but he realized this feature could actually free users from Hugo. For example, it is possible to use Jekyll (another popular static site generator) with <strong>blogdown</strong>, too.<a href="methods.html#fnref46" class="footnote-back">↩</a></p></li>
+<ol start="27">
+<li id="fn27"><p>El enlace de la imagen depende de su configuración <code>baseurl</code> en <code>config.toml</code>. Si no contiene un subtrayecto, <code>/foo/bar.png</code> será el enlace de la imagen; de lo contrario, tendrá que ajustarlo, por ejemplo, para <code>baseurl = &quot;http://example.com/subpath/&quot;</code>, el enlace a la imagen debe ser <code>/subpath/foo/bar.png</code>.<a href="archivos-estaticos.html#fnref27" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -274,8 +272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="default-template.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="personal-experience.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="layouts-personalizados.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="implementacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -305,7 +303,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown02-hugo.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

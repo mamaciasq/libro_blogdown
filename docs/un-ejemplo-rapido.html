@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="default-template.html">
-<link rel="next" href="personal-experience.html">
+<link rel="prev" href="instalacion.html">
+<link rel="next" href="rstudio-ide.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,30 +243,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methods" class="section level2">
-<h2><span class="header-section-number">D.9</span> Different building methods</h2>
-<p>If your website does not contain any Rmd files, it is very straightforward to render it — just a system call to the <code>hugo</code> command. When your website contains Rmd files, <strong>blogdown</strong> has provided two rendering methods to compile these Rmd files. A website can be built using the function <code>blogdown::build_site()</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">build_site</span>(<span class="dt">local =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;custom&quot;</span>),</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2">  <span class="dt">run_hugo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>As mentioned in Section <a href="#global-options"><strong>??</strong></a>, the default value of the <code>method</code> argument is determined by the global option <code>blogdown.method</code>, and you can set this option in <code>.Rprofile</code>.</p>
-<p>For <code>method = 'html'</code>, <code>build_site()</code> renders <code>*.Rmd</code> to <code>*.html</code>, and <code>*.Rmarkdown</code> to <code>*.markdown</code>, and keeps the <code>*.html</code>/<code>*.markdown</code> output files under the same directory as <code>*.Rmd</code>/<code>*.Rmarkdown</code> files.</p>
-<p>An Rmd file may generate two directories for figures (<code>*_files/</code>) and cache (<code>*_cache/</code>), respectively, if you have plot output or HTML widgets <span class="citation">(Vaidyanathan et al. <a href="#ref-R-htmlwidgets">2018</a>)</span> in your R code chunks, or enabled the chunk option <code>cache = TRUE</code> for caching. In the figure directory, there will be a subdirectory <code>figure-html/</code> that contains your plot output files, and possibly other subdirectories containing HTML dependencies from HTML widgets (e.g., <code>jquery/</code>). The figure directory is moved to <code>/static/</code>, and the cache directory is moved to <code>/blogdown/</code>.</p>
-<p>After you run <code>build_site()</code>, your website is ready to be compiled by Hugo. This gives you the freedom to use deploying services like Netlify (Chapter <a href="#deployment"><strong>??</strong></a>), where neither R nor <strong>blogdown</strong> is available, but Hugo is.</p>
-<p>For <code>method = 'custom'</code>, <code>build_site()</code> will not process any R Markdown files, nor will it call Hugo to build the site. No matter which method you choose to use, <code>build_site()</code> will always look for an R script <code>/R/build.R</code> and execute it if it exists. This gives you the complete freedom to do anything you want for the website. For example, you can call <code>knitr::knit()</code> to compile Rmd to Markdown (<code>*.md</code>) in this R script instead of using <code>rmarkdown::render()</code>. This feature is designed for advanced users who are really familiar with the <strong>knitr</strong> package<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> and Hugo or other static website generators (see Chapter <a href="other-generators.html#other-generators">5</a>).</p>
-<p>When <code>R/build.R</code> exists and <code>method = 'html'</code>, the R Markdown files are knitted first, then the script <code>R/build.R</code> is executed, and lastly Hugo is called to build the website.</p>
-
+<div id="un-ejemplo-rapido" class="section level2">
+<h2><span class="header-section-number">1.2</span> Un ejemplo rápido</h2>
+<p>Según nuestra experiencia, la documentación de Hugo puede ser un poco desalentadora para leer y digerir para principiantes.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Por ejemplo, su guía de “Inicio rápido” solía tener 12 pasos, y usted puede perderse fácilmente si no ha utilizado un generador de sitio web estático antes. Para <strong>blogdown</strong>, esperamos que los usuarios de todos los niveles al menos puedan comenzar lo más rápido posible. Hay muchas cosas que puede desear modificar para el sitio web más adelante, pero el primer paso es bastante simple: crear un nuevo proyecto en un directorio nuevo en RStudio IDE (<code>File -&gt; New Project</code>) y llamar a la función en la consola de R del nuevo proyecto:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">blogdown<span class="op">::</span><span class="kw">new_site</span>()</a></code></pre></div>
+<p>Luego espere a que esta función cree un sitio nuevo, descargue el tema predeterminado, agregue algunas publicaciones de muestra, ábralas, cree el sitio y ejecútelo en RStudio Viewer, para que pueda obtener una vista previa de inmediato. Si no usa RStudio IDE, necesita asegurarse de que se encuentra actualmente en un directorio vacío,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> en cuyo caso <code>new_site()</code> hará lo mismo, pero el sitio web se lanzará en su navegador web en lugar de RStudio Viewer.</p>
+<p>Ahora debería ver un grupo de directorios y archivos en el proyecto RStudio o en su directorio de trabajo actual. Antes de explicar estos nuevos directorios y archivos, primero introduzcamos una tecnología importante y útil: <em>LiveReload.</em> Esto significa que su sitio web<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Se reconstruirá y volverá a cargar automáticamente en su navegador web<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> Cuando modifique cualquier archivo fuente de su sitio web y lo guarde. Básicamente, una vez que inicie el sitio web en un navegador web, ya no necesita volver a generarlo explícitamente. Todo lo que necesita hacer es editar los archivos fuente, como los documentos R Markdown, y guardarlos. No es necesario hacer clic en ningún botón ni ejecutar ningún comando. LiveReload se implementa a través de <code>blogdown::serve_site()</code>, que está basado en el paquete de R <strong>servr</strong> <span class="citation">(Xie <a href="#ref-R-servr">2018</a><a href="#ref-R-servr">c</a>)</span> de manera predeterminada.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>La función <code>new_site()</code> tiene varios argumentos, y puede revisar su página de ayuda de R (<code>?blogdown::new_site</code>) para más detalles. Un tema predeterminado mínimo llamado “hugo-lithium-theme” se proporciona como el tema predeterminado del nuevo sitio,<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> Y se puede ver cómo se ve en Figure <a href="un-ejemplo-rapido.html#fig:lithium">1.1</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:lithium"></span>
+<img src="images/lithium-theme.png" alt="La página de inicio del nuevo sitio por defecto." width="90%" />
+<p class="caption">
+FIGURA 1.1: La página de inicio del nuevo sitio por defecto.
+</p>
 </div>
-<!-- </div> -->
+<p>Tiene que saber tres conceptos más básicos para un sitio web basado en Hugo:</p>
+<ol style="list-style-type: decimal">
+<li><p>El archivo de configuración <code>config.toml</code>, en el que puede especificar algunas configuraciones globales para su sitio. Incluso si no sabe qué es TOML en este momento (se presentará en el capítulo <a href="hugo.html#hugo">2</a>), aún podrá cambiar algunas configuraciones obvias. Por ejemplo, puede ver configuraciones como estas en <code>config.toml</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb6-1" data-line-number="1">baseurl <span class="op">=</span> <span class="st">&quot;/&quot;</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">languageCode <span class="op">=</span> <span class="st">&quot;en-us&quot;</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">title <span class="op">=</span> <span class="st">&quot;A Hugo website&quot;</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">theme <span class="op">=</span> <span class="st">&quot;hugo-lithium-theme&quot;</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">    name <span class="op">=</span> <span class="st">&quot;About&quot;</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb6-10" data-line-number="10">    name <span class="op">=</span> <span class="st">&quot;GitHub&quot;</span></a>
+<a class="sourceLine" id="cb6-11" data-line-number="11">    url <span class="op">=</span> <span class="st">&quot;https://github.com/rstudio/blogdown&quot;</span></a>
+<a class="sourceLine" id="cb6-12" data-line-number="12">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb6-13" data-line-number="13">    name <span class="op">=</span> <span class="st">&quot;Twitter&quot;</span></a>
+<a class="sourceLine" id="cb6-14" data-line-number="14">    url <span class="op">=</span> <span class="st">&quot;https://twitter.com/rstudio&quot;</span></a></code></pre></div>
+<p>Puede cambiar el título de la página web, e.g., <code>title = &quot;Mi propia página web chévere&quot;</code>, y actualizar las URL de GitHub y Twitter.</p></li>
+<li><p>El directorio de contenido (por defecto, <code>content/</code>). Aquí es donde usted escribe los archivos de origen R Markdown o Markdown para sus publicaciones y páginas. Bajo <code>content/</code> del sitio predeterminado, puede ver <code>about.md</code> y un directorio<code>post/</code> que contiene algunas publicaciones. La organización del directorio de contenido depende de usted. Puede tener archivos y directorios arbitrarios allí, según la estructura del sitio web que desee.</p></li>
+<li><p>El directorio de publicación (por defecto, <code>public/</code>). Su sitio web se generará en este directorio, lo que significa que no necesita agregar manualmente ningún archivo a este directorio.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> Por lo general, contiene una gran cantidad de archivos <code>*.html</code> y dependencias como <code>*.css</code>, <code>*.js</code> e imágenes. Puede cargar todo en <code>public/</code> a cualquier servidor web que pueda publicar sitios web estáticos, y su sitio web estará en funcionamiento. Hay muchas opciones para publicar sitios web estáticos, y hablaremos más sobre ellos en el capítulo <a href="#implementación"><strong>??</strong></a> si no está familiarizado con la implementación de sitios web.</p></li>
+</ol>
+<p>Si está satisfecho con este tema predeterminado, ¡está básicamente listo para comenzar a escribir y publicar su nuevo sitio web! Mostraremos cómo usar otros temas en la sección <a href="otros-temas.html#otros-temas">1.6</a>. Sin embargo, tenga en cuenta que un tema más complicado y elegante puede requerir que aprenda más sobre todas las tecnologías subyacentes, como el lenguaje de plantillas de Hugo, HTML, CSS y JavaScript.</p>
+</div>
 <h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-R-htmlwidgets">
-<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
+<div id="ref-R-servr">
+<p>Xie, Yihui. 2018c. <em>Servr: A Simple Http Server to Serve Static Files or Dynamic Documents</em>. <a href="https://CRAN.R-project.org/package=servr" class="uri">https://CRAN.R-project.org/package=servr</a>.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="46">
-<li id="fn46"><p>Honestly, it was originally designed for Yihui himself to build his own website, but he realized this feature could actually free users from Hugo. For example, it is possible to use Jekyll (another popular static site generator) with <strong>blogdown</strong>, too.<a href="methods.html#fnref46" class="footnote-back">↩</a></p></li>
+<ol start="2">
+<li id="fn2"><p>Un día Yihui estaba casi listo para suicidarme cuando intentaba averiguar cómo funciona <code>_index.md</code> leyendo la documentación una y otra vez, y buscando desesperadamente en el foro de Hugo.<a href="un-ejemplo-rapido.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>En R, compruebe la salida de <code>list.files('.')</code> y asegúrese de que no incluya archivos distintos a <code>LICENSE</code>, el archivo de proyecto de RStudio (<code>*.Rproj</code>), <code>README</code> o <code>README.md</code>.<a href="un-ejemplo-rapido.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Hasta que configure su sitio web para ser implementado, LiveReload solo actualiza la versión <em>local</em> de su sitio web. Esta versión solo es visible para usted. Para que su sitio web pueda buscarse, descubrirse y vivir en Internet, tendrá que cargar los archivos de su sitio web en un creador de sitios. Consulte el capítulo <a href="#implementación"><strong>??</strong></a> para obtener más detalles.<a href="un-ejemplo-rapido.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>También puede pensar en RStudio Viewer como un navegador web.<a href="un-ejemplo-rapido.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Hugo tiene su propia implementación LiveReload. Si desea aprovecharlo, puede establecer la opción global <code>options(blogdown.generator.server = TRUE)</code>. Ver la sección<a href="livereload.html#livereload">D.2</a> para más información.<a href="un-ejemplo-rapido.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>Puede encontrar su código fuente en GitHub: <a href="https://github.com/yihui/hugo-lithium-theme" class="uri">https://github.com/yihui/hugo-lithium-theme</a>. Este tema se bifurcó de <a href="https://github.com/jrutheiser/hugo-lithium-theme" class="uri">https://github.com/jrutheiser/hugo-lithium-theme</a> y se modificó para que funcione mejor con <strong>blogdown</strong>.<a href="un-ejemplo-rapido.html#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>Ejecutando <code>serve_site()</code> o <code>build_site()</code>, los archivos se generarán y publicarán en su directorio de publicación automáticamente.<a href="un-ejemplo-rapido.html#fnref8" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -274,8 +302,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="default-template.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="personal-experience.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="instalacion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rstudio-ide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -305,7 +333,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown01-introduction.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

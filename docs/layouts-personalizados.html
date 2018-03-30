@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="default-template.html">
-<link rel="next" href="personal-experience.html">
+<link rel="prev" href="plantillas.html">
+<link rel="next" href="archivos-estaticos.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,30 +243,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methods" class="section level2">
-<h2><span class="header-section-number">D.9</span> Different building methods</h2>
-<p>If your website does not contain any Rmd files, it is very straightforward to render it — just a system call to the <code>hugo</code> command. When your website contains Rmd files, <strong>blogdown</strong> has provided two rendering methods to compile these Rmd files. A website can be built using the function <code>blogdown::build_site()</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">build_site</span>(<span class="dt">local =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;custom&quot;</span>),</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2">  <span class="dt">run_hugo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>As mentioned in Section <a href="#global-options"><strong>??</strong></a>, the default value of the <code>method</code> argument is determined by the global option <code>blogdown.method</code>, and you can set this option in <code>.Rprofile</code>.</p>
-<p>For <code>method = 'html'</code>, <code>build_site()</code> renders <code>*.Rmd</code> to <code>*.html</code>, and <code>*.Rmarkdown</code> to <code>*.markdown</code>, and keeps the <code>*.html</code>/<code>*.markdown</code> output files under the same directory as <code>*.Rmd</code>/<code>*.Rmarkdown</code> files.</p>
-<p>An Rmd file may generate two directories for figures (<code>*_files/</code>) and cache (<code>*_cache/</code>), respectively, if you have plot output or HTML widgets <span class="citation">(Vaidyanathan et al. <a href="#ref-R-htmlwidgets">2018</a>)</span> in your R code chunks, or enabled the chunk option <code>cache = TRUE</code> for caching. In the figure directory, there will be a subdirectory <code>figure-html/</code> that contains your plot output files, and possibly other subdirectories containing HTML dependencies from HTML widgets (e.g., <code>jquery/</code>). The figure directory is moved to <code>/static/</code>, and the cache directory is moved to <code>/blogdown/</code>.</p>
-<p>After you run <code>build_site()</code>, your website is ready to be compiled by Hugo. This gives you the freedom to use deploying services like Netlify (Chapter <a href="#deployment"><strong>??</strong></a>), where neither R nor <strong>blogdown</strong> is available, but Hugo is.</p>
-<p>For <code>method = 'custom'</code>, <code>build_site()</code> will not process any R Markdown files, nor will it call Hugo to build the site. No matter which method you choose to use, <code>build_site()</code> will always look for an R script <code>/R/build.R</code> and execute it if it exists. This gives you the complete freedom to do anything you want for the website. For example, you can call <code>knitr::knit()</code> to compile Rmd to Markdown (<code>*.md</code>) in this R script instead of using <code>rmarkdown::render()</code>. This feature is designed for advanced users who are really familiar with the <strong>knitr</strong> package<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> and Hugo or other static website generators (see Chapter <a href="other-generators.html#other-generators">5</a>).</p>
-<p>When <code>R/build.R</code> exists and <code>method = 'html'</code>, the R Markdown files are knitted first, then the script <code>R/build.R</code> is executed, and lastly Hugo is called to build the website.</p>
-
-</div>
-<!-- </div> -->
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-htmlwidgets">
-<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
-</div>
+<div id="layouts-personalizados" class="section level2">
+<h2><span class="header-section-number">2.6</span> Layouts personalizados</h2>
+<p>Es muy probable que desee personalizar un tema a menos que lo haya diseñado. La forma más directa es simplemente hacer cambios directamente en el tema,<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> Pero el problema es que un tema de Hugo puede ser actualizado constantemente por su autor original para mejoras o correcciones de errores. De manera similar a la política “la rompes, la compras” (la <a href="https://en.wikipedia.org/wiki/Pottery_Barn_rule">regla de Pottery Barn</a>), una vez que toca el código fuente de otra persona, será responsable de su mantenimiento futuro, y el autor original no debería ser responsable de los cambios que haya realizado de su lado. Eso significa que puede no ser fácil extraer actualizaciones futuras de este tema a su sitio web (debe leer cuidadosamente los cambios y asegurarse de que no entren en conflicto con sus cambios), pero si está completamente satisfecho con el estado actual del tema y no quiere actualizaciones futuras, está bien modificar los archivos de tema directamente.</p>
+<p>Un autor de tema que tenga en cuenta el hecho de que los usuarios pueden personalizar su tema generalmente proporcionará dos maneras: una es proporcionar opciones en <code>config.toml</code>, para que pueda cambiar estas opciones sin tocar los archivos de la plantilla; la otra es dejar unos pocos archivos de plantilla livianos en ‘layouts/’ en el tema, para que pueda anularlos sin tocar los archivos de la plantilla principal. Tome el tema XMin por ejemplo:</p>
+<p>Tengo dos archivos HTML vacíos <code>head_custom.html</code> y <code>foot_custom.html</code> en <code>layouts/partials/</code> en el tema. El primero se agregará dentro de <code>&lt;head&gt; &lt;/head&gt;</code> de una página, por ejemplo, puede cargar librerías de JavaScript o incluir hojas de estilo CSS mediante <code>&lt;link&gt;</code>. Este último se agregará antes del pie de página de una página, por ejemplo, puede cargar librerías de JavaScript adicionales o incrustar comentarios de Disqus allí.</p>
+<p>La forma en que personaliza estos dos archivos no es para editarlos directamente en la carpeta de temas, sino para crear un directorio <code>layouts/partials/</code> en el directorio raíz de su sitio web, por ejemplo, su estructura de directorios puede verse así:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="ex">your-website/</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">├── <span class="ex">config.toml</span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3">├── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4">├── <span class="ex">themes/</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5">│   └── <span class="ex">hugo-xmin/</span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6">│       ├── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb60-7" data-line-number="7">│       └── <span class="ex">layouts/</span></a>
+<a class="sourceLine" id="cb60-8" data-line-number="8">│           ├── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb60-9" data-line-number="9">│           └── <span class="ex">partials</span></a>
+<a class="sourceLine" id="cb60-10" data-line-number="10">│               ├── <span class="ex">foot_custom.html</span></a>
+<a class="sourceLine" id="cb60-11" data-line-number="11">│               ├── <span class="ex">footer.html</span></a>
+<a class="sourceLine" id="cb60-12" data-line-number="12">│               ├── <span class="ex">head_custom.html</span></a>
+<a class="sourceLine" id="cb60-13" data-line-number="13">│               └── <span class="ex">header.html</span></a>
+<a class="sourceLine" id="cb60-14" data-line-number="14">└── <span class="ex">layouts</span></a>
+<a class="sourceLine" id="cb60-15" data-line-number="15">    └── <span class="ex">partials</span></a>
+<a class="sourceLine" id="cb60-16" data-line-number="16">        ├── <span class="ex">foot_custom.html</span></a>
+<a class="sourceLine" id="cb60-17" data-line-number="17">        └── <span class="ex">head_custom.html</span></a></code></pre></div>
+<p>Todos los archivos en <code>layouts/</code> en el directorio raíz anularán los archivos con las mismas rutas relativas en <code>themes/hugo-xmin/layouts/</code>, por ejemplo, el archivo <code>layouts/partials/foot_custom.html</code>, cuando se proporcione, anulará <code>themes/hugo-xmin/layouts/partials/foot_custom.html</code>. Eso significa que solo necesita crear y mantener como máximo dos archivos en <code>layouts/</code> en lugar de mantener todos los archivos bajo <code>themes/</code>. Tenga en cuenta que este mecanismo de anulación se aplica a todos los archivos en <code>layouts/</code>, y no está limitado al directorio <code>parials/</code>. También se aplica a cualquier tema de Hugo que utilice realmente para su sitio web, y no se limita a <code>hugo-xmin</code>.</p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="46">
-<li id="fn46"><p>Honestly, it was originally designed for Yihui himself to build his own website, but he realized this feature could actually free users from Hugo. For example, it is possible to use Jekyll (another popular static site generator) with <strong>blogdown</strong>, too.<a href="methods.html#fnref46" class="footnote-back">↩</a></p></li>
+<ol start="26">
+<li id="fn26"><p>Si es nuevo en el desarrollo web, tenga cuidado de cambiar el contenido dentro del tema. Pequeños cambios como colores y tamaños de fuente se pueden encontrar dentro de los archivos CSS del tema y pueden modificarse simplemente con el mínimo riesgo de romper la funcionalidad del tema.<a href="layouts-personalizados.html#fnref26" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -274,8 +279,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="default-template.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="personal-experience.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plantillas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="archivos-estaticos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -305,7 +310,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown02-hugo.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

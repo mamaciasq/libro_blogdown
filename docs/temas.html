@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="default-template.html">
-<link rel="next" href="personal-experience.html">
+<link rel="prev" href="contenido.html">
+<link rel="next" href="plantillas.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,30 +243,100 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methods" class="section level2">
-<h2><span class="header-section-number">D.9</span> Different building methods</h2>
-<p>If your website does not contain any Rmd files, it is very straightforward to render it — just a system call to the <code>hugo</code> command. When your website contains Rmd files, <strong>blogdown</strong> has provided two rendering methods to compile these Rmd files. A website can be built using the function <code>blogdown::build_site()</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">build_site</span>(<span class="dt">local =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;custom&quot;</span>),</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2">  <span class="dt">run_hugo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>As mentioned in Section <a href="#global-options"><strong>??</strong></a>, the default value of the <code>method</code> argument is determined by the global option <code>blogdown.method</code>, and you can set this option in <code>.Rprofile</code>.</p>
-<p>For <code>method = 'html'</code>, <code>build_site()</code> renders <code>*.Rmd</code> to <code>*.html</code>, and <code>*.Rmarkdown</code> to <code>*.markdown</code>, and keeps the <code>*.html</code>/<code>*.markdown</code> output files under the same directory as <code>*.Rmd</code>/<code>*.Rmarkdown</code> files.</p>
-<p>An Rmd file may generate two directories for figures (<code>*_files/</code>) and cache (<code>*_cache/</code>), respectively, if you have plot output or HTML widgets <span class="citation">(Vaidyanathan et al. <a href="#ref-R-htmlwidgets">2018</a>)</span> in your R code chunks, or enabled the chunk option <code>cache = TRUE</code> for caching. In the figure directory, there will be a subdirectory <code>figure-html/</code> that contains your plot output files, and possibly other subdirectories containing HTML dependencies from HTML widgets (e.g., <code>jquery/</code>). The figure directory is moved to <code>/static/</code>, and the cache directory is moved to <code>/blogdown/</code>.</p>
-<p>After you run <code>build_site()</code>, your website is ready to be compiled by Hugo. This gives you the freedom to use deploying services like Netlify (Chapter <a href="#deployment"><strong>??</strong></a>), where neither R nor <strong>blogdown</strong> is available, but Hugo is.</p>
-<p>For <code>method = 'custom'</code>, <code>build_site()</code> will not process any R Markdown files, nor will it call Hugo to build the site. No matter which method you choose to use, <code>build_site()</code> will always look for an R script <code>/R/build.R</code> and execute it if it exists. This gives you the complete freedom to do anything you want for the website. For example, you can call <code>knitr::knit()</code> to compile Rmd to Markdown (<code>*.md</code>) in this R script instead of using <code>rmarkdown::render()</code>. This feature is designed for advanced users who are really familiar with the <strong>knitr</strong> package<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> and Hugo or other static website generators (see Chapter <a href="other-generators.html#other-generators">5</a>).</p>
-<p>When <code>R/build.R</code> exists and <code>method = 'html'</code>, the R Markdown files are knitted first, then the script <code>R/build.R</code> is executed, and lastly Hugo is called to build the website.</p>
-
-</div>
-<!-- </div> -->
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-htmlwidgets">
-<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
+<div id="temas" class="section level2">
+<h2><span class="header-section-number">2.4</span> Temas</h2>
+<p>Un tema de Hugo es una colección de plantillas y archivos opcionales del sitio web, como archivos CSS y JavaScript. En pocas palabras, un tema define el aspecto de su sitio web después de que su contenido fuente se presente a través de las plantillas.</p>
+<p>Hugo ha proporcionado una gran cantidad de temas aportados por los usuarios en <a href="https://themes.gohugo.io" class="uri">https://themes.gohugo.io</a>. A menos que sea un diseñador web experimentado, es mejor que comience desde un tema existente aquí. La calidad y la complejidad de estos temas varían mucho, y debe elegir uno con precaución. Por ejemplo, puede ver el número de estrellas de un repositorio de temas en GitHub, así como si el repositorio todavía está relativamente activo. No recomendamos utilizar un tema que no se haya actualizado durante más de un año.</p>
+<p>En esta sección, explicaremos cómo funciona el tema predeterminado en <strong>blogdown</strong>, que también puede brindarle algunas ideas sobre cómo comenzar con otros temas.</p>
+<div id="el-tema-por-defecto" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> El tema por defecto</h3>
+<p>El tema predeterminado en <strong>blogdown</strong>, hugo-lithium-theme, está alojado en GitHub en <a href="https://github.com/yihui/hugo-lithium-theme" class="uri">https://github.com/yihui/hugo-lithium-theme</a>. Fue escrito originalmente por Jonathan Rutheiser, y he realizado varios cambios en él. Este tema es adecuado para quienes prefieren estilos mínimos y desean crear un sitio web con algunas páginas y algunas publicaciones en el blog.</p>
+<p>Normalmente, un repositorio de temas en GitHub tiene un archivo <code>README</code>, que también sirve como la documentación del tema. Después de leerlo, el siguiente archivo para buscar es <code>config.toml</code> en el directorio <code>exampleSite</code>, que contiene configuraciones de muestra para un sitio web basado en este tema. Si un tema no tiene un archivo <code>README</code> o<code>exampleSite</code>, probablemente no debería usarlo.</p>
+<p>El <code>config.toml</code> del tema hugo-lithium-theme contiene las siguientes opciones:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb27-1" data-line-number="1">baseurl <span class="op">=</span> <span class="st">&quot;/&quot;</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">relativeurls <span class="op">=</span> <span class="kw">false</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">languageCode <span class="op">=</span> <span class="st">&quot;en-us&quot;</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">title <span class="op">=</span> <span class="st">&quot;A Hugo website&quot;</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">theme <span class="op">=</span> <span class="st">&quot;hugo-lithium-theme&quot;</span></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">googleAnalytics <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">disqusShortname <span class="op">=</span> <span class="st">&quot;&quot;</span></a>
+<a class="sourceLine" id="cb27-8" data-line-number="8">ignoreFiles <span class="op">=</span> [<span class="st">&quot;</span><span class="sc">\\</span><span class="st">.Rmd$&quot;</span><span class="op">,</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.Rmarkdown&quot;</span><span class="op">,</span> <span class="st">&quot;_files$&quot;</span><span class="op">,</span> <span class="st">&quot;_cache$&quot;</span>]</a>
+<a class="sourceLine" id="cb27-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb27-10" data-line-number="10">[permalinks]</a>
+<a class="sourceLine" id="cb27-11" data-line-number="11">    post <span class="op">=</span> <span class="st">&quot;/:year/:month/:day/:slug/&quot;</span></a>
+<a class="sourceLine" id="cb27-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb27-13" data-line-number="13">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb27-14" data-line-number="14">    name <span class="op">=</span> <span class="st">&quot;About&quot;</span></a>
+<a class="sourceLine" id="cb27-15" data-line-number="15">    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span></a>
+<a class="sourceLine" id="cb27-16" data-line-number="16">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb27-17" data-line-number="17">    name <span class="op">=</span> <span class="st">&quot;GitHub&quot;</span></a>
+<a class="sourceLine" id="cb27-18" data-line-number="18">    url <span class="op">=</span> <span class="st">&quot;https://github.com/rstudio/blogdown&quot;</span></a>
+<a class="sourceLine" id="cb27-19" data-line-number="19">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb27-20" data-line-number="20">    name <span class="op">=</span> <span class="st">&quot;Twitter&quot;</span></a>
+<a class="sourceLine" id="cb27-21" data-line-number="21">    url <span class="op">=</span> <span class="st">&quot;https://twitter.com/rstudio&quot;</span></a>
+<a class="sourceLine" id="cb27-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb27-23" data-line-number="23">[params]</a>
+<a class="sourceLine" id="cb27-24" data-line-number="24">    description <span class="op">=</span> <span class="st">&quot;A website built through Hugo and blogdown.&quot;</span></a>
+<a class="sourceLine" id="cb27-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb27-26" data-line-number="26">    highlightjsVersion <span class="op">=</span> <span class="st">&quot;9.11.0&quot;</span></a>
+<a class="sourceLine" id="cb27-27" data-line-number="27">    highlightjsCDN <span class="op">=</span> <span class="st">&quot;//cdn.bootcss.com&quot;</span></a>
+<a class="sourceLine" id="cb27-28" data-line-number="28">    highlightjsLang <span class="op">=</span> [<span class="st">&quot;r&quot;</span><span class="op">,</span> <span class="st">&quot;yaml&quot;</span>]</a>
+<a class="sourceLine" id="cb27-29" data-line-number="29">    highlightjsTheme <span class="op">=</span> <span class="st">&quot;github&quot;</span></a>
+<a class="sourceLine" id="cb27-30" data-line-number="30"></a>
+<a class="sourceLine" id="cb27-31" data-line-number="31">    MathJaxCDN <span class="op">=</span> <span class="st">&quot;//cdn.bootcss.com&quot;</span></a>
+<a class="sourceLine" id="cb27-32" data-line-number="32">    MathJaxVersion <span class="op">=</span> <span class="st">&quot;2.7.1&quot;</span></a>
+<a class="sourceLine" id="cb27-33" data-line-number="33"></a>
+<a class="sourceLine" id="cb27-34" data-line-number="34">[<span class="va">params</span>.<span class="at">logo</span>]</a>
+<a class="sourceLine" id="cb27-35" data-line-number="35">    url <span class="op">=</span> <span class="st">&quot;logo.png&quot;</span></a>
+<a class="sourceLine" id="cb27-36" data-line-number="36">    width <span class="op">=</span> <span class="dv">50</span></a>
+<a class="sourceLine" id="cb27-37" data-line-number="37">    height <span class="op">=</span> <span class="dv">50</span></a>
+<a class="sourceLine" id="cb27-38" data-line-number="38">    alt <span class="op">=</span> <span class="st">&quot;Logo&quot;</span></a></code></pre></div>
+<p>Algunas de estas opciones pueden ser obvias para comprender, y algunas pueden necesitar explicaciones:</p>
+<ul>
+<li><p><code>baseurl</code>: Puede configurar esta opción después, después de tener un nombre de dominio para su sitio web. No olvide la barra inclinada.</p></li>
+<li><p><code>relativeurls</code>: Esto es opcional. Puede configurarlo como <code>true</code> solo si tiene la intención de ver su sitio web localmente a través de su visor de archivos, por ejemplo, hacer doble clic en un archivo HTML y verlo en su navegador. Esta opción tiene como valor predeterminado <code>false</code> en Hugo, y significa que su sitio web debe ser visto a través de un servidor web, por ejemplo, <code>blogdown::serve_site()</code> ha proporcionado un servidor web local, por lo que puede obtener una vista previa localmente cuando <code>relativeurls = false</code>.</p></li>
+<li><p><code>title</code>: El título de su sitio web. Típicamente esto se muestra en la barra de título del buscador web o sobre una pestaña de página.</p></li>
+<li><p><code>theme</code>: El nombre del directorio del tema. Debe tener mucho cuidado al cambiar los temas, porque un tema puede ser drásticamente diferente de otro tema en términos de configuraciones. Es muy posible que un tema diferente no funcione con su <code>config.toml</code> actual. De nuevo, debe leer la documentación de un tema para saber qué opciones son compatibles o requeridas.</p></li>
+<li><p><code>googleAnalytics</code>: El ID de seguimiento de Google Analytics (por ejemplo, <code>UA-000000-2</code>). Puede inscribirse en <a href="https://analytics.google.com" class="uri">https://analytics.google.com</a> para obtener un IDde seguimiento.</p></li>
+<li><p><code>disqusShortname</code>: El ID de Disqus que creó durante el proceso de configuración de la cuenta en <a href="https://disqus.com" class="uri">https://disqus.com</a>. Esto es necesario para habilitar los comentarios en su sitio.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> Tenga en cuenta que debe configurar un <code>baseurl</code> funcional y publicar su sitio web antes de que los comentarios de Disqus pueda funcionar.</p></li>
+<li><p><code>ignoreFiles</code> y <code>permalinks</code>: Estas opciones han sido explicadas en la sección <a href="configuracion.html#opciones">2.2.2</a>.</p></li>
+<li><p><code>menu</code>: Esta lista de opciones especifica el texto y la URL de los elementos del menú en la parte superior. Ver la figura <a href="un-ejemplo-rapido.html#fig:lithium">1.1</a> para una página de muestra. Puede cambiar o agregar más elementos de menú. Si desea ordenar los artículos, puede asignar un <code>peso</code> a cada artículo, e.g.,</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb28-1" data-line-number="1">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">    name <span class="op">=</span> <span class="st">&quot;Home&quot;</span></a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">    url <span class="op">=</span> <span class="st">&quot;/&quot;</span></a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">    weight <span class="op">=</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">    name <span class="op">=</span> <span class="st">&quot;About&quot;</span></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span></a>
+<a class="sourceLine" id="cb28-8" data-line-number="8">    weight <span class="op">=</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb28-9" data-line-number="9">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">    name <span class="op">=</span> <span class="st">&quot;GitHub&quot;</span></a>
+<a class="sourceLine" id="cb28-11" data-line-number="11">    url <span class="op">=</span> <span class="st">&quot;https://github.com/rstudio/blogdown&quot;</span></a>
+<a class="sourceLine" id="cb28-12" data-line-number="12">    weight <span class="op">=</span> <span class="dv">3</span></a>
+<a class="sourceLine" id="cb28-13" data-line-number="13">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb28-14" data-line-number="14">    name <span class="op">=</span> <span class="st">&quot;CV&quot;</span></a>
+<a class="sourceLine" id="cb28-15" data-line-number="15">    url <span class="op">=</span> <span class="st">&quot;/vitae/&quot;</span></a>
+<a class="sourceLine" id="cb28-16" data-line-number="16">    weight <span class="op">=</span> <span class="dv">4</span></a>
+<a class="sourceLine" id="cb28-17" data-line-number="17">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb28-18" data-line-number="18">    name <span class="op">=</span> <span class="st">&quot;Twitter&quot;</span></a>
+<a class="sourceLine" id="cb28-19" data-line-number="19">    url <span class="op">=</span> <span class="st">&quot;https://twitter.com/rstudio&quot;</span></a>
+<a class="sourceLine" id="cb28-20" data-line-number="20">    weight <span class="op">=</span> <span class="dv">5</span></a></code></pre></div>
+<p>En el ejemplo anterior, agregué un elemento de menú <code>CV</code> con la URL <code>/vitae/</code>, y se supone que hay un archivo fuente correspondiente <code>vitae.md</code> debajo del directorio <code>content/</code> para generar la página <code>/vitae/index.html</code>, por lo que el enlace realmente funcionará.</p></li>
+<li><p><code>params</code>: Diversos parámetros del tema.</p>
+<ul>
+<li><p><code>description</code>: Una breve descripción de su sitio web. No es visible en las páginas web (solo puede verlo desde la fuente HTML), pero debe dar a los motores de búsqueda una pista sobre su sitio web.</p></li>
+<li><p><code>highlightjs*</code>: Estas opciones se usan para configurar las librerías de JavaScript <a href="https://highlightjs.org">highlight.js</a> para resaltar la sintaxis de los bloques de código sobre las páginas web. Puede cambiar la versión (e.g., <code>9.12.0</code>), el hosto CND (e.g., usando <a href="https://cdnjs.com">cdnjs</a>: <code>//cdnjs.cloudflare.com/ajax/libs</code>), agregar más lenguajes (e.g., <code>[&quot;r&quot;, &quot;yaml&quot;, &quot;tex&quot;]</code>), y cambiar el tema (e.g., <code>atom-one-light</code>). Vea <a href="https://highlightjs.org/static/demo/" class="uri">https://highlightjs.org/static/demo/</a> para todos los lenguajes y temas que highlight.js soporta.</p></li>
+<li><p><code>MathJax*</code>: La librería de JavaScript MathJax puede renderizar expresiones matemáticas en LaTeX sobre páginas web. De la misma forma que <code>highlightjsCDN</code>, puede especificar el host CDN de MathJax, e.g., <code>//cdnjs.cloudflare.com/ajax/libs</code>, y puede especificar la versión de MathJax.</p></li>
+<li><p><code>logo</code>: Una lista de opciones para definir el logo del sitio web. Por defecto, la imagen <code>logo.png</code> bajo el directorio <code>static/</code> se usa.</p></li>
+</ul></li>
+</ul>
+<p>Si quiere ser un desarrollador de temas y comprender completamente todos los detalles técnicos sobre estas opciones, debe comprender las plantillas de Hugo, que presentaremos en la sección <a href="plantillas.html#plantillas">2.5</a>.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="46">
-<li id="fn46"><p>Honestly, it was originally designed for Yihui himself to build his own website, but he realized this feature could actually free users from Hugo. For example, it is possible to use Jekyll (another popular static site generator) with <strong>blogdown</strong>, too.<a href="methods.html#fnref46" class="footnote-back">↩</a></p></li>
+<ol start="23">
+<li id="fn23"><p>Como mencionamos en la sección @ref(sitios estáticos), <strong>blogdown</strong> genera contenido estático e inmutable. Para agregar algo dinámico y siempre cambiante (como la posibilidad de que sus seguidores dejen comentarios), debe incorporar un sistema de comentarios externo como Disqus.<a href="temas.html#fnref23" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -274,8 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="default-template.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="personal-experience.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="contenido.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="plantillas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -305,7 +375,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown02-hugo.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

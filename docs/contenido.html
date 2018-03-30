@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="default-template.html">
-<link rel="next" href="personal-experience.html">
+<link rel="prev" href="configuracion.html">
+<link rel="next" href="temas.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,39 +243,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methods" class="section level2">
-<h2><span class="header-section-number">D.9</span> Different building methods</h2>
-<p>If your website does not contain any Rmd files, it is very straightforward to render it — just a system call to the <code>hugo</code> command. When your website contains Rmd files, <strong>blogdown</strong> has provided two rendering methods to compile these Rmd files. A website can be built using the function <code>blogdown::build_site()</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">build_site</span>(<span class="dt">local =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;custom&quot;</span>),</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2">  <span class="dt">run_hugo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>As mentioned in Section <a href="#global-options"><strong>??</strong></a>, the default value of the <code>method</code> argument is determined by the global option <code>blogdown.method</code>, and you can set this option in <code>.Rprofile</code>.</p>
-<p>For <code>method = 'html'</code>, <code>build_site()</code> renders <code>*.Rmd</code> to <code>*.html</code>, and <code>*.Rmarkdown</code> to <code>*.markdown</code>, and keeps the <code>*.html</code>/<code>*.markdown</code> output files under the same directory as <code>*.Rmd</code>/<code>*.Rmarkdown</code> files.</p>
-<p>An Rmd file may generate two directories for figures (<code>*_files/</code>) and cache (<code>*_cache/</code>), respectively, if you have plot output or HTML widgets <span class="citation">(Vaidyanathan et al. <a href="#ref-R-htmlwidgets">2018</a>)</span> in your R code chunks, or enabled the chunk option <code>cache = TRUE</code> for caching. In the figure directory, there will be a subdirectory <code>figure-html/</code> that contains your plot output files, and possibly other subdirectories containing HTML dependencies from HTML widgets (e.g., <code>jquery/</code>). The figure directory is moved to <code>/static/</code>, and the cache directory is moved to <code>/blogdown/</code>.</p>
-<p>After you run <code>build_site()</code>, your website is ready to be compiled by Hugo. This gives you the freedom to use deploying services like Netlify (Chapter <a href="#deployment"><strong>??</strong></a>), where neither R nor <strong>blogdown</strong> is available, but Hugo is.</p>
-<p>For <code>method = 'custom'</code>, <code>build_site()</code> will not process any R Markdown files, nor will it call Hugo to build the site. No matter which method you choose to use, <code>build_site()</code> will always look for an R script <code>/R/build.R</code> and execute it if it exists. This gives you the complete freedom to do anything you want for the website. For example, you can call <code>knitr::knit()</code> to compile Rmd to Markdown (<code>*.md</code>) in this R script instead of using <code>rmarkdown::render()</code>. This feature is designed for advanced users who are really familiar with the <strong>knitr</strong> package<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> and Hugo or other static website generators (see Chapter <a href="other-generators.html#other-generators">5</a>).</p>
-<p>When <code>R/build.R</code> exists and <code>method = 'html'</code>, the R Markdown files are knitted first, then the script <code>R/build.R</code> is executed, and lastly Hugo is called to build the website.</p>
-
+<div id="contenido" class="section level2">
+<h2><span class="header-section-number">2.3</span> Contenido</h2>
+<p>La estructura del directorio <code>content/</code> puede ser arbitraria. Una estructura común es que hay algunas páginas estáticas bajo la raíz de <code>content/</code>, y un subdirectorio <code>post/</code> que contiene publicaciones de blog:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb23-1" data-line-number="1">├── <span class="ex">_index.md</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">├── <span class="ex">about.md</span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3">├── <span class="ex">vitae.md</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">├── <span class="ex">post/</span></a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">│   ├── <span class="ex">2017-01-01-foo.md</span></a>
+<a class="sourceLine" id="cb23-6" data-line-number="6">│   ├── <span class="ex">2017-01-02-bar.md</span></a>
+<a class="sourceLine" id="cb23-7" data-line-number="7">│   └── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb23-8" data-line-number="8">└── <span class="ex">...</span></a></code></pre></div>
+<div id="metadatos-yaml" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Metadatos YAML</h3>
+<p>Cada página debe comenzar con los metadatos YAML que especifican información como el título, la fecha, el autor, las categorías, las etiquetas, etc. Según el tema específico de Hugo y las plantillas que use, algunos de estos campos pueden ser opcionales.</p>
+<p>Entre todos los campos de YAML, queremos llamar su atención sobre estos:</p>
+<ul>
+<li><p><code>draft</code>: Puede marcar un documento como borrador configurando <code>draft: true</code> en sus metadatos YAML. Los borradores de mensajes no se mostrarán si el sitio se compila mediante <code>blogdown::build_site()</code> o <code>blogdown::hugo_build ()</code>, pero se presentarán en el modo de vista previa local (consulte la sección <a href="local-preview.html#local-preview">D.3</a>)</p></li>
+<li><p><code>publishdate</code>: Puede especificar una fecha futura  para publicar un post. Al igual que en las publicaciones preliminares, las publicaciones futuras solo se presentan en el modo de vista previa local.</p></li>
+<li><p><code>weight</code>: Este campo puede tomar un valor numérico para indicarle a Hugo el orden de las páginas al ordenarlas ; por ejemplo, cuando genera una lista de todas las páginas debajo de un directorio y dos publicaciones tienen la misma fecha, puede asignar diferentes ponderaciones para obtener el orden deseado en la lista.</p></li>
+<li><p><code>slug</code>: Una cadena de caracteres como la cola de la URL. Es particularmente útil cuando define reglas personalizadas para URL permanentes (vea la sección <a href="configuracion.html#opciones">2.2.2</a>).</p></li>
+</ul>
 </div>
-<!-- </div> -->
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-htmlwidgets">
-<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
+<div id="cuerpo" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Cuerpo</h3>
+<p>Como mencionamos en la sección @ref(formato de salida), su publicación puede escribirse en R o Markdown. Tenga cuidado con las diferencias de sintaxis entre los dos formatos cuando escribe el cuerpo de una publicación.</p>
 </div>
+<div id="codigo-corto" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Código corto</h3>
+<p>Además de todas las características de Markdown, Hugo proporciona una característica útil llamada “códigos abreviados”. Puede usar un shortcode en el cuerpo de su publicación. Cuando Hugo presenta la publicación, puede generar automáticamente un fragmento de HTML basado en los parámetros que pasa al código corto. Esto es conveniente porque no tiene que escribir o insertar una gran cantidad de código HTML en su publicación. Por ejemplo, Hugo tiene un código abreviado incorporado para incrustar tarjetas de Twitter. Normalmente, así es como inserta una tarjeta de Twitter (Figura @ref(fig: jtleek-tweet)) en una página:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">&lt;blockquote</span><span class="ot"> class=</span><span class="st">&quot;twitter-tweet&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">  <span class="kw">&lt;p</span><span class="ot"> lang=</span><span class="st">&quot;en&quot;</span><span class="ot"> dir=</span><span class="st">&quot;ltr&quot;</span><span class="kw">&gt;</span>Anyone know of an R package for</a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">    interfacing with Alexa Skills?</a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://twitter.com/thosjleeper&quot;</span><span class="kw">&gt;</span>@thosjleeper<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://twitter.com/xieyihui&quot;</span><span class="kw">&gt;</span>@xieyihui<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://twitter.com/drob&quot;</span><span class="kw">&gt;</span>@drob<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb24-7" data-line-number="7">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://twitter.com/JennyBryan&quot;</span><span class="kw">&gt;</span>@JennyBryan<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb24-8" data-line-number="8">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://twitter.com/HoloMarkeD&quot;</span><span class="kw">&gt;</span>@HoloMarkeD<span class="kw">&lt;/a&gt;</span> ?</a>
+<a class="sourceLine" id="cb24-9" data-line-number="9">  <span class="kw">&lt;/p&gt;</span></a>
+<a class="sourceLine" id="cb24-10" data-line-number="10">  <span class="dv">&amp;mdash;</span> Jeff Leek (@jtleek)</a>
+<a class="sourceLine" id="cb24-11" data-line-number="11">  <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://twitter.com/jtleek/status/852205086956818432&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb24-12" data-line-number="12">    April 12, 2017</a>
+<a class="sourceLine" id="cb24-13" data-line-number="13">  <span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb24-14" data-line-number="14"><span class="kw">&lt;/blockquote&gt;</span></a>
+<a class="sourceLine" id="cb24-15" data-line-number="15"><span class="kw">&lt;script</span><span class="ot"> async src=</span><span class="st">&quot;//platform.twitter.com/widgets.js&quot;</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb24-16" data-line-number="16"><span class="kw">&lt;/script&gt;</span></a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:jtleek-tweet"></span>
+<img src="images/jtleek-tweet.png" alt="A tweet by Jeff Leek." width="80%" />
+<p class="caption">
+FIGURA 2.2: A tweet by Jeff Leek.
+</p>
 </div>
-<div class="footnotes">
-<hr />
-<ol start="46">
-<li id="fn46"><p>Honestly, it was originally designed for Yihui himself to build his own website, but he realized this feature could actually free users from Hugo. For example, it is possible to use Jekyll (another popular static site generator) with <strong>blogdown</strong>, too.<a href="methods.html#fnref46" class="footnote-back">↩</a></p></li>
-</ol>
+<p>Si usa el código abreviado, todo lo que necesita en el documento fuente de reducción es:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode go"><code class="sourceCode go"><a class="sourceLine" id="cb25-1" data-line-number="1">{{&lt; tweet <span class="dv">852205086956818432</span> &gt;}}</a></code></pre></div>
+<p>Básicamente, solo necesita pasar el ID del tweet a un código corto llamado <code>tweet</code>. Hugo buscará el tweet automáticamente y renderizará el fragmento de HTML por usted. Para obtener más información sobre los códigos abreviados, consulte <a href="https://gohugo.io/extras/shortcodes/" class="uri">https://gohugo.io/extras/shortcodes/</a>.</p>
+<p>Se supone que los códigos cortos funcionan solo en documentos de Markdown. Para usar códigos abreviados en R Markdown en lugar de Markdown simple, debe llamar a la función <code>blogdown::shortcode()</code>, e.g.,</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb26-1" data-line-number="1">```{r echo=FALSE}</a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">blogdown::shortcode(&#39;tweet&#39;, &#39;852205086956818432&#39;)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">```</a></code></pre></div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="default-template.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="personal-experience.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="configuracion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="temas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -305,7 +339,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown02-hugo.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

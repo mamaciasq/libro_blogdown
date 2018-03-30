@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="default-template.html">
-<link rel="next" href="personal-experience.html">
+<link rel="prev" href="static-sites.html">
+<link rel="next" href="contenido.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,30 +243,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methods" class="section level2">
-<h2><span class="header-section-number">D.9</span> Different building methods</h2>
-<p>If your website does not contain any Rmd files, it is very straightforward to render it — just a system call to the <code>hugo</code> command. When your website contains Rmd files, <strong>blogdown</strong> has provided two rendering methods to compile these Rmd files. A website can be built using the function <code>blogdown::build_site()</code>:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">build_site</span>(<span class="dt">local =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;custom&quot;</span>),</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2">  <span class="dt">run_hugo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p>As mentioned in Section <a href="#global-options"><strong>??</strong></a>, the default value of the <code>method</code> argument is determined by the global option <code>blogdown.method</code>, and you can set this option in <code>.Rprofile</code>.</p>
-<p>For <code>method = 'html'</code>, <code>build_site()</code> renders <code>*.Rmd</code> to <code>*.html</code>, and <code>*.Rmarkdown</code> to <code>*.markdown</code>, and keeps the <code>*.html</code>/<code>*.markdown</code> output files under the same directory as <code>*.Rmd</code>/<code>*.Rmarkdown</code> files.</p>
-<p>An Rmd file may generate two directories for figures (<code>*_files/</code>) and cache (<code>*_cache/</code>), respectively, if you have plot output or HTML widgets <span class="citation">(Vaidyanathan et al. <a href="#ref-R-htmlwidgets">2018</a>)</span> in your R code chunks, or enabled the chunk option <code>cache = TRUE</code> for caching. In the figure directory, there will be a subdirectory <code>figure-html/</code> that contains your plot output files, and possibly other subdirectories containing HTML dependencies from HTML widgets (e.g., <code>jquery/</code>). The figure directory is moved to <code>/static/</code>, and the cache directory is moved to <code>/blogdown/</code>.</p>
-<p>After you run <code>build_site()</code>, your website is ready to be compiled by Hugo. This gives you the freedom to use deploying services like Netlify (Chapter <a href="#deployment"><strong>??</strong></a>), where neither R nor <strong>blogdown</strong> is available, but Hugo is.</p>
-<p>For <code>method = 'custom'</code>, <code>build_site()</code> will not process any R Markdown files, nor will it call Hugo to build the site. No matter which method you choose to use, <code>build_site()</code> will always look for an R script <code>/R/build.R</code> and execute it if it exists. This gives you the complete freedom to do anything you want for the website. For example, you can call <code>knitr::knit()</code> to compile Rmd to Markdown (<code>*.md</code>) in this R script instead of using <code>rmarkdown::render()</code>. This feature is designed for advanced users who are really familiar with the <strong>knitr</strong> package<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> and Hugo or other static website generators (see Chapter <a href="other-generators.html#other-generators">5</a>).</p>
-<p>When <code>R/build.R</code> exists and <code>method = 'html'</code>, the R Markdown files are knitted first, then the script <code>R/build.R</code> is executed, and lastly Hugo is called to build the website.</p>
-
+<div id="configuracion" class="section level2">
+<h2><span class="header-section-number">2.2</span> Configuración</h2>
+<p>El primer archivo que puede ver es el archivo configuration o <code>config</code> en su directorio raíz, en el que puede establecer configuraciones globales de su sitio. Puede contener opciones como el título y la descripción de su sitio, así como otras opciones globales como enlaces a sus redes sociales, el menú de navegación y la URL base de su sitio web.</p>
+<p>Al generar su sitio, Hugo buscará primero un archivo llamado <code>config.toml</code>. Si no puede encontrar uno, continuará buscando <code>config.yaml</code>.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> Como la mayoría de los temas de Hugo contienen sitios de ejemplo que envían archivos <code>config.toml</code>, y el formato TOML (Tom’s Obvious, Minimal Language) parece ser más popular en la comunidad de Hugo, hablaremos principalmente de <code>config.toml</code> aquí.</p>
+<p>Recomendamos que utilice la sintaxis TOML solo para el archivo de configuración (también puede usar YAML si lo prefiere), y use YAML como el formato de datos para los metadatos de las páginas y publicaciones de R Markdown, porque R Markdown y <strong>blogdown</strong> son totalmente compatibles solo con YAML.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> Si tiene un sitio web que ya ha utilizado TOML, puede usar <code>blogdown::hugo_convert (unsafe = TRUE)</code> para convertir los datos de TOML a YAML, pero primero asegúrese de hacer una copia de seguridad del sitio web porque sobrescribirá los archivos de Markdown.</p>
+<p>La documentación de Hugo no utiliza TOML o YAML consistentemente en sus ejemplos, lo que puede ser confuso. Preste mucha atención al formato de configuración al copiar ejemplos en su propio sitio web.</p>
+<div id="sintaxis-toml" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Sintaxis TOML</h3>
+<p>Si no está familiarizado con la sintaxis de TOML, le daremos una breve descripción general y podrá leer la <a href="https://github.com/toml-lang/toml">documentación completa</a> para conocer los detalles.</p>
+<p>TOML se compone de pares clave-valor separados por signos iguales:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb16-1" data-line-number="1">key <span class="op">=</span> value</a></code></pre></div>
+<p>Cuando desee editar una configuración en el archivo TOML, simplemente cambie el valor. Los valores que son cadenas de caracteres deben estar entre comillas, mientras que los valores booleanos deben estar minúsculos y descubiertos.</p>
+<p>Por ejemplo, si desea darle a su sitio el título “Mi Sitio Impresionante” y usar URL relativas en lugar de las URL absolutas predeterminadas, puede tener las siguientes entradas en su archivo <code>config.toml</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb17-1" data-line-number="1">title <span class="op">=</span> <span class="st">&quot;Mi sitio impresionante&quot;</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3">relativeURLs <span class="op">=</span> <span class="kw">true</span></a></code></pre></div>
+<p>La mayoría de las variables globales de su sitio web se ingresan en el archivo <code>config.toml</code> exactamente de esta manera.</p>
+<p>Más adelante en su archivo <code>config</code>, puede observar algunos valores entre paréntesis como este:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb18-1" data-line-number="1">[social]</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">    github  <span class="op">=</span> <span class="st">&quot;https://github.com/rstudio/blogdown&quot;</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">    twitter <span class="op">=</span> <span class="st">&quot;https://twitter.com/rstudio&quot;</span></a></code></pre></div>
+<p>Esta es una tabla en el lenguaje TOML y Hugo los usa para completar información en otras páginas dentro de su sitio. Por ejemplo, la tabla anterior rellenará la variable <code>.Site.Social</code> en las plantillas de su sitio (más información sobre esto en la sección <a href="#templates"><strong>??</strong></a>).</p>
+<p>Por último, puede encontrar algunos valores en corchetes dobles como este:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb19-1" data-line-number="1">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">    name <span class="op">=</span> <span class="st">&quot;Blog&quot;</span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">    url <span class="op">=</span> <span class="st">&quot;/blog/&quot;</span></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">    name <span class="op">=</span> <span class="st">&quot;Categories&quot;</span></a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">    url <span class="op">=</span> <span class="st">&quot;/categories/&quot;</span></a>
+<a class="sourceLine" id="cb19-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10">    name <span class="op">=</span> <span class="st">&quot;About&quot;</span></a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span></a></code></pre></div>
+<p>En TOML, los corchetes dobles se usan para indicar una matriz de tablas. Hugo interpreta esta información como un menú. Si el código anterior se encuentra en un archivo <code>config.toml</code>, el sitio web resultante tendrá enlaces a las páginas Blog, Categorías y Acerca de en el menú principal del sitio. La ubicación y el estilo de ese menú se especifican en otra parte, pero aquí se definen los nombres de las opciones de cada menú y los enlaces a cada sección.</p>
+<p>El archivo <code>config.toml</code> es diferente para cada tema. Asegúrese de que cuando elija un tema, lea su documentación a fondo para comprender lo que hace cada una de las opciones de configuración (más sobre los temas en la sección <a href="temas.html#temas">2.4</a>).</p>
 </div>
-<!-- </div> -->
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-R-htmlwidgets">
-<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
+<div id="opciones" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Opciones</h3>
+<p>Todas las opciones incorporadas que puede establecer para Hugo se enumeran en <a href="https://gohugo.io/overview/configuration/" class="uri">https://gohugo.io/overview/configuration/</a>. Puede cambiar cualquiera de estas opciones, excepto <code>contentDir</code>, que está codificado en <code>content</code> en <strong>blogdown</strong>. Nuestra recomendación general es que será mejor que no modifique los valores predeterminados a menos que comprenda las consecuencias. Enumeramos algunas opciones que pueden ser de su interés:</p>
+<ul>
+<li><p><code>baseURL</code>: Normalmente tiene que cambiar el valor de esta opción a la URL base de su sitio web. Algunos temas de Hugo pueden tenerlo configurado para <code>http://replace-this-with-your-hugo-site.com/</code> o <code>http://www.example.com/</code> en sus sitios de ejemplo, pero asegúrese de reemplazarlos con su propia URL (consulte el capítulo <a href="#implementación"><strong>??</strong></a> y el apéndice <a href="#nombre-de-dominio"><strong>??</strong></a> para obtener más información sobre la publicación de sitios web y la obtención de nombres de dominio). Tenga en cuenta que esta opción puede ser una URL con un subtrayecto, si su sitio web se publicará en una subruta de un nombre de dominio, e.g., <code>http://www.example.com/docs/</code>.</p></li>
+<li><p><code>enableEmoji</code>: Puede configurarlo en <code>true</code> para que pueda usar <a href="http://www.emoji-cheat-sheet.com">Emoticones Emoji</a> como <code>:smile:</code> en Markdown.</p></li>
+<li><p><code>permalinks</code>: Reglas para generar enlaces permanentes de sus páginas. Por defecto, Hugo usa nombres de archivos completos bajo <code>content/</code> para generar links, e.g., <code>content/about.md</code> será renderizado a <code>public/about/index.html</code>, y <code>content/post/2015-07-23-foo.md</code> será renderizado a <code>public/post/2015-07-23-foo/index.html</code>, entonces los enlaces reales son <code>/about/</code> y <code>/post/2015-07-23-foo/</code> en el sitio web. Aunque no es necesario establecer reglas personalizadas para enlaces permanentes, es común ver enlaces de la forma <code>/YYYY/mm/dd/post-title/</code>. Hugo le permite usar varias piezas de información sobre un archivo fuente para generar un enlace, como la fecha (año, mes y día), título y nombre de archivo, etc. El enlace puede ser independiente del nombre del archivo. Por ejemplo, puede pedirle a Hugo que presente páginas bajo <code>content/post/</code> usando la fecha y el título de sus enlaces:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb20-1" data-line-number="1">[permalinks]</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">    post <span class="op">=</span> <span class="st">&quot;/:year/:month/:day/:title/&quot;</span></a></code></pre></div>
+<p>Personalmente, le recomiendo que use la variable  <code>:slug</code><a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> En lugar de <code>:títle</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb21-1" data-line-number="1">[permalinks]</a>
+<a class="sourceLine" id="cb21-2" data-line-number="2">    post <span class="op">=</span> <span class="st">&quot;/:year/:month/:day/:slug/&quot;</span></a></code></pre></div>
+<p>Esto se debe a que el título de su publicación puede cambiar, y es probable que no desee que el enlace a la publicación cambie; de lo contrario, debe redirigir el enlace anterior al nuevo enlace, y habrá otros tipos de problemas, como los comentarios de Disqus. La variable <code>:slug</code> vuelve a <code>:title</code> si un campo llamado <code>slug</code> no está establecido en los metadatos YAML de la publicación. Puede establecer un slug fijo para que el enlace a la publicación siempre sea fijo y tendrá la libertad de actualizar el título de su publicación.</p>
+<p>Puede encontrar una lista de todas las posibles variables que usted puede usar en la opción <code>permalinks</code> en <a href="https://gohugo.io/extras/permalinks/" class="uri">https://gohugo.io/extras/permalinks/</a>.</p></li>
+<li><p><code>publishDir</code>: El directorio bajo el cual quiere generar el sitio web.</p></li>
+<li><p><code>theme</code>: El nombre del directorio de Hugo bajo <code>themes/</code>.</p></li>
+<li><p><code>ignoreFiles</code>: Una lista de patrones de archivo (expresiones regulares) para Hugo con el fin de que ignore ciertos archivos cuando se construye el sitio. Recomiendo que especifique al menos estos patrones <code>[&quot;\\.Rmd$&quot;, &quot;\\.Rmarkdown$&quot;, &quot;_files$&quot;, &quot;_cache$&quot;]</code>. Debería ignorar los archivos <code>.Rmd</code> porque <strong>blogdown</strong> los compilará a <code>.html</code>, y le basta a Hugo usar los archivos <code>.html</code>. No hay necesidad de que Hugo construya archivos <code>.Rmd</code>, y actualmente Hugo no sabe cómo. Los directorios con sufijos <code>_files</code> y <code>_cache</code> deberían ser ignorados porque contienen archivos auxiliares una vez que un archivo Rmd se compila, y <strong>blogdown</strong> los almacenará. Hugo no los debería copiar de nuevo al directorio <code>public/</code>.</p></li>
+<li><p><code>uglyURLs</code>: Por defecto, Hugo genera URLs “limpias”. Esto puede ser un poco sorprendente y requiere que comprenda cómo funcionan las URL cuando su buscador obtiene una página de un servidor. Básicamente, Hugo genera <code>foo/index.html</code> para <code>foo.md</code> de forma predeterminada en lugar de <code>foo.html</code>, porque el primero le permite visitar la página a través de la URL limpia <code>foo/</code> sin <code>index.html</code>. La mayoría de los servidores web entienden solicitudes como <code>http://www.example.com/foo/</code> y presentan <code>index.html</code> bajo <code>foo/</code>. Si prefiere el mapeo estricto de <code>*.md</code> a <code>*.html</code>, puede habilitar las URL “feas” configurando <code>uglyURLs</code> en <code>true</code>.</p></li>
+<li><p><code>hasCJKLanguage</code>: Si su sitio web se encuentra principalmente en CJK (chino, coreano y japonés), le recomiendo que configure esta opción en <code>true</code>, para que el resumen automático y el recuento de palabras de Hugo funcionen mejor.</p></li>
+</ul>
+<p>Además de las opciones incorporadas de Hugo, puede establecer otras opciones arbitrarias en <code>config.toml</code>. Por ejemplo, es muy común ver una opción llamada <code>params</code>, que se usa ampliamente en muchos temas de Hugo. Cuando vea una variable <code>.Site.Params.FOO</code> en un tema de Hugo, significa una opción <code>FOO</code> que se establece bajo <code>[params]</code> en <code>config.toml</code>, por ejemplo, <code>.Site.Params.author</code> es <code>Frida Gomam</code> con el siguiente archivo de configuración:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb22-1" data-line-number="1">[params]</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">    author <span class="op">=</span> <span class="st">&quot;Frida Gomam&quot;</span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">    dateFormat <span class="op">=</span> <span class="st">&quot;2006/01/02&quot;</span></a></code></pre></div>
+<p>El objetivo de todas estas opciones es evitar cualquier problema de codificación en los temas de Hugo, de modo que los usuarios puedan editar fácilmente un único archivo de configuración para aplicar el tema a sus sitios web, en lugar de pasar por muchos archivos HTML y realizar cambios uno por uno.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="46">
-<li id="fn46"><p>Honestly, it was originally designed for Yihui himself to build his own website, but he realized this feature could actually free users from Hugo. For example, it is possible to use Jekyll (another popular static site generator) with <strong>blogdown</strong>, too.<a href="methods.html#fnref46" class="footnote-back">↩</a></p></li>
+<ol start="20">
+<li id="fn20"><p>Hugo también admite <code>config.json</code>, pero <strong>blogdown</strong> no lo admite, por lo que no recomendamos que lo use.<a href="configuracion.html#fnref20" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p>TOML tiene sus ventajas, pero creo que no son significativas en el contexto de los sitios web de Hugo. Es un dolor tener que conocer otro idioma, TOML, cuando YAML significa “Yet Another Markup Language”. No estoy seguro de si el cómic XKCD se aplica en este caso: <a href="https://xkcd.com/927/" class="uri">https://xkcd.com/927/</a>.<a href="configuracion.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p>Una slug es simplemente una cadena de caracteres que puede usar para identificar una publicación específica. Una slug no cambiará, incluso si el título cambia. Por ejemplo, si decide cambiar el título de su publicación de “Me encanta el blogdown” a “Por qué blogdown es el mejor paquete de la historia” y usó el título de la publicación en la URL, sus enlaces anteriores ahora se romperán. Si, en cambio, especifica la URL a través de un slug (algo así como “blogdown-love”), puede cambiar el título tantas veces como quiera y no terminará con enlaces rotos.<a href="configuracion.html#fnref22" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -274,8 +320,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="default-template.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="personal-experience.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="static-sites.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="contenido.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -305,7 +351,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown02-hugo.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

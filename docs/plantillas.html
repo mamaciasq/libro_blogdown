@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>blogdown: Creación de sitios web con R Markdown</title>
+  <meta name="description" content="Un guía para crear sitios web con R Markdown y el paquete blogdown de R.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="blogdown: Creación de sitios web con R Markdown" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://bookdown.org/yihui/blogdown/" />
+  <meta property="og:image" content="https://bookdown.org/yihui/blogdown/images/cover.png" />
+  <meta property="og:description" content="Un guía para crear sitios web con R Markdown y el paquete blogdown de R." />
+  <meta name="github-repo" content="rstudio/blogdown" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="blogdown: Creación de sitios web con R Markdown" />
+  
+  <meta name="twitter:description" content="Un guía para crear sitios web con R Markdown y el paquete blogdown de R." />
+  <meta name="twitter:image" content="https://bookdown.org/yihui/blogdown/images/cover.png" />
+
+<meta name="author" content="Yihui Xie, Amber Thomas, Alison Presmanes Hill">
+
+
+<meta name="date" content="2018-03-30">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="temas.html">
+<link rel="next" href="layouts-personalizados.html">
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Creación de sitios web con R Markdown</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefacio</a><ul>
+<li class="chapter" data-level="" data-path="estructura-del-libro.html"><a href="estructura-del-libro.html"><i class="fa fa-check"></i>Estructura del libro</a></li>
+<li class="chapter" data-level="" data-path="software-info.html"><a href="software-info.html"><i class="fa fa-check"></i>Información de Software y convenciones</a></li>
+<li class="chapter" data-level="" data-path="agradecimientos.html"><a href="agradecimientos.html"><i class="fa fa-check"></i>Agradecimientos</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author.html"><a href="author.html"><i class="fa fa-check"></i>Sobre los autores</a><ul>
+<li class="chapter" data-level="" data-path="yihui-xie.html"><a href="yihui-xie.html"><i class="fa fa-check"></i>Yihui Xie</a></li>
+<li class="chapter" data-level="" data-path="amber-thomas.html"><a href="amber-thomas.html"><i class="fa fa-check"></i>Amber Thomas</a></li>
+<li class="chapter" data-level="" data-path="alison-presmanes-hill.html"><a href="alison-presmanes-hill.html"><i class="fa fa-check"></i>Alison Presmanes Hill</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="comienzo.html"><a href="comienzo.html"><i class="fa fa-check"></i><b>1</b> Comienzo</a><ul>
+<li class="chapter" data-level="1.1" data-path="instalacion.html"><a href="instalacion.html"><i class="fa fa-check"></i><b>1.1</b> Instalación</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="instalacion.html"><a href="instalacion.html#actualizacion"><i class="fa fa-check"></i><b>1.1.1</b> Actualización</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="un-ejemplo-rapido.html"><a href="un-ejemplo-rapido.html"><i class="fa fa-check"></i><b>1.2</b> Un ejemplo rápido</a></li>
+<li class="chapter" data-level="1.3" data-path="rstudio-ide.html"><a href="rstudio-ide.html"><i class="fa fa-check"></i><b>1.3</b> RStudio IDE</a></li>
+<li class="chapter" data-level="1.4" data-path="opciones-globales.html"><a href="opciones-globales.html"><i class="fa fa-check"></i><b>1.4</b> Opciones globales</a></li>
+<li class="chapter" data-level="1.5" data-path="output-format.html"><a href="output-format.html"><i class="fa fa-check"></i><b>1.5</b> R Markdown vs. Markdown</a></li>
+<li class="chapter" data-level="1.6" data-path="otros-temas.html"><a href="otros-temas.html"><i class="fa fa-check"></i><b>1.6</b> Otros temas</a></li>
+<li class="chapter" data-level="1.7" data-path="workflow.html"><a href="workflow.html"><i class="fa fa-check"></i><b>1.7</b> Un flujo de trabajo recomendado</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hugo.html"><a href="hugo.html"><i class="fa fa-check"></i><b>2</b> Hugo</a><ul>
+<li class="chapter" data-level="2.1" data-path="static-sites.html"><a href="static-sites.html"><i class="fa fa-check"></i><b>2.1</b> Sitios estáticos y Hugo</a></li>
+<li class="chapter" data-level="2.2" data-path="configuracion.html"><a href="configuracion.html"><i class="fa fa-check"></i><b>2.2</b> Configuración</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="configuracion.html"><a href="configuracion.html#sintaxis-toml"><i class="fa fa-check"></i><b>2.2.1</b> Sintaxis TOML</a></li>
+<li class="chapter" data-level="2.2.2" data-path="configuracion.html"><a href="configuracion.html#opciones"><i class="fa fa-check"></i><b>2.2.2</b> Opciones</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="contenido.html"><a href="contenido.html"><i class="fa fa-check"></i><b>2.3</b> Contenido</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="contenido.html"><a href="contenido.html#metadatos-yaml"><i class="fa fa-check"></i><b>2.3.1</b> Metadatos YAML</a></li>
+<li class="chapter" data-level="2.3.2" data-path="contenido.html"><a href="contenido.html#cuerpo"><i class="fa fa-check"></i><b>2.3.2</b> Cuerpo</a></li>
+<li class="chapter" data-level="2.3.3" data-path="contenido.html"><a href="contenido.html#codigo-corto"><i class="fa fa-check"></i><b>2.3.3</b> Código corto</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="temas.html"><a href="temas.html"><i class="fa fa-check"></i><b>2.4</b> Temas</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="temas.html"><a href="temas.html#el-tema-por-defecto"><i class="fa fa-check"></i><b>2.4.1</b> El tema por defecto</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="plantillas.html"><a href="plantillas.html"><i class="fa fa-check"></i><b>2.5</b> Plantillas</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="plantillas.html"><a href="plantillas.html#un-pequeno-ejemplo"><i class="fa fa-check"></i><b>2.5.1</b> Un pequeño ejemplo</a></li>
+<li class="chapter" data-level="2.5.2" data-path="plantillas.html"><a href="plantillas.html#how-to"><i class="fa fa-check"></i><b>2.5.2</b> Implementando más funciones</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="layouts-personalizados.html"><a href="layouts-personalizados.html"><i class="fa fa-check"></i><b>2.6</b> Layouts personalizados</a></li>
+<li class="chapter" data-level="2.7" data-path="archivos-estaticos.html"><a href="archivos-estaticos.html"><i class="fa fa-check"></i><b>2.7</b> Archivos estáticos</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="implementacion.html"><a href="implementacion.html"><i class="fa fa-check"></i><b>3</b> Implementación</a><ul>
+<li class="chapter" data-level="3.1" data-path="netlify.html"><a href="netlify.html"><i class="fa fa-check"></i><b>3.1</b> Netlify</a></li>
+<li class="chapter" data-level="3.2" data-path="updog.html"><a href="updog.html"><i class="fa fa-check"></i><b>3.2</b> Updog</a></li>
+<li class="chapter" data-level="3.3" data-path="github-pages.html"><a href="github-pages.html"><i class="fa fa-check"></i><b>3.3</b> GitHub Pages</a></li>
+<li class="chapter" data-level="3.4" data-path="travis-github.html"><a href="travis-github.html"><i class="fa fa-check"></i><b>3.4</b> Travis + GitHub</a></li>
+<li class="chapter" data-level="3.5" data-path="gitlab-pages.html"><a href="gitlab-pages.html"><i class="fa fa-check"></i><b>3.5</b> GitLab Pages</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="migration.html"><a href="migration.html"><i class="fa fa-check"></i><b>4</b> Migration</a><ul>
+<li class="chapter" data-level="4.1" data-path="from-jekyll.html"><a href="from-jekyll.html"><i class="fa fa-check"></i><b>4.1</b> From Jekyll</a></li>
+<li class="chapter" data-level="4.2" data-path="from-wordpress.html"><a href="from-wordpress.html"><i class="fa fa-check"></i><b>4.2</b> From WordPress</a></li>
+<li class="chapter" data-level="4.3" data-path="from-other-systems.html"><a href="from-other-systems.html"><i class="fa fa-check"></i><b>4.3</b> From other systems</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="other-generators.html"><a href="other-generators.html"><i class="fa fa-check"></i><b>5</b> Other Generators</a><ul>
+<li class="chapter" data-level="5.1" data-path="jekyll.html"><a href="jekyll.html"><i class="fa fa-check"></i><b>5.1</b> Jekyll</a></li>
+<li class="chapter" data-level="5.2" data-path="hexo.html"><a href="hexo.html"><i class="fa fa-check"></i><b>5.2</b> Hexo</a></li>
+<li class="chapter" data-level="5.3" data-path="rmd-website.html"><a href="rmd-website.html"><i class="fa fa-check"></i><b>5.3</b> Default site generator in rmarkdown</a></li>
+<li class="chapter" data-level="5.4" data-path="pkgdown.html"><a href="pkgdown.html"><i class="fa fa-check"></i><b>5.4</b> pkgdown</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a></li>
+<li class="chapter" data-level="B" data-path="website-basics.html"><a href="website-basics.html"><i class="fa fa-check"></i><b>B</b> Website Basics</a><ul>
+<li class="chapter" data-level="B.1" data-path="html.html"><a href="html.html"><i class="fa fa-check"></i><b>B.1</b> HTML</a></li>
+<li class="chapter" data-level="B.2" data-path="css.html"><a href="css.html"><i class="fa fa-check"></i><b>B.2</b> CSS</a></li>
+<li class="chapter" data-level="B.3" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>B.3</b> JavaScript</a></li>
+<li class="chapter" data-level="B.4" data-path="useful-resources.html"><a href="useful-resources.html"><i class="fa fa-check"></i><b>B.4</b> Useful resources</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="useful-resources.html"><a href="useful-resources.html#file-optimization"><i class="fa fa-check"></i><b>B.4.1</b> File optimization</a></li>
+<li class="chapter" data-level="B.4.2" data-path="useful-resources.html"><a href="useful-resources.html#helping-people-find-your-site"><i class="fa fa-check"></i><b>B.4.2</b> Helping people find your site</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="domain-name.html"><a href="domain-name.html"><i class="fa fa-check"></i><b>C</b> Domain Name</a><ul>
+<li class="chapter" data-level="C.1" data-path="registration.html"><a href="registration.html"><i class="fa fa-check"></i><b>C.1</b> Registration</a></li>
+<li class="chapter" data-level="C.2" data-path="nameservers.html"><a href="nameservers.html"><i class="fa fa-check"></i><b>C.2</b> Nameservers</a></li>
+<li class="chapter" data-level="C.3" data-path="dns-records.html"><a href="dns-records.html"><i class="fa fa-check"></i><b>C.3</b> DNS records</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="advanced-topics.html"><a href="advanced-topics.html"><i class="fa fa-check"></i><b>D</b> Advanced Topics</a><ul>
+<li class="chapter" data-level="D.1" data-path="more-global-options.html"><a href="more-global-options.html"><i class="fa fa-check"></i><b>D.1</b> More global options</a></li>
+<li class="chapter" data-level="D.2" data-path="livereload.html"><a href="livereload.html"><i class="fa fa-check"></i><b>D.2</b> LiveReload</a></li>
+<li class="chapter" data-level="D.3" data-path="local-preview.html"><a href="local-preview.html"><i class="fa fa-check"></i><b>D.3</b> Building a website for local preview</a></li>
+<li class="chapter" data-level="D.4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>D.4</b> Functions in the blogdown package</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="functions.html"><a href="functions.html#exported-functions"><i class="fa fa-check"></i><b>D.4.1</b> Exported functions</a></li>
+<li class="chapter" data-level="D.4.2" data-path="functions.html"><a href="functions.html#non-exported-functions"><i class="fa fa-check"></i><b>D.4.2</b> Non-exported functions</a></li>
+</ul></li>
+<li class="chapter" data-level="D.5" data-path="dep-path.html"><a href="dep-path.html"><i class="fa fa-check"></i><b>D.5</b> Paths of figures and other dependencies</a></li>
+<li class="chapter" data-level="D.6" data-path="html-widgets.html"><a href="html-widgets.html"><i class="fa fa-check"></i><b>D.6</b> HTML widgets</a></li>
+<li class="chapter" data-level="D.7" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>D.7</b> Version control</a></li>
+<li class="chapter" data-level="D.8" data-path="default-template.html"><a href="default-template.html"><i class="fa fa-check"></i><b>D.8</b> The default HTML template</a></li>
+<li class="chapter" data-level="D.9" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>D.9</b> Different building methods</a></li>
+</ul></li>
+<li class="chapter" data-level="E" data-path="personal-experience.html"><a href="personal-experience.html"><i class="fa fa-check"></i><b>E</b> Personal Experience</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">blogdown: Creación de sitios web con R Markdown</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="plantillas" class="section level2">
+<h2><span class="header-section-number">2.5</span> Plantillas</h2>
+<p>Un tema de Hugo consta de dos componentes principales: plantillas y archivos web. El primero es esencial y le dice a Hugo cómo presentar una página.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> El último es opcional pero también importante. Por lo general, consta de archivos CSS y JavaScript, así como otros recursos, como imágenes y videos. Estos activos determinan la apariencia y la funcionalidad de su sitio web, y algunos pueden estar integrados en el contenido de sus páginas web.</p>
+<p>Puede obtener más información sobre las plantillas de Hugo en la documentación oficial (<a href="https://gohugo.io/templates/overview/" class="uri">https://gohugo.io/templates/overview/</a>). Hay muchos tipos diferentes de plantillas. Para que le resulte más fácil dominar las ideas clave, creé un tema de Hugo muy mínimo, que cubre la mayoría de las funcionalidades que un usuario promedio puede necesitar, pero el número total de líneas es de solo 150, por lo que podemos hablar de todas las fuentes código de este tema en la siguiente subsección.</p>
+<div id="un-pequeno-ejemplo" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Un pequeño ejemplo</h3>
+<p><a href="https://github.com/yihui/hugo-xmin">XMin</a> es un tema de Hugo. Lo escribí desde cero en aproximadamente 12 horas. Aproximadamente media hora se gastó en plantillas, se dedicaron 3,5 horas a modificar los estilos CSS y se gastaron 8 horas en la documentación (<a href="https://xmin.yihui.name" class="uri">https://xmin.yihui.name</a>). Creo que este puede ser un caso representativo de cuánto tiempo pasaría en cada parte cuando diseñe un tema. Está, quizás, en nuestra naturaleza pasar mucho más tiempo en cosas cosméticas como CSS que en cosas esenciales como plantillas. Mientras que la codificación es, a menudo, más fácil que la documentación.</p>
+<p>Mostraremos el código fuente del tema XMin. Debido a que el tema puede actualizarse ocasionalmente en el futuro, puede seguir este enlace para obtener una versión fija de la que hablaremos en esta sección: <a href="https://github.com/yihui/hugo-xmin/tree/4bb305" class="uri">https://github.com/yihui/hugo-xmin/tree/4bb305</a>. A continuación se muestra una vista en árbol de todos los archivos y directorios del tema:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="ex">hugo-xmin/</span></a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">├── <span class="ex">LICENSE.md</span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">├── <span class="ex">README.md</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">├── <span class="ex">archetypes</span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">│   └── <span class="ex">default.md</span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">├── <span class="ex">layouts</span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7">│   ├── <span class="ex">404.html</span></a>
+<a class="sourceLine" id="cb29-8" data-line-number="8">│   ├── <span class="ex">_default</span></a>
+<a class="sourceLine" id="cb29-9" data-line-number="9">│   │   ├── <span class="ex">list.html</span></a>
+<a class="sourceLine" id="cb29-10" data-line-number="10">│   │   ├── <span class="ex">single.html</span></a>
+<a class="sourceLine" id="cb29-11" data-line-number="11">│   │   └── <span class="ex">terms.html</span></a>
+<a class="sourceLine" id="cb29-12" data-line-number="12">│   └── <span class="ex">partials</span></a>
+<a class="sourceLine" id="cb29-13" data-line-number="13">│       ├── <span class="ex">foot_custom.html</span></a>
+<a class="sourceLine" id="cb29-14" data-line-number="14">│       ├── <span class="ex">footer.html</span></a>
+<a class="sourceLine" id="cb29-15" data-line-number="15">│       ├── <span class="ex">head_custom.html</span></a>
+<a class="sourceLine" id="cb29-16" data-line-number="16">│       └── <span class="ex">header.html</span></a>
+<a class="sourceLine" id="cb29-17" data-line-number="17">├── <span class="ex">static</span></a>
+<a class="sourceLine" id="cb29-18" data-line-number="18">│   └── <span class="ex">css</span></a>
+<a class="sourceLine" id="cb29-19" data-line-number="19">│       ├── <span class="ex">fonts.css</span></a>
+<a class="sourceLine" id="cb29-20" data-line-number="20">│       └── <span class="ex">style.css</span></a>
+<a class="sourceLine" id="cb29-21" data-line-number="21">└── <span class="ex">exampleSite</span></a>
+<a class="sourceLine" id="cb29-22" data-line-number="22">    ├── <span class="ex">config.toml</span></a>
+<a class="sourceLine" id="cb29-23" data-line-number="23">    ├── <span class="ex">content</span></a>
+<a class="sourceLine" id="cb29-24" data-line-number="24">    │   ├── <span class="ex">_index.md</span></a>
+<a class="sourceLine" id="cb29-25" data-line-number="25">    │   ├── <span class="ex">about.md</span></a>
+<a class="sourceLine" id="cb29-26" data-line-number="26">    │   ├── <span class="ex">note</span></a>
+<a class="sourceLine" id="cb29-27" data-line-number="27">    │   │   ├── <span class="ex">2017-06-13-a-quick-note.md</span></a>
+<a class="sourceLine" id="cb29-28" data-line-number="28">    │   │   └── <span class="ex">2017-06-14-another-note.md</span></a>
+<a class="sourceLine" id="cb29-29" data-line-number="29">    │   └── <span class="ex">post</span></a>
+<a class="sourceLine" id="cb29-30" data-line-number="30">    │       ├── <span class="ex">2015-07-23-lorem-ipsum.md</span></a>
+<a class="sourceLine" id="cb29-31" data-line-number="31">    │       └── <span class="ex">2016-02-14-hello-markdown.md</span></a>
+<a class="sourceLine" id="cb29-32" data-line-number="32">    ├── <span class="ex">layouts</span></a>
+<a class="sourceLine" id="cb29-33" data-line-number="33">    │   └── <span class="ex">partials</span></a>
+<a class="sourceLine" id="cb29-34" data-line-number="34">    │       └── <span class="ex">foot_custom.html</span></a>
+<a class="sourceLine" id="cb29-35" data-line-number="35">    └── <span class="ex">public</span></a>
+<a class="sourceLine" id="cb29-36" data-line-number="36">        └── <span class="ex">...</span></a></code></pre></div>
+<p><code>LICENSE.md</code> y <code>README.md</code> no son componentes necesarios de un tema, pero definitivamente debe elegir una licencia para su código fuente para que otras personas puedan usar su código correctamente, y un <code>README</code> puede ser la breve documentación de su software.</p>
+<p>El archivo <code>archetypes/default.md</code> define la plantilla predeterminada en función de qué usuarios pueden crear nuevas publicaciones. En este tema, <code>default.md</code> solo proporcionaba metadatos YAML vacíos:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="ot">---</span></a></code></pre></div>
+<p>Los directorios más importantes de un tema son <code>layouts/</code> y <code>static/</code>. Las plantillas HTML se almacenan en <code>layouts/</code>, y los archivos se almacenan en <code>static/</code>.</p>
+<p>Para comprender <code>layouts/</code>, debe conocer algunos conceptos básicos sobre HTML (consulte la sección <a href="html.html#html">B.1</a>) porque las plantillas en este directorio son, en su mayoría, documentos o fragmentos HTML. Hay muchos tipos posibles de subdirectorios en <code>layouts/</code>, pero solo vamos a introducir dos aquí: <code>_default/</code> y <code>partials/</code>.</p>
+<ul>
+<li><p>El directorio <code>_default/</code> es donde almacena las plantillas predeterminadas para sus páginas web. En el tema XMin, tenemos tres plantillas: <code>single.html</code>,<code>list.html</code>, y <code>terms.html</code>.</p>
+<ul>
+<li><p><code>single.html</code> es una plantilla para presentar páginas individuales. Una sola página básicamente corresponde a un documento de Markdown bajo <code>content/</code>, y contiene tanto los metadatos (YAML) como el contenido. Por lo general, queremos mostrar el título de la página, el autor, la fecha y el contenido. A continuación se muestra el código fuente de <code>single.html</code> de XMin:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb31-1" data-line-number="1">{{ partial &quot;header.html&quot; . }}</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;article-meta&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">&lt;h1&gt;&lt;span</span><span class="ot"> class=</span><span class="st">&quot;title&quot;</span><span class="kw">&gt;</span>{{ .Title }}<span class="kw">&lt;/span&gt;&lt;/h1&gt;</span></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">{{ with .Params.author }}</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;author&quot;</span><span class="kw">&gt;</span>{{ . }}<span class="kw">&lt;/h2&gt;</span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">{{ end }}</a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">{{ if .Params.date }}</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"><span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>{{ .Date.Format &quot;2006/01/02&quot; }}<span class="kw">&lt;/h2&gt;</span></a>
+<a class="sourceLine" id="cb31-9" data-line-number="9">{{ end }}</a>
+<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="kw">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb31-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb31-12" data-line-number="12"><span class="kw">&lt;main&gt;</span></a>
+<a class="sourceLine" id="cb31-13" data-line-number="13">{{ .Content }}</a>
+<a class="sourceLine" id="cb31-14" data-line-number="14"><span class="kw">&lt;/main&gt;</span></a>
+<a class="sourceLine" id="cb31-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb31-16" data-line-number="16">{{ partial &quot;footer.html&quot; . }}</a></code></pre></div>
+<p>Verá muchos pares de corchetes <code>{{}}</code>, y así es como se programan las plantillas usando las variables y funciones de Hugo.</p>
+<p>La plantilla comienza con una plantilla parcial <code>header.html</code>, para la cual verá el código fuente pronto. Por ahora, puede imaginarlo como todas las etiquetas HTML antes del cuerpo de su página (e.g., <code>&lt;html&gt;&lt;head&gt;</code>). Ls plantillas parciales se usan, principalmente, para reutilizar código HTML. Por ejemplo, todas las páginas HTML pueden compartir tags muy similares <code>&lt;head&gt;&lt;/head&gt;</code>, y puede factorizar las partes comunes en plantillas parciales.</p>
+<p>Los metadatos de una página se incluyen en un elemento <code>&lt;div&gt;</code> con la clase <code>article-meta</code>. Recomendamos que asigne clases a elementos HTML al diseñar plantillas, de modo que sea más fácil aplicar estilos CSS a estos elementos usando nombres de clase. En una plantilla, tiene acceso a muchas variables proporcionadas por Hugo, por ejemplo, la variable <code>.Title</code> almacena el valor del título de la página, y escribimos el título en <code>&lt;span&gt;</code> en un encabezado de primer nivel <code>&lt;h1&gt;</code>. De forma similar, el autor y la fecha se escriben en <code>&lt;h2&gt;</code>, pero solo si se proporcionan en los metadatos YAML. La sintaxis <code>{{ con FOO }}{{ . }}{{ end }}</code> es una abreviatura de <code>{{si FOO }}{{ FOO }}{{ end }}</code>, es decir, le ahorra el esfuerzo de digitar la expresión <code>FOO</code> dos veces usando <code>{{ . }}</code>. El método <code>.Format</code> se puede aplicar a un objeto de fecha, y en este tema, formateamos las fechas en el formato <code>YYYY/mm/dd</code> (<code>2006/01/02</code> es la forma de especificar el formato en Go) .</p>
+<p>Luego mostramos el contenido de una página, que se almacena en la variable <code>.Content</code>. El contenido está envuelto en una etiqueta HTML semántica <code>&lt;main&gt;</code>.</p>
+<p>La plantilla finaliza después de incluir otra plantilla parcial <code>footer.html</code> (código fuente que se mostrará en breve).</p>
+<p>Para que sea más fácil de entender cómo funciona una plantilla, mostramos un mínimo ejemplo de publicación a continuación:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb32-1" data-line-number="1">---</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">title: Hello World</a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">author: Frida Gomam</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">date: 2017-06-19</a>
+<a class="sourceLine" id="cb32-5" data-line-number="5">---</a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb32-7" data-line-number="7">A single paragraph.</a></code></pre></div>
+<p>Con la plantilla <code>single.html</code>, se convertirá en una página HTML con un código fuente que se parece más o menos a esto (con el encabezado y el pie de página omitidos):</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;article-meta&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">  <span class="kw">&lt;h1&gt;&lt;span</span><span class="ot"> class=</span><span class="st">&quot;title&quot;</span><span class="kw">&gt;</span>Hello World<span class="kw">&lt;/span&gt;&lt;/h1&gt;</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">  <span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;author&quot;</span><span class="kw">&gt;</span>Frida Gomam<span class="kw">&lt;/h2&gt;</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">  <span class="kw">&lt;h2</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>2017/06/19<span class="kw">&lt;/h2&gt;</span></a>
+<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="kw">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb33-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb33-7" data-line-number="7"><span class="kw">&lt;main&gt;</span></a>
+<a class="sourceLine" id="cb33-8" data-line-number="8">  <span class="kw">&lt;p&gt;</span>A single paragraph.<span class="kw">&lt;/p&gt;</span></a>
+<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="kw">&lt;/main&gt;</span></a></code></pre></div>
+<p>Para un ejemplo completo de una página sencilla, puede ver <a href="https://xmin.yihui.name/about/" class="uri">https://xmin.yihui.name/about/</a>.</p></li>
+<li><p><code>list.html</code> es la plantilla para generar listas de páginas, como una lista de publicaciones de blog, o una lista de páginas dentro de una categoría o etiqueta. Aquí está su código fuente:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb34-1" data-line-number="1">{{ partial &quot;header.html&quot; . }}</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">{{if not .IsHome }}</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="kw">&lt;h1&gt;</span>{{ .Title }}<span class="kw">&lt;/h1&gt;</span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5">{{ end }}</a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">{{ .Content }}</a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb34-9" data-line-number="9"><span class="kw">&lt;ul&gt;</span></a>
+<a class="sourceLine" id="cb34-10" data-line-number="10">  {{ range (where .Data.Pages &quot;Section&quot; &quot;!=&quot; &quot;&quot;) }}</a>
+<a class="sourceLine" id="cb34-11" data-line-number="11">  <span class="kw">&lt;li&gt;</span></a>
+<a class="sourceLine" id="cb34-12" data-line-number="12">    <span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>{{ .Date.Format &quot;2006/01/02&quot; }}<span class="kw">&lt;/span&gt;</span></a>
+<a class="sourceLine" id="cb34-13" data-line-number="13">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{{ .URL }}&quot;</span><span class="kw">&gt;</span>{{ .Title }}<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb34-14" data-line-number="14">  <span class="kw">&lt;/li&gt;</span></a>
+<a class="sourceLine" id="cb34-15" data-line-number="15">  {{ end }}</a>
+<a class="sourceLine" id="cb34-16" data-line-number="16"><span class="kw">&lt;/ul&gt;</span></a>
+<a class="sourceLine" id="cb34-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb34-18" data-line-number="18">{{ partial &quot;footer.html&quot; . }}</a></code></pre></div>
+<p>Nuevamente, usa dos plantillas parciales <code>header.html</code> y <code>footer.html</code>. La expresión <code>{{if not .IsHome}}</code> significa, si esta lista no es la página de inicio, muestre el título de la página. Esto es porque no quiero mostrar el título en la página de inicio. Es solo mi preferencia personal. Sin duda, puede mostrar el título en <code>&lt;h1&gt;</code> en la página de inicio, si lo desea.</p>
+<p>El <code>{{.Content}}</code> muestra el contenido de la lista. Tenga en cuenta que típicamente <code>.Content</code> está vacío, lo que puede sorprender. Esto se debe a que una página de lista no se genera a partir de un archivo de marca de origen de forma predeterminada. Como sea, hay una excepción. Cuando se escribe un archivo Markdown especial <code>_index.md</code> en un directorio correspondiente al nombre de la lista, el <code>.Contenido</code> de la lista será el contenido de este archivo Markdown. Por ejemplo, puede definir el contenido de su página de inicio en <code>content/_index.md</code>, y el contenido de la página de la lista de publicaciones en <code>content/post/_index.md</code>.</p>
+<p>A continuación, generamos la lista utilizando un bucle (<code>range</code>) a través de todas las páginas filtradas por la condición de que la sección de una página no debe estar vacía. “Section” en Hugo significa el nombre del subdirectorio de primer nivel bajo <code>content/</code>. Por ejemplo, la sección de <code>content/post/foo.md</code> es <code>post</code>. Por lo tanto, el filtro significa que enumeraremos todas las páginas bajo subdirectorios de <code>content/</code>. Esto excluirá las páginas debajo del directorio raíz <code>content/</code>, como <code>content/about.md</code>.</p>
+<p>Tenga en cuenta que la variable <code>.Data</code> es dinámica y su valor cambia de acuerdo con la lista específica que desea generar. Por ejemplo, la página de la lista <a href="https://xmin.yihui.name/post/" class="uri">https://xmin.yihui.name/post/</a> solo contiene páginas bajo <code>content/post/</code>, y <a href="https://xmin.yihui.name/note/" class="uri">https://xmin.yihui.name/note/</a> solo contiene páginas bajo <code>content/note/</code>. Estas páginas de lista son generadas automáticamente por Hugo, y no necesita pasar explícitamente por las secciones <code>publicación</code> y <code>nota</code>. Es decir, una sola plantilla <code>list.html</code> generará múltiples listas de páginas según las secciones y los términos de taxonomía (por ejemplo, categories y tags) que tenga en su sitio web.</p>
+<p>Los elementos de la lista están representados por las etiquetas HTML <code>&lt;li&gt;</code> en <code>&lt;ul&gt;</code>. Cada elemento consta de la fecha, el enlace y el título de una página. Puede ver <a href="https://xmin.yihui.name/post/" class="uri">https://xmin.yihui.name/post/</a> para obtener un ejemplo completo de una página de lista.</p></li>
+<li><p><code>terms.html</code> es la plantilla para la página de inicio de los términos de la taxonomía. Por ejemplo, puede usarlo para generar la lista completa de categorías o etiquetas. El código fuente está a continuación:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb35-1" data-line-number="1">{{ partial &quot;header.html&quot; . }}</a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="kw">&lt;h1&gt;</span>{{ .Title }}<span class="kw">&lt;/h1&gt;</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="kw">&lt;ul</span><span class="ot"> class=</span><span class="st">&quot;terms&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">  {{ range $key, $value := .Data.Terms }}</a>
+<a class="sourceLine" id="cb35-7" data-line-number="7">  <span class="kw">&lt;li&gt;</span></a>
+<a class="sourceLine" id="cb35-8" data-line-number="8">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&#39;{{ (print &quot;/&quot; $.Data.Plural &quot;/&quot; $key) | relURL }}&#39;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb35-9" data-line-number="9">      {{ $key }}</a>
+<a class="sourceLine" id="cb35-10" data-line-number="10">    <span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb35-11" data-line-number="11">    ({{ len $value }})</a>
+<a class="sourceLine" id="cb35-12" data-line-number="12">  <span class="kw">&lt;/li&gt;</span></a>
+<a class="sourceLine" id="cb35-13" data-line-number="13">  {{ end }}</a>
+<a class="sourceLine" id="cb35-14" data-line-number="14"><span class="kw">&lt;/ul&gt;</span></a>
+<a class="sourceLine" id="cb35-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb35-16" data-line-number="16">{{ partial &quot;footer.html&quot; . }}</a></code></pre></div>
+<p>Similar a <code>list.html</code>, también usa un bucle. La variable <code>.Data.Terms</code> almacena todos los términos bajo una taxonomía, por ejemplo, todos los nombres de categorías. Puede considerarlo como una lista con nombre en R (llamado ‘map’ en Go), cuyos nombres son los términos y los valores son listas de páginas. La variable <code>$key</code> denota el término y <code>$value</code> denota la lista de páginas asociadas con este término. Lo que presentamos en cada <code>&lt;li&gt;</code> es un enlace al término página, así como el recuento de publicaciones que utilizan este término (<code>len</code> es una función Go que devuelve la longitud de un objeto).</p>
+<p>Hugo representa automáticamente todas las páginas de taxonomía, y los nombres de ruta son las formas plurales de las taxonomías, por ejemplo, <a href="https://xmin.yihui.name/categories/" class="uri">https://xmin.yihui.name/categories/</a> y <a href="https://xmin.yihui.name/tags/" class="uri">https://xmin.yihui.name/tags/</a>. Ese es el significado de <code>.Data.Plural</code>. El <code>$</code> inicial es obligatorio porque estamos dentro de un bucle y necesitamos acceder a variables del alcance externo. El enlace del término se pasa a la función Hugo <code>relURL</code> a través de una conector <code>|</code> para hacerlo relativo, lo cual es una buena práctica porque los enlaces relativos son más portátiles (independientemente del nombre de dominio).</p></li>
+</ul></li>
+<li><p>El directorio <code>parials/</code> es el lugar para poner los fragmentos HTML para ser reutilizados por otras plantillas a través de la función <code>partial</code>. Tenemos cuatro plantillas parciales bajo este directorio:</p>
+<ul>
+<li><p><code>header.html</code> define la etiqueta <code>&lt;head&gt;</code> y el menú de navegación en la etiqueta <code>&lt;nav&gt;</code>.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">&lt;html</span><span class="ot"> lang=</span><span class="st">&quot;{{ .Site.LanguageCode }}&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3">  <span class="kw">&lt;head&gt;</span></a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">    <span class="kw">&lt;meta</span><span class="ot"> charset=</span><span class="st">&quot;utf-8&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">    <span class="kw">&lt;title&gt;</span>{{ .Title }} | {{ .Site.Title }}<span class="kw">&lt;/title&gt;</span></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6">    <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&#39;{{ &quot;/css/style.css&quot; | relURL }}&#39;</span></a>
+<a class="sourceLine" id="cb36-7" data-line-number="7"><span class="ot">      rel=</span><span class="st">&quot;stylesheet&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb36-8" data-line-number="8">    <span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&#39;{{ &quot;/css/fonts.css&quot; | relURL }}&#39;</span></a>
+<a class="sourceLine" id="cb36-9" data-line-number="9"><span class="ot">      rel=</span><span class="st">&quot;stylesheet&quot;</span> <span class="kw">/&gt;</span></a>
+<a class="sourceLine" id="cb36-10" data-line-number="10">    {{ partial &quot;head_custom.html&quot; . }}</a>
+<a class="sourceLine" id="cb36-11" data-line-number="11">  <span class="kw">&lt;/head&gt;</span></a>
+<a class="sourceLine" id="cb36-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb36-13" data-line-number="13">  <span class="kw">&lt;body&gt;</span></a>
+<a class="sourceLine" id="cb36-14" data-line-number="14">    <span class="kw">&lt;nav&gt;</span></a>
+<a class="sourceLine" id="cb36-15" data-line-number="15">    <span class="kw">&lt;ul</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb36-16" data-line-number="16">      {{ range .Site.Menus.main }}</a>
+<a class="sourceLine" id="cb36-17" data-line-number="17">      <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{{ .URL | relURL }}&quot;</span><span class="kw">&gt;</span>{{ .Name }}<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></a>
+<a class="sourceLine" id="cb36-18" data-line-number="18">      {{ end }}</a>
+<a class="sourceLine" id="cb36-19" data-line-number="19">    <span class="kw">&lt;/ul&gt;</span></a>
+<a class="sourceLine" id="cb36-20" data-line-number="20">    <span class="kw">&lt;hr/&gt;</span></a>
+<a class="sourceLine" id="cb36-21" data-line-number="21">    <span class="kw">&lt;/nav&gt;</span></a></code></pre></div>
+<p>El área <code>&lt;head&gt;</code> debe ser fácil de entender si está familiarizado con HTML. Tenga en cuenta que también incluimos una plantilla parcial <code>head_custom.html</code>, que está vacía en este tema, pero hará que sea mucho más fácil para los usuarios agregar código personalizado a <code>&lt;head&gt;</code> sin reescribir toda la plantilla. Ver la sección @ref(layouts personalizados) para más detalles.</p>
+<p>El menú de navegación es esencialmente una lista, y cada elemento de la lista se lee de la variable <code>.Site.Menus.main</code>. Esto significa que los usuarios pueden definir el menú en <code>config.toml</code>, e.g.,</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb37-1" data-line-number="1">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">    name <span class="op">=</span> <span class="st">&quot;Home&quot;</span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">    url <span class="op">=</span> <span class="st">&quot;/&quot;</span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4">[[<span class="va">menu</span>.<span class="at">main</span>]]</a>
+<a class="sourceLine" id="cb37-5" data-line-number="5">    name <span class="op">=</span> <span class="st">&quot;About&quot;</span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6">    url <span class="op">=</span> <span class="st">&quot;/about/&quot;</span></a></code></pre></div>
+<p>Esto generará un menú como:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">&lt;ul</span><span class="ot"> class=</span><span class="st">&quot;menu&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2">  <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/&quot;</span><span class="kw">&gt;</span>Home<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3">  <span class="kw">&lt;li&gt;&lt;a</span><span class="ot"> href=</span><span class="st">&quot;/about/&quot;</span><span class="kw">&gt;</span>About<span class="kw">&lt;/a&gt;&lt;/li&gt;</span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="kw">&lt;/ul&gt;</span></a></code></pre></div>
+<p>Hugo tiene un poderoso sistema de menú, y solo usamos el tipo más simple de menú en este tema. Si está interesado en más funciones como menús anidados, consulte la documentación completa en <a href="http://gohugo.io/extras/menus/" class="uri">http://gohugo.io/extras/menus/</a>.</p>
+<ul>
+<li><code>footer.html</code> define el área footer de una página y cierra el documento HTML:</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb39-1" data-line-number="1">  <span class="kw">&lt;footer&gt;</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">  {{ partial &quot;foot_custom.html&quot; . }}</a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">  {{ with .Site.Params.footer }}</a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">  <span class="kw">&lt;hr/&gt;</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">  {{ . | markdownify }}</a>
+<a class="sourceLine" id="cb39-6" data-line-number="6">  {{ end }}</a>
+<a class="sourceLine" id="cb39-7" data-line-number="7">  <span class="kw">&lt;/footer&gt;</span></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8">  <span class="kw">&lt;/body&gt;</span></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
+<p>El propósito de la plantilla parcial <code>foot_custom.html</code> es el mismo que <code>head_custom.html</code>; es decir, para permitir que el usuario agregue código personalizado al <code>&lt;footer&gt;</code> sin volver a escribir la plantilla completa.</p>
+<p>Por último, usamos la variable <code>.Site.Params.footer</code> para generar un pie de página. Tenga en cuenta que utilizamos la función <code>with</code> nuevamente. Recuerde que la sintaxis <code>{{with .Site.Params.footer}}{{ . }}{{ end }}</code> es una abreviatura de <code>{{if .Site.Params.footer }}{{.Site.Params.footer }}{{ end }}</code>. Esta sintaxis le evita escribir dos veces la expresión <code>.Site.Params.footer</code> usando <code>{{ . }}</code> como un marcador de posición para la variable <code>footer</code>, que se define como un parámetro de sitio en nuestro archivo <code>config.toml</code>. La función adicional <code>markdownify</code> puede convertir Markdown a HTML (es decir, <code>{{ . | markdownify}}</code>. En conjunto, esta secuencia significa que podemos definir una opción <code>footer</code> usando Markdown bajo <code>params</code> en <code>config.toml</code>, e.g.,</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb40-1" data-line-number="1">[params]</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2">    footer <span class="op">=</span> <span class="st">&quot;&amp;copy; [Yihui Xie](https://yihui.name) 2017&quot;</span></a></code></pre></div></li>
+</ul></li>
+</ul>
+<p>Hay una plantilla especial <code>404.html</code>, que Hugo usa para crear la página 404 (cuando no se encuentra una página, se muestra esta página):</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb41-1" data-line-number="1">{{ partial &quot;header.html&quot; . }}</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">404 NOT FOUND</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb41-5" data-line-number="5">{{ partial &quot;footer.html&quot; . }}</a></code></pre></div>
+<p>Con todas las plantillas anteriores, podremos generar un sitio web a partir de los archivos fuente de Markdown. Sin embargo, es poco probable que esté satisfecho con el sitio web porque los elementos HTML no tienen ningún estilo y la apariencia predeterminada puede no parecer atractiva para la mayoría de las personas. Puede haber notado que en <code>header.html</code>, hemos incluido dos archivos CSS, <code>/css/style.css</code> y <code>/css/fonts.css</code>.</p>
+<p>Puede encontrar muchos frameworks CSS de código abierto existentes que se pueden aplicar a un tema de Hugo. Por ejemplo, el framework CSS más popular puede ser Bootstrap: <a href="http://getbootstrap.com" class="uri">http://getbootstrap.com</a>. Cuando estaba diseñando XMin, me preguntaba hasta dónde podría llegar sin usar ninguno de estos frameworks existentes, porque generalmente son muy grandes. Por ejemplo, <code>bootstrap.css</code> tiene casi 10000 líneas de código cuando no se minimiza. Resultó que pude obtener una apariencia satisfactoria con aproximadamente 50 líneas de CSS, que explicaré en detalle a continuación:</p>
+<ul>
+<li><p><code>style.css</code> define todos los estilos excepto las fuentes tipográficas:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb42-1" data-line-number="1">body {</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">  <span class="kw">max-width</span>: <span class="dv">800px</span>;</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">  <span class="kw">margin</span>: <span class="dv">auto</span>;</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">  <span class="kw">padding</span>: <span class="dv">1em</span>;</a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">  <span class="kw">line-height</span>: <span class="dv">1.5em</span>;</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">}</a></code></pre></div>
+<p>El ancho máximo del cuerpo de la página se establece en 800 píxeles porque una página excesivamente ancha es difícil de leer (<code>800</code> es un umbral arbitrario que elegí). El cuerpo se centra utilizando el truco de CSS <code>margin: auto</code>, lo que significa que los márgenes superior, derecho, inferior y izquierdo son automáticos. Cuando los márgenes izquierdo y derecho de un elemento de bloque son <code>auto</code>, estará centrado.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co">/* header and footer areas */</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="fu">.menu</span> li { <span class="kw">display</span>: <span class="dv">inline-block</span>; }</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="fu">.article-meta</span>, <span class="fu">.menu</span> a {</a>
+<a class="sourceLine" id="cb43-4" data-line-number="4">  <span class="kw">text-decoration</span>: <span class="dv">none</span>;</a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">  <span class="kw">background</span>: <span class="dv">#eee</span>;</a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">  <span class="kw">padding</span>: <span class="dv">5px</span>;</a>
+<a class="sourceLine" id="cb43-7" data-line-number="7">  <span class="kw">border-radius</span>: <span class="dv">5px</span>;</a>
+<a class="sourceLine" id="cb43-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="fu">.menu</span>, <span class="fu">.article-meta</span>, footer { <span class="kw">text-align</span>: <span class="dv">center</span>; }</a>
+<a class="sourceLine" id="cb43-10" data-line-number="10"><span class="fu">.title</span> { <span class="kw">font-size</span>: <span class="dv">1.1em</span>; }</a>
+<a class="sourceLine" id="cb43-11" data-line-number="11">footer a { <span class="kw">text-decoration</span>: <span class="dv">none</span>; }</a>
+<a class="sourceLine" id="cb43-12" data-line-number="12">hr {</a>
+<a class="sourceLine" id="cb43-13" data-line-number="13">  <span class="kw">border-style</span>: <span class="dv">dashed</span>;</a>
+<a class="sourceLine" id="cb43-14" data-line-number="14">  <span class="kw">color</span>: <span class="dv">#ddd</span>;</a>
+<a class="sourceLine" id="cb43-15" data-line-number="15">}</a></code></pre></div>
+<p>Recuerde que nuestro elemento de menú es una lista <code>&lt;ul class=&quot;menu&quot;&gt;</code> definida en <code>header.html</code>. Cambié el estilo de visualización predeterminado de <code>&lt;li&gt;</code> dentro del menú a <code>inline-block</code>, de modo que se distribuyan de izquierda a derecha como elementos en línea, en lugar de apilarse verticalmente como una lista de viñetas (el comportamiento predeterminado))</p>
+<p>Para los enlaces (`<a>’) en el menú y el área de metadatos de un artículo, se elimina la decoración de texto predeterminada (subrayados) y se aplica un color de fondo claro. El radio del borde se establece en 5 píxeles para que pueda ver un rectángulo sutil de esquina redondeada detrás de cada enlace.</p>
+<p>La regla horizontal (<code>&lt;hr&gt;</code>) se establece en una línea discontinua de color gris claro para que sea menos prominente en una página. Estas reglas se utilizan para separar el cuerpo del artículo de las áreas de encabezado y pie de página.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="co">/* code */</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">pre {</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3">  <span class="kw">border</span>: <span class="dv">1px</span> <span class="dv">solid</span> <span class="dv">#ddd</span>;</a>
+<a class="sourceLine" id="cb44-4" data-line-number="4">  <span class="kw">box-shadow</span>: <span class="dv">5px</span> <span class="dv">5px</span> <span class="dv">5px</span> <span class="dv">#eee</span>;</a>
+<a class="sourceLine" id="cb44-5" data-line-number="5">  <span class="kw">padding</span>: <span class="dv">1em</span>;</a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">  <span class="kw">overflow-x</span>: <span class="dv">auto</span>;</a>
+<a class="sourceLine" id="cb44-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb44-8" data-line-number="8">code { <span class="kw">background</span>: <span class="dv">#f9f9f9</span>; }</a>
+<a class="sourceLine" id="cb44-9" data-line-number="9">pre code { <span class="kw">background</span>: <span class="dv">none</span>; }</a></code></pre></div>
+<p>Para bloques de código (<code>&lt;pre&gt;</code>), aplico bordes gris claro con efectos de sombra paralela. Cada elemento de código en línea tiene un fondo gris muy claro. Estas decoraciones son simplemente por mi propio interés y énfasis peculiares en el código.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="co">/* misc elements */</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">img, iframe, video { <span class="kw">max-width</span>: <span class="dv">100%</span>; }</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3">main { <span class="kw">hyphens</span>: <span class="dv">auto</span>; }</a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">blockquote {</a>
+<a class="sourceLine" id="cb45-5" data-line-number="5">  <span class="kw">background</span>: <span class="dv">#f9f9f9</span>;</a>
+<a class="sourceLine" id="cb45-6" data-line-number="6">  <span class="kw">border-left</span>: <span class="dv">5px</span> <span class="dv">solid</span> <span class="dv">#ccc</span>;</a>
+<a class="sourceLine" id="cb45-7" data-line-number="7">  <span class="kw">padding</span>: <span class="dv">3px</span> <span class="dv">1em</span> <span class="dv">3px</span>;</a>
+<a class="sourceLine" id="cb45-8" data-line-number="8">}</a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb45-10" data-line-number="10">table {</a>
+<a class="sourceLine" id="cb45-11" data-line-number="11">  <span class="kw">margin</span>: <span class="dv">auto</span>;</a>
+<a class="sourceLine" id="cb45-12" data-line-number="12">  <span class="kw">border-top</span>: <span class="dv">1px</span> <span class="dv">solid</span> <span class="dv">#666</span>;</a>
+<a class="sourceLine" id="cb45-13" data-line-number="13">  <span class="kw">border-bottom</span>: <span class="dv">1px</span> <span class="dv">solid</span> <span class="dv">#666</span>;</a>
+<a class="sourceLine" id="cb45-14" data-line-number="14">}</a>
+<a class="sourceLine" id="cb45-15" data-line-number="15">table thead th { <span class="kw">border-bottom</span>: <span class="dv">1px</span> <span class="dv">solid</span> <span class="dv">#ddd</span>; }</a>
+<a class="sourceLine" id="cb45-16" data-line-number="16">th, td { <span class="kw">padding</span>: <span class="dv">5px</span>; }</a>
+<a class="sourceLine" id="cb45-17" data-line-number="17">tr<span class="in">:nth-child</span>(even) { <span class="kw">background</span>: <span class="dv">#eee</span> }</a></code></pre></div>
+<p>Los elementos incrustados, como las imágenes y los videos que exceden el margen de la página, a menudo son desagradables, por lo que restrinjo su ancho máximo al 100%. La separación silábica está activada para palabras en <code>&lt;main&gt;</code>. Las citas en bloque tienen una barra lateral izquierda gris y un fondo gris claro. Las tablas están centradas de manera predeterminada, con solo tres reglas horizontales: los bordes superior e inferior de la tabla y el borde inferior de la tabla. Las filas de la tabla están rayadas para facilitar la lectura de la tabla, especialmente cuando la tabla es ancha.</p></li>
+<li><p><code>fonts.css</code> es una hoja de estilo separada porque juega un papel crítico en la apariencia de un sitio web, y es muy probable que desee personalizar este archivo. En la mayoría de los casos, sus lectores dedicarán la mayor parte del tiempo a leer el texto en sus páginas, por lo que es importante hacer que el texto sea cómodo de leer. No soy un experto en diseño web, y acabo de elegir Palatino para el cuerpo y Lucida Console o Monaco (cualquiera que esté disponible en su sistema) para el código. Es común usar las fuentes web de Google hoy en día. Puede probar algunas fuentes web y ver si le gusta alguno de ellos.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb46-1" data-line-number="1">body {</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="kw">font-family</span>: <span class="st">&quot;Palatino Linotype&quot;</span>, <span class="st">&quot;Book Antiqua&quot;</span>, Palatino, <span class="dv">serif</span>;</a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4">code {</a>
+<a class="sourceLine" id="cb46-5" data-line-number="5">  <span class="kw">font-family</span>: <span class="st">&quot;Lucida Console&quot;</span>, Monaco, <span class="dv">monospace</span>;</a>
+<a class="sourceLine" id="cb46-6" data-line-number="6">  <span class="kw">font-size</span>: <span class="dv">85%</span>;</a>
+<a class="sourceLine" id="cb46-7" data-line-number="7">}</a></code></pre></div></li>
+</ul>
+<p>Los dos archivos CSS se colocan bajo el directorio <code>static/css/</code> del tema. En la plantilla HTML <code>header.html</code>, la ruta <code>/css/style.css</code> se refiere al archivo <code>static/css/style.css</code>.</p>
+<p>Por último, este tema proporcionó un sitio de ejemplo en <code>exampleSite/</code>. La estructura del directorio puede ser un poco confusa porque este es un tema en lugar de un sitio web. En la práctica, todo lo que se encuentra debajo de <code>exampleSite/</code> debe estar debajo del directorio raíz de un sitio web, y el directorio <code>hugo-xmin/</code> de nivel superior debe estar bajo el directorio <code>themes/</code> de este sitio web, i.e.,</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb47-1" data-line-number="1">├── <span class="ex">config.toml</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">├── <span class="ex">content/</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">├── <span class="ex">...</span></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4">├── <span class="ex">themes/</span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5">│   └── <span class="ex">hugo-xmin/</span></a>
+<a class="sourceLine" id="cb47-6" data-line-number="6">│</a>
+<a class="sourceLine" id="cb47-7" data-line-number="7">└── <span class="ex">...</span></a></code></pre></div>
+<p>El sitio de ejemplo proporciona una muestra <code>config.toml</code>, una página de inicio <code>_index.md</code>, una página sobre <code>about.md</code>, dos publicaciones bajo <code>note/</code> y dos bajo <code>post/</code>. También anula el <code>foot_custom.html</code> en el tema.</p>
+</div>
+<div id="how-to" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Implementando más funciones</h3>
+<p>El XMin es en realidad un tema altamente funcional, pero entendemos que puede ser demasiado mínimo para usted. Hay algunas características comúnmente utilizadas (intencionalmente) que faltan en este tema, y le enseñaremos cómo agregarlas usted mismo si así lo desea. Todas estas características y el código fuente se pueden aplicar también a otros temas.</p>
+<ul>
+<li><p><strong>Activar Google Analytics.</strong> Hugo ha proporcionado una plantilla parcial. Para XMin, puede agregar</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb48-1" data-line-number="1">{{ template &quot;_internal/google_analytics.html&quot; . }}</a></code></pre></div>
+<p>a <code>layouts/partials/foot_custom.html</code> bajo el directorio raiz de su sitio web (en lugar de <code>themes/hugo-xmin/</code>), y configurar <code>googleAnalytics</code> en el <code>config.toml</code>. Vea <a href="https://github.com/yihui/hugo-xmin/pull/3" class="uri">https://github.com/yihui/hugo-xmin/pull/3</a> para detalles, y la fuente HTML de esta página para el JavaScript renderizado desde la plantilla: <a href="https://deploy-preview-3--hugo-xmin.netlify.com" class="uri">https://deploy-preview-3--hugo-xmin.netlify.com</a>.</p></li>
+<li><p><strong>Activar comentarios Disqus.</strong> Similar a Google Analytics, puedes agregar la plantilla incorporada</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb49-1" data-line-number="1">{{ template &quot;_internal/disqus.html&quot; . }}</a></code></pre></div>
+<p>a <code>foot_custom.html</code>, y configurar el nombre corto Disqus en <code>config.toml</code>. Vea <a href="https://github.com/yihui/hugo-xmin/pull/4" class="uri">https://github.com/yihui/hugo-xmin/pull/4</a> para detalles, y una vista previa en <a href="https://deploy-preview-4--hugo-xmin.netlify.com" class="uri">https://deploy-preview-4--hugo-xmin.netlify.com</a>.</p></li>
+<li><p><strong>Configurar sintaxis resaltada mediante highlight.js.</strong> Agregue esto a <code>head_custom.html</code></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">&lt;link</span><span class="ot"> href=</span><span class="st">&quot;//YOUR-CDN-LINK/styles/github.min.css&quot;</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="kw">&gt;</span></a></code></pre></div>
+<p>and this to <code>foot_custom.html</code>:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;//YOUR-CDN-LINK/highlight.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;//YOUR-CDN-LINK/languages/r.min.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="kw">&lt;script&gt;</span></a>
+<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="va">hljs</span>.<span class="at">configure</span>(<span class="op">{</span><span class="dt">languages</span><span class="op">:</span> []<span class="op">}</span>)<span class="op">;</span></a>
+<a class="sourceLine" id="cb51-6" data-line-number="6"><span class="va">hljs</span>.<span class="at">initHighlightingOnLoad</span>()<span class="op">;</span></a>
+<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="kw">&lt;/script&gt;</span></a></code></pre></div>
+<p>Recuerde reemplazar <code>YOUR-CDN-LINK</code> con el enlace al host de CDN preferido de highlight.js, por ejemplo,<code>cdn.bootcss.com/highlight.js/9.12.0</code>. Para obtener más información sobre highlight.js, consulte su página principal: <a href="https://highlightjs.org" class="uri">https://highlightjs.org</a>. Si necesita usar otros hosts CDN, cdnjs.com es una buena opción: <a href="https://cdnjs.com/libraries/highlight.js" class="uri">https://cdnjs.com/libraries/highlight.js</a>. También puede ver qué idiomas y temas CSS son compatibles allí.</p>
+<p>Puede ver <a href="https://github.com/yihui/hugo-xmin/pull/5" class="uri">https://github.com/yihui/hugo-xmin/pull/5</a> para una implementación real, y una página de muestra con resaltado de sintaxis en <a href="https://deploy-preview-5--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/" class="uri">https://deploy-preview-5--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/</a>.</p></li>
+<li><p><strong>Soporte para expresiones matemáticas a través de MathJax.</strong> Agregue el código de abajo a <code>foot_custom.html</code>.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">&lt;script</span><span class="ot"> src=</span><span class="st">&quot;//yihui.name/js/math-code.js&quot;</span><span class="kw">&gt;&lt;/script&gt;</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">&lt;script</span><span class="ot"> async</span></a>
+<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="ot">src=</span><span class="st">&quot;//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="kw">&lt;/script&gt;</span></a></code></pre></div>
+<p>Esto requiere un conocimiento sustancial de JavaScript y la familiaridad con MathJax para comprender completamente el código anterior, y dejaremos la explicación del código en la sección <a href="javascript.html#javascript">B.3</a>.</p>
+<p>Tenga en cuenta que bootcss.com es solo un posible servidor CDN de MathJax, y usted es libre de usar otros hosts.</p></li>
+<li><p><strong>Mostrar la tabla de contenidos (TOC).</strong> Para mostrar una TOC para las publicaciones R Markdown, solo necesita agregar el formato de salida <code>blogdown::html_page</code> con la opción <code>toc: true</code> al YAML:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="fu">output:</span></a>
+<a class="sourceLine" id="cb53-2" data-line-number="2">  <span class="fu">blogdown:</span><span class="at">:html_page:</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">    <span class="fu">toc:</span><span class="at"> true</span></a></code></pre></div>
+<p>Para las publicaciones simples de Markdown, debe modificar la plantilla <code>single.html</code>. La TOC de una publicación se almacena en la variable de plantilla Hugo <code>.TableOfContents</code>. Es posible que desee una opción para controlar si mostrar la TOC, por ejemplo, puede agregar una opción <code>toc: true</code> a los metadatos YAML de una publicación de marcado para mostrar la TOC. El código a continuación se puede agregar antes del contenido de una publicación en <code>single.html</code>:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb54-1" data-line-number="1">{{ if .Params.toc }}</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2">{{ .TableOfContents }}</a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">{{ end }}</a></code></pre></div>
+<p>Vea <a href="https://github.com/yihui/hugo-xmin/pull/7" class="uri">https://github.com/yihui/hugo-xmin/pull/7</a> para una implementación con ejemplos.</p></li>
+<li><p><strong>Mostrar categorías y etiquetas en una publicación si se proporciona en su YAML.</strong> Agregue el código de abajo donde usted quiera ubicar las categorías y etiquetas en <code>single.html</code>, e.g., en <code>&lt;div class=&quot;article-meta&quot;&gt;&lt;/div&gt;</code>.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">&lt;p</span><span class="ot"> class=</span><span class="st">&quot;terms&quot;</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">  {{ range $i := (slice &quot;categories&quot; &quot;tags&quot;) }}</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3">  {{ with ($.Param $i) }}</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4">  {{ $i | title }}:</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5">  {{ range $k := . }}</a>
+<a class="sourceLine" id="cb55-6" data-line-number="6">  <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&#39;{{ relURL (print &quot;/&quot; $i &quot;/&quot; $k | urlize) }}&#39;</span><span class="kw">&gt;</span>{{$k}}<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb55-7" data-line-number="7">  {{ end }}</a>
+<a class="sourceLine" id="cb55-8" data-line-number="8">  {{ end }}</a>
+<a class="sourceLine" id="cb55-9" data-line-number="9">  {{ end }}</a>
+<a class="sourceLine" id="cb55-10" data-line-number="10"><span class="kw">&lt;/p&gt;</span></a></code></pre></div>
+<p>Básicamente, el código recorre los campos de metadatos de YAML <code>categories</code> y <code>tags</code>, y para cada campo, su valor se obtiene de <code>.Param</code>, luego usamos un bucle interno para escribir los términos con enlaces de la forma <code>&lt;a href=&quot;/tags/foo/&quot;&gt;foo&lt;/a&gt;</code>.</p>
+<p>Puede ver <a href="https://github.com/yihui/hugo-xmin/pull/2" class="uri">https://github.com/yihui/hugo-xmin/pull/2</a> para la implementación completa y una previsualización en <a href="https://deploy-preview-2--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/" class="uri">https://deploy-preview-2--hugo-xmin.netlify.com/post/2016/02/14/a-plain-markdown-post/</a>.</p></li>
+<li><p><strong>Agregar paginación.</strong> Cuando tiene una gran cantidad de publicaciones en un sitio web, es posible que no desee mostrar la lista completa en una sola página, pero muestre N publicaciones (por ejemplo, N = 10) por página. Es fácil agregar paginación a un sitio web usando las funciones y plantillas integradas de Hugo. En lugar de recorrer todas las publicaciones en una plantilla de lista (por ejemplo, <code>range .Data.Pages</code>), pagine la lista completa de publicaciones usando la función <code>.Paginate</code> (por ejemplo, <code>range (.Paginate .Data.Pages)</code>). A continuación se muestra un fragmento de plantilla que puede insertar en su archivo de plantilla <code>list.html</code>:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">&lt;ul&gt;</span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">  {{ $paginator := .Paginate .Data.Pages }}</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3">  {{ range $paginator.Pages }}</a>
+<a class="sourceLine" id="cb56-4" data-line-number="4">  <span class="kw">&lt;li&gt;</span></a>
+<a class="sourceLine" id="cb56-5" data-line-number="5">    <span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;date&quot;</span><span class="kw">&gt;</span>{{ .Date.Format &quot;2006/01/02&quot; }}<span class="kw">&lt;/span&gt;</span></a>
+<a class="sourceLine" id="cb56-6" data-line-number="6">    <span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;{{ .URL }}&quot;</span><span class="kw">&gt;</span>{{ .Title }}<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb56-7" data-line-number="7">  <span class="kw">&lt;/li&gt;</span></a>
+<a class="sourceLine" id="cb56-8" data-line-number="8">  {{ end }}</a>
+<a class="sourceLine" id="cb56-9" data-line-number="9"><span class="kw">&lt;/ul&gt;</span></a>
+<a class="sourceLine" id="cb56-10" data-line-number="10">{{ template &quot;_internal/pagination.html&quot; . }}</a></code></pre></div>
+<p>See <a href="https://github.com/yihui/hugo-xmin/pull/16" class="uri">https://github.com/yihui/hugo-xmin/pull/16</a> for a full implementation.</p></li>
+<li><p><strong>Agregar un botón de edición de GitHub o un link a una página.</strong> Si ninguna  de las características anteriores le parece emocionante (lo que no me sorprendería), esta pequeña característica es realmente un gran ejemplo de mostrarle el poder de los archivos de texto sin formato y los sitios web estáticos, cuando se combina con GitHub (u otros servicios que admiten la edición en línea de archivos de texto sin formato). Creo que sería difícil, si no imposible, implementar esta característica en marcos de sitios web dinámicos como WordPress.</p>
+<p>Básicamente, cuando navega por cualquier archivo de texto en un repositorio en GitHub, puede editarlos directamente en la página presionando el botón Editar (mire la figura @ref(fig: github-edit) para ver un ejemplo) si tiene una cuenta de GitHub. Si tiene acceso de escritura al repositorio, puede confirmar los cambios directamente en línea, de lo contrario, GitHub bifurca automáticamente el repositorio para que pueda editar el archivo en su propio repositorio, y GitHub lo guiará para crear un pull request al repositorio original. Cuando el propietario original ve el pull request, puede ver los cambios que ha realizado y decidir si los acepta o no, o le pide que haga más cambios. Aunque la terminología “pull request” es muy confusa para los principiantes,<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>. Es probablemente la característica más importante inventada por GitHub, porque hace que sea mucho más fácil para las personas hacer contribuciones.</p>
+<p>Lo que realmente es útil es que todo lo que necesita es una URL de forma fija para editar un archivo en GitHub: <code>https://github.com/USER/REPO/edit/BRANCH/PATH/TO/FILE</code>. Por ejemplo, <a href="https://github.com/rbind/yihui/edit/master/content/knitr/faq.md" class="uri">https://github.com/rbind/yihui/edit/master/content/knitr/faq.md</a>, donde <code>USER</code> es <code>rbind</code>, <code>REPO</code> es <code>yihui</code>, <code>BRANCH</code> es <code>master</code>, y la ruta del archivo es <code>content/knitr/faq.md</code>.</p>
+<p>La clave para implementar esta característica es la variable <code>.File.Path</code>, que nos da la ruta del archivo fuente de una página bajo <code>content/</code>, por ejemplo, <code>post/foo.md</code>. Si su sitio web solo utiliza archivos de Markdown simples, la implementación será muy simple. Omití la URL completa de GitHub en <code>...</code> a continuación, de la cual un ejemplo podría ser <code>https://github.com/rbind/yihui/edit/master/content/</code>.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb57-1" data-line-number="1">{{ with .File.Path }}</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&quot;https://github.com/.../{{ . }}&quot;</span><span class="kw">&gt;</span>Edit this page<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb57-3" data-line-number="3">{{ end }}</a></code></pre></div>
+<p>Sin embargo, el caso es un poco más complicado para los usuarios de <strong>blogdown</strong>, cuando se trata de publicaciones de R Markdown. No se puede usar <code>.File.Path</code> porque apunta al archivo de salida <code>.html</code> de un archivo <code>.Rmd</code>, mientras que el archivo <code>.Rmd</code> es el archivo fuente real. El botón o enlace Edit no debe apuntar al archivo <code>.html</code>. A continuación se muestra la implementación completa que puede agregar a un archivo de plantilla dependiendo de dónde desee mostrar el enlace Edit (por ejemplo, <code>footer.html</code>):</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb58-1" data-line-number="1">{{ if .File.Path }}</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">{{ $Rmd := (print .File.BaseFileName &quot;.Rmd&quot;) }}</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5">{{ if (where (readDir (print &quot;content/&quot; .File.Dir)) &quot;Name&quot; $Rmd) }}</a>
+<a class="sourceLine" id="cb58-6" data-line-number="6">  {{ $.Scratch.Set &quot;FilePath&quot; (print .File.Dir $Rmd) }}</a>
+<a class="sourceLine" id="cb58-7" data-line-number="7">{{ else }}</a>
+<a class="sourceLine" id="cb58-8" data-line-number="8">  {{ $.Scratch.Set &quot;FilePath&quot; .File.Path }}</a>
+<a class="sourceLine" id="cb58-9" data-line-number="9">{{ end }}</a>
+<a class="sourceLine" id="cb58-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb58-11" data-line-number="11">{{ with .Site.Params.GithubEdit}}</a>
+<a class="sourceLine" id="cb58-12" data-line-number="12"><span class="kw">&lt;a</span><span class="ot"> href=</span><span class="st">&#39;{{ . }}{{ $.Scratch.Get &quot;FilePath&quot; }}&#39;</span><span class="kw">&gt;</span>Edit this page<span class="kw">&lt;/a&gt;</span></a>
+<a class="sourceLine" id="cb58-13" data-line-number="13">{{ end }}</a>
+<a class="sourceLine" id="cb58-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb58-15" data-line-number="15">{{ end }}</a></code></pre></div>
+<p>La lógica básica es que, para un archivo, si existe el mismo nombre de archivo con la extensión <code>.Rmd</code>, señalaremos el enlace Edit al archivo Rmd. Primero, definimos una variable <code>$ Rmd</code> para que sea el nombre de archivo con la extensión <code>.Rmd</code>. Luego verificamos si existe. Desafortunadamente, no hay ninguna función en Hugo como <code>file.exists()</code> en R, así que tenemos que usar un truco: liste todos los archivos bajo el directorio y vea si el archivo Rmd está en la lista. <a href="http://gohugo.io/extras/scratch/"><code>$ .Scratch</code></a> es la forma de almacenar dinámicamente y obtener variables en las plantillas de Hugo. La mayoría de las variables en Hugo son de solo lectura, y usted tiene que usar <code>$.Scratch</code> cuando quiera modificar una variable. Establecemos una variable <code>FilePath</code> en <code>$.Scratch</code>, cuyo valor es la ruta completa al archivo Rmd cuando existe el archivo Rmd, y la ruta al archivo fuente de Markdown de lo contrario. Finalmente, concatenamos una opción personalizada <code>GithubEdit</code> en <code>config.toml</code> con la ruta del archivo para completar el enlace Edit <code>&lt;a&gt;</code>. Aquí hay un ejemplo de la opción en <code>config.toml</code>:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode js"><code class="sourceCode javascript"><a class="sourceLine" id="cb59-1" data-line-number="1">[params]</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">  GithubEdit <span class="op">=</span> <span class="st">&quot;https://github.com/rbind/yihui/edit/master/content/&quot;</span></a></code></pre></div>
+<p>Tenga en cuenta que si utiliza Hugo en Windows para compilar e implementar su sitio, es posible que tenga que cambiar los separadores de ruta de archivos de las barras diagonales inversas a barras diagonales, por ejemplo, puede necesitar <code>{{$.Scratch.Set &quot;FilePath&quot; (replace ($.Scratch.Get&quot;FilePath&quot;) &quot;\\&quot; &quot;/&quot;)}}</code> en la plantilla. Para evitar esta complicación, no recomendamos que implemente su sitio a través de Windows (consulte el capítulo <a href="#implementación"><strong>??</strong></a> para conocer los métodos de implementación).</p>
+<p>Puede ver <a href="https://github.com/yihui/hugo-xmin/pull/6" class="uri">https://github.com/yihui/hugo-xmin/pull/6</a> para una implementación real con ejemplos de R Markdown, y ver el pie de página de esta página para el enlace Edit: <a href="https://deploy-preview-6--hugo-xmin.netlify.com" class="uri">https://deploy-preview-6--hugo-xmin.netlify.com</a>. En realidad, puede ver un enlace en el pie de página de cada página, excepto las listas de páginas (porque no tienen archivos fuente).</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:github-edit"></span>
+<img src="images/github-edit.png" alt="Editar un archivo de texto en línea en GitHub." width="100%" />
+<p class="caption">
+FIGURA 2.3: Editar un archivo de texto en línea en GitHub.
+</p>
+</div>
+<p>Después de digerir el tema XMin y las implementaciones de funciones adicionales, debería ser mucho más fácil entender las plantillas de otras personas. Hay una gran cantidad de temas de Hugo, pero las principales diferencias entre ellos suelen ser estilos. Los componentes básicos de las plantillas son a menudo similares.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="24">
+<li id="fn24"><p>La funcionalidad más común de las plantillas es hacer páginas HTML, pero también puede haber plantillas especiales, por ejemplo, para fuentes RSS y sitemaps, que son archivos XML.<a href="plantillas.html#fnref24" class="footnote-back">↩</a></p></li>
+<li id="fn25"><p>En mi opinión, en realidad debería llamarse “solicitud de fusión”<a href="plantillas.html#fnref25" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="temas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="layouts-personalizados.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mamaciasq/libro_blogdown02-hugo.Rmd",
+"text": "Edit"
+},
+"download": ["blogdown.pdf", "blogdown.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
