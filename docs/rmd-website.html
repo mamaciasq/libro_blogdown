@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="otros-generadores.html"><a href="otros-generadores.html"><i class="fa fa-check"></i><b>5</b> Otros generadores</a><ul>
 <li class="chapter" data-level="5.1" data-path="jekyll.html"><a href="jekyll.html"><i class="fa fa-check"></i><b>5.1</b> Jekyll</a></li>
 <li class="chapter" data-level="5.2" data-path="hexo.html"><a href="hexo.html"><i class="fa fa-check"></i><b>5.2</b> Hexo</a></li>
-<li class="chapter" data-level="5.3" data-path="rmd-website.html"><a href="rmd-website.html"><i class="fa fa-check"></i><b>5.3</b> Default site generator in rmarkdown</a></li>
+<li class="chapter" data-level="5.3" data-path="rmd-website.html"><a href="rmd-website.html"><i class="fa fa-check"></i><b>5.3</b> Generados del sitio web por defecto en rmarkdown</a></li>
 <li class="chapter" data-level="5.4" data-path="pkgdown.html"><a href="pkgdown.html"><i class="fa fa-check"></i><b>5.4</b> pkgdown</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -244,21 +244,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="rmd-website" class="section level2">
-<h2><span class="header-section-number">5.3</span> Default site generator in rmarkdown</h2>
-<p>Before <strong>blogdown</strong> was invented, there was actually a relatively simple way to render websites using <strong>rmarkdown</strong>. The structure of the website has to be a flat directory of Rmd files (no subdirectories for Rmd files) and a configuration file in which you can specify a navigation bar for all your pages and output format options.</p>
-<p>You can find more information about this site generator in its documentation at <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html" class="uri">http://rmarkdown.rstudio.com/rmarkdown_websites.html</a>, and we are not going to repeat the documentation here, but just want to highlight the major differences between the default site generator in <strong>rmarkdown</strong> and other specialized site generators like Hugo:</p>
+<h2><span class="header-section-number">5.3</span> Generados del sitio web por defecto en rmarkdown</h2>
+<p>Antes de que se inventara <strong>blogdown</strong>, en realidad existía una forma relativamente simple de hacer sitios web usando <strong>rmarkdown</strong>. La estructura del sitio web debe ser un directorio plano de archivos Rmd (sin subdirectorios para archivos Rmd) y un archivo de configuración en el que puede especificar una barra de navegación para todas sus páginas y opciones de formato de salida.</p>
+<p>Puede encontrar más información sobre este generador de sitios en su documentación en <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html" class="uri">http://rmarkdown.rstudio.com/rmarkdown_websites.html</a>, y no vamos a repetir la documentación aquí, solo queremos destacar las principales diferencias entre el sitio predeterminado generador en <strong>rmarkdown</strong> y otros generadores de sitios especializados como Hugo:</p>
 <ul>
-<li><p>The <strong>rmarkdown</strong> site generator requires all Rmd files to be under the root directory. Hugo has no constraints on the site structure, and you can create arbitrary directories and files under <code>/content/</code>.</p></li>
-<li><p>Hugo is a general-purpose site generator that is highly customizable, and there are a lot of things that <strong>rmarkdown</strong>’s default site generator does not support, e.g., RSS feeds, metadata especially common in blogs such as categories and tags, and customizing permanent links for certain pages.</p></li>
+<li><p>El generador de sitios <strong>rmarkdown</strong> requiere que todos los archivos Rmd estén bajo el directorio raíz. Hugo no tiene restricciones en la estructura del sitio, y puede crear directorios y archivos arbitrarios bajo <code>/content/</code>.</p></li>
+<li><p>Hugo es un generador de sitios de uso general altamente personalizable, y hay muchas cosas que el generador de sitios predeterminado de <strong>rmarkdown</strong> no admite, por ejemplo, fuentes RSS, metadatos especialmente comunes en blogs como categorías y etiquetas, y la personalización de enlaces permanentes para ciertas páginas.</p></li>
 </ul>
-<p>There are still legitimate reasons to choose the <strong>rmarkdown</strong> default site generator, even though it does not appear to be as powerful as Hugo, including:</p>
+<p>Todavía hay razones legítimas para elegir el generador de sitios predeterminado <strong>rmarkdown</strong>, aunque no parece ser tan poderoso como Hugo, incluyendo:</p>
 <ul>
-<li><p>You are familiar with generating single-page HTML output from R Markdown, and all you want is to extend this to generating multiple pages from multiple Rmd files.</p></li>
-<li><p>It suffices to use a flat directory of Rmd files. You do not write a blog or need RSS feeds.</p></li>
-<li><p>You prefer the Bootstrap styles. In theory, you can also apply Bootstrap styles to Hugo websites, but it will require you to learn more about Hugo. Bootstrap is well supported in <strong>rmarkdown</strong>, and you can spend more time on the configurations instead of learning the technical details about how it works.</p></li>
-<li><p>There are certain features in <strong>rmarkdown</strong> HTML output that are missing in <strong>blogdown</strong>. For example, currently you cannot easily print data frames as paged tables, add a floating table of contents, or fold/unfold code blocks dynamically in the output of <strong>blogdown</strong>. All these could be implemented via JavaScript and CSS, but it is certainly not as simple as specifying a few options in <strong>rmarkdown</strong> like <code>toc_float: true</code>.</p></li>
+<li><p>Está familiarizado con generar resultados HTML de una sola página a partir de R Markdown, y todo lo que desea es ampliar esto para generar varias páginas a partir de múltiples archivos Rmd.</p></li>
+<li><p>Basta usar un directorio plano de archivos Rmd. No escribe un blog o necesita fuentes RSS.</p></li>
+<li><p>Prefiere los estilos Bootstrap. En teoría, también puede aplicar estilos de Bootstrap a los sitios web de Hugo, pero requerirá que aprenda más sobre Hugo. Bootstrap tiene un buen soporte en <strong>rmarkdown</strong>, y puede dedicar más tiempo a las configuraciones en lugar de aprender los detalles técnicos sobre cómo funciona.</p></li>
+<li><p>Hay ciertas características en la salida de <strong>rmarkdown</strong> HTML que faltan en <strong>blogdown</strong>. Por ejemplo, actualmente no puede imprimir cuadros de datos fácilmente como tablas paginadas, agregar una tabla de contenido flotante o doblar/desplegar bloques de código dinámicamente en la salida de <strong>blogdown</strong>. Todo esto podría implementarse a través de JavaScript y CSS, pero ciertamente no es tan simple como especificar algunas opciones en <strong>rmarkdown</strong> como <code>toc_float: true</code>.</p></li>
 </ul>
-<p>Please note that the <strong>rmarkdown</strong> site generator is extensible, too. For example, the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown">2018</a><a href="#ref-R-bookdown">a</a>)</span> is essentially a custom site generator to generate books as websites.</p>
+<p>Tenga en cuenta que el generador de sitios <strong>rmarkdown</strong> también es extensible. Por ejemplo, el paquete <strong>bookdown</strong> <span class="citation">(Xie <a href="#ref-R-bookdown">2018</a><a href="#ref-R-bookdown">a</a>)</span> es esencialmente un generador de sitios personalizado para generar libros como sitios web.</p>
 </div>
 <h3>References</h3>
 <div id="refs" class="references">

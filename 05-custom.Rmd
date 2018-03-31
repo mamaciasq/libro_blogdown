@@ -98,9 +98,9 @@ Es posible que podamos eliminar estas limitaciones en una versión futura de **b
 
 ## Hexo
 
-The ideas of using\index{Hexo} Hexo (https://hexo.io) are very similar to what we have applied to Jekyll in the previous section. I have also prepared a minimal example in the GitHub repository [yihui/blogdown-hexo.](https://github.com/yihui/blogdown-hexo)
+Las ideas de usar\index{Hexo} Hexo (https://hexo.io) son muy similares a las que hemos aplicado a Jekyll en la sección anterior. También preparé un ejemplo mínimo en el repositorio de GitHub [yihui/blogdown-hexo.](https://github.com/yihui/blogdown-hexo)
 
-The key components of this repository are still `.Rprofile`, `R/build.R`, and `R/build_one.R`. We set the option `blogdown.generator` to `hexo`, the `build.method` to `custom`, and the default subdirectory for new posts to `source/_posts`.
+Los componentes claves de este repositorio siguen siendo `.Rprofile`, `R/build.R`, y `R/build_one.R`. Establecimos la opción `blogdown.generator` en `hexo`, `build.method` en `custom`, y el subdirectorio predeterminado para las nuevas publicaciones en `source/_posts`.
 
 ```r
 options(
@@ -110,13 +110,13 @@ options(
 )
 ```
 
-The script `R/build.R` is similar to the one in the `blogdown-jekyll` repository. The main differences are:
+El script `R/build.R` es similar al del repositorio `blogdown-jekyll`. Las principales diferencias son:
 
-1. We find all Rmd files under the `source/` directory instead of the root directory, because Hexo's convention is to put all source files under `source/`.
+1. Encontramos todos los archivos Rmd bajo el directorio `source/` en lugar del directorio raíz, porque la convención de Hexo es poner todos los archivos fuente bajo `source/`.
 
-1. We call `system2('hexo', 'generate')` to build the website.
+1. Llamamos `system2('hexo', 'generate')` para construir el sitio web.
 
-For the script `R/build_one.R`, the major difference with the script in the `blogdown-jekyll` repository is that we set the `base.dir` option for **knitr**, so that all R figures are generated to the `source/` directory. This is because Hexo copies everything under `source/` to `public/`, whereas Jekyll copies everything under the root directory to `_site/`.
+Para el script `R/build_one.R`, la principal diferencia con el script en el repositorio `blogdown-jekyll` es que establecemos la opción `base.dir` para **knitr**, de modo que se generan todas las figuras en R al directorio `fuente/`. Esto se debe a que Hexo copia todo bajo `source/` a `public/`, mientras que Jekyll copia todo bajo el directorio raíz a `_site/`.
 
 ```r
 local({
@@ -139,31 +139,31 @@ local({
 })
 ```
 
-This repository is also automatically built and deployed through Netlify\index{Netlify} when I push changes to it. Since Hexo is a Node package, and Netlify supports Node, you can easily install Hexo on Netlify. For example, this example repository uses the command `npm install && hexo generate` to build the website; `npm install` will install the Node packages specified in `packages.json` (a file under the root directory of the repository), and `hexo generate` is the command to build the website from `source/` to `public/`.
+Este repositorio también se crea automáticamente y se implementa a través de Netlify\index{Netlify} cuando le envío cambios. Como Hexo es un paquete de Node y Netlify es compatible con Node, puede instalar Hexo fácilmente en Netlify. Por ejemplo, este repositorio de ejemplo usa el comando `npm install && hexo generate` para construir el sitio web; `npm install` instalará los paquetes de Node especificados en `packages.json` (un archivo bajo el directorio raíz del repositorio), y `hexo generate` es el comando para construir el sitio web desde `source/` a `public/`.
 
-## Default site generator in rmarkdown {#rmd-website}
+## Generados del sitio web por defecto en rmarkdown {#rmd-website}
 
-Before **blogdown** was invented\index{R Markdown Site Generator}, there was actually a relatively simple way to render websites using **rmarkdown**. The structure of the website has to be a flat directory of Rmd files (no subdirectories for Rmd files) and a configuration file in which you can specify a navigation bar for all your pages and output format options.
+Antes de que se inventara **blogdown**\index{Generador de sitios R Markdown}, en realidad existía una forma relativamente simple de hacer sitios web usando **rmarkdown**. La estructura del sitio web debe ser un directorio plano de archivos Rmd (sin subdirectorios para archivos Rmd) y un archivo de configuración en el que puede especificar una barra de navegación para todas sus páginas y opciones de formato de salida.
 
-You can find more information about this site generator in its documentation at http://rmarkdown.rstudio.com/rmarkdown_websites.html, and we are not going to repeat the documentation here, but just want to highlight the major differences between the default site generator in **rmarkdown** and other specialized site generators like Hugo:
+Puede encontrar más información sobre este generador de sitios en su documentación en http://rmarkdown.rstudio.com/rmarkdown_websites.html, y no vamos a repetir la documentación aquí, solo queremos destacar las principales diferencias entre el sitio predeterminado generador en **rmarkdown** y otros generadores de sitios especializados como Hugo:
 
-- The **rmarkdown** site generator requires all Rmd files to be under the root directory. Hugo has no constraints on the site structure, and you can create arbitrary directories and files under `/content/`.
+- El generador de sitios **rmarkdown** requiere que todos los archivos Rmd estén bajo el directorio raíz. Hugo no tiene restricciones en la estructura del sitio, y puede crear directorios y archivos arbitrarios bajo `/content/`.
 
-- Hugo is a general-purpose site generator that is highly customizable, and there are a lot of things that **rmarkdown**'s default site generator does not support, e.g., RSS feeds, metadata especially common in blogs such as categories and tags, and customizing permanent links for certain pages.
+- Hugo es un generador de sitios de uso general altamente personalizable, y hay muchas cosas que el generador de sitios predeterminado de **rmarkdown** no admite, por ejemplo, fuentes RSS, metadatos especialmente comunes en blogs como categorías y etiquetas, y la personalización de enlaces permanentes para ciertas páginas.
 
-There are still legitimate reasons to choose the **rmarkdown** default site generator, even though it does not appear to be as powerful as Hugo, including:
+Todavía hay razones legítimas para elegir el generador de sitios predeterminado **rmarkdown**, aunque no parece ser tan poderoso como Hugo, incluyendo:
 
-- You are familiar with generating single-page HTML output from R Markdown, and all you want is to extend this to generating multiple pages from multiple Rmd files.
+- Está familiarizado con generar resultados HTML de una sola página a partir de R Markdown, y todo lo que desea es ampliar esto para generar varias páginas a partir de múltiples archivos Rmd.
 
-- It suffices to use a flat directory of Rmd files. You do not write a blog or need RSS feeds.
+- Basta usar un directorio plano de archivos Rmd. No escribe un blog o necesita fuentes RSS.
 
-- You prefer the Bootstrap styles. In theory, you can also apply Bootstrap styles to Hugo websites, but it will require you to learn more about Hugo. Bootstrap is well supported in **rmarkdown**, and you can spend more time on the configurations instead of learning the technical details about how it works.
+- Prefiere los estilos Bootstrap. En teoría, también puede aplicar estilos de Bootstrap a los sitios web de Hugo, pero requerirá que aprenda más sobre Hugo. Bootstrap tiene un buen soporte en **rmarkdown**, y puede dedicar más tiempo a las configuraciones en lugar de aprender los detalles técnicos sobre cómo funciona.
 
-- There are certain features in **rmarkdown** HTML output that are missing in **blogdown**. For example, currently you cannot easily print data frames as paged tables, add a floating table of contents, or fold/unfold code blocks dynamically in the output of **blogdown**. All these could be implemented via JavaScript and CSS, but it is certainly not as simple as specifying a few options in **rmarkdown** like `toc_float: true`.
+- Hay ciertas características en la salida de **rmarkdown** HTML que faltan en **blogdown**. Por ejemplo, actualmente no puede imprimir cuadros de datos fácilmente como tablas paginadas, agregar una tabla de contenido flotante o doblar/desplegar bloques de código dinámicamente en la salida de **blogdown**. Todo esto podría implementarse a través de JavaScript y CSS, pero ciertamente no es tan simple como especificar algunas opciones en **rmarkdown** como `toc_float: true`.
 
-Please note that the **rmarkdown** site generator is extensible, too. For example, the **bookdown** package [@R-bookdown] is essentially a custom site generator to generate books as websites. 
+Tenga en cuenta que el generador de sitios **rmarkdown** también es extensible. Por ejemplo, el paquete **bookdown** [@R-bookdown] es esencialmente un generador de sitios personalizado para generar libros como sitios web.
 
 ## pkgdown
 
-The **pkgdown** package\index{pkgdown} (@R-pkgdown, https://github.com/hadley/pkgdown) can help you quickly turn the R documentation of an R package (including help pages and vignettes) into a website. It is independent of **blogdown** and solves a specific problem. It is not a general-purpose website generator. We want to mention it in this book because it is very easy to use, and also highly useful. You can find the instructions on its website or in its GitHub repository.
+El paquete **pkgdown**\index{pkgdown} (@R-pkgdown, https://github.com/hadley/pkgdown) puede ayudarlo a convertir rápidamente la documentación R de un paquete en R (incluidas páginas de ayuda y viñetas) en un sitio web. Es independiente de **blogdown** y resuelve un problema específico. No es un generador de sitios web de propósito general. Queremos mencionarlo en este libro porque es muy fácil de usar y también muy útil. Puede encontrar las instrucciones en su sitio web o en su repositorio de GitHub.
 

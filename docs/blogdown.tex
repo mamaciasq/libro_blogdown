@@ -4635,16 +4635,16 @@ la comunidad R.
 \hypertarget{hexo}{%
 \section{Hexo}\label{hexo}}
 
-The ideas of using\index{Hexo} Hexo (\url{https://hexo.io}) are very
-similar to what we have applied to Jekyll in the previous section. I
-have also prepared a minimal example in the GitHub repository
+Las ideas de usar\index{Hexo} Hexo (\url{https://hexo.io}) son muy
+similares a las que hemos aplicado a Jekyll en la sección anterior.
+También preparé un ejemplo mínimo en el repositorio de GitHub
 \href{https://github.com/yihui/blogdown-hexo}{yihui/blogdown-hexo.}
 
-The key components of this repository are still \texttt{.Rprofile},
-\texttt{R/build.R}, and \texttt{R/build\_one.R}. We set the option
-\texttt{blogdown.generator} to \texttt{hexo}, the \texttt{build.method}
-to \texttt{custom}, and the default subdirectory for new posts to
-\texttt{source/\_posts}.
+Los componentes claves de este repositorio siguen siendo
+\texttt{.Rprofile}, \texttt{R/build.R}, y \texttt{R/build\_one.R}.
+Establecimos la opción \texttt{blogdown.generator} en \texttt{hexo},
+\texttt{build.method} en \texttt{custom}, y el subdirectorio
+predeterminado para las nuevas publicaciones en \texttt{source/\_posts}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4656,27 +4656,27 @@ to \texttt{custom}, and the default subdirectory for new posts to
 \end{Highlighting}
 \end{Shaded}
 
-The script \texttt{R/build.R} is similar to the one in the
-\texttt{blogdown-jekyll} repository. The main differences are:
+El script \texttt{R/build.R} es similar al del repositorio
+\texttt{blogdown-jekyll}. Las principales diferencias son:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  We find all Rmd files under the \texttt{source/} directory instead of
-  the root directory, because Hexo's convention is to put all source
-  files under \texttt{source/}.
+  Encontramos todos los archivos Rmd bajo el directorio \texttt{source/}
+  en lugar del directorio raíz, porque la convención de Hexo es poner
+  todos los archivos fuente bajo \texttt{source/}.
 \item
-  We call
+  Llamamos
   \texttt{system2(\textquotesingle{}hexo\textquotesingle{},\ \textquotesingle{}generate\textquotesingle{})}
-  to build the website.
+  para construir el sitio web.
 \end{enumerate}
 
-For the script \texttt{R/build\_one.R}, the major difference with the
-script in the \texttt{blogdown-jekyll} repository is that we set the
-\texttt{base.dir} option for \textbf{knitr}, so that all R figures are
-generated to the \texttt{source/} directory. This is because Hexo copies
-everything under \texttt{source/} to \texttt{public/}, whereas Jekyll
-copies everything under the root directory to \texttt{\_site/}.
+Para el script \texttt{R/build\_one.R}, la principal diferencia con el
+script en el repositorio \texttt{blogdown-jekyll} es que establecemos la
+opción \texttt{base.dir} para \textbf{knitr}, de modo que se generan
+todas las figuras en R al directorio \texttt{fuente/}. Esto se debe a
+que Hexo copia todo bajo \texttt{source/} a \texttt{public/}, mientras
+que Jekyll copia todo bajo el directorio raíz a \texttt{\_site/}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4701,90 +4701,96 @@ copies everything under the root directory to \texttt{\_site/}.
 \end{Highlighting}
 \end{Shaded}
 
-This repository is also automatically built and deployed through
-Netlify\index{Netlify} when I push changes to it. Since Hexo is a Node
-package, and Netlify supports Node, you can easily install Hexo on
-Netlify. For example, this example repository uses the command
-\texttt{npm\ install\ \&\&\ hexo\ generate} to build the website;
-\texttt{npm\ install} will install the Node packages specified in
-\texttt{packages.json} (a file under the root directory of the
-repository), and \texttt{hexo\ generate} is the command to build the
-website from \texttt{source/} to \texttt{public/}.
+Este repositorio también se crea automáticamente y se implementa a
+través de Netlify\index{Netlify} cuando le envío cambios. Como Hexo es
+un paquete de Node y Netlify es compatible con Node, puede instalar Hexo
+fácilmente en Netlify. Por ejemplo, este repositorio de ejemplo usa el
+comando \texttt{npm\ install\ \&\&\ hexo\ generate} para construir el
+sitio web; \texttt{npm\ install} instalará los paquetes de Node
+especificados en \texttt{packages.json} (un archivo bajo el directorio
+raíz del repositorio), y \texttt{hexo\ generate} es el comando para
+construir el sitio web desde \texttt{source/} a \texttt{public/}.
 
 \hypertarget{rmd-website}{%
-\section{Default site generator in rmarkdown}\label{rmd-website}}
+\section{Generados del sitio web por defecto en
+rmarkdown}\label{rmd-website}}
 
-Before \textbf{blogdown} was invented\index{R Markdown Site Generator},
-there was actually a relatively simple way to render websites using
-\textbf{rmarkdown}. The structure of the website has to be a flat
-directory of Rmd files (no subdirectories for Rmd files) and a
-configuration file in which you can specify a navigation bar for all
-your pages and output format options.
+Antes de que se inventara
+\textbf{blogdown}\index{Generador de sitios R Markdown}, en realidad
+existía una forma relativamente simple de hacer sitios web usando
+\textbf{rmarkdown}. La estructura del sitio web debe ser un directorio
+plano de archivos Rmd (sin subdirectorios para archivos Rmd) y un
+archivo de configuración en el que puede especificar una barra de
+navegación para todas sus páginas y opciones de formato de salida.
 
-You can find more information about this site generator in its
-documentation at
-\url{http://rmarkdown.rstudio.com/rmarkdown_websites.html}, and we are
-not going to repeat the documentation here, but just want to highlight
-the major differences between the default site generator in
-\textbf{rmarkdown} and other specialized site generators like Hugo:
-
-\begin{itemize}
-\item
-  The \textbf{rmarkdown} site generator requires all Rmd files to be
-  under the root directory. Hugo has no constraints on the site
-  structure, and you can create arbitrary directories and files under
-  \texttt{/content/}.
-\item
-  Hugo is a general-purpose site generator that is highly customizable,
-  and there are a lot of things that \textbf{rmarkdown}'s default site
-  generator does not support, e.g., RSS feeds, metadata especially
-  common in blogs such as categories and tags, and customizing permanent
-  links for certain pages.
-\end{itemize}
-
-There are still legitimate reasons to choose the \textbf{rmarkdown}
-default site generator, even though it does not appear to be as powerful
-as Hugo, including:
+Puede encontrar más información sobre este generador de sitios en su
+documentación en
+\url{http://rmarkdown.rstudio.com/rmarkdown_websites.html}, y no vamos a
+repetir la documentación aquí, solo queremos destacar las principales
+diferencias entre el sitio predeterminado generador en
+\textbf{rmarkdown} y otros generadores de sitios especializados como
+Hugo:
 
 \begin{itemize}
 \item
-  You are familiar with generating single-page HTML output from R
-  Markdown, and all you want is to extend this to generating multiple
-  pages from multiple Rmd files.
+  El generador de sitios \textbf{rmarkdown} requiere que todos los
+  archivos Rmd estén bajo el directorio raíz. Hugo no tiene
+  restricciones en la estructura del sitio, y puede crear directorios y
+  archivos arbitrarios bajo \texttt{/content/}.
 \item
-  It suffices to use a flat directory of Rmd files. You do not write a
-  blog or need RSS feeds.
-\item
-  You prefer the Bootstrap styles. In theory, you can also apply
-  Bootstrap styles to Hugo websites, but it will require you to learn
-  more about Hugo. Bootstrap is well supported in \textbf{rmarkdown},
-  and you can spend more time on the configurations instead of learning
-  the technical details about how it works.
-\item
-  There are certain features in \textbf{rmarkdown} HTML output that are
-  missing in \textbf{blogdown}. For example, currently you cannot easily
-  print data frames as paged tables, add a floating table of contents,
-  or fold/unfold code blocks dynamically in the output of
-  \textbf{blogdown}. All these could be implemented via JavaScript and
-  CSS, but it is certainly not as simple as specifying a few options in
-  \textbf{rmarkdown} like \texttt{toc\_float:\ true}.
+  Hugo es un generador de sitios de uso general altamente
+  personalizable, y hay muchas cosas que el generador de sitios
+  predeterminado de \textbf{rmarkdown} no admite, por ejemplo, fuentes
+  RSS, metadatos especialmente comunes en blogs como categorías y
+  etiquetas, y la personalización de enlaces permanentes para ciertas
+  páginas.
 \end{itemize}
 
-Please note that the \textbf{rmarkdown} site generator is extensible,
-too. For example, the \textbf{bookdown} package \citep{R-bookdown} is
-essentially a custom site generator to generate books as websites.
+Todavía hay razones legítimas para elegir el generador de sitios
+predeterminado \textbf{rmarkdown}, aunque no parece ser tan poderoso
+como Hugo, incluyendo:
+
+\begin{itemize}
+\item
+  Está familiarizado con generar resultados HTML de una sola página a
+  partir de R Markdown, y todo lo que desea es ampliar esto para generar
+  varias páginas a partir de múltiples archivos Rmd.
+\item
+  Basta usar un directorio plano de archivos Rmd. No escribe un blog o
+  necesita fuentes RSS.
+\item
+  Prefiere los estilos Bootstrap. En teoría, también puede aplicar
+  estilos de Bootstrap a los sitios web de Hugo, pero requerirá que
+  aprenda más sobre Hugo. Bootstrap tiene un buen soporte en
+  \textbf{rmarkdown}, y puede dedicar más tiempo a las configuraciones
+  en lugar de aprender los detalles técnicos sobre cómo funciona.
+\item
+  Hay ciertas características en la salida de \textbf{rmarkdown} HTML
+  que faltan en \textbf{blogdown}. Por ejemplo, actualmente no puede
+  imprimir cuadros de datos fácilmente como tablas paginadas, agregar
+  una tabla de contenido flotante o doblar/desplegar bloques de código
+  dinámicamente en la salida de \textbf{blogdown}. Todo esto podría
+  implementarse a través de JavaScript y CSS, pero ciertamente no es tan
+  simple como especificar algunas opciones en \textbf{rmarkdown} como
+  \texttt{toc\_float:\ true}.
+\end{itemize}
+
+Tenga en cuenta que el generador de sitios \textbf{rmarkdown} también es
+extensible. Por ejemplo, el paquete \textbf{bookdown} \citep{R-bookdown}
+es esencialmente un generador de sitios personalizado para generar
+libros como sitios web.
 
 \hypertarget{pkgdown}{%
 \section{pkgdown}\label{pkgdown}}
 
-The \textbf{pkgdown} package\index{pkgdown} (\citet{R-pkgdown},
-\url{https://github.com/hadley/pkgdown}) can help you quickly turn the R
-documentation of an R package (including help pages and vignettes) into
-a website. It is independent of \textbf{blogdown} and solves a specific
-problem. It is not a general-purpose website generator. We want to
-mention it in this book because it is very easy to use, and also highly
-useful. You can find the instructions on its website or in its GitHub
-repository.
+El paquete \textbf{pkgdown}\index{pkgdown} (\citet{R-pkgdown},
+\url{https://github.com/hadley/pkgdown}) puede ayudarlo a convertir
+rápidamente la documentación R de un paquete en R (incluidas páginas de
+ayuda y viñetas) en un sitio web. Es independiente de \textbf{blogdown}
+y resuelve un problema específico. No es un generador de sitios web de
+propósito general. Queremos mencionarlo en este libro porque es muy
+fácil de usar y también muy útil. Puede encontrar las instrucciones en
+su sitio web o en su repositorio de GitHub.
 
 \cleardoublepage
 

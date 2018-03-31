@@ -188,7 +188,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="otros-generadores.html"><a href="otros-generadores.html"><i class="fa fa-check"></i><b>5</b> Otros generadores</a><ul>
 <li class="chapter" data-level="5.1" data-path="jekyll.html"><a href="jekyll.html"><i class="fa fa-check"></i><b>5.1</b> Jekyll</a></li>
 <li class="chapter" data-level="5.2" data-path="hexo.html"><a href="hexo.html"><i class="fa fa-check"></i><b>5.2</b> Hexo</a></li>
-<li class="chapter" data-level="5.3" data-path="rmd-website.html"><a href="rmd-website.html"><i class="fa fa-check"></i><b>5.3</b> Default site generator in rmarkdown</a></li>
+<li class="chapter" data-level="5.3" data-path="rmd-website.html"><a href="rmd-website.html"><i class="fa fa-check"></i><b>5.3</b> Generados del sitio web por defecto en rmarkdown</a></li>
 <li class="chapter" data-level="5.4" data-path="pkgdown.html"><a href="pkgdown.html"><i class="fa fa-check"></i><b>5.4</b> pkgdown</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -245,19 +245,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="hexo" class="section level2">
 <h2><span class="header-section-number">5.2</span> Hexo</h2>
-<p>The ideas of using Hexo (<a href="https://hexo.io" class="uri">https://hexo.io</a>) are very similar to what we have applied to Jekyll in the previous section. I have also prepared a minimal example in the GitHub repository <a href="https://github.com/yihui/blogdown-hexo">yihui/blogdown-hexo.</a></p>
-<p>The key components of this repository are still <code>.Rprofile</code>, <code>R/build.R</code>, and <code>R/build_one.R</code>. We set the option <code>blogdown.generator</code> to <code>hexo</code>, the <code>build.method</code> to <code>custom</code>, and the default subdirectory for new posts to <code>source/_posts</code>.</p>
+<p>Las ideas de usar Hexo (<a href="https://hexo.io" class="uri">https://hexo.io</a>) son muy similares a las que hemos aplicado a Jekyll en la sección anterior. También preparé un ejemplo mínimo en el repositorio de GitHub <a href="https://github.com/yihui/blogdown-hexo">yihui/blogdown-hexo.</a></p>
+<p>Los componentes claves de este repositorio siguen siendo <code>.Rprofile</code>, <code>R/build.R</code>, y <code>R/build_one.R</code>. Establecimos la opción <code>blogdown.generator</code> en <code>hexo</code>, <code>build.method</code> en <code>custom</code>, y el subdirectorio predeterminado para las nuevas publicaciones en <code>source/_posts</code>.</p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">options</span>(</a>
 <a class="sourceLine" id="cb85-2" data-line-number="2">  <span class="dt">blogdown.generator =</span> <span class="st">&#39;hexo&#39;</span>,</a>
 <a class="sourceLine" id="cb85-3" data-line-number="3">  <span class="dt">blogdown.method =</span> <span class="st">&#39;custom&#39;</span>,</a>
 <a class="sourceLine" id="cb85-4" data-line-number="4">  <span class="dt">blogdown.subdir =</span> <span class="st">&#39;source/_posts&#39;</span></a>
 <a class="sourceLine" id="cb85-5" data-line-number="5">)</a></code></pre></div>
-<p>The script <code>R/build.R</code> is similar to the one in the <code>blogdown-jekyll</code> repository. The main differences are:</p>
+<p>El script <code>R/build.R</code> es similar al del repositorio <code>blogdown-jekyll</code>. Las principales diferencias son:</p>
 <ol style="list-style-type: decimal">
-<li><p>We find all Rmd files under the <code>source/</code> directory instead of the root directory, because Hexo’s convention is to put all source files under <code>source/</code>.</p></li>
-<li><p>We call <code>system2('hexo', 'generate')</code> to build the website.</p></li>
+<li><p>Encontramos todos los archivos Rmd bajo el directorio <code>source/</code> en lugar del directorio raíz, porque la convención de Hexo es poner todos los archivos fuente bajo <code>source/</code>.</p></li>
+<li><p>Llamamos <code>system2('hexo', 'generate')</code> para construir el sitio web.</p></li>
 </ol>
-<p>For the script <code>R/build_one.R</code>, the major difference with the script in the <code>blogdown-jekyll</code> repository is that we set the <code>base.dir</code> option for <strong>knitr</strong>, so that all R figures are generated to the <code>source/</code> directory. This is because Hexo copies everything under <code>source/</code> to <code>public/</code>, whereas Jekyll copies everything under the root directory to <code>_site/</code>.</p>
+<p>Para el script <code>R/build_one.R</code>, la principal diferencia con el script en el repositorio <code>blogdown-jekyll</code> es que establecemos la opción <code>base.dir</code> para <strong>knitr</strong>, de modo que se generan todas las figuras en R al directorio <code>fuente/</code>. Esto se debe a que Hexo copia todo bajo <code>source/</code> a <code>public/</code>, mientras que Jekyll copia todo bajo el directorio raíz a <code>_site/</code>.</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">local</span>({</a>
 <a class="sourceLine" id="cb86-2" data-line-number="2">  <span class="co"># fall back on &#39;/&#39; if baseurl is not specified</span></a>
 <a class="sourceLine" id="cb86-3" data-line-number="3">  baseurl =<span class="st"> </span>blogdown<span class="op">:::</span><span class="kw">get_config2</span>(<span class="st">&#39;root&#39;</span>, <span class="st">&#39;/&#39;</span>)</a>
@@ -276,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb86-16" data-line-number="16">    a[<span class="dv">1</span>], a[<span class="dv">2</span>], <span class="dt">quiet =</span> <span class="ot">TRUE</span>, <span class="dt">encoding =</span> <span class="st">&#39;UTF-8&#39;</span>, <span class="dt">envir =</span> .GlobalEnv</a>
 <a class="sourceLine" id="cb86-17" data-line-number="17">  )</a>
 <a class="sourceLine" id="cb86-18" data-line-number="18">})</a></code></pre></div>
-<p>This repository is also automatically built and deployed through Netlify when I push changes to it. Since Hexo is a Node package, and Netlify supports Node, you can easily install Hexo on Netlify. For example, this example repository uses the command <code>npm install &amp;&amp; hexo generate</code> to build the website; <code>npm install</code> will install the Node packages specified in <code>packages.json</code> (a file under the root directory of the repository), and <code>hexo generate</code> is the command to build the website from <code>source/</code> to <code>public/</code>.</p>
+<p>Este repositorio también se crea automáticamente y se implementa a través de Netlify cuando le envío cambios. Como Hexo es un paquete de Node y Netlify es compatible con Node, puede instalar Hexo fácilmente en Netlify. Por ejemplo, este repositorio de ejemplo usa el comando <code>npm install &amp;&amp; hexo generate</code> para construir el sitio web; <code>npm install</code> instalará los paquetes de Node especificados en <code>packages.json</code> (un archivo bajo el directorio raíz del repositorio), y <code>hexo generate</code> es el comando para construir el sitio web desde <code>source/</code> a <code>public/</code>.</p>
 </div>
             </section>
 
