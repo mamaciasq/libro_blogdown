@@ -4901,39 +4901,41 @@ automáticamente. No es necesario ejecutar el código por separado y
 cortar y pegar de nuevo. Además de la comodidad, obtiene
 reproducibilidad al mismo tiempo.
 
-\hypertarget{website-basics}{%
-\chapter{Website Basics}\label{website-basics}}
+\hypertarget{conceptos-basicos-de-sitios-web}{%
+\chapter{Conceptos básicos de sitios
+web}\label{conceptos-basicos-de-sitios-web}}
 
-If you want to tweak the appearance of your website, or even design your
-own theme, you must have some basic knowledge of web development. In
-this appendix, we briefly introduce HTML, CSS, and JavaScript, which are
-the most common components of a web page, although CSS and JavaScript
-are optional.
+Si desea ajustar el aspecto de su sitio web, o incluso diseñar su propio
+tema, debe tener algunos conocimientos básicos de desarrollo web. En
+este apéndice, presentamos brevemente HTML, CSS y JavaScript, que son
+los componentes más comunes de una página web, aunque CSS y JavaScript
+son opcionales.
 
-We only aim at getting you started with HTML, CSS, and JavaScript. HTML
-is relatively simple to learn, but CSS and JavaScript can be much more
-complicated, depending on how much you want to learn and what you want
-to do with them. After reading this appendix, you will have to use other
-resources to teach yourself. When you search for these technologies
-online, the most likely websites that you may hit are
+Nuestro objetivo es comenzar con HTML, CSS y JavaScript. HTML es
+relativamente fácil de aprender, pero CSS y JavaScript pueden ser mucho
+más complicados, dependiendo de cuánto quiera aprender y qué quiera
+hacer con ellos. Después de leer este apéndice, deberá usar otros
+recursos para aprender. Cuando busca estas tecnologías en línea, los
+sitios web más probables a los que puede acceder son
 \href{https://developer.mozilla.org}{MDN} (Mozilla Developer Network),
-\href{https://www.w3schools.com}{w3schools.com,} and
-\href{https://stackoverflow.com}{StackOverflow.} Among these websites,
-w3schools often provides simple examples and tutorials that may be
-friendlier to beginners, but we often hear
-\href{https://meta.stackoverflow.com/q/280478/559676}{negative comments}
-about it, so please use it with caution. I often read all three websites
-when looking for solutions.
+\href{https://www.w3schools.com}{w3schools.com,} y
+\href{https://stackoverflow.com}{StackOverflow.}. Entre estos sitios
+web, w3schools a menudo proporciona ejemplos simples y tutoriales que
+pueden ser más amigables para los principiantes, pero a menudo
+escuchamos
+\href{https://meta.stackoverflow.com/q/280478/559676}{comentarios
+negativos} al respecto, por lo tanto, úselo con precaución. A menudo leo
+los tres sitios web cuando busco soluciones.
 
-If we were only allowed to give one single most useful tip about web
-development, it would be: use the Developer Tools of your web browser.
-Most modern web browsers provide these tools. For example, you can find
-these tools from the menu of Google Chrome
-\texttt{View\ -\textgreater{}\ Developer}, Firefox's menu
-\texttt{Tools\ -\textgreater{}\ Web\ Developer}, or Safari's menu
-\texttt{Develop\ -\textgreater{}\ Show\ Web\ Inspector}. Figure
-\ref{fig:chrome-devtools} is a screenshot of using the Developer Tools
-in Chrome.
+Si solo pudiéramos dar un consejo más útil sobre el desarrollo web,
+sería: use las herramientas de desarrollo de su navegador web. La
+mayoría de los navegadores web modernos ofrecen estas herramientas. Por
+ejemplo, puede encontrar estas herramientas en el menú de Google Chrome
+\texttt{Ver\ -\textgreater{}\ Desarrollador}, el menú de Firefox
+\texttt{Herramientas\ -\textgreater{}\ Desarrollador\ web}, o el menú
+`Desarrollar -\textgreater{} Mostrar inspector web' de Safari. La figura
+@ref(fig: chrome-devtools) es una captura de pantalla del uso de
+Herramientas de desarrollador en Chrome.
 
 \begin{figure}
 
@@ -4941,57 +4943,63 @@ in Chrome.
 
 }
 
-\caption{Developer Tools in Google Chrome.}\label{fig:chrome-devtools}
+\caption{Herramientas de desarrollador en Google Chrome.}\label{fig:chrome-devtools}
 \end{figure}
 
-Typically you can also open the Developer Tools by right-clicking on a
-certain element on the web page and selecting the menu item
-\texttt{Inspect} (or \texttt{Inspect\ Element}). In Figure
-\ref{fig:chrome-devtools}, I right-clicked on the profile image of my
-website \url{https://yihui.name} and inspected it, and Chrome
-highlighted its HTML source code
-\texttt{\textless{}img\ src="..."\ ...\ /\textgreater{}} in the left
-pane. You can also see the CSS styles associated with this \texttt{img}
-element in the right pane. What is more, you can interactively change
-the styles there if you know CSS, and see the (temporary) effects in
-real time on the page! After you are satisfied with the new styles, you
-can write the CSS code in files.
+Por lo general, también puede abrir las Herramientas de desarrollo
+haciendo clic derecho en un elemento determinado en la página web y
+seleccionando la opción del menú \texttt{Inspeccionar} (o
+\texttt{Inspeccionar\ elemento}). En la figura @ref(fig:
+chrome-devtools), hice clic derecho en la imagen de perfil de mi sitio
+web \url{https://yihui.name} y lo inspeccioné, y Chrome destacó su
+código fuente HTML \texttt{\textless{}img\ src="...".../\textgreater{}}
+en el panel izquierdo. También puede ver los estilos CSS asociados con
+este elemento \texttt{img} en el panel derecho. Además, puede cambiar
+los estilos de forma interactiva si conoce CSS y ver los efectos
+(temporales) en tiempo real en la página. Una vez que esté satisfecho
+con los nuevos estilos, puede escribir el código CSS en los archivos.
 
-There are a lot of amazing features of Developer Tools, which make them
-not only extremely useful for debugging and experimentation, but also
-helpful for learning web development. These tools are indispensable to
-me when I develop anything related to web pages. I learned a great deal
-about CSS and JavaScript by playing with these tools.
+Hay muchas características increíbles de Herramientas de desarrollador,
+que las hacen no solo extremadamente útiles para la depuración y la
+experimentación, sino también útiles para el aprendizaje del desarrollo
+web. Estas herramientas son indispensables para mí cuando desarrollo
+algo relacionado con páginas web. Aprendí mucho sobre CSS y JavaScript
+jugando con estas herramientas.
 
 \hypertarget{html}{%
 \section{HTML}\label{html}}
 
-HTML\index{HTML} stands for Hyper Text Markup Language, and it is the
-language behind most web pages you see. You can use the menu
-\texttt{View\ -\textgreater{}\ View\ Source} or the context menu
-\texttt{View\ Page\ Source} to see the full HTML source of a web page in
-your browser. All elements on a page are represented by HTML tags. For
-example, the tag \texttt{\textless{}p\textgreater{}} represents
-paragraphs, and \texttt{\textless{}img\textgreater{}} represents images.
+HTML\index{HTML} significa Hyper Text Markup Language, y es el lenguaje
+detrás de la mayoría de las páginas web que usted ve. Puede usar el menú
+\texttt{Ver\ -\textgreater{}\ Ver\ fuente} o el menú contextual
+\texttt{Ver\ fuente\ de\ página} para ver la fuente HTML completa de una
+página web en su navegador. Todos los elementos en una página están
+representados por etiquetas HTML. Por ejemplo, la etiqueta
+\texttt{\textless{}p\textgreater{}} representa párrafos, y
+\texttt{\textless{}img\textgreater{}} representa imágenes.
 
-The good thing about HTML is that the language has only a limited number
-of tags, and the number is not very big (especially the number of
-commonly used tags). This means there is hope that you can master this
-language fully and quickly.
+Lo bueno de HTML es que el lenguaje tiene solo un número limitado de
+etiquetas, y el número no es muy grande (especialmente el número de
+etiquetas comúnmente utilizadas). Esto significa que hay esperanza de
+que pueda dominar este idioma de manera completa y rápida.
 
-Most HTML tags appear in pairs, with an opening tag and a closing tag,
-e.g., \texttt{\textless{}p\textgreater{}\textless{}/p\textgreater{}}.
-You write the content between the opening and closing tags, e.g.,
-\texttt{\textless{}p\textgreater{}This\ is\ a\ paragraph.\textless{}/p\textgreater{}}.
-There are a few exceptions, such as the
-\texttt{\textless{}img\textgreater{}} tag, which can be closed by a
-slash \texttt{/} in the opening tag, e.g.,
-\texttt{\textless{}img\ src="foo.png"\ /\textgreater{}}. You can specify
-attributes of an element in the opening tag using the syntax
-\texttt{name=value} (a few attributes do not require \texttt{value}).
+La mayoría de las etiquetas HTML aparecen en pares, con una etiqueta de
+apertura y una etiqueta de cierre, por ejemplo,
+\texttt{\textless{}p\textgreater{}\textless{}/p\textgreater{}}. Usted
+escribe el contenido entre las etiquetas de apertura y cierre, por
+ejemplo,
+\texttt{\textless{}p\textgreater{}Este\ es\ un\ párrafo.\textless{}/\ P\textgreater{}}.
+Hay algunas excepciones, como la etiqueta
+\texttt{\textless{}img\textgreater{}}, que se puede cerrar con una barra
+inclinada \texttt{/} en la etiqueta de apertura, por ejemplo,
+\texttt{\textless{}img\ src="foo.png"/\textgreater{}}. Puede especificar
+los atributos de un elemento en la etiqueta de apertura usando la
+sintaxis \texttt{name=value} (algunos atributos no requieren
+\texttt{value}).
 
-HTML documents often have the filename extension \texttt{.html} (or
-\texttt{.htm}). Below is an overall structure of an HTML document:
+Los documentos HTML a menudo tienen la extensión de nombre de archivo
+\texttt{.html} (o \texttt{.htm}). A continuación se muestra una
+estructura general de un documento HTML:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5007,12 +5015,12 @@ HTML documents often have the filename extension \texttt{.html} (or
 \end{Highlighting}
 \end{Shaded}
 
-Basically an HTML document consists a \texttt{head} section and
-\texttt{body} section. You can specify the metadata and include assets
-like CSS files in the \texttt{head} section. Normally the \texttt{head}
-section is not visible on a web page. It is the \texttt{body} section
-that holds the content to be displayed to a reader. Below is a slightly
-richer example document:
+Básicamente, un documento HTML consta de una sección \texttt{head} y
+\texttt{body}. Puede especificar los metadatos e incluir archivos como
+archivos CSS en la sección \texttt{head}. Normalmente, la sección
+\texttt{head} no está visible en una página web. Es la sección de
+`cuerpo' que mantiene el contenido para mostrarse a un lector. A
+continuación se muestra un documento de ejemplo un poco más rico:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5047,182 +5055,185 @@ richer example document:
 \end{Highlighting}
 \end{Shaded}
 
-In the head, we declare the character encoding of this page to be UTF-8
-via a \texttt{\textless{}meta\textgreater{}} tag, specify the title via
-the \texttt{\textless{}title\textgreater{}} tag, and include a
-stylesheet via a \texttt{\textless{}link\textgreater{}} tag.
+En la cabecera, declaramos que la codificación de caracteres de esta
+página es UTF-8 a través de una etiqueta
+\texttt{\textless{}meta\textgreater{}}, especificamos el título mediante
+la etiqueta \texttt{\textless{}title\textgreater{}} e incluimos una hoja
+de estilo mediante una etiqueta \texttt{\textless{}link\textgreater{}}.
 
-The body contains a first-level section heading
-\texttt{\textless{}h1\textgreater{}},\footnote{There are six possible
-  levels from \texttt{h1}, \texttt{h2}, \ldots{}, to \texttt{h6}.} a
-paragraph \texttt{\textless{}p\textgreater{}}, an image
-\texttt{\textless{}img\textgreater{}}, an unordered list
-\texttt{\textless{}ul\textgreater{}} with three list items
-\texttt{\textless{}li\textgreater{}}, and includes a JavaScript file in
-the end via \texttt{\textless{}script\textgreater{}}.
+El cuerpo contiene un encabezado de sección de primer nivel
+\texttt{\textless{}h1\textgreater{}},\footnote{Hay seis niveles posibles
+  de \texttt{h1}, \texttt{h2}, \ldots{}, a \texttt{h6}.} Un párrafo
+\texttt{\textless{}p\textgreater{}}, una imagen
+\texttt{\textless{}img\textgreater{}}, una lista desordenada
+\texttt{\textless{}ul\textgreater{}} con tres elementos de lista
+\texttt{\textless{}li\textgreater{}}, e incluye un archivo JavaScript al
+final a través de \texttt{\textless{}script\textgreater{}}.
 
-There are much better tutorials on HTML than this section, such as those
-offered by MDN and w3schools.com, so we are not going to make this
-section a full tutorial. Instead, we just want to provide a few tips on
-HTML:
+Hay tutoriales mucho mejores en HTML que esta sección, como los que
+ofrecen MDN y w3schools.com, por lo que no vamos a hacer de esta sección
+un tutorial completo. En cambio, solo queremos brindar algunos consejos
+sobre HTML:
 
 \begin{itemize}
 \item
-  You may validate your HTML code via this service:
-  \url{https://validator.w3.org}. This validator will point out
-  potential problems of your HTML code. It actually works for XML and
-  SVG documents, too.
+  Puede validar su código HTML a través de este servicio:
+  \url{https://validator.w3.org}. Este validador señalará posibles
+  problemas de su código HTML. En realidad, también funciona para
+  documentos XML y SVG.
 \item
-  Among all HTML attributes, file paths (the \texttt{src} attribute of
-  some tags like \texttt{\textless{}img\textgreater{}}) and links (the
-  \texttt{href} attribute of the \texttt{\textless{}a\textgreater{}}
-  tag) may be the most confusing to beginners. Paths and links can be
-  relative or absolute, and may come with or without the protocol and
-  domain. You have to understand what a link or path exactly points to.
-  A full link is of the form
-  \texttt{http://www.example.com/foo/bar.ext}, where \texttt{http}
-  specifies the protocol (it can be other protocols like \texttt{https}
-  or \texttt{ftp}), \texttt{www.example.com} is the domain, and
-  \texttt{foo/bar.ext} is the file under the root directory of the
-  website.
+  Entre todos los atributos de HTML, las rutas de archivos (el atributo
+  \texttt{src} de algunas etiquetas como
+  \texttt{\textless{}img\textgreater{}}) y los enlaces (el atributo
+  \texttt{href} de la etiqueta \texttt{\textless{}a\textgreater{}})
+  pueden ser las más confusas para los principiantes. Las rutas y los
+  enlaces pueden ser relativos o absolutos, y pueden venir con o sin el
+  protocolo y el dominio. Tiene que entender a qué apunta exactamente un
+  enlace o una ruta. Un enlace completo tiene la forma
+  \texttt{http://www.example.com/foo/bar.ext}, donde \texttt{http}
+  especifica el protocolo (puede tratarse de otros protocolos como
+  \texttt{https} o \texttt{ftp}), \texttt{www.example.com} es el
+  dominio, y \texttt{foo/bar.ext} es el archivo debajo del directorio
+  raíz del sitio web.
 
   \begin{itemize}
   \item
-    If you refer to resources on the same website (the same protocol and
-    domain), we recommend that you omit the protocol and domain names,
-    so that the links will continue to work even if you change the
-    protocol or domain. For example, a link
-    \texttt{\textless{}a\ href="/hi/there.html"\textgreater{}} on a page
-    \texttt{http://example.com/foo/} refers to
-    \texttt{http://example.com/hi/there.html}. It does not matter if you
-    change \texttt{http} to \texttt{https}, or \texttt{example.com} to
+    Si se refiere a recursos en el mismo sitio web (el mismo protocolo y
+    dominio), le recomendamos que omita el protocolo y los nombres de
+    dominio, para que los enlaces continúen funcionando incluso si
+    cambia el protocolo o dominio. Por ejemplo, un enlace
+    \texttt{\textless{}a\ href="/hi/there.html"\textgreater{}} en una
+    página \texttt{http://example.com/foo/} hace referencia a
+    \texttt{http://example.com/hi/there.html}. No importa si cambia
+    \texttt{http} a \texttt{https}, o \texttt{example.com} a
     \texttt{another-domain.com}.
   \item
-    Within the same website, a link or path can be relative or absolute.
-    The meaning of an absolute path does not change no matter where the
-    current HTML file is placed, but the meaning of a relative path
-    depends on the location of the current HTML file. Suppose you are
-    currently viewing the page \texttt{example.com/hi/there.html}:
-
-    \begin{itemize}
-    \item
-      A absolute path \texttt{/foo/bar.ext} always means
-      \texttt{example.com/foo/bar.ext}. The leading slash means the root
-      directory of the website.
-    \item
-      A relative path \texttt{../images/foo.png} means
-      \texttt{example.com/images/foo.png} (\texttt{..} means to go one
-      level up). However, if the HTML file \texttt{there.html} is moved
-      to \texttt{example.com/hey/again/there.html}, this path in
-      \texttt{there.html} will refer to
-      \texttt{example.com/hey/images/foo.png}.
-    \item
-      When deciding whether to use relative or absolute paths, here is
-      the rule of thumb: if you will not move the resources referred or
-      linked to from one subpath to another (e.g., from
-      \texttt{example.com/foo/} to \texttt{example.com/bar/}), but only
-      move the HTML pages that use these resources, use absolute paths;
-      if you want to change the subpath of the URL of your website, but
-      the relative locations of HTML files and the resources they use do
-      not change, you may use relative links (e.g., you can move the
-      whole website from \texttt{example.com/} to
-      \texttt{example.com/foo/}).
-    \item
-      If the above concepts sound too complicated, a better way is to
-      either think ahead carefully about the structure of your website
-      and avoid moving files, or use rules of redirects if supported
-      (such as 301 or 302 redirects).
-    \end{itemize}
+    Dentro del mismo sitio web, un enlace o ruta puede ser relativa o
+    absoluta. El significado de una ruta absoluta no cambia sin importar
+    dónde se coloca el archivo HTML actual, pero el significado de una
+    ruta relativa depende de la ubicación del archivo HTML actual.
+    Supongamos que está viendo la página
+    \texttt{example.com/hi/there.html}:
   \item
-    If you link to a different website or web page, you have to include
-    the domain in the link, but it may not be necessary to include the
-    protocol, e.g., \texttt{//test.example.com/foo.css} is a valid path.
-    The actual protocol of this path matches the protocol of the current
-    page, e.g., if the current page is \texttt{https://example.com/},
-    this link means \texttt{https://test.example.com/foo.css}. It may be
-    beneficial to omit the protocol because HTTP resources cannot be
-    embedded on pages served through HTTPS (for security reasons), e.g.,
-    an image at \texttt{http://example.com/foo.png} cannot be embedded
-    on a page \texttt{https://example.com/hi.html} via
-    \texttt{\textless{}img\ src="http://example.com/foo.png"\ /\textgreater{}},
-    but
-    \texttt{\textless{}img\ src="//example.com/foo.png"\ /\textgreater{}}
-    will work if the image can be accessed via HTTPS, i.e.,
-    \texttt{https://example.com/foo.png}. The main drawback of not
-    including the protocol is that such links and paths do not work if
-    you open the HTML file locally without using a web server, e.g.,
-    only double-click the HTML file in your file browser and show it in
-    the browser.\footnote{That is because without a web server, an HTML
-      file is viewed via the protocol \texttt{file}. For example, you
-      may see a URL of the form \texttt{file://path/to/the/file.html} in
-      the address bar of your browser. The path
-      \texttt{//example.com/foo.png} will be interpreted as
-      \texttt{file://example.com/foo.png}, which is unlikely to exist as
-      a local file on your computer.}
+    Una ruta absoluta \texttt{/foo/bar.ext} siempre significa
+    \texttt{example.com/foo/bar.ext}. La barra diagonal significa el
+    directorio raíz del sitio web.
   \item
-    A very common mistake that people make is a link without the leading
-    double slashes before the domain. You may think
-    \texttt{www.example.com} is a valid link. It is not! At least it
-    does not link to the website that you intend to link to. It works
-    when you type it in the address bar of your browser because your
-    browser will normally autocomplete it to
-    \texttt{http://www.example.com}. However, if you write a link
-    \texttt{\textless{}a\ href="www.example.com"\textgreater{}See\ this\ link\textless{}/a\textgreater{}},
-    you will be in trouble. The browser will interpret this as a
-    relative link, and it is relative to the URL of the current web
-    page, e.g., if you are currently viewing
-    \texttt{http://yihui.name/cn/}, the link \texttt{www.example.com}
-    actually means \texttt{http://yihui.name/cn/www.example.com}! Now
-    you should know the Markdown text
-    \texttt{{[}Link{]}(www.example.com)} is typically a mistake, unless
-    you really mean to link to a subdirectory of the current page or a
-    file with literally the name \texttt{www.example.com}.
+    Una ruta relativa \texttt{../images/foo.png} significa
+    \texttt{example.com/images/foo.png} (\texttt{..} significa subir un
+    nivel). Sin embargo, si el archivo HTML \texttt{there.html} se mueve
+    a \texttt{example.com/hey/again/there.html}, esta ruta en
+    \texttt{there.html} se referirá a
+    \texttt{example.com/hey/images/foo.png}.
+  \item
+    Cuando decida si usar rutas relativas o absolutas, aquí está la
+    regla general: si no va a mover los recursos referidos o vinculados
+    de un subpath a otro (por ejemplo, de \texttt{example.com/foo/} a
+    \texttt{example.com/bar/}), pero solo mueve las páginas HTML que
+    usan estos recursos, usa rutas absolutas; Si desea cambiar el
+    subpaso de la URL de su sitio web, pero las ubicaciones relativas de
+    los archivos HTML y los recursos que utilizan no cambian, puede usar
+    enlaces relativos (por ejemplo, puede mover todo el sitio web de
+    \texttt{example.com/} a \texttt{example.com/foo/}).
+  \item
+    Si los conceptos anteriores parecen demasiado complicados, una mejor
+    manera es pensar detenidamente sobre la estructura de su sitio web y
+    evitar mover archivos, o usar reglas de redireccionamientos si son
+    compatibles (como los redireccionamientos 301 o 302).
+  \item
+    Si enlaza a un sitio web o página web diferente, debe incluir el
+    dominio en el enlace, pero puede no ser necesario incluir el
+    protocolo, por ejemplo, \texttt{//test.example.com/foo.css} es un
+    ruta válida. El protocolo real de esta ruta coincide con el
+    protocolo de la página actual, por ejemplo, si la página actual es
+    \texttt{https://example.com/}, este enlace significa
+    \texttt{https://test.example.com/foo.css}. Puede ser beneficioso
+    omitir el protocolo porque los recursos HTTP no se pueden incrustar
+    en páginas servidas a través de HTTPS (por razones de seguridad),
+    por ejemplo, una imagen en \texttt{http://example.com/foo.png} no se
+    puede incrustar en una página \texttt{https://example.com/hi.html}
+    via
+    \texttt{\textless{}img\ src="http://example.com/foo.png"/\textgreater{}},
+    pero
+    \texttt{\textless{}img\ src="//example.com/foo.png"/\textgreater{}}
+    funcionará si se puede acceder a la imagen a través de HTTPS, es
+    decir, \texttt{https://example.com/foo.png}. El principal
+    inconveniente de no incluir el protocolo es que tales enlaces y
+    rutas no funcionan si abre el archivo HTML localmente sin usar un
+    servidor web, por ejemplo, solo haga doble clic en el archivo HTML
+    en su buscador de archivos y muéstrelo en el navegador.\footnote{Eso
+      es porque sin un servidor web, un archivo HTML se ve a través del
+      protocolo \texttt{archivo}. Por ejemplo, puede ver una URL del
+      formulario \texttt{file://ruta/al/archivo.html} en la barra de
+      direcciones de su navegador. La ruta
+      \texttt{//example.com/foo.png} se interpretará como
+      \texttt{file://example.com/foo.png}, que es poco probable que
+      exista como un archivo local en su computadora.}
+  \item
+    Un error muy común que las personas cometen es poner un enlace sin
+    las dobles barras delanteras delante del dominio. Puede pensar que
+    \texttt{www.example.com} es un enlace válido. ¡No lo es! Al menos no
+    se vincula al sitio web al que desea vincularse. Funciona cuando lo
+    escribe en la barra de direcciones de su navegador porque su
+    navegador normalmente lo autocompletará en
+    \texttt{http://www.example.com}. Sin embargo, si escribe un enlace
+    \texttt{\textless{}a\ href="www.example.com"\textgreater{}Vea\ este\ enlace\textless{}/a\textgreater{}},
+    tendrá problemas. El navegador interpretará esto como un enlace
+    relativo, y es relativo a la URL de la página web actual, por
+    ejemplo, si actualmente está viendo \texttt{http://yihui.name/cn/},
+    el enlace \texttt{www.example.com} en realidad significa
+    \texttt{http://yihui.name/cn/www.example.com}! Ahora debería conocer
+    el texto de Markdown \texttt{{[}Link{]}(www.example.com)} suele ser
+    un error, a menos que realmente quiera vincular un subdirectorio de
+    la página actual o un archivo con literalmente el nombre
+    \texttt{www.example.com}.
   \end{itemize}
 \end{itemize}
 
 \hypertarget{css}{%
 \section{CSS}\label{css}}
 
-The Cascading Stylesheets\index{CSS} (CSS) language is used to describe
-the look and formatting of documents written in HTML. CSS is responsible
-for the visual style of your site. CSS is a lot of fun to play with, but
-it can also easily steal your time.
+El lenguaje Cascading Stylesheets \index{CSS} (CSS) se utiliza para
+describir el aspecto y el formato de los documentos escritos en HTML.
+CSS es responsable del estilo visual de su sitio. CSS es muy divertido
+de jugar, pero también puede robar tu tiempo fácilmente.
 
-In the Hugo framework
-(\url{https://gohugo.io/tutorials/creating-a-new-theme/}), CSS is one of
-the major ``non-content'' files that shapes the look and feel of your
-site (the others are images, JavaScript, and Hugo templates). What does
-the \href{https://en.wikipedia.org/wiki/Look_and_feel}{``look and
-feel''} of a site mean? ``Look'' generally refers to static style
-components including, but not limited to
-
-\begin{itemize}
-\tightlist
-\item
-  color palettes,
-\item
-  images,
-\item
-  layouts/margins, and
-\item
-  fonts.
-\end{itemize}
-
-whereas ``feel'' relates to dynamic components that the user interacts
-with like
+En el marco de Hugo
+(\url{https://gohugo.io/tutorials/creating-a-new-theme/}), CSS es uno de
+los principales archivos ``sin contenido'' que da forma a la apariencia
+de su sitio (los otros son imágenes, JavaScript y plantillas Hugo). ¿Qué
+significa el
+\href{https://en.wikipedia.org/wiki/Look_and_feel}{``aspecto y tacto''}
+de un sitio? ``Buscar'' generalmente se refiere a componentes de estilo
+estático que incluyen, entre otros,
 
 \begin{itemize}
 \tightlist
 \item
-  dropdown menus,
+  paltetas de color,
 \item
-  buttons, and
+  imágenes,
 \item
-  forms.
+  diseños/márgenes, y
+\item
+  fuentes.
 \end{itemize}
 
-There are 3 ways to define styles. The first is in line with HTML. For
-example, this code
+mientras que ``sentir'' se relaciona con componentes dinámicos con los
+que el usuario interactúa como
+
+\begin{itemize}
+\tightlist
+\item
+  menús desplegables,
+\item
+  botones, y
+\item
+  formas.
+\end{itemize}
+
+Hay 3 formas de definir estilos. El primero está en línea con HTML. Por
+ejemplo, este código
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5230,13 +5241,13 @@ example, this code
 \end{Highlighting}
 \end{Shaded}
 
-would produce text that looks like this: Marco! \emph{Polo!}
+produciría texto que se parece a esto: Marco! \emph{Polo!}
 
-However, this method is generally not preferred for
-\href{https://stackoverflow.com/q/12013532/559676}{numerous reasons.}
+Sin embargo, este método generalmente no es preferido para
+\href{https://stackoverflow.com/q/12013532/559676}{razones numerosas.}
 
-A second way is to internally define the CSS by placing a style section
-in your HTML:
+Una segunda forma es definir internamente el CSS colocando una sección
+de estilo en su HTML:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5257,11 +5268,12 @@ in your HTML:
 \end{Highlighting}
 \end{Shaded}
 
-In this example, only the last tea listed, \emph{Chai}, is italicized.
+En este ejemplo, solo el último té enumerado, \emph{Chai}, está en
+cursiva.
 
-The third method is the most popular because it is more flexible and the
-least repetitive. In this method, you define the CSS in an external file
-that is then referenced as a link in your HTML:
+El tercer método es el más popular porque es más flexible y el menos
+repetitivo. En este método, usted define el CSS en un archivo externo
+que luego se referencia como un enlace en su HTML:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5271,13 +5283,14 @@ that is then referenced as a link in your HTML:
 \end{Highlighting}
 \end{Shaded}
 
-What goes inside the linked CSS document is essentially a list of rules
-(the same list could appear internally between the style tags, if you
-are using the second method). Each rule must include both a selector or
-group of selectors, and a declarations block within curly braces that
-contains one or more \texttt{property:\ value;} pairs. Here is the
-\href{https://developer.mozilla.org/en-US/docs/Web/CSS/Reference}{general
-structure for a rule}:
+Lo que va dentro del documento CSS vinculado es esencialmente una lista
+de reglas (la misma lista podría aparecer internamente entre las
+etiquetas de estilo, si está utilizando el segundo método). Cada regla
+debe incluir un selector o un grupo de selectores, y un bloque de
+declaraciones dentro de llaves que contenga uno o más pares
+\texttt{property:\ value;}. Aquí está la
+\href{https://developer.mozilla.org/en-US/docs/Web/CSS/Reference}{estructura
+general para una regla}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5289,9 +5302,10 @@ structure for a rule}:
 \end{Highlighting}
 \end{Shaded}
 
-\href{https://developer.mozilla.org/en-US/docs/Web/CSS/Reference\#Selectors}{Selectors}
-can be based on HTML element types or attributes, such as \texttt{id} or
-\texttt{class} (and combinations of these attributes):
+Los
+\href{https://developer.mozilla.org/en-US/docs/Web/CSS/Reference\#Selectors}{selectores}
+pueden basarse en tipos o atributos de elementos HTML, como \texttt{id}
+o \texttt{class} (y combinaciones de estos atributos):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5312,10 +5326,11 @@ can be based on HTML element types or attributes, such as \texttt{id} or
 \end{Highlighting}
 \end{Shaded}
 
-Because each HTML element may match several different selectors, the CSS
-standard determines which set of rules has precedence for any given
-element, and which properties to inherit. This is where the cascade
-algorithm comes into play. For example, take a simple unordered list:
+Debido a que cada elemento HTML puede coincidir con varios selectores
+diferentes, el estándar CSS determina qué conjunto de reglas tiene
+prioridad para cualquier elemento dado y qué propiedades heredar. Aquí
+es donde el algoritmo de cascada entra en juego. Por ejemplo, tome una
+lista desordenada simple:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5329,8 +5344,8 @@ algorithm comes into play. For example, take a simple unordered list:
 \end{Highlighting}
 \end{Shaded}
 
-Now, let's say we want to highlight our favorite teas again, so we'll
-use a class attribute.
+Ahora, digamos que queremos resaltar nuestros tés favoritos nuevamente,
+así que usaremos un atributo de clase.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5344,9 +5359,9 @@ use a class attribute.
 \end{Highlighting}
 \end{Shaded}
 
-We can use this class attribute as a selector in our CSS. Let's say we
-want our favorite teas to be in bold and have a background color of
-yellow, so our CSS would look like this:
+Podemos usar este atributo de clase como un selector en nuestro CSS.
+Digamos que queremos que nuestros tés favoritos estén en negrita y
+tengan un color de fondo amarillo, por lo que nuestro CSS se vería así:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5357,8 +5372,8 @@ yellow, so our CSS would look like this:
 \end{Highlighting}
 \end{Shaded}
 
-Now, if you want every list item to be italicized with a white
-background, you can set up another rule:
+Ahora, si desea que cada elemento de la lista se ponga en cursiva con un
+fondo blanco, puede configurar otra regla:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5369,14 +5384,14 @@ background, you can set up another rule:
 \end{Highlighting}
 \end{Shaded}
 
-If you play with this code (which you can do easily using sites like
-\url{http://jsbin.com}, \url{https://jsfiddle.net}, or
-\url{https://codepen.io/pen/}), you'll see that the two favorite teas
-are still highlighted in yellow. This is because the CSS rule about
-\texttt{.favorite} as a class is more specific than the rule about
-\texttt{li} type elements. To override the \texttt{.favorite} rule, you
-need to be as specific as you can be when choosing your group of
-selectors:
+Si juega con este código (que puede usar fácilmente usando sitios como
+\url{http://jsbin.com}, \url{https://jsfiddle.net} o
+\url{https://codepen.io/pen/}), verá que el segundo té favorito sigue
+resaltado en amarillo. Esto se debe a que la regla de CSS sobre
+\texttt{.favorite} como clase es más específica que la regla sobre
+elementos de tipo \texttt{li}. Para anular la regla \texttt{.favorite},
+debe ser tan específico como sea posible al elegir su grupo de
+selectores:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5386,31 +5401,32 @@ selectors:
 \end{Highlighting}
 \end{Shaded}
 
-This example just scratches the surface of
-\href{https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance}{cascade
-and inheritance.}
+Este ejemplo solo araña la superficie de
+\href{https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance}{cascada
+y herencia.}
 
-For any Hugo theme that you install, you can find the CSS file in the
-\texttt{themes/} folder. For example, the default lithium theme is
-located in: \texttt{themes/hugo-lithium-theme/static/css/main.css}. Once
-you are familiar with CSS, you can understand how each set of rules work
-to shape the visual style of your website, and how to alter the rules.
-For some themes (i.e., the
-\href{https://github.com/gcushen/hugo-academic}{hugo-academic theme}),
-you have the option of linking to a
-\href{https://gist.github.com/gcushen/d5525a4506b9ccf83f2bce592a895495}{custom
-CSS,} which you can use to further customize the visual style of your
-site.
+Para cualquier tema de Hugo que instale, puede encontrar el archivo CSS
+en la carpeta \texttt{themes/}. Por ejemplo, el tema predeterminado de
+litio se encuentra en:
+\texttt{themes/hugo-lithium-theme/static/css/main.css}. Una vez que esté
+familiarizado con CSS, puede comprender cómo funciona cada conjunto de
+reglas para dar forma al estilo visual de su sitio web, y cómo modificar
+las reglas. Para algunos temas (es decir, el
+\href{https://github.com/gcushen/hugo-academic}{tema académico}), tiene
+la opción de vincular a un
+\href{https://gist.github.com/gcushen/d5525a4506b9ccf83f2bce592a895495}{CSS
+personalizado} que puede utilizar para personalizar aún más el estilo
+visual de su sitio.
 
-A few one-line examples illustrate how simple CSS rules can be used to
-make dramatic changes:
+Algunos ejemplos de una línea ilustran cómo las simples reglas de CSS se
+pueden usar para hacer cambios dramáticos:
 
 \begin{itemize}
 \item
-  To make circular or rounded images, you may assign a class
-  \texttt{img-circle} to images (e.g.,
+  Para hacer imágenes circulares o redondeadas, puede asignar una clase
+  \texttt{img-circle} a imágenes (e.g.,
   \texttt{\textless{}img\ class="img-circle"\ src="foo.png"\ /\textgreater{}})
-  and define the CSS:
+  y definir el CSS:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5420,8 +5436,8 @@ make dramatic changes:
 \end{Highlighting}
 \end{Shaded}
 \item
-  To make striped tables, you can add background colors to odd or even
-  rows of the table, e.g.,
+  Para hacer tablas de rayas, puede agregar colores de fondo a las filas
+  impares o pares de la tabla, e.g.,
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5431,30 +5447,30 @@ make dramatic changes:
 \end{Highlighting}
 \end{Shaded}
 \item
-  You can append or prepend content to elements via pseudo-elements
-  \texttt{::after} and \texttt{::before}. Here is an example of adding a
-  period after section numbers:
+  Puede agregar o anteponer contenido a elementos a través de
+  pseudo-elementos \texttt{::after} y \texttt{::before}. Aquí hay un
+  ejemplo de cómo agregar un período después de los números de sección:
   \url{https://github.com/rstudio/blogdown/issues/80}.
 \end{itemize}
 
 \hypertarget{javascript}{%
 \section{JavaScript}\label{javascript}}
 
-It is way more challenging to briefly introduce
-JavaScript\index{JavaScript} than HTML and CSS, since it is a
-programming language. There are many books and tutorials about this
-language. Anyway, we will try to scratch the surface for R users in this
-section.
+Es mucho más difícil introducir JavaScript \index{JavaScript} que HTML y
+CSS, ya que es un lenguaje de programación. Hay muchos libros y
+tutoriales sobre este idioma. De todos modos, intentaremos arañar la
+superficie para los usuarios R en esta sección.
 
-In a nutshell, JavaScript is a language that is typically used to
-manipulate elements on a web page. An effective way to learn it is
-through the JavaScript console in the Developer Tools of your web
-browser (see Figure \ref{fig:chrome-devtools}), because you can
-interactively type code in the console and execute it, which feels
-similar to executing R code in the R console (e.g., in RStudio). You may
-open any web page in your web browser (e.g., \url{https://yihui.name}),
-then open the JavaScript console, and try the code below on any web
-page:
+En pocas palabras, JavaScript es un lenguaje que generalmente se utiliza
+para manipular elementos en una página web. Una forma efectiva de
+aprender es a través de la consola de JavaScript en las Herramientas de
+Desarrollador de su navegador web (vea la Figura @ref(fig:
+chrome-devtools)), porque puede escribir código de manera interactiva en
+la consola y ejecutarlo, lo cual se siente similar para ejecutar el
+código en R en la consola de R (por ejemplo, en RStudio). Puede abrir
+cualquier página web en su navegador web (por ejemplo,
+\url{https://yihui.name}), luego abrir la consola de JavaScript y probar
+el siguiente código en cualquier página web:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5462,13 +5478,13 @@ page:
 \end{Highlighting}
 \end{Shaded}
 
-It should change the background color of the page to orange, unless the
-page has already defined background colors for certain elements.
+Debería cambiar el color de fondo de la página a naranja, a menos que la
+página ya haya definido los colores de fondo para ciertos elementos.
 
-To effectively use JavaScript, you have to learn both the basic syntax
-of JavaScript and how to select elements on a page before you can
-manipulate them. You may partially learn the former from the short
-JavaScript snippet below:
+Para usar JavaScript de manera efectiva, debe aprender tanto la sintaxis
+básica de JavaScript como la forma de seleccionar elementos en una
+página antes de poder manipularlos. Puede aprender parcialmente lo
+primero a partir del fragmento corto de JavaScript a continuación:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5496,84 +5512,87 @@ JavaScript snippet below:
 \end{Highlighting}
 \end{Shaded}
 
-You may feel the syntax is similar to R to some degree. JavaScript is an
-object-oriented language, and usually there are several methods that you
-can apply to an object. The string manipulation above is a typical
-example of the \texttt{Object.method()} syntax. To know the possible
-methods on an object, you can type the object name in your JavaScript
-console followed by a dot, and you should see all candidates.
+Puede sentir que la sintaxis es similar a R hasta cierto punto.
+JavaScript es un lenguaje orientado a objetos, y generalmente hay varios
+métodos que puede aplicar a un objeto. La manipulación de cadena
+anterior es un ejemplo típico de la sintaxis \texttt{Object.method()}.
+Para conocer los métodos posibles en un objeto, puede escribir el nombre
+del objeto en su consola JavaScript seguido de un punto, y debería ver
+todos los candidatos.
 
-R users have to be extremely cautious because JavaScript objects are
-often mutable, meaning that an object could be modified anywhere. Below
-is a quick example:
+Los usuarios de R deben ser extremadamente cautelosos porque los objetos
+JavaScript a menudo son mutables, lo que significa que un objeto puede
+ser modificado en cualquier lugar. A continuación, hay un ejemplo
+rápido:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{var}\NormalTok{ x }\OperatorTok{=} \OperatorTok{\{}\StringTok{"a"}\OperatorTok{:} \DecValTok{1}\OperatorTok{,} \StringTok{"b"}\OperatorTok{:} \DecValTok{2}\OperatorTok{\};}  \CommentTok{// like a list in R}
+\KeywordTok{var}\NormalTok{ x }\OperatorTok{=} \OperatorTok{\{}\StringTok{"a"}\OperatorTok{:} \DecValTok{1}\OperatorTok{,} \StringTok{"b"}\OperatorTok{:} \DecValTok{2}\OperatorTok{\};}  \CommentTok{// como una lista en R}
 \KeywordTok{var}\NormalTok{ f }\OperatorTok{=} \KeywordTok{function}\NormalTok{(z) }\OperatorTok{\{}
   \VariableTok{z}\NormalTok{.}\AttributeTok{a} \OperatorTok{=} \DecValTok{100}\OperatorTok{;}
 \OperatorTok{\};}
 \AttributeTok{f}\NormalTok{(x)}\OperatorTok{;}
-\NormalTok{x}\OperatorTok{;}  \CommentTok{// modified! x.a is 100 now}
+\NormalTok{x}\OperatorTok{;}  \CommentTok{// modificado! x.a es 100 ahora}
 \end{Highlighting}
 \end{Shaded}
 
-There are many mature JavaScript libraries that can help you select and
-manipulate elements on a page, and the most popular one may
-be\index{jQuery} \href{https://jquery.com}{jQuery.} However, you should
-know that sometimes you can probably do well enough without these
-third-party libraries. There are some basic methods to select elements,
-such as \texttt{document.getElementById()} and
-\texttt{document.getElementsByClassName()}. For example, you can select
-all paragraphs using
+Hay muchas librerías maduras de JavaScript que pueden ayudarlo a
+seleccionar y manipular elementos en una página, y la más popular puede
+ser\index{jQuery} \href{https://jquery.com}{jQuery.} Sin embargo, debe
+saber que a veces probablemente puede hacerlo lo suficientemente bien
+sin estas librerías de terceros. Hay algunos métodos básicos para
+seleccionar elementos, como \texttt{document.getElementById()} y
+\texttt{document.getElementsByClassName()}. Por ejemplo, puede
+seleccionar todos los párrafos usando
 \texttt{document.querySelectorAll(\textquotesingle{}p\textquotesingle{})}.
 
-Next we show a slightly advanced application, in which you will see
-anonymous functions, selection of elements by HTML tag names, regular
-expressions, and manipulation of HTML elements.
+A continuación mostramos una aplicación ligeramente avanzada, en la que
+verá funciones anónimas, selección de elementos por nombres de etiquetas
+HTML, expresiones regulares y manipulación de elementos HTML.
 
-In Section \ref{how-to}, we mentioned how to enable
-MathJax\index{MathJax} on a Hugo website. The easy part is to include
-the script \texttt{MathJax.js} via a
-\texttt{\textless{}script\textgreater{}} tag, and there are two hard
-parts:
+En la sección \ref{how-to}, mencionamos cómo habilitar
+MathJax\index{MathJax} en un sitio web de Hugo. La parte fácil es
+incluir el script \texttt{MathJax.js} a través de una etiqueta
+\texttt{\textless{}script\textgreater{}}, y hay dos partes difíciles:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  How to protect the math content from the Markdown engine
-  (Blackfriday), e.g., we need to make sure underscores in math
-  expressions are not interpreted as
-  \texttt{\textless{}em\textgreater{}\textless{}/em\textgreater{}}. This
-  problem only exists in plain Markdown posts, and has been mentioned in
-  Section \ref{output-format} without explaining the solution.
+  Cómo proteger el contenido matemático del motor de reducción
+  (Blackfriday), por ejemplo, necesitamos asegurarnos de que los
+  subrayados en las expresiones matemáticas no se interpreten como
+  \texttt{\textless{}em\textgreater{}\textless{}/em\textgreater{}}. Este
+  problema solo existe en las publicaciones simples de Markdown, y se ha
+  mencionado en la sección \ref{formato-de-salida} sin explicar la
+  solución.
 \item
-  By default, MathJax does not recognize a pair of single dollar signs
-  as the syntax for inline math expressions, but most users are perhaps
-  more comfortable with the syntax \texttt{\$x\$} than
-  \texttt{\textbackslash{}(x\textbackslash{})}.
+  Por defecto, MathJax no reconoce un par de signos de pesos como la
+  sintaxis de las expresiones matemáticas en línea, pero la mayoría de
+  los usuarios se sienten más cómodos con la sintaxis \texttt{\$x\$} que
+  con \texttt{\textbackslash{}(x\textbackslash{})}.
 \end{enumerate}
 
-The easiest solution to the first problem may be adding backticks around
-math expressions, e.g.,
-\texttt{\textasciigrave{}\$x\_i\$\textasciigrave{}}, but the consequence
-is that the math expression will be rendered in
-\texttt{\textless{}code\textgreater{}\textless{}/code\textgreater{}},
-and MathJax ignores \texttt{\textless{}code\textgreater{}} tags when
-looking for math expressions on the page. We can force MathJax to search
-for math expressions in \texttt{\textless{}code\textgreater{}}, but this
-will still be problematic. For example, someone may want to display
-inline R code \texttt{\textasciigrave{}list\$x\$y\textasciigrave{}}, and
-\texttt{\$x\$} may be recognized as a math expression. MathJax ignores
-\texttt{\textless{}code\textgreater{}} for good reasons. Even if you do
-not have such expressions in \texttt{\textless{}code\textgreater{}}, you
-may have some special CSS styles attached to
-\texttt{\textless{}code\textgreater{}}, and these styles will be applied
-to your math expressions, which can be undesired (e.g., a light gray
-background).
+La solución más fácil para el primer problema puede ser la adición de
+retrocesos alrededor de las expresiones matemáticas, por ejemplo,
+\texttt{\textasciigrave{}\$x\_i\$\textasciigrave{}}, pero la
+consecuencia es que la expresión matemática se representará en
+\texttt{\textless{}code\textgreater{}\textless{}/code\textgreater{}}, y
+MathJax ignora las etiquetas \texttt{\textless{}code\textgreater{}}
+cuando busca expresiones matemáticas en la página. Podemos obligar a
+MathJax a buscar expresiones matemáticas en
+\texttt{\textless{}code\textgreater{}}, pero esto seguirá siendo
+problemático. Por ejemplo, alguien puede querer mostrar el código en
+línea R \texttt{\textasciigrave{}list\$x\$y\textasciigrave{}}, y
+\texttt{\$x\$} puede reconocerse como una expresión matemática. MathJax
+ignora \texttt{\textless{}code\textgreater{}} por buenas razones.
+Incluso si no tiene esas expresiones en
+\texttt{\textless{}code\textgreater{}}, puede tener algunos estilos CSS
+especiales adjuntos a \texttt{\textless{}code\textgreater{}}, y estos
+estilos se aplicarán a sus expresiones matemáticas, que pueden ser no
+deseadas (por ejemplo, una luz fondo gris).
 
-To solve these problems, I have provided a solution in the JavaScript
-code at \url{https://yihui.name/js/math-code.js}:
+Para resolver estos problemas, proporcioné una solución en el código
+JavaScript en \url{https://yihui.name/js/math-code.js}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5602,95 +5621,100 @@ code at \url{https://yihui.name/js/math-code.js}:
 \end{Highlighting}
 \end{Shaded}
 
-It is not a perfect solution, but it should be very rare that you run
-into problems. This solution identifies possible math expressions in
-\texttt{\textless{}code\textgreater{}}, and strips the
-\texttt{\textless{}code\textgreater{}} tag, e.g., replaces
+No es una solución perfecta, pero debería ser muy raro que tenga
+problemas. Esta solución identifica posibles expresiones matemáticas en
+\texttt{\textless{}code\textgreater{}}, y elimina la etiqueta
+\texttt{\textless{}code\textgreater{}}, por ejemplo, reemplaza
 \texttt{\textless{}code\textgreater{}\$x\$\textless{}/code\textgreater{}}
-with \texttt{\textbackslash{}(x\textbackslash{})}. After this script is
-executed, we load the MathJax script. This way, we do not need to force
-MathJax to search for math expressions in
-\texttt{\textless{}code\textgreater{}} tags, and your math expressions
-will not inherit any styles from \texttt{\textless{}code\textgreater{}}.
-The JavaScript code above is not too long, and should be
-self-explanatory. The trickiest part is \texttt{i++}. I will leave it to
-readers to figure out why the \texttt{for} loop is not the usual form
-\texttt{for\ (i\ =\ 0;\ i\ \textless{}\ codes.length;\ i++)}. It took me
-quite a few minutes to realize my mistake when I wrote the loop in the
-usual form.
+con \texttt{\textbackslash{}(x\textbackslash{})}. Después de que se
+ejecuta este script, cargamos el script MathJax. De esta forma, no
+necesitamos obligar a MathJax a buscar expresiones matemáticas en las
+etiquetas \texttt{\textless{}code\textgreater{}}, y sus expresiones
+matemáticas no heredarán ningún estilo de
+\texttt{\textless{}code\textgreater{}}. El código de JavaScript anterior
+no es demasiado largo y debe ser autoexplicativo. La parte más difícil
+es \texttt{i++}. Dejaré que los lectores descubran por qué el bucle
+\texttt{for} no es la forma
+habitual\texttt{for(i\ =\ 0;\ i\ \textless{}codes.length;\ i\ ++)}. Me
+tomó unos minutos darme cuenta de mi error cuando escribí el ciclo en la
+forma habitual.
 
-\hypertarget{useful-resources}{%
-\section{Useful resources}\label{useful-resources}}
+\hypertarget{recursos-utiles}{%
+\section{Recursos útiles}\label{recursos-utiles}}
 
-\hypertarget{file-optimization}{%
-\subsection{File optimization}\label{file-optimization}}
+\hypertarget{organizacion-de-archivos}{%
+\subsection{Organización de archivos}\label{organizacion-de-archivos}}
 
-Although\index{Optimization} static websites are fast in general, you
-can certainly further optimize them. You may search for ``CSS and
-JavaScript minifier,'' and these tools can compress your CSS and
-JavaScript files, so that they can be loaded faster. Since there are a
-lot of tools, I will not recommend any here.
+Aunque los sitios web estáticos de \index{Optimización} son rápidos en
+general, ciertamente puede optimizarlos aún más. Puede buscar
+``minificador de CSS y JavaScript'', y estas herramientas pueden
+comprimir sus archivos CSS y JavaScript, de modo que puedan cargarse más
+rápido. Como hay muchas herramientas, no las recomendaré aquí.
 
-You can also optimize images on your website. I frequently use a
-command-line tool named
-\href{http://optipng.sourceforge.net}{\texttt{optipng}} to optimize PNG
-images. It is a lossless optimizer, meaning that it reduces the file
-size of a PNG image without loss of quality. From my experience, it
-works very well on PNG images generated from R, and can reduce the file
-size by at least 30\% (sometimes even more than 50\%). Personally I also
-use online tools like \url{http://optimizilla.com} to optimize PNG and
-JPEG images. For GIF images, I often use
-\url{https://ezgif.com/optimize} to reduce the file sizes if they are
-too big.
+También puede optimizar imágenes en su sitio web. Frecuentemente uso una
+herramienta de línea de comandos llamada
+\href{http://optipng.sourceforge.net}{\texttt{optipng}} para optimizar
+las imágenes PNG. Es un optimizador sin pérdida, lo que significa que
+reduce el tamaño del archivo de una imagen PNG sin pérdida de calidad.
+Desde mi experiencia, funciona muy bien en imágenes PNG generadas a
+partir de R, y puede reducir el tamaño del archivo en al menos un 30\%
+(a veces incluso más del 50\%). Personalmente también uso herramientas
+en línea como \url{http://optimizilla.com} para optimizar imágenes PNG y
+JPEG. Para imágenes GIF, a menudo uso \url{https://ezgif.com/optimize}
+para reducir el tamaño de los archivos si son demasiado grandes.
 
-Note that Netlify has provided the optimization features on the server
-side for free at the moment, so you may just want to enable them there
-instead of doing all the hard work by yourself.
+Tenga en cuenta que Netlify ha proporcionado las funciones de
+optimización en el servidor de forma gratuita en este momento, por lo
+que es posible que desee habilitarlos allí en lugar de hacer todo el
+trabajo por su cuenta.
 
-\hypertarget{helping-people-find-your-site}{%
-\subsection{Helping people find your
-site}\label{helping-people-find-your-site}}
+\hypertarget{ayudando-a-las-personas-a-encontrar-su-sitio}{%
+\subsection{Ayudando a las personas a encontrar su
+sitio}\label{ayudando-a-las-personas-a-encontrar-su-sitio}}
 
-Once your site is up and running, you probably want people to find it.
-SEO --- Search Engine Optimization --- is the art of making a website
-easy for search engines like Google to understand. And, hopefully, if
-the search engine knows what you are writing about, it will present
-links to your site high in results when someone searches for topics you
-cover.
+Una vez que su sitio esté en funcionamiento, es probable que desee que
+las personas lo encuentren. SEO --- Search Engine Optimization --- es el
+arte de hacer que un sitio web sea fácil de entender para los motores de
+búsqueda como Google. Y, con suerte, si el motor de búsqueda sabe de lo
+que está escribiendo, presentará enlaces a su sitio con altos resultados
+cuando alguien busque los temas que cubre.
 
-Entire books have been written about SEO, not to mention the many
-companies that are in the business of offering (paid) technical and
-strategic advice to help get sites atop search-engine rankings. If you
-are interested in finding out more, a good place to start is the Google
-Search Engine Optimization Starter Guide
-(\url{http://bit.ly/google-seo-starter}). Below are a few key points:
+Se han escrito libros completos sobre SEO, sin mencionar las muchas
+empresas que se dedican a ofrecer asesoramiento técnico y estratégico
+(pagado) para ayudar a que los sitios estén en la cima de los rankings
+de los motores de búsqueda. Si está interesado en obtener más
+información, un buen lugar para comenzar es la Guía de inicio de la
+optimización del motor de búsqueda de Google
+(\url{http://bit.ly/google-seo-starter}). A continuación hay algunos
+puntos clave:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The title that you select for each page and post is a very important
-  signal to Google and other search engines telling them what that page
-  is about.
+  El título que seleccione para cada página y publicación es una señal
+  muy importante para Google y otros motores de búsqueda que les dicen
+  de qué se trata esa página.
 \item
-  Description tags are also critical to explain what a page is about. In
-  HTML documents,
-  \href{https://www.w3schools.com/tags/tag_meta.asp}{description tags}
-  are one way to provide metadata about the page. Using
-  \textbf{blogdown}, the description may end up as text under the page
-  title in a search-engine result. If your page's YAML does not include
-  a description, you can add one like
-  \texttt{description:\ "A\ brief\ description\ of\ this\ page."}; the
-  HTML source of the rendered page would have a
-  \texttt{\textless{}meta\textgreater{}} tag in
-  \texttt{\textless{}head\textgreater{}} like
-  \texttt{\textless{}meta\ name="description"\ content="A\ brief\ description\ of\ this\ page."\textgreater{}}.
-  Not all themes support adding the description to your HTML page
-  (although they should!)
+  Las etiquetas de descripción también son fundamentales para explicar
+  de qué se trata una página. En documentos HTML,
+  \href{https://www.w3schools.com/tags/tag_meta.asp}{etiquetas de
+  descripción} son una forma de proporcionar metadatos sobre la página.
+  Con \textbf{blogdown}, la descripción puede terminar como texto debajo
+  del título de la página en un resultado de motor de búsqueda. Si el
+  YAML de su página no incluye una descripción, puede agregar uno como
+  \texttt{description:"Una\ breve\ descripción\ de\ esta\ página."}; la
+  fuente HTML de la página renderizada tendría una etiqueta
+  \texttt{\textless{}meta\textgreater{}} en
+  \texttt{\textless{}head\textgreater{}} como
+  \texttt{\textless{}meta\ name="description"\ content="\ Una\ breve\ descripción\ de\ esta\ página."\textgreater{}}.
+  No todos los temas admiten agregar la descripción a su página HTML
+  (¡aunque deberían!)
 \item
-  URL structure also matters. You want your post's slug to have
-  informative keywords, which gives another signal of what the page is
-  about. Have a post with interesting things to do in San Francisco?
-  \texttt{san-francisco-events-calendar} might be a better slug than
+  La estructura de URL también es importante. Desea que el slug de su
+  publicación tenga palabras clave informativas, lo que le da otra señal
+  de lo que trata la página. ¿Tiene una publicación con cosas
+  interesantes que hacer en San Francisco?
+  \texttt{san-francisco-events-calendar} podría ser un mejor slug que
   \texttt{my-guide-to-fun-things-to-do}.
 \end{enumerate}
 

@@ -193,13 +193,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="appendix"><span><b>Apéndice</b></span></li>
 <li class="chapter" data-level="A" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>A</b> R Markdown</a></li>
-<li class="chapter" data-level="B" data-path="website-basics.html"><a href="website-basics.html"><i class="fa fa-check"></i><b>B</b> Website Basics</a><ul>
+<li class="chapter" data-level="B" data-path="conceptos-basicos-de-sitios-web.html"><a href="conceptos-basicos-de-sitios-web.html"><i class="fa fa-check"></i><b>B</b> Conceptos básicos de sitios web</a><ul>
 <li class="chapter" data-level="B.1" data-path="html.html"><a href="html.html"><i class="fa fa-check"></i><b>B.1</b> HTML</a></li>
 <li class="chapter" data-level="B.2" data-path="css.html"><a href="css.html"><i class="fa fa-check"></i><b>B.2</b> CSS</a></li>
 <li class="chapter" data-level="B.3" data-path="javascript.html"><a href="javascript.html"><i class="fa fa-check"></i><b>B.3</b> JavaScript</a></li>
-<li class="chapter" data-level="B.4" data-path="useful-resources.html"><a href="useful-resources.html"><i class="fa fa-check"></i><b>B.4</b> Useful resources</a><ul>
-<li class="chapter" data-level="B.4.1" data-path="useful-resources.html"><a href="useful-resources.html#file-optimization"><i class="fa fa-check"></i><b>B.4.1</b> File optimization</a></li>
-<li class="chapter" data-level="B.4.2" data-path="useful-resources.html"><a href="useful-resources.html#helping-people-find-your-site"><i class="fa fa-check"></i><b>B.4.2</b> Helping people find your site</a></li>
+<li class="chapter" data-level="B.4" data-path="recursos-utiles.html"><a href="recursos-utiles.html"><i class="fa fa-check"></i><b>B.4</b> Recursos útiles</a><ul>
+<li class="chapter" data-level="B.4.1" data-path="recursos-utiles.html"><a href="recursos-utiles.html#organizacion-de-archivos"><i class="fa fa-check"></i><b>B.4.1</b> Organización de archivos</a></li>
+<li class="chapter" data-level="B.4.2" data-path="recursos-utiles.html"><a href="recursos-utiles.html#ayudando-a-las-personas-a-encontrar-su-sitio"><i class="fa fa-check"></i><b>B.4.2</b> Ayudando a las personas a encontrar su sitio</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="domain-name.html"><a href="domain-name.html"><i class="fa fa-check"></i><b>C</b> Domain Name</a><ul>
@@ -245,25 +245,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="css" class="section level2">
 <h2><span class="header-section-number">B.2</span> CSS</h2>
-<p>The Cascading Stylesheets (CSS) language is used to describe the look and formatting of documents written in HTML. CSS is responsible for the visual style of your site. CSS is a lot of fun to play with, but it can also easily steal your time.</p>
-<p>In the Hugo framework (<a href="https://gohugo.io/tutorials/creating-a-new-theme/" class="uri">https://gohugo.io/tutorials/creating-a-new-theme/</a>), CSS is one of the major “non-content” files that shapes the look and feel of your site (the others are images, JavaScript, and Hugo templates). What does the <a href="https://en.wikipedia.org/wiki/Look_and_feel">“look and feel”</a> of a site mean? “Look” generally refers to static style components including, but not limited to</p>
+<p>El lenguaje Cascading Stylesheets  (CSS) se utiliza para describir el aspecto y el formato de los documentos escritos en HTML. CSS es responsable del estilo visual de su sitio. CSS es muy divertido de jugar, pero también puede robar tu tiempo fácilmente.</p>
+<p>En el marco de Hugo (<a href="https://gohugo.io/tutorials/creating-a-new-theme/" class="uri">https://gohugo.io/tutorials/creating-a-new-theme/</a>), CSS es uno de los principales archivos “sin contenido” que da forma a la apariencia de su sitio (los otros son imágenes, JavaScript y plantillas Hugo). ¿Qué significa el <a href="https://en.wikipedia.org/wiki/Look_and_feel">“aspecto y tacto”</a> de un sitio? “Buscar” generalmente se refiere a componentes de estilo estático que incluyen, entre otros,</p>
 <ul>
-<li>color palettes,</li>
-<li>images,</li>
-<li>layouts/margins, and</li>
-<li>fonts.</li>
+<li>paltetas de color,</li>
+<li>imágenes,</li>
+<li>diseños/márgenes, y</li>
+<li>fuentes.</li>
 </ul>
-<p>whereas “feel” relates to dynamic components that the user interacts with like</p>
+<p>mientras que “sentir” se relaciona con componentes dinámicos con los que el usuario interactúa como</p>
 <ul>
-<li>dropdown menus,</li>
-<li>buttons, and</li>
-<li>forms.</li>
+<li>menús desplegables,</li>
+<li>botones, y</li>
+<li>formas.</li>
 </ul>
-<p>There are 3 ways to define styles. The first is in line with HTML. For example, this code</p>
+<p>Hay 3 formas de definir estilos. El primero está en línea con HTML. Por ejemplo, este código</p>
 <div class="sourceCode" id="cb90"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">&lt;p&gt;</span>Marco! <span class="kw">&lt;em&gt;</span>Polo!<span class="kw">&lt;/em&gt;&lt;/p&gt;</span> </a></code></pre></div>
-<p>would produce text that looks like this: Marco! <em>Polo!</em></p>
-<p>However, this method is generally not preferred for <a href="https://stackoverflow.com/q/12013532/559676">numerous reasons.</a></p>
-<p>A second way is to internally define the CSS by placing a style section in your HTML:</p>
+<p>produciría texto que se parece a esto: Marco! <em>Polo!</em></p>
+<p>Sin embargo, este método generalmente no es preferido para <a href="https://stackoverflow.com/q/12013532/559676">razones numerosas.</a></p>
+<p>Una segunda forma es definir internamente el CSS colocando una sección de estilo en su HTML:</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">&lt;html&gt;</span></a>
 <a class="sourceLine" id="cb91-2" data-line-number="2"><span class="kw">&lt;style&gt;</span> </a>
 <a class="sourceLine" id="cb91-3" data-line-number="3"><span class="pp">#favorite</span> {</a>
@@ -278,18 +278,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb91-12" data-line-number="12">  <span class="kw">&lt;li</span><span class="ot"> id=</span><span class="st">&quot;favorite&quot;</span><span class="kw">&gt;</span>Chai<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb91-13" data-line-number="13"><span class="kw">&lt;/ul&gt;</span></a>
 <a class="sourceLine" id="cb91-14" data-line-number="14"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
-<p>In this example, only the last tea listed, <em>Chai</em>, is italicized.</p>
-<p>The third method is the most popular because it is more flexible and the least repetitive. In this method, you define the CSS in an external file that is then referenced as a link in your HTML:</p>
+<p>En este ejemplo, solo el último té enumerado, <em>Chai</em>, está en cursiva.</p>
+<p>El tercer método es el más popular porque es más flexible y el menos repetitivo. En este método, usted define el CSS en un archivo externo que luego se referencia como un enlace en su HTML:</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">&lt;html&gt;</span></a>
 <a class="sourceLine" id="cb92-2" data-line-number="2">    <span class="kw">&lt;link</span><span class="ot"> rel=</span><span class="st">&quot;stylesheet&quot;</span><span class="ot"> href=</span><span class="st">&quot;/css/style.css&quot;</span> <span class="kw">/&gt;</span></a>
 <a class="sourceLine" id="cb92-3" data-line-number="3"><span class="kw">&lt;/html&gt;</span></a></code></pre></div>
-<p>What goes inside the linked CSS document is essentially a list of rules (the same list could appear internally between the style tags, if you are using the second method). Each rule must include both a selector or group of selectors, and a declarations block within curly braces that contains one or more <code>property: value;</code> pairs. Here is the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">general structure for a rule</a>:</p>
+<p>Lo que va dentro del documento CSS vinculado es esencialmente una lista de reglas (la misma lista podría aparecer internamente entre las etiquetas de estilo, si está utilizando el segundo método). Cada regla debe incluir un selector o un grupo de selectores, y un bloque de declaraciones dentro de llaves que contenga uno o más pares <code>property: value;</code>. Aquí está la <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">estructura general para una regla</a>:</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co">/* CSS pseudo-code */</span></a>
 <a class="sourceLine" id="cb93-2" data-line-number="2">selectorlist {</a>
 <a class="sourceLine" id="cb93-3" data-line-number="3">    property: value;</a>
 <a class="sourceLine" id="cb93-4" data-line-number="4">    <span class="co">/* more property: value; pairs*/</span></a>
 <a class="sourceLine" id="cb93-5" data-line-number="5">}</a></code></pre></div>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#Selectors">Selectors</a> can be based on HTML element types or attributes, such as <code>id</code> or <code>class</code> (and combinations of these attributes):</p>
+<p>Los <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference#Selectors">selectores</a> pueden basarse en tipos o atributos de elementos HTML, como <code>id</code> o <code>class</code> (y combinaciones de estos atributos):</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="co">/* by element type */</span></a>
 <a class="sourceLine" id="cb94-2" data-line-number="2">li { </a>
 <a class="sourceLine" id="cb94-3" data-line-number="3">    <span class="kw">color</span>: <span class="dv">yellow</span>; <span class="co">/* all &lt;li&gt; elements are yellow */</span></a>
@@ -304,7 +304,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb94-12" data-line-number="12"><span class="fu">.my-class</span> { </a>
 <a class="sourceLine" id="cb94-13" data-line-number="13">    <span class="kw">color</span>: <span class="dv">yellow</span>; <span class="co">/* elements with class = &quot;my-class&quot; are yellow  */</span></a>
 <a class="sourceLine" id="cb94-14" data-line-number="14">}</a></code></pre></div>
-<p>Because each HTML element may match several different selectors, the CSS standard determines which set of rules has precedence for any given element, and which properties to inherit. This is where the cascade algorithm comes into play. For example, take a simple unordered list:</p>
+<p>Debido a que cada elemento HTML puede coincidir con varios selectores diferentes, el estándar CSS determina qué conjunto de reglas tiene prioridad para cualquier elemento dado y qué propiedades heredar. Aquí es donde el algoritmo de cascada entra en juego. Por ejemplo, tome una lista desordenada simple:</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;tea-list&quot;</span><span class="kw">&gt;</span></a>
 <a class="sourceLine" id="cb95-2" data-line-number="2">  <span class="kw">&lt;li&gt;</span>Earl Grey<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb95-3" data-line-number="3">  <span class="kw">&lt;li&gt;</span>Darjeeling<span class="kw">&lt;/li&gt;</span></a>
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb95-5" data-line-number="5">  <span class="kw">&lt;li&gt;</span>Chamomile<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb95-6" data-line-number="6">  <span class="kw">&lt;li&gt;</span>Chai<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb95-7" data-line-number="7"><span class="kw">&lt;/ul&gt;</span></a></code></pre></div>
-<p>Now, let’s say we want to highlight our favorite teas again, so we’ll use a class attribute.</p>
+<p>Ahora, digamos que queremos resaltar nuestros tés favoritos nuevamente, así que usaremos un atributo de clase.</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">&lt;ul</span><span class="ot"> id=</span><span class="st">&quot;tea-list&quot;</span><span class="kw">&gt;</span></a>
 <a class="sourceLine" id="cb96-2" data-line-number="2">  <span class="kw">&lt;li&gt;</span>Earl Grey<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb96-3" data-line-number="3">  <span class="kw">&lt;li</span><span class="ot"> class=</span><span class="st">&quot;favorite&quot;</span><span class="kw">&gt;</span>Darjeeling<span class="kw">&lt;/li&gt;</span></a>
@@ -320,33 +320,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb96-5" data-line-number="5">  <span class="kw">&lt;li&gt;</span>Chamomile<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb96-6" data-line-number="6">  <span class="kw">&lt;li</span><span class="ot"> class=</span><span class="st">&quot;favorite&quot;</span><span class="kw">&gt;</span>Chai<span class="kw">&lt;/li&gt;</span></a>
 <a class="sourceLine" id="cb96-7" data-line-number="7"><span class="kw">&lt;/ul&gt;</span></a></code></pre></div>
-<p>We can use this class attribute as a selector in our CSS. Let’s say we want our favorite teas to be in bold and have a background color of yellow, so our CSS would look like this:</p>
+<p>Podemos usar este atributo de clase como un selector en nuestro CSS. Digamos que queremos que nuestros tés favoritos estén en negrita y tengan un color de fondo amarillo, por lo que nuestro CSS se vería así:</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb97-1" data-line-number="1"><span class="fu">.favorite</span> {</a>
 <a class="sourceLine" id="cb97-2" data-line-number="2">  <span class="kw">font-weight</span>: <span class="dv">bold</span>;</a>
 <a class="sourceLine" id="cb97-3" data-line-number="3">  <span class="kw">background-color</span>: <span class="dv">yellow</span>;</a>
 <a class="sourceLine" id="cb97-4" data-line-number="4">}</a></code></pre></div>
-<p>Now, if you want every list item to be italicized with a white background, you can set up another rule:</p>
+<p>Ahora, si desea que cada elemento de la lista se ponga en cursiva con un fondo blanco, puede configurar otra regla:</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb98-1" data-line-number="1">li { </a>
 <a class="sourceLine" id="cb98-2" data-line-number="2">  <span class="kw">font-style</span>: <span class="dv">italic</span>;</a>
 <a class="sourceLine" id="cb98-3" data-line-number="3">  <span class="kw">background-color</span>: <span class="dv">white</span>;</a>
 <a class="sourceLine" id="cb98-4" data-line-number="4">}</a></code></pre></div>
-<p>If you play with this code (which you can do easily using sites like <a href="http://jsbin.com" class="uri">http://jsbin.com</a>, <a href="https://jsfiddle.net" class="uri">https://jsfiddle.net</a>, or <a href="https://codepen.io/pen/" class="uri">https://codepen.io/pen/</a>), you’ll see that the two favorite teas are still highlighted in yellow. This is because the CSS rule about <code>.favorite</code> as a class is more specific than the rule about <code>li</code> type elements. To override the <code>.favorite</code> rule, you need to be as specific as you can be when choosing your group of selectors:</p>
+<p>Si juega con este código (que puede usar fácilmente usando sitios como <a href="http://jsbin.com" class="uri">http://jsbin.com</a>, <a href="https://jsfiddle.net" class="uri">https://jsfiddle.net</a> o <a href="https://codepen.io/pen/" class="uri">https://codepen.io/pen/</a>), verá que el segundo té favorito sigue resaltado en amarillo. Esto se debe a que la regla de CSS sobre <code>.favorite</code> como clase es más específica que la regla sobre elementos de tipo <code>li</code>. Para anular la regla <code>.favorite</code>, debe ser tan específico como sea posible al elegir su grupo de selectores:</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb99-1" data-line-number="1">ul<span class="pp">#tea-list</span> li<span class="fu">.favorite</span> {</a>
 <a class="sourceLine" id="cb99-2" data-line-number="2">  <span class="kw">background-color</span>: <span class="dv">white</span>;</a>
 <a class="sourceLine" id="cb99-3" data-line-number="3">}</a></code></pre></div>
-<p>This example just scratches the surface of <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance">cascade and inheritance.</a></p>
-<p>For any Hugo theme that you install, you can find the CSS file in the <code>themes/</code> folder. For example, the default lithium theme is located in: <code>themes/hugo-lithium-theme/static/css/main.css</code>. Once you are familiar with CSS, you can understand how each set of rules work to shape the visual style of your website, and how to alter the rules. For some themes (i.e., the <a href="https://github.com/gcushen/hugo-academic">hugo-academic theme</a>), you have the option of linking to a <a href="https://gist.github.com/gcushen/d5525a4506b9ccf83f2bce592a895495">custom CSS,</a> which you can use to further customize the visual style of your site.</p>
-<p>A few one-line examples illustrate how simple CSS rules can be used to make dramatic changes:</p>
+<p>Este ejemplo solo araña la superficie de <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Cascade_and_inheritance">cascada y herencia.</a></p>
+<p>Para cualquier tema de Hugo que instale, puede encontrar el archivo CSS en la carpeta <code>themes/</code>. Por ejemplo, el tema predeterminado de litio se encuentra en: <code>themes/hugo-lithium-theme/static/css/main.css</code>. Una vez que esté familiarizado con CSS, puede comprender cómo funciona cada conjunto de reglas para dar forma al estilo visual de su sitio web, y cómo modificar las reglas. Para algunos temas (es decir, el <a href="https://github.com/gcushen/hugo-academic">tema académico</a>), tiene la opción de vincular a un <a href="https://gist.github.com/gcushen/d5525a4506b9ccf83f2bce592a895495">CSS personalizado</a> que puede utilizar para personalizar aún más el estilo visual de su sitio.</p>
+<p>Algunos ejemplos de una línea ilustran cómo las simples reglas de CSS se pueden usar para hacer cambios dramáticos:</p>
 <ul>
-<li><p>To make circular or rounded images, you may assign a class <code>img-circle</code> to images (e.g., <code>&lt;img class=&quot;img-circle&quot; src=&quot;foo.png&quot; /&gt;</code>) and define the CSS:</p>
+<li><p>Para hacer imágenes circulares o redondeadas, puede asignar una clase <code>img-circle</code> a imágenes (e.g., <code>&lt;img class=&quot;img-circle&quot; src=&quot;foo.png&quot; /&gt;</code>) y definir el CSS:</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="fu">.img-circle</span> {</a>
 <a class="sourceLine" id="cb100-2" data-line-number="2">  <span class="kw">border-radius</span>: <span class="dv">50%</span>;</a>
 <a class="sourceLine" id="cb100-3" data-line-number="3">}</a></code></pre></div></li>
-<li><p>To make striped tables, you can add background colors to odd or even rows of the table, e.g.,</p>
+<li><p>Para hacer tablas de rayas, puede agregar colores de fondo a las filas impares o pares de la tabla, e.g.,</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb101-1" data-line-number="1">tr<span class="in">:nth-child</span>(even) {</a>
 <a class="sourceLine" id="cb101-2" data-line-number="2">  <span class="kw">background</span>: <span class="dv">#eee</span>;</a>
 <a class="sourceLine" id="cb101-3" data-line-number="3">}</a></code></pre></div></li>
-<li><p>You can append or prepend content to elements via pseudo-elements <code>::after</code> and <code>::before</code>. Here is an example of adding a period after section numbers: <a href="https://github.com/rstudio/blogdown/issues/80" class="uri">https://github.com/rstudio/blogdown/issues/80</a>.</p></li>
+<li><p>Puede agregar o anteponer contenido a elementos a través de pseudo-elementos <code>::after</code> y <code>::before</code>. Aquí hay un ejemplo de cómo agregar un período después de los números de sección: <a href="https://github.com/rstudio/blogdown/issues/80" class="uri">https://github.com/rstudio/blogdown/issues/80</a>.</p></li>
 </ul>
 </div>
             </section>

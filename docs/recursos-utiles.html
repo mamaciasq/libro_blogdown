@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="rstudio-ide.html">
-<link rel="next" href="output-format.html">
+<link rel="prev" href="javascript.html">
+<link rel="next" href="domain-name.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,72 +243,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="opciones-globales" class="section level2">
-<h2><span class="header-section-number">1.4</span> Opciones globales</h2>
-<p>Dependiendo de sus preferencias personales, puede establecer algunas opciones globales antes de trabajar en su sitio web. Estas opciones se deben configurar usando <code>options(name = value)</code>, y las opciones disponibles actualmente se presentan en Table <a href="opciones-globales.html#tab:global-options">1.1</a>.</p>
-<table>
-<caption><span id="tab:global-options">TABLA 1.1: </span>Opciones globales que afectan el comportamiento de blogdown.</caption>
-<thead>
-<tr class="header">
-<th align="left">Option name</th>
-<th align="left">Default</th>
-<th align="left">Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">servr.daemon</td>
-<td align="left">FALSE</td>
-<td align="left">Si debe usar un servidor demonizado</td>
-</tr>
-<tr class="even">
-<td align="left">blogdown.author</td>
-<td align="left"></td>
-<td align="left">El autor por defecto de nuevas publicaciones</td>
-</tr>
-<tr class="odd">
-<td align="left">blogdown.ext</td>
-<td align="left">.md</td>
-<td align="left">Extensión por defecto de nuevas publicaciones</td>
-</tr>
-<tr class="even">
-<td align="left">blogdown.subdir</td>
-<td align="left">post</td>
-<td align="left">Un subdirectorio bajo content/</td>
-</tr>
-<tr class="odd">
-<td align="left">blogdown.yaml.empty</td>
-<td align="left">TRUE</td>
-<td align="left">Preservar campos vacíos en YAML?</td>
-</tr>
-</tbody>
-</table>
-<p>Le recomendamos que configure estas opciones en su archivo de perfil de inicio de R. Puede consultar la página de ayuda <code>?Rprofile</code> para más detalles, y aquí hay una introducción simplificada. Un archivo de perfil de inicio es básicamente un script en R que se ejecuta cuando se inicia la sesión de R. Este es un lugar perfecto para establecer opciones globales, por lo que no necesita escribir estas opciones nuevamente cada vez que inicie una nueva sesión en R. Puede usar un archivo de perfil global <code>~/.Rprofile</code>,<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> O un archivo por proyecto <code>.Rprofile</code> en el directorio raíz de su proyecto de RStudio. El primero se aplicará a todas las sesiones de R que inicie, a menos que haya proporcionado el último para anularlo. La forma más fácil de crear un archivo de este tipo es usar <code>file.edit()</code> en RStudio, por ejemplo,</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">file.edit</span>(<span class="st">&#39;~/.Rprofile&#39;</span>)</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co"># o file.edit(&#39;.Rprofile&#39;)</span></a></code></pre></div>
-<p>Supongamos que siempre prefiere el servidor demonizado y quiere que el autor de las nuevas publicaciones sea “John Doe” de manera predeterminada. Puede establecer estas opciones en el archivo de perfil:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">options</span>(<span class="dt">servr.daemon =</span> <span class="ot">TRUE</span>, <span class="dt">blogdown.author =</span> <span class="st">&#39;John Doe&#39;</span>)</a></code></pre></div>
-<p>Una buena consecuencia de establecer estas opciones es que cuando usa el complemento de RStudio “New post”, los campos “Author”, “Subdirectory” y “Format” se completarán automáticamente, por lo que no tendrá que manipularlos todas las veces a menos que desea cambiar los valores predeterminados (ocasionalmente).</p>
-<p>R solo lee un archivo de perfil de inicio. Por ejemplo, si tiene un <code>.Rprofile</code> en el directorio actual y un <code>~/.Rprofile</code> global, solo el anterior se ejecutará cuando R se inicie desde el directorio actual. Esto puede hacer que sea inconveniente para varios autores que colaboran en el mismo proyecto de un sitio web, ya que no puede establecer opciones específicas del autor. En particular, no es posible establecer la opción <code>blogdown.author</code> en un solo <code>.Rprofile</code>, porque esta opción debería ser diferente para diferentes autores. Una solución consiste en establecer opciones comunes en <code>.Rprofile</code> bajo del directorio raíz del proyecto del sitio web, y también ejecutar el <code>~/.Rprofile</code> global si existe. Las opciones específicas del autor se pueden establecer en el <code>~/.Rprofile</code> global en la computadora de cada autor.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># en el .Rprofile del proyecto de la página web</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="cf">if</span> (<span class="kw">file.exists</span>(<span class="st">&#39;~/.Rprofile&#39;</span>)) {</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3">  base<span class="op">::</span><span class="kw">sys.source</span>(<span class="st">&#39;~/.Rprofile&#39;</span>, <span class="dt">envir =</span> <span class="kw">environment</span>())</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co"># luego configure options(blogdown.author = &#39;Your Name&#39;) en ~/.Rprofile</span></a></code></pre></div>
+<div id="recursos-utiles" class="section level2">
+<h2><span class="header-section-number">B.4</span> Recursos útiles</h2>
+<div id="organizacion-de-archivos" class="section level3">
+<h3><span class="header-section-number">B.4.1</span> Organización de archivos</h3>
+<p>Aunque los sitios web estáticos de  son rápidos en general, ciertamente puede optimizarlos aún más. Puede buscar “minificador de CSS y JavaScript”, y estas herramientas pueden comprimir sus archivos CSS y JavaScript, de modo que puedan cargarse más rápido. Como hay muchas herramientas, no las recomendaré aquí.</p>
+<p>También puede optimizar imágenes en su sitio web. Frecuentemente uso una herramienta de línea de comandos llamada <a href="http://optipng.sourceforge.net"><code>optipng</code></a> para optimizar las imágenes PNG. Es un optimizador sin pérdida, lo que significa que reduce el tamaño del archivo de una imagen PNG sin pérdida de calidad. Desde mi experiencia, funciona muy bien en imágenes PNG generadas a partir de R, y puede reducir el tamaño del archivo en al menos un 30% (a veces incluso más del 50%). Personalmente también uso herramientas en línea como <a href="http://optimizilla.com" class="uri">http://optimizilla.com</a> para optimizar imágenes PNG y JPEG. Para imágenes GIF, a menudo uso <a href="https://ezgif.com/optimize" class="uri">https://ezgif.com/optimize</a> para reducir el tamaño de los archivos si son demasiado grandes.</p>
+<p>Tenga en cuenta que Netlify ha proporcionado las funciones de optimización en el servidor de forma gratuita en este momento, por lo que es posible que desee habilitarlos allí en lugar de hacer todo el trabajo por su cuenta.</p>
 </div>
-<div class="footnotes">
-<hr />
-<ol start="13">
-<li id="fn13"><p>La tilde <code>~</code> indica el directorio principal en su sistema.<a href="opciones-globales.html#fnref13" class="footnote-back">↩</a></p></li>
+<div id="ayudando-a-las-personas-a-encontrar-su-sitio" class="section level3">
+<h3><span class="header-section-number">B.4.2</span> Ayudando a las personas a encontrar su sitio</h3>
+<p>Una vez que su sitio esté en funcionamiento, es probable que desee que las personas lo encuentren. SEO — Search Engine Optimization — es el arte de hacer que un sitio web sea fácil de entender para los motores de búsqueda como Google. Y, con suerte, si el motor de búsqueda sabe de lo que está escribiendo, presentará enlaces a su sitio con altos resultados cuando alguien busque los temas que cubre.</p>
+<p>Se han escrito libros completos sobre SEO, sin mencionar las muchas empresas que se dedican a ofrecer asesoramiento técnico y estratégico (pagado) para ayudar a que los sitios estén en la cima de los rankings de los motores de búsqueda. Si está interesado en obtener más información, un buen lugar para comenzar es la Guía de inicio de la optimización del motor de búsqueda de Google (<a href="http://bit.ly/google-seo-starter" class="uri">http://bit.ly/google-seo-starter</a>). A continuación hay algunos puntos clave:</p>
+<ol style="list-style-type: decimal">
+<li><p>El título que seleccione para cada página y publicación es una señal muy importante para Google y otros motores de búsqueda que les dicen de qué se trata esa página.</p></li>
+<li><p>Las etiquetas de descripción también son fundamentales para explicar de qué se trata una página. En documentos HTML, <a href="https://www.w3schools.com/tags/tag_meta.asp">etiquetas de descripción</a> son una forma de proporcionar metadatos sobre la página. Con <strong>blogdown</strong>, la descripción puede terminar como texto debajo del título de la página en un resultado de motor de búsqueda. Si el YAML de su página no incluye una descripción, puede agregar uno como <code>description:&quot;Una breve descripción de esta página.&quot;</code>; la fuente HTML de la página renderizada tendría una etiqueta <code>&lt;meta&gt;</code> en <code>&lt;head&gt;</code> como <code>&lt;meta name=&quot;description&quot; content=&quot; Una breve descripción de esta página.&quot;&gt;</code>. No todos los temas admiten agregar la descripción a su página HTML (¡aunque deberían!)</p></li>
+<li><p>La estructura de URL también es importante. Desea que el slug de su publicación tenga palabras clave informativas, lo que le da otra señal de lo que trata la página. ¿Tiene una publicación con cosas interesantes que hacer en San Francisco? <code>san-francisco-events-calendar</code> podría ser un mejor slug que <code>my-guide-to-fun-things-to-do</code>.</p></li>
 </ol>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="rstudio-ide.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="output-format.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="javascript.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="domain-name.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -338,7 +300,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown01-introduction.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown07-web-development.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],
