@@ -209,7 +209,7 @@
 
 \title{blogdown: Creación de sitios web con R Markdown}
 \author{Yihui Xie, Amber Thomas, Alison Presmanes Hill}
-\date{2018-03-30}
+\date{2018-03-31}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -4794,32 +4794,33 @@ su sitio web o en su repositorio de GitHub.
 
 \cleardoublepage
 
-\hypertarget{appendix-appendix}{%
+\hypertarget{appendix-apendice}{%
 \appendix \addcontentsline{toc}{chapter}{\appendixname}}
 
 
 \hypertarget{r-markdown}{%
 \chapter{R Markdown}\label{r-markdown}}
 
-R Markdown\index{R Markdown} \citep{R-rmarkdown} is a plain-text
-document format consisting of two components: R (or other computing
-languages) and Markdown. Markdown makes it easy for authors to write a
-document due to its simple syntax. Program code (such as R code) can be
-embedded in a source Markdown document to generate an output document
-directly: when compiling the source document, the program code will be
-executed and its output will be intermingled with the Markdown text.
+R Markdown \index{R Markdown} \citep{R-markdown} es un formato de
+documento de texto plano que consta de dos componentes: R (u otros
+lenguajes de cálculo) y Markdown. Markdown hace que sea fácil para los
+autores escribir un documento debido a su sintaxis simple. El código de
+programa (como el código en R) se puede incrustar en un documento de
+origen Markdown para generar un documento de salida directamente: al
+compilar el documento fuente, se ejecutará el código del programa y su
+salida se mezclará con el texto Markdown.
 
-R Markdown files usually use the filename extension \texttt{.Rmd}. Below
-is a minimal example:
+Los archivos de R Markdown generalmente usan la extensión de nombre de
+archivo \texttt{.Rmd}. A continuación se muestra un ejemplo mínimo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{---}
-\NormalTok{title: A Simple Linear Regression}
+\NormalTok{title: Una regresión lineal simple}
 \NormalTok{author: Yihui Xie}
 \NormalTok{---}
 
-\NormalTok{We build a linear regression below.}
+\NormalTok{A continnuación, construimos una regresión lineal.}
 
 \NormalTok{```\{r\}}
 \NormalTok{fit = lm(dist ~ speed, data = cars)}
@@ -4827,71 +4828,78 @@ is a minimal example:
 \NormalTok{plot(fit)}
 \NormalTok{```}
 
-\NormalTok{The slope of the regression is }\BaseNTok{`r b[2, 1]`}\NormalTok{.}
+\NormalTok{La pendiente de la regresión es }\BaseNTok{`r b[2, 1]`}\NormalTok{.}
 \end{Highlighting}
 \end{Shaded}
 
-Such a document can be compiled using the function
-\texttt{rmarkdown::render()}, or equivalently, by clicking the
-\texttt{Knit} button in RStudio. Under the hood, an R Markdown document
-is first compiled to Markdown\index{Markdown} through \textbf{knitr}
-\citep{R-knitr}, which executes all program code in the document. Then
-the Markdown output document is compiled to the final output document
-through Pandoc, such as an HTML page, a PDF document, a Word document,
-and so on. It is important to know this two-step process, otherwise you
-may not know which package documentation to look up when you have
-questions. Basically, for anything related to the (R) code chunks,
-consult the \textbf{knitr} documentation
-(\url{https://yihui.name/knitr/}); for anything related to Markdown,
-consult the Pandoc documentation (\url{https://pandoc.org}).
+Dicho documento se puede compilar usando la función
+\texttt{rmarkdown::render()}, o lo que es lo mismo, haciendo clic en el
+botón \texttt{Knit} en RStudio. Tras bambalinas, un documento de R
+Markdown se compila primero a Markdown\index{Markdown} por
+\textbf{knitr} \citep{R-knitr}, que ejecuta todos los códigos del
+programa en el documento. Luego, el documento de salida de Markdown se
+compila en el documento de salida final a través de Pandoc, como una
+página HTML, un documento PDF, un documento de Word, etc. Es importante
+conocer este proceso de dos pasos; de lo contrario, es posible que no
+sepa qué documentación del paquete buscar cuando tenga preguntas.
+Básicamente, para todo lo relacionado con los fragmentos del código (R),
+consulte la documentación \textbf{knitr}
+(\url{https://yihui.name/knitr/}); para cualquier cosa relacionada con
+Markdown, consulte la documentación de Pandoc
+(\url{https://pandoc.org}).
 
-An R Markdown document typically consists of YAML\index{YAML} metadata
-(optional) and the document body. YAML metadata are written between a
-pair of \texttt{-\/-\/-} to set some attributes of the document, such as
-the title, author, and date, etc. In the document body, you can mix code
-chunks and narratives. A code block starts with a chunk header
-\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}} and
-ends with \texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}.
-There are many possible chunk options that you can set in the chunk
-header to control the output, e.g., you can set the figure height to 4
-inches using
-\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\ fig.height=4\}}.
-For all possible chunk options, see
+Un documento de R Markdown normalmente consta de metadatos
+YAML\index{YAML} (opcional) y el cuerpo del documento. Los metadatos
+YAML se escriben entre un par de \texttt{-\/-\/-} para establecer
+algunos atributos del documento, como el título, el autor y la fecha,
+etc. En el cuerpo del documento, puede mezclar fragmentos de código y
+párrafos. Un bloque de código comienza con un encabezado de fragmento
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\}} y
+termina con
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}}. Hay muchas
+opciones de fragmentos posibles que puede establecer en el encabezado
+del fragmento para controlar la salida, por ejemplo, puede establecer la
+altura de la figura en 4 pulgadas con
+\texttt{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{r\ fig.height\ =\ 4\}}.
+Para ver todas las opciones de fragmentos posibles, consulte
 \url{https://yihui.name/knitr/options/}.
 
-Pandoc supports a large variety of output document formats. For
-\textbf{blogdown}, the output format is set to HTML
-(\texttt{blogdown::html\_page}), since a website typically consists of
-HTML pages. If you want other formats, please see Section
-\ref{static-files}. To create an R Markdown post for \textbf{blogdown},
-it is recommended that you use the RStudio ``New Post'' (Figure
-\ref{fig:new-post}) or the function \texttt{blogdown::new\_post()},
-instead of the RStudio menu
+Pandoc admite una gran variedad de formatos de documentos de salida.
+Para \textbf{blogdown}, el formato de salida se establece en HTML
+(\texttt{blogdown::html\_page}), ya que un sitio web normalmente consta
+de páginas HTML. Si desea otros formatos, consulte la sección
+\ref{archivos-estáticos}. Para crear una publicación de R Markdown para
+\textbf{blogdown}, se recomienda que utilice ``New post'' de RStudio
+(Figura @ref(fig: new-post)) o la función
+\texttt{blogdown::new\_post()}, en lugar del menú de RStudio
 \texttt{File\ -\textgreater{}\ New\ File\ -\textgreater{}\ R\ Markdown}.
 
-You are strongly recommended to go through the documentation of
-\textbf{knitr} chunk options and Pandoc's manual at least once to have
-an idea of all possibilities. The basics of Markdown are simple enough,
-but there are many less well-known features in Pandoc's Markdown, too.
-As we mentioned in Section \ref{output-format}, \textbf{blogdown}'s
-output format is based on \textbf{bookdown} \citep{R-bookdown}, which
-contains several other Markdown extensions, such as numbered equations
-and theorem environments, and you need to read Chapter 2 of the
-\textbf{bookdown} book \citep{xie2016} to learn more about these
-features.
+Le recomendamos que revise la documentación de las opciones de chunk
+\textbf{knitr} y el manual de Pandoc al menos una vez para tener una
+idea de todas las posibilidades. Los conceptos básicos de Markdown son
+bastante simples, pero también hay muchas características menos
+conocidas en Markdown de Pandoc. Como mencionamos en la sección
+@ref(formato de salida), el formato de salida de \textbf{blogdown} se
+basa en \textbf{bookdown} \citep{R-bookdown}, que contiene varias otras
+extensiones de Markdown, como ecuaciones numeradas y entornos de
+teoremas, y debe leer el Capítulo 2 del libro \textbf{bookdown}
+\citep{xie2016} para obtener más información sobre estas
+características.
 
-You can find an R Markdown cheat sheet and a reference guide at
-\url{https://www.rstudio.com/resources/cheatsheets/}, which can be handy
-after you are more familiar with R Markdown.
+Puede encontrar una hoja de referencia de R Markdown y una guía de
+referencia en \url{https://www.rstudio.com/resources/cheatsheets/}, que
+puede ser útil una vez que esté más familiarizado con R Markdown.
 
-With R Markdown, you only need to maintain the source documents; all
-output pages can be automatically generated from source documents. This
-makes it much easier to maintain a website, especially when the website
-is related to data analysis or statistical computing and graphics. When
-the source code is updated (e.g., the model or data is changed), your
-web pages can be updated accordingly and automatically. There is no need
-to run the code separately and cut-and-paste again. Besides the
-convenience, you gain reproducibility at the same time.
+Con R Markdown, solo necesita mantener los documentos fuente; todas las
+páginas de salida se pueden generar automáticamente a partir de
+documentos fuente. Esto hace que sea mucho más fácil mantener un sitio
+web, especialmente cuando el sitio web está relacionado con el análisis
+de datos o con la informática estadística y los gráficos. Cuando se
+actualiza el código fuente (por ejemplo, el modelo o los datos se
+cambian), en consecuencia, sus páginas web se pueden actualizar y
+automáticamente. No es necesario ejecutar el código por separado y
+cortar y pegar de nuevo. Además de la comodidad, obtiene
+reproducibilidad al mismo tiempo.
 
 \hypertarget{website-basics}{%
 \chapter{Website Basics}\label{website-basics}}
