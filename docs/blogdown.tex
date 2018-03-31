@@ -5718,110 +5718,121 @@ puntos clave:
   \texttt{my-guide-to-fun-things-to-do}.
 \end{enumerate}
 
-\hypertarget{domain-name}{%
-\chapter{Domain Name}\label{domain-name}}
+\hypertarget{nombre-de-dominio}{%
+\chapter{Nombre de dominio}\label{nombre-de-dominio}}
 
-While you can use the free subdomain names\index{Domain Name} like those
-provided by GitHub or Netlify, it may be a better idea to own a domain
-name of your own. The cost of an apex domain is minimal (typically the
-yearly cost is about US\$10), and you will enter a much richer world
-after you purchase a domain name. For example, you are free to point
-your domain to any web servers, you can create as many subdomain names
-as you want, and you can even set up your own email accounts using the
-domain or subdomains. In this appendix, we will explain some basic
-concepts of domain names, and mention a few (free) services to help you
-configure your domain name.
+Si bien puede usar los nombres de subdominio gratuitos
+\index{Nombre de dominio} como los provistos por GitHub o Netlify, puede
+ser una mejor idea tener un nombre de dominio propio. El costo de un
+dominio principal es mínimo (por lo general, el costo anual es de
+alrededor de US\$ 10), y usted ingresará a un mundo mucho más rico
+después de comprar un nombre de dominio. Por ejemplo, puede colocar su
+dominio en cualquier servidor web, puede crear tantos nombres de
+subdominios como desee e incluso puede configurar sus propias cuentas de
+correo electrónico usando el dominio o los subdominios. En este
+apéndice, explicaremos algunos conceptos básicos de nombres de dominio y
+mencionaremos algunos servicios (gratuitos) para ayudarlo a configurar
+su nombre de dominio.
 
-Before we dive into the details, we want to outline the big picture of
-how a URL works in your web browser. Suppose you typed or clicked a link
-\texttt{http://www.example.com/foo/index.html} in your web browser. What
-happens behind the scenes before you see the actual web page?
+Antes de sumergirnos en los detalles, queremos delinear la gran imagen
+de cómo funciona una URL en su navegador web. Supongamos que escribió o
+hizo clic en un enlace \texttt{http://www.example.com/foo/index.html} en
+su navegador web. ¿Qué sucede tras bambalinas antes de ver la página web
+real?
 
-First, the domain name has to be resolved through the nameservers
-associated with it. A nameserver knows the DNS (Domain Name System)
-records of a domain. Typically it will look up the ``A records'' to
-point the domain to the IP address of a web server. There are several
-other types of DNS records, and we will explain them later. Once the web
-server is reached, the server will look for the file
-\texttt{foo/index.html} under a directory associated with the domain
-name, and return its content in the response. That is basically how you
-can see a web page.
+Primero, el nombre de dominio debe ser resuelto a través de los
+servidores de nombres asociados con él. Un servidor de nombres conoce
+los registros DNS (Sistema de nombres de dominio) de un dominio. Por lo
+general, buscará los ``registros A'' para señalar el dominio a la
+dirección IP de un servidor web. Existen muchos otros tipos de registros
+DNS, y los explicaremos más adelante. Una vez que se llega al servidor
+web, el servidor buscará el archivo \texttt{foo/index.html} debajo de un
+directorio asociado con el nombre de dominio, y devolverá su contenido
+en la respuesta. Eso es básicamente cómo puedes ver una página web.
 
-\hypertarget{registration}{%
-\section{Registration}\label{registration}}
+\hypertarget{registro}{%
+\section{Registro}\label{registro}}
 
-You can purchase a domain name from many domain name registrars. To stay
-neutral, we are not going to make recommendations here. You can use your
-search engine to find a registrar by yourself, or ask your friends for
-recommendations. However, we would like to remind you of a few things
-that you should pay attention to when looking for a domain name
-registrar:
+Puede comprar un nombre de dominio de muchos registradores de nombres de
+dominio. Para permanecer neutral, no vamos a hacer recomendaciones aquí.
+Puede usar su buscador para buscar un registrador por su cuenta, o
+pedirle recomendaciones a sus amigos. Sin embargo, nos gustaría
+recordarle algunas cosas a las que debe prestar atención cuando busque
+un registrador de nombres de dominio:
 
 \begin{itemize}
 \item
-  You should have the freedom to transfer your domain from the current
-  registrar to other registrars, i.e., they should not lock you in their
-  system. To transfer a domain name, you should be given a code known as
-  the ``Transfer Auth Code'' or ``Auth Code'' or ``Transfer Key'' or
-  something like that.
+  Debería tener la libertad de transferir su dominio del registrador
+  actual a otros registradores, es decir, no deberían bloquearlo en su
+  sistema. Para transferir un nombre de dominio, se le debe dar un
+  código conocido como ``Código de transferencia de autenticación'' o
+  ``Código de autenticación'' o ``Clave de transferencia'' o algo por el
+  estilo.
 \item
-  You should be able to customize the nameservers (see Section
-  \ref{nameservers}) of your domain. By default, each registrar will
-  assign their own nameservers to you, and these nameservers typically
-  work very well. However, there are some special nameservers that
-  provide services more than just DNS records, and you may be interested
-  in using them.
+  Debería poder personalizar los servidores de nombres (consulte la
+  sección \ref{nombres-de-servidores}) de su dominio. De forma
+  predeterminada, cada registrador le asignará sus propios nombres de
+  servidores, y estos nombres de servidores generalmente funcionan muy
+  bien. Sin embargo, hay algunos nombres de servidores especiales que
+  proporcionan servicios más que solo registros DNS, y puede que esté
+  interesado en usarlos.
 \item
-  Other people can freely look up your personal information, such as
-  your email or postal address, after you register a domain and submit
-  this information to the registrar. This is called the ``WHOIS
-  Lookup.'' You may want to protect your privacy, but your registrar may
-  require an extra payment.
+  Otras personas pueden buscar libremente su información personal, como
+  su correo electrónico o dirección postal, después de registrar un
+  dominio y enviar esta información al registrador. Esto se denomina
+  ``WHOIS Lookup''. Es posible que desee proteger su privacidad, pero su
+  registrador puede requerir un pago adicional.
 \end{itemize}
 
-\hypertarget{nameservers}{%
-\section{Nameservers}\label{nameservers}}
+\hypertarget{nombres-de-servidores}{%
+\section{Nombres de servidores}\label{nombres-de-servidores}}
 
-The main reason why we need nameservers\index{Nameservers} is that we
-want to use domains instead of IP addresses, although a domain is not
-strictly necessary for you to be able to access a website. You could use
-the IP address if you have your own server with a public IP, but there
-are many problems with this approach. For example, IP addresses are
-limited (in particular IPv4), not easy to memorize, and you can only
-host one website per IP address (without using other ports).
+La razón principal por la que necesitamos nombres de servidores
+\index{Nombres de servidores} es que queremos usar dominios en lugar de
+direcciones IP, aunque un dominio no es estrictamente necesario para que
+pueda acceder a un sitio web. Puede usar la dirección IP si tiene su
+propio servidor con una IP pública, pero hay muchos problemas con este
+enfoque. Por ejemplo, las direcciones IP son limitadas (en particular,
+la IPv4), no son fáciles de memorizar y solo puede alojar un sitio web
+por dirección IP (sin utilizar otros puertos).
 
-A nameserver is an engine that directs the DNS records of your domain.
-The most common DNS record is the A record, which maps a domain to an IP
-address, so that the hosting server can be found via its IP address when
-a website is accessed through a domain. We will introduce two more types
-of DNS records in Section \ref{dns-records}: CNAME and MX records.
+Un nombre de servidor de nombres es un motor que dirige los registros
+DNS de su dominio. El registro DNS más común es el registro A, que
+asigna un dominio a una dirección IP, de modo que el servidor de
+alojamiento se puede encontrar a través de su dirección IP cuando se
+accede a un sitio web a través de un dominio. Presentaremos dos tipos
+más de registros DNS en la sección \ref{registros-dns}: registros CNAME
+y MX.
 
-In most cases, the default nameservers provided by your domain registrar
-should suffice, but there is a special technology missing in most
-nameservers: CNAME flattening. You only need this technology if you want
-to set a CNAME record for your apex domain. The only use case to my
-knowledge is when you host your website via Netlify, but want to use the
-apex domain instead of the \texttt{www} subdomain, e.g., you want to use
-\texttt{example.com} instead of \texttt{www.example.com}. To make use of
-this technology, you could consider
-\href{https://www.cloudflare.com}{Cloudflare,} which provides this DNS
-feature for free. Basically, all you need to do is to point the
-nameservers of your domain to the nameservers provided by Cloudflare (of
-the form \texttt{*.ns.cloudflare.com}).
+En la mayoría de los casos, los nombres de servidores predeterminados
+provistos por el registrador de su dominio deberían ser suficientes,
+pero falta una tecnología especial en la mayoría de nombres de
+servidores: aplanamiento CNAME. Solo necesita esta tecnología si desea
+establecer un registro CNAME para su dominio apex. El único caso de uso
+que yo sepa es cuando aloja su sitio web a través de Netlify, pero desea
+utilizar el dominio Apex en lugar del subdominio \texttt{www}, por
+ejemplo, si desea usar \texttt{example.com} en lugar de
+\texttt{www.example.com}. Para hacer uso de esta tecnología, podría
+considerar \href{https://www.cloudflare.com}{Cloudflare,} que
+proporciona esta característica DNS de forma gratuita. Básicamente, todo
+lo que necesita hacer es apuntar los servidores de nombres de su dominio
+a los servidores de nombres proporcionados por Cloudflare (de la forma
+\texttt{*.ns.cloudflare.com}).
 
-\hypertarget{dns-records}{%
-\section{DNS records}\label{dns-records}}
+\hypertarget{resgistro-dns}{%
+\section{Resgistro DNS}\label{resgistro-dns}}
 
-There are many types of DNS\index{DNS Records} records, and you may see
-a full list on
-\href{https://en.wikipedia.org/wiki/List_of_DNS_record_types}{Wikipedia.}
-The most commonly used types may be A, CNAME, and MX records. Figure
-\ref{fig:cloudflare-dns} shows a subset of DNS records of my domain
-\texttt{yihui.name} on Cloudflare, which may give you an idea of what
-DNS records look like. You may query DNS records using command-line
-tools such as
-\href{https://en.wikipedia.org/wiki/Dig_(command)}{\texttt{dig}} or an
-app provided by Google: \url{https://toolbox.googleapps.com/apps/dig/}.
+Hay muchos tipos de registros DNS \index{registros-dns}, y es posible
+que vea una lista completa en
+\href{https://en.wikipedia.org/wiki/List_of_DNS_record_types}{Wikipedia.}.
+Los tipos más comúnmente utilizados pueden ser A, CNAME y registros MX.
+La figura @ref(fig: cloudflare-dns) muestra un subconjunto de registros
+DNS de mi dominio \texttt{yihui.name} en Cloudflare, lo que puede darle
+una idea de cómo son los registros DNS. Puede consultar registros DNS
+utilizando herramientas de línea de comandos como
+\href{https://en.wikipedia.org/wiki/Dig_(command)}{\texttt{dig}} o una
+aplicación proporcionada por Google:
+\url{https://toolbox.googleapps.com/apps/dig/}.
 
 \begin{figure}
 
@@ -5829,63 +5840,70 @@ app provided by Google: \url{https://toolbox.googleapps.com/apps/dig/}.
 
 }
 
-\caption{Some DNS records of the domain yihui.name on Cloudflare.}\label{fig:cloudflare-dns}
+\caption{Algunos registros DNS del dominio yihui.name en Cloudflare.}\label{fig:cloudflare-dns}
 \end{figure}
 
-An apex domain can have any number of subdomains. You can set DNS
-records for the apex domain and any subdomains. You can see from Figure
-\ref{fig:cloudflare-dns} that I have several subdomains, e.g.,
-\texttt{slides.yihui.name} and \texttt{xran.yihui.name}.
+Un dominio apex puede tener cualquier cantidad de subdominios. Puede
+establecer registros DNS para el dominio apex y cualquier subdominio.
+Puede ver en la figura @ref(fig: cloudflare-dns) que tengo varios
+subdominios, por ejemplo, \texttt{slides.yihui.name} y
+\texttt{xran.yihui.name}.
 
-As we have mentioned, an A record points a domain or subdomain to an IP
-address of the host server. I did not use any A records for my domains
-since all services I use, such as Updog, GitHub Pages, and Netlify,
-support CNAME records well. A CNAME\index{CNAME Record} record is an
-alias, pointing one domain to another domain. The advantage of using
-CNAME over A is that you do not have to tie a domain to a fixed IP
-address. For example, the CNAME record for \texttt{t.yihui.name} is
-\texttt{twitter-yihui.netlify.com}. The latter domain is provided by
-Netlify, and I do not need to know where they actually host the website.
-They are free to move the host of \texttt{twitter-yihui.netlify.com},
-and I will not need to update my DNS record. Every time someone visits
-the website \texttt{t.yihui.name}, the web browser will route the
-traffic to the domain set in the CNAME record. Note that this is
-different from redirection, i.e., the URL \texttt{t.yihui.name} will not
-be explicitly redirected to \texttt{twitter-yihui.netlify.com} (you
-still see the former in the address bar of your browser).
+Como hemos mencionado, un registro A señala un dominio o subdominio a
+una dirección IP del servidor host. No utilicé ningún registro A para
+mis dominios, ya que todos los servicios que uso, como Updog, GitHub
+Pages y Netlify, son compatibles con los registros CNAME. Un registro
+CNAME \index{CNAME Record} es un alias que señala un dominio a otro. La
+ventaja de utilizar CNAME sobre A es que no tiene que vincular un
+dominio a una dirección IP fija. Por ejemplo, el registro CNAME para
+\texttt{t.yihui.name} es \texttt{twitter-yihui.netlify.com}. Este último
+dominio es proporcionado por Netlify, y no necesito saber dónde alojan
+realmente el sitio web. Son libres de mover el host de
+\texttt{twitter-yihui.netlify.com}, y no necesitaré actualizar mi
+registro de DNS. Cada vez que alguien visita el sitio web
+\texttt{t.yihui.name}, el navegador web enrutará el tráfico al dominio
+establecido en el registro CNAME. Tenga en cuenta que esto es diferente
+de la redirección, es decir, que la URL \texttt{t.yihui.name} no se
+redirigirá explícitamente a \texttt{twitter-yihui.netlify.com} (aún se
+ve la primera en la barra de direcciones de su navegador).
 
-Normally, you can set any DNS records for the apex domain except CNAME,
-but I set a CNAME record for my apex domain \texttt{yihui.name}, and
-that is because Cloudflare supports CNAME flattening. For more
-information on this topic, you may read the post
-\href{https://www.netlify.com/blog/2017/02/28/to-www-or-not-www/}{``To
-WWW or not WWW,''} by Netlify. Personally, I prefer not using the
-subdomain \texttt{www.yihui.name} to keep my URLs short, so I set a
-CNAME record for both the apex domain \texttt{yihui.name} and the
-\texttt{www} subdomain, and Netlify will automatically redirect the
-\texttt{www} subdomain to the apex domain. That said, if you are a
-beginner, it may be a little easier to configure and use the
-\texttt{www} subdomain, as suggested by Netlify. Note \texttt{www} is a
-conventional subdomain that sounds like an apex domain, but really is
-not; you can follow this convention or not as you wish.
+Normalmente, puede establecer cualquier registro DNS para el dominio
+Apex, excepto CNAME, pero configuré un registro CNAME para mi dominio
+Apex \texttt{yihui.name}, y esto se debe a que Cloudflare admite el
+aplanamiento CNAME. Para obtener más información sobre este tema, puede
+leer la publicación
+\href{https://www.netlify.com/blog/2017/02/28/to-www-or-not-www\%20/}{``WWW
+o no WWW,''} por Netlify. Personalmente, prefiero no usar el subdominio
+\texttt{www.yihui.name} para mantener mis URL cortas, así que establezco
+un registro CNAME tanto para el dominio principal \texttt{yihui.name}
+como para el subdominio \texttt{www}, y Netlify redirigirá
+automáticamente el \texttt{www} subdominio al dominio apex. Dicho esto,
+si es un principiante, puede ser un poco más fácil configurar y usar el
+subdominio \texttt{www}, como lo sugiere Netlify. Tenga en cuenta que
+\texttt{www} es un subdominio convencional que suena como un dominio de
+apex, pero realmente no lo es; puede seguir esta convención o no como lo
+desee.
 
-For email services, I was an early enough
-\href{https://en.wikipedia.org/wiki/Netizen}{``netizen'',} and when I
-registered my domain name, Google was still offering free email services
-to custom domain owners. That is how I can have a custom mailbox
-\texttt{xie@yihui.name}. Now you will have to pay for
-\href{https://gsuite.google.com}{G Suite.} In Figure
-\ref{fig:cloudflare-dns} you can see I have set some MX (stands for
-``mail exchange'') records that point to some Google mail servers. Of
-course, Google is not the only possible choice when it comes to custom
-mailboxes. \href{https://www.migadu.com}{Migadu} claims to be the ``most
-affordable email hosting.'' You may try its free plan and see if you
-like it. Unless you are going to use your custom mailbox extensively and
-for professional purposes, the free plan may suffice. In fact, you may
-create an alias address on Migadu to forward emails to your other email
-accounts (such as Gmail) if you do not care about an actual custom
-mailbox. Migadu has provided detailed instructions on how to set the MX
-records for your domain.
+Para los servicios de correo electrónico, llegué lo suficientemente
+temprano \href{https://en.wikipedia.org/wiki/Netizen}{``cibernauta'',} y
+cuando registré mi nombre de dominio, Google todavía ofrecía servicios
+gratuitos de correo electrónico a propietarios de dominios
+personalizados. Así es como puedo tener un buzón personalizado
+\texttt{xie@yihui.name}. Ahora tendrá que pagar por
+\href{https://gsuite.google.com}{G Suite.} En la figura @ref(fig:
+cloudflare-dns) puede ver que he configurado algunos MX (siglas en
+inglés de ``intercambio de correo'') registros que apuntan a algunos
+servidores de correo de Google. Por supuesto, Google no es la única
+opción posible cuando se trata de buzones personalizados.
+\href{https://www.migadu.com}{Migadu} dice ser el ``alojamiento de
+correo electrónico más asequible''. Puede probar su plan gratuito y ver
+si le gusta. A menos que vaya a usar su buzón personalizado
+extensivamente y para fines profesionales, el plan gratuito puede ser
+suficiente. De hecho, puede crear una dirección de alias en Migadu para
+reenviar correos electrónicos a sus otras cuentas de correo electrónico
+(como Gmail) si no le importa un buzón personalizado real. Migadu ha
+proporcionado instrucciones detalladas sobre cómo establecer los
+registros MX para su dominio.
 
 \hypertarget{advanced-topics}{%
 \chapter{Advanced Topics}\label{advanced-topics}}

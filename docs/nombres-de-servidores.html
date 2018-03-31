@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="desde-jekyll.html">
-<link rel="next" href="desde-otros-sistemas.html">
+<link rel="prev" href="registro.html">
+<link rel="next" href="resgistro-dns.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,28 +243,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="desde-wordpress" class="section level2">
-<h2><span class="header-section-number">4.2</span> Desde WordPress</h2>
-<p>Según nuestra experiencia, la mejor manera de importar publicaciones de blog de WordPress a Hugo es importarlas a Jekyll, y escribir un script en R para limpiar los metadatos YAML de todas las páginas si es necesario, en lugar de usar las herramientas de migración listadas en la <a href="https://gohugo.io/tools/">guía oficial,</a> incluyendo el plugin de WordPress <code>wordpress-to-hugo-exporter</code>.</p>
-<p>Hasta donde sabemos, la mejor herramienta para convertir un sitio web de WordPress a Jekyll es la herramienta de Python <a href="https://github.com/thomasf/exitwp">Exitwp.</a>. Su autor ha proporcionado instrucciones detalladas sobre cómo usarlo. Debe saber cómo instalar las librerías de Python y ejecutar las secuencias de comandos de Python. Si no lo hace, he proporcionado una herramienta en línea en <a href="https://github.com/yihui/travis-exitwp" class="uri">https://github.com/yihui/travis-exitwp</a>. Puede cargar su archivo XML de WordPress allí y obtener un enlace de descarga a un archivo ZIP que contenga sus publicaciones en Markdown.</p>
-<p>El mayor desafío al convertir publicaciones de WordPress a Hugo es limpiar el contenido de la publicación en Markdown. Afortunadamente, he hecho esto para tres blogs de WordPress diferentes,<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a> Y creo que he logrado automatizar este proceso tanto como sea posible. Puede consultar el pull request que presenté a Karl Broman para convertir sus publicaciones de WordPress a Markdown (<a href="https://github.com/kbroman/oldblog_xml/pull/1" class="uri">https://github.com/kbroman/oldblog_xml/pull/1</a>), en las que proporcioné el guión en R y los archivos Markdown. Le recomiendo que vaya a la pestaña “Commits” y vea todos mis commit de GIT uno por uno para ver el proceso completo.</p>
-<p>La clave es el script en R <a href="https://github.com/yihui/oldblog_xml/blob/master/convert.R" class="uri">https://github.com/yihui/oldblog_xml/blob/master/convert.R</a>, que convierte el archivo XML de WordPress en publicaciones de Markdown y las limpia. Antes de ejecutar esta secuencia de comandos en su archivo XML, debe ajustar algunos parámetros, como el nombre del archivo XML, la URL de su sitio anterior de WordPress y la URL de su nuevo blog.</p>
-<p>Tenga en cuenta que este script depende de la herramienta Exitwp. Si no sabe cómo ejecutar Exitwp, utilice la herramienta en línea que mencioné anteriormente (travis-exitwp) y omita el código en R que llama a Exitwp.</p>
-<p>Las publicaciones de Markdown deben estar bastante limpias después de la conversión, pero puede haber etiquetas HTML restantes en sus publicaciones, como <code>&lt;table&gt;</code> y <code>&lt;blockquote&gt;</code>. Tendrá que limpiarlos manualmente, si existen.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="39">
-<li id="fn39"><p>El blog de RViews (<a href="https://rviews.rstudio.com" class="uri">https://rviews.rstudio.com</a>), el blog de RStudio (<a href="https://blog.rstudio.com" class="uri">https://blog.rstudio.com</a>) y el blog de Karl Broman (<a href="http://kbroman.org" class="uri">http://kbroman.org</a>). El blog RViews me llevó unos días. El blog de RStudio me llevó un día. El blog de Karl Broman me llevó una hora.<a href="desde-wordpress.html#fnref39" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="nombres-de-servidores" class="section level2">
+<h2><span class="header-section-number">C.2</span> Nombres de servidores</h2>
+<p>La razón principal por la que necesitamos nombres de servidores  es que queremos usar dominios en lugar de direcciones IP, aunque un dominio no es estrictamente necesario para que pueda acceder a un sitio web. Puede usar la dirección IP si tiene su propio servidor con una IP pública, pero hay muchos problemas con este enfoque. Por ejemplo, las direcciones IP son limitadas (en particular, la IPv4), no son fáciles de memorizar y solo puede alojar un sitio web por dirección IP (sin utilizar otros puertos).</p>
+<p>Un nombre de servidor de nombres es un motor que dirige los registros DNS de su dominio. El registro DNS más común es el registro A, que asigna un dominio a una dirección IP, de modo que el servidor de alojamiento se puede encontrar a través de su dirección IP cuando se accede a un sitio web a través de un dominio. Presentaremos dos tipos más de registros DNS en la sección <a href="#registros-dns"><strong>??</strong></a>: registros CNAME y MX.</p>
+<p>En la mayoría de los casos, los nombres de servidores predeterminados provistos por el registrador de su dominio deberían ser suficientes, pero falta una tecnología especial en la mayoría de nombres de servidores: aplanamiento CNAME. Solo necesita esta tecnología si desea establecer un registro CNAME para su dominio apex. El único caso de uso que yo sepa es cuando aloja su sitio web a través de Netlify, pero desea utilizar el dominio Apex en lugar del subdominio <code>www</code>, por ejemplo, si desea usar <code>example.com</code> en lugar de <code>www.example.com</code>. Para hacer uso de esta tecnología, podría considerar <a href="https://www.cloudflare.com">Cloudflare,</a> que proporciona esta característica DNS de forma gratuita. Básicamente, todo lo que necesita hacer es apuntar los servidores de nombres de su dominio a los servidores de nombres proporcionados por Cloudflare (de la forma <code>*.ns.cloudflare.com</code>).</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="desde-jekyll.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="desde-otros-sistemas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="registro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="resgistro-dns.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -294,7 +285,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown04-migration.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown08-domain-name.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

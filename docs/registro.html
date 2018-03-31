@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="desde-jekyll.html">
-<link rel="next" href="desde-otros-sistemas.html">
+<link rel="prev" href="nombre-de-dominio.html">
+<link rel="next" href="nombres-de-servidores.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,28 +243,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="desde-wordpress" class="section level2">
-<h2><span class="header-section-number">4.2</span> Desde WordPress</h2>
-<p>Según nuestra experiencia, la mejor manera de importar publicaciones de blog de WordPress a Hugo es importarlas a Jekyll, y escribir un script en R para limpiar los metadatos YAML de todas las páginas si es necesario, en lugar de usar las herramientas de migración listadas en la <a href="https://gohugo.io/tools/">guía oficial,</a> incluyendo el plugin de WordPress <code>wordpress-to-hugo-exporter</code>.</p>
-<p>Hasta donde sabemos, la mejor herramienta para convertir un sitio web de WordPress a Jekyll es la herramienta de Python <a href="https://github.com/thomasf/exitwp">Exitwp.</a>. Su autor ha proporcionado instrucciones detalladas sobre cómo usarlo. Debe saber cómo instalar las librerías de Python y ejecutar las secuencias de comandos de Python. Si no lo hace, he proporcionado una herramienta en línea en <a href="https://github.com/yihui/travis-exitwp" class="uri">https://github.com/yihui/travis-exitwp</a>. Puede cargar su archivo XML de WordPress allí y obtener un enlace de descarga a un archivo ZIP que contenga sus publicaciones en Markdown.</p>
-<p>El mayor desafío al convertir publicaciones de WordPress a Hugo es limpiar el contenido de la publicación en Markdown. Afortunadamente, he hecho esto para tres blogs de WordPress diferentes,<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a> Y creo que he logrado automatizar este proceso tanto como sea posible. Puede consultar el pull request que presenté a Karl Broman para convertir sus publicaciones de WordPress a Markdown (<a href="https://github.com/kbroman/oldblog_xml/pull/1" class="uri">https://github.com/kbroman/oldblog_xml/pull/1</a>), en las que proporcioné el guión en R y los archivos Markdown. Le recomiendo que vaya a la pestaña “Commits” y vea todos mis commit de GIT uno por uno para ver el proceso completo.</p>
-<p>La clave es el script en R <a href="https://github.com/yihui/oldblog_xml/blob/master/convert.R" class="uri">https://github.com/yihui/oldblog_xml/blob/master/convert.R</a>, que convierte el archivo XML de WordPress en publicaciones de Markdown y las limpia. Antes de ejecutar esta secuencia de comandos en su archivo XML, debe ajustar algunos parámetros, como el nombre del archivo XML, la URL de su sitio anterior de WordPress y la URL de su nuevo blog.</p>
-<p>Tenga en cuenta que este script depende de la herramienta Exitwp. Si no sabe cómo ejecutar Exitwp, utilice la herramienta en línea que mencioné anteriormente (travis-exitwp) y omita el código en R que llama a Exitwp.</p>
-<p>Las publicaciones de Markdown deben estar bastante limpias después de la conversión, pero puede haber etiquetas HTML restantes en sus publicaciones, como <code>&lt;table&gt;</code> y <code>&lt;blockquote&gt;</code>. Tendrá que limpiarlos manualmente, si existen.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="39">
-<li id="fn39"><p>El blog de RViews (<a href="https://rviews.rstudio.com" class="uri">https://rviews.rstudio.com</a>), el blog de RStudio (<a href="https://blog.rstudio.com" class="uri">https://blog.rstudio.com</a>) y el blog de Karl Broman (<a href="http://kbroman.org" class="uri">http://kbroman.org</a>). El blog RViews me llevó unos días. El blog de RStudio me llevó un día. El blog de Karl Broman me llevó una hora.<a href="desde-wordpress.html#fnref39" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="registro" class="section level2">
+<h2><span class="header-section-number">C.1</span> Registro</h2>
+<p>Puede comprar un nombre de dominio de muchos registradores de nombres de dominio. Para permanecer neutral, no vamos a hacer recomendaciones aquí. Puede usar su buscador para buscar un registrador por su cuenta, o pedirle recomendaciones a sus amigos. Sin embargo, nos gustaría recordarle algunas cosas a las que debe prestar atención cuando busque un registrador de nombres de dominio:</p>
+<ul>
+<li><p>Debería tener la libertad de transferir su dominio del registrador actual a otros registradores, es decir, no deberían bloquearlo en su sistema. Para transferir un nombre de dominio, se le debe dar un código conocido como “Código de transferencia de autenticación” o “Código de autenticación” o “Clave de transferencia” o algo por el estilo.</p></li>
+<li><p>Debería poder personalizar los servidores de nombres (consulte la sección <a href="nombres-de-servidores.html#nombres-de-servidores">C.2</a>) de su dominio. De forma predeterminada, cada registrador le asignará sus propios nombres de servidores, y estos nombres de servidores generalmente funcionan muy bien. Sin embargo, hay algunos nombres de servidores especiales que proporcionan servicios más que solo registros DNS, y puede que esté interesado en usarlos.</p></li>
+<li><p>Otras personas pueden buscar libremente su información personal, como su correo electrónico o dirección postal, después de registrar un dominio y enviar esta información al registrador. Esto se denomina “WHOIS Lookup”. Es posible que desee proteger su privacidad, pero su registrador puede requerir un pago adicional.</p></li>
+</ul>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="desde-jekyll.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="desde-otros-sistemas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="nombre-de-dominio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="nombres-de-servidores.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -294,7 +288,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown04-migration.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown08-domain-name.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

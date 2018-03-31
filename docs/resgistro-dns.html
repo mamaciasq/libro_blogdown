@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="desde-jekyll.html">
-<link rel="next" href="desde-otros-sistemas.html">
+<link rel="prev" href="nombres-de-servidores.html">
+<link rel="next" href="advanced-topics.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,28 +243,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="desde-wordpress" class="section level2">
-<h2><span class="header-section-number">4.2</span> Desde WordPress</h2>
-<p>Según nuestra experiencia, la mejor manera de importar publicaciones de blog de WordPress a Hugo es importarlas a Jekyll, y escribir un script en R para limpiar los metadatos YAML de todas las páginas si es necesario, en lugar de usar las herramientas de migración listadas en la <a href="https://gohugo.io/tools/">guía oficial,</a> incluyendo el plugin de WordPress <code>wordpress-to-hugo-exporter</code>.</p>
-<p>Hasta donde sabemos, la mejor herramienta para convertir un sitio web de WordPress a Jekyll es la herramienta de Python <a href="https://github.com/thomasf/exitwp">Exitwp.</a>. Su autor ha proporcionado instrucciones detalladas sobre cómo usarlo. Debe saber cómo instalar las librerías de Python y ejecutar las secuencias de comandos de Python. Si no lo hace, he proporcionado una herramienta en línea en <a href="https://github.com/yihui/travis-exitwp" class="uri">https://github.com/yihui/travis-exitwp</a>. Puede cargar su archivo XML de WordPress allí y obtener un enlace de descarga a un archivo ZIP que contenga sus publicaciones en Markdown.</p>
-<p>El mayor desafío al convertir publicaciones de WordPress a Hugo es limpiar el contenido de la publicación en Markdown. Afortunadamente, he hecho esto para tres blogs de WordPress diferentes,<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a> Y creo que he logrado automatizar este proceso tanto como sea posible. Puede consultar el pull request que presenté a Karl Broman para convertir sus publicaciones de WordPress a Markdown (<a href="https://github.com/kbroman/oldblog_xml/pull/1" class="uri">https://github.com/kbroman/oldblog_xml/pull/1</a>), en las que proporcioné el guión en R y los archivos Markdown. Le recomiendo que vaya a la pestaña “Commits” y vea todos mis commit de GIT uno por uno para ver el proceso completo.</p>
-<p>La clave es el script en R <a href="https://github.com/yihui/oldblog_xml/blob/master/convert.R" class="uri">https://github.com/yihui/oldblog_xml/blob/master/convert.R</a>, que convierte el archivo XML de WordPress en publicaciones de Markdown y las limpia. Antes de ejecutar esta secuencia de comandos en su archivo XML, debe ajustar algunos parámetros, como el nombre del archivo XML, la URL de su sitio anterior de WordPress y la URL de su nuevo blog.</p>
-<p>Tenga en cuenta que este script depende de la herramienta Exitwp. Si no sabe cómo ejecutar Exitwp, utilice la herramienta en línea que mencioné anteriormente (travis-exitwp) y omita el código en R que llama a Exitwp.</p>
-<p>Las publicaciones de Markdown deben estar bastante limpias después de la conversión, pero puede haber etiquetas HTML restantes en sus publicaciones, como <code>&lt;table&gt;</code> y <code>&lt;blockquote&gt;</code>. Tendrá que limpiarlos manualmente, si existen.</p>
+<div id="resgistro-dns" class="section level2">
+<h2><span class="header-section-number">C.3</span> Resgistro DNS</h2>
+<p>Hay muchos tipos de registros DNS , y es posible que vea una lista completa en <a href="https://en.wikipedia.org/wiki/List_of_DNS_record_types">Wikipedia.</a>. Los tipos más comúnmente utilizados pueden ser A, CNAME y registros MX. La figura @ref(fig: cloudflare-dns) muestra un subconjunto de registros DNS de mi dominio <code>yihui.name</code> en Cloudflare, lo que puede darle una idea de cómo son los registros DNS. Puede consultar registros DNS utilizando herramientas de línea de comandos como <a href="https://en.wikipedia.org/wiki/Dig_(command)"><code>dig</code></a> o una aplicación proporcionada por Google: <a href="https://toolbox.googleapps.com/apps/dig/" class="uri">https://toolbox.googleapps.com/apps/dig/</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:cloudflare-dns"></span>
+<img src="images/cloudflare-dns.png" alt="Algunos registros DNS del dominio yihui.name en Cloudflare." width="100%" />
+<p class="caption">
+FIGURA C.1: Algunos registros DNS del dominio yihui.name en Cloudflare.
+</p>
 </div>
-<div class="footnotes">
-<hr />
-<ol start="39">
-<li id="fn39"><p>El blog de RViews (<a href="https://rviews.rstudio.com" class="uri">https://rviews.rstudio.com</a>), el blog de RStudio (<a href="https://blog.rstudio.com" class="uri">https://blog.rstudio.com</a>) y el blog de Karl Broman (<a href="http://kbroman.org" class="uri">http://kbroman.org</a>). El blog RViews me llevó unos días. El blog de RStudio me llevó un día. El blog de Karl Broman me llevó una hora.<a href="desde-wordpress.html#fnref39" class="footnote-back">↩</a></p></li>
-</ol>
+<p>Un dominio apex puede tener cualquier cantidad de subdominios. Puede establecer registros DNS para el dominio apex y cualquier subdominio. Puede ver en la figura @ref(fig: cloudflare-dns) que tengo varios subdominios, por ejemplo, <code>slides.yihui.name</code> y <code>xran.yihui.name</code>.</p>
+<p>Como hemos mencionado, un registro A señala un dominio o subdominio a una dirección IP del servidor host. No utilicé ningún registro A para mis dominios, ya que todos los servicios que uso, como Updog, GitHub Pages y Netlify, son compatibles con los registros CNAME. Un registro CNAME  es un alias que señala un dominio a otro. La ventaja de utilizar CNAME sobre A es que no tiene que vincular un dominio a una dirección IP fija. Por ejemplo, el registro CNAME para <code>t.yihui.name</code> es <code>twitter-yihui.netlify.com</code>. Este último dominio es proporcionado por Netlify, y no necesito saber dónde alojan realmente el sitio web. Son libres de mover el host de <code>twitter-yihui.netlify.com</code>, y no necesitaré actualizar mi registro de DNS. Cada vez que alguien visita el sitio web <code>t.yihui.name</code>, el navegador web enrutará el tráfico al dominio establecido en el registro CNAME. Tenga en cuenta que esto es diferente de la redirección, es decir, que la URL <code>t.yihui.name</code> no se redirigirá explícitamente a <code>twitter-yihui.netlify.com</code> (aún se ve la primera en la barra de direcciones de su navegador).</p>
+<p>Normalmente, puede establecer cualquier registro DNS para el dominio Apex, excepto CNAME, pero configuré un registro CNAME para mi dominio Apex <code>yihui.name</code>, y esto se debe a que Cloudflare admite el aplanamiento CNAME. Para obtener más información sobre este tema, puede leer la publicación <a href="https://www.netlify.com/blog/2017/02/28/to-www-or-not-www%20/">“WWW o no WWW,”</a> por Netlify. Personalmente, prefiero no usar el subdominio <code>www.yihui.name</code> para mantener mis URL cortas, así que establezco un registro CNAME tanto para el dominio principal <code>yihui.name</code> como para el subdominio <code>www</code>, y Netlify redirigirá automáticamente el <code>www</code> subdominio al dominio apex. Dicho esto, si es un principiante, puede ser un poco más fácil configurar y usar el subdominio <code>www</code>, como lo sugiere Netlify. Tenga en cuenta que <code>www</code> es un subdominio convencional que suena como un dominio de apex, pero realmente no lo es; puede seguir esta convención o no como lo desee.</p>
+<p>Para los servicios de correo electrónico, llegué lo suficientemente temprano <a href="https://en.wikipedia.org/wiki/Netizen">“cibernauta”,</a> y cuando registré mi nombre de dominio, Google todavía ofrecía servicios gratuitos de correo electrónico a propietarios de dominios personalizados. Así es como puedo tener un buzón personalizado <code>xie@yihui.name</code>. Ahora tendrá que pagar por <a href="https://gsuite.google.com">G Suite.</a> En la figura @ref(fig: cloudflare-dns) puede ver que he configurado algunos MX (siglas en inglés de “intercambio de correo”) registros que apuntan a algunos servidores de correo de Google. Por supuesto, Google no es la única opción posible cuando se trata de buzones personalizados. <a href="https://www.migadu.com">Migadu</a> dice ser el “alojamiento de correo electrónico más asequible”. Puede probar su plan gratuito y ver si le gusta. A menos que vaya a usar su buzón personalizado extensivamente y para fines profesionales, el plan gratuito puede ser suficiente. De hecho, puede crear una dirección de alias en Migadu para reenviar correos electrónicos a sus otras cuentas de correo electrónico (como Gmail) si no le importa un buzón personalizado real. Migadu ha proporcionado instrucciones detalladas sobre cómo establecer los registros MX para su dominio.</p>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="desde-jekyll.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="desde-otros-sistemas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="nombres-de-servidores.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="advanced-topics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -294,7 +295,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown04-migration.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown08-domain-name.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],
