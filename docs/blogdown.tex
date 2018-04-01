@@ -5905,122 +5905,133 @@ reenviar correos electrónicos a sus otras cuentas de correo electrónico
 proporcionado instrucciones detalladas sobre cómo establecer los
 registros MX para su dominio.
 
-\hypertarget{advanced-topics}{%
-\chapter{Advanced Topics}\label{advanced-topics}}
+\hypertarget{topicos-avanzados}{%
+\chapter{Tópicos avanzados}\label{topicos-avanzados}}
 
-In this appendix, we talk about a few advanced topics that may be of
-interest to developers and advanced users.
+En este apéndice, hablamos de algunos temas avanzados que pueden ser de
+interés para desarrolladores y usuarios avanzados.
 
-\hypertarget{more-global-options}{%
-\section{More global options}\label{more-global-options}}
+\hypertarget{mas-opciones-globales}{%
+\section{Más opciones globales}\label{mas-opciones-globales}}
 
-There are a few more advanced global options\index{Global Options} in
-addition to those introduced in Section \ref{global-options}, and they
-are listed in Table \ref{tab:global-options2}.
+Hay algunas opciones globales más avanzadas \index{Opciones globales}
+además de las introducidas en la sección @ref(opciones globales), y se
+enumeran en la Tabla \ref{tab:global-options2}.
 
 \begin{table}
 
-\caption{\label{tab:global-options2}A few more advanced global options.}
+\caption{\label{tab:global-options2}Unas opciones globales un poco más avanzadas.}
 \centering
 \begin{tabular}[t]{lll}
 \toprule
 Option name & Default & Meaning\\
 \midrule
-blogdown.hugo.dir &  & The directory of the Hugo executable\\
-blogdown.method & html & The building method for R Markdown\\
-blogdown.publishDir &  & The publish dir for local preview\\
-blogdown.widgetsID & TRUE & Incremental IDs for HTML widgets?\\
+blogdown.hugo.dir &  & El directorio ejecutable de Hugo\\
+blogdown.method & html & El método de construcción para R Markdown\\
+blogdown.publishDir &  & El directorio de publicación para previsualización local\\
+blogdown.widgetsID & TRUE & IDs incrementales para HTML widgets?\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-If you want to install Hugo to a custom path, you can set the global
-option \texttt{blogdown.hugo.dir} to a directory to store the Hugo
-executable before you call \texttt{install\_hugo()}, e.g.,
+Si desea instalar Hugo en una ruta personalizada, puede establecer la
+opción global \texttt{blogdown.hugo.dir} en un directorio para almacenar
+el ejecutable Hugo antes de llamar a \texttt{install\_hugo()}, por
+ejemplo,
 \texttt{options(blogdown.hugo.dir\ =\ \textquotesingle{}\textasciitilde{}/Downloads/hugo\_0.20.1/\textquotesingle{})}.
-This may be useful for you to use a specific version of Hugo for a
-specific website,\footnote{You can set this option per project. See
-  Section \ref{global-options} for details.} or store a copy of Hugo on
-a USB Flash drive along with your website.
+Esto puede ser útil para que usted use una versión específica de Hugo
+para un sitio web específico,\footnote{Puede establecer esta opción por
+  proyecto. Consulte la sección @ref(opciones globales) para obtener
+  detalles.} O guarde una copia de Hugo en una unidad USB junto con su
+sitio web.
 
-The option \texttt{blogdown.method} is explained in Section
-\ref{methods}.
+La opción \texttt{blogdown.method} se explica en la sección
+\ref{métodos}.
 
-When your website project is under version control in the RStudio IDE,
-continuously previewing the site can be slow, if it contains hundreds of
-files or more. The default publish directory is \texttt{public/} under
-the project root directory, and whenever you make a change in the source
-that triggers a rebuild, RStudio will be busy tracking file changes in
-the \texttt{public/} directory. The delay before you see the website in
-the RStudio Viewer can be 10 seconds or even longer. That is why we
-provide the option \texttt{blogdown.publishDir}. You may set a temporary
-publish directory to generate the website, and this directory should not
-be under the same RStudio project, e.g.,
-\texttt{options(blogdown.publishDir\ =\ \textquotesingle{}../public\_site\textquotesingle{})},
-which means the website will be generated to the directory
-\texttt{public\_site/} under the parent directory of the current
-project.
+Cuando el proyecto de su sitio web está bajo control de versiones en
+RStudio IDE, la vista previa continua del sitio puede ser lenta, si
+contiene cientos de archivos o más. El directorio de publicación
+predeterminado es \texttt{public/} en el directorio raíz del proyecto, y
+siempre que realice un cambio en la fuente que desencadena una
+reconstrucción, RStudio estará ocupado rastreando los cambios de
+archivos en el directorio \texttt{public/}. La demora antes de que vea
+el sitio web en RStudio Viewer puede durar 10 segundos o incluso más. Es
+por eso que ofrecemos la opción \texttt{blogdown.publishDir}. Puede
+establecer un directorio de publicación temporal para generar el sitio
+web, y este directorio no debe estar bajo el mismo proyecto de RStudio,
+por ejemplo,
+\texttt{options\ (blogdown.publishDir\ =\ \textquotesingle{}../public\_site\textquotesingle{})},
+lo que significa que el sitio web se generará para el directorio
+\texttt{public\_site/} en el directorio padre del proyecto actual.
 
-The option \texttt{blogdown.widgetsID} is only relevant if your website
-source is under version control and you have HTML widgets on the
-website. If this option is \texttt{TRUE} (default), the random IDs of
-HTML widgets will be changed to incremental IDs in the HTML output, so
-these IDs are unlikely to change every time you recompile your website;
-otherwise, every time you will get different random IDs.
+La opción \texttt{blogdown.widgetsID} solo es relevante si el origen de
+su sitio web está bajo control de versiones y tiene widgets HTML en el
+sitio web. Si esta opción es \texttt{TRUE} (valor predeteminado), los ID
+aleatorios de los HTML widgets se cambiarán a ID incrementales en el
+resultado HTML, por lo que es poco probable que estos ID cambien cada
+vez que recompile su sitio web; de lo contrario, cada vez obtendrá
+diferentes ID aleatorios.
 
 \hypertarget{livereload}{%
 \section{LiveReload}\label{livereload}}
 
-As we briefly mentioned\index{LiveReload} in Section
-\ref{a-quick-example}, you can use \texttt{blogdown::serve\_site()} to
-preview a website, and the web page will be automatically rebuilt and
-reloaded in your web browser when the source file is modified and saved.
-This is called ``LiveReload.''
+Como mencionamos brevemente \index{LiveReload} en la sección
+\ref{un-ejemplo-rápido}, puede usar \texttt{blogdown::serve\_site()}
+para obtener una vista previa de un sitio web, y la página web se
+reconstruirá automáticamente y se volverá a cargar en su navegador web
+cuando el archivo fuente se modifica y se guarda. Esto se llama
+``LiveReload''.
 
-We have provided two approaches to LiveReload. The default approach is
-through \texttt{servr::httw()}, which will continuously watch the
-website directory for file changes, and rebuild the site when changes
-are detected. This approach has a few drawbacks:
+Hemos proporcionado dos enfoques para LiveReload. El enfoque
+predeterminado es a través de \texttt{servr::httw()}, que vigilará
+continuamente el directorio del sitio web en busca de cambios de
+archivos y reconstruirá el sitio cuando se detecten cambios. Este
+enfoque tiene algunos inconvenientes:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  It is relatively slow because the website is fully regenerated every
-  time. This may not be a real problem for Hugo, because Hugo is often
-  fast enough: it takes about a millisecond to generate one page, so a
-  website with a thousand pages may only take about one second to be
-  fully regenerated.
+  Es relativamente lento porque el sitio web se regenera por completo
+  cada vez. Esto puede no ser un problema real para Hugo, porque Hugo
+  suele ser lo suficientemente rápido: se tarda aproximadamente un
+  milisegundo en generar una página, por lo que un sitio web con mil
+  páginas solo puede tardar aproximadamente un segundo en regenerarse
+  por completo.
 \item
-  The daemonized server (see Section \ref{global-options}) may not work.
+  El servidor demonizado (vea la sección \ref{opciones-globales} puede
+  no funcionar.
 \end{enumerate}
 
-If you are not concerned about the above issues, we recommend that you
-use the default approach, otherwise you can set the global option
-\texttt{options(blogdown.generator.server\ =\ TRUE)} to use an
-alternative approach to LiveReload, which is based on the native support
-for LiveReload from the static site generator. At the moment, this has
-only been tested against Hugo-based websites. It does not work with
-Jekyll and we were not successful with Hexo, either.
+Si no está preocupado por los problemas anteriores, le recomendamos que
+use el enfoque predeterminado; de lo contrario, puede configurar la
+opción global \texttt{options(blogdown.generator.server\ =\ TRUE)} para
+usar un enfoque alternativo a LiveReload, que se basa en el soporte
+nativo para LiveReload del generador de sitios estáticos. Por el
+momento, esto solo se ha probado contra sitios web basados en Hugo. No
+funciona con Jekyll y tampoco tuvimos éxito con Hexo.
 
-This alternative approach requires two additional R packages to be
-installed: \textbf{processx} \citep{R-processx} and \textbf{later}
-\citep{R-later}. You may use this approach when you primarily work on
-plain Markdown posts instead of R Markdown posts, because it can be much
-faster to preview Markdown posts using the web server of Hugo. The web
-server can be stopped by \texttt{blogdown::stop\_server()}, and it will
-always be stopped when the R session is ended, so you can restart your R
-session if \texttt{stop\_server()} fails to stop the server for some
-reason.
+Este enfoque alternativo requiere la instalación de dos paquetes R
+adicionales: \textbf{processx} \citep{R-processx} y \textbf{later}
+\citep{R-later}. Puede utilizar este enfoque cuando trabaje
+principalmente en publicaciones de Markdown sencillas en lugar de
+publicaciones de R Markdown, porque puede ser mucho más rápido obtener
+una vista previa de las publicaciones de Markdown utilizando el servidor
+web de Hugo. El servidor web puede ser detenido por
+\texttt{blogdown::stop\_server()}, y siempre se detendrá cuando la
+sesión en R finalice, por lo que puede reiniciar su sesión en R si
+\texttt{stop\_server()} no puede detener el servidor por alguna razón.
 
-The web server is established via the command \texttt{hugo\ server} (see
-\href{https://gohugo.io/commands/hugo_server/}{its documentation} for
-details). You can pass command-line arguments via the global option
-\texttt{blogdown.hugo.server}. The default value for this option is
+El servidor web se establece a través del comando \texttt{hugo\ server}
+(ver \href{https://gohugo.io/commands/hugo_server/}{su documentación}
+para más detalles). Puede pasar argumentos de línea de comandos a través
+de la opción global \texttt{blogdown.hugo.server}. El valor
+predeterminado para esta opción es
 \texttt{c(\textquotesingle{}-D\textquotesingle{},\ \textquotesingle{}-F\textquotesingle{})},
-which means to render draft and future posts in the preview. We want to
-highlight a special argument \texttt{-\/-navigateToChanged} in a recent
-version of Hugo, which asks Hugo to automatically navigate to the
-changed page. For example, you can set the options:
+lo que significa mostrar las publicaciones preliminares y futuras en la
+vista previa. Queremos resaltar un argumento especial
+\texttt{-\/-navigateToChanged} en una versión reciente de Hugo, que le
+pide a Hugo que navegue automáticamente a la página modificada. Por
+ejemplo, puede establecer las opciones:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6028,305 +6039,322 @@ changed page. For example, you can set the options:
 \end{Highlighting}
 \end{Shaded}
 
-Then, when you edit a source file under \texttt{content/}, Hugo will
-automatically show you the corresponding output page in the web browser.
+Luego, cuando edite un archivo fuente bajo \texttt{content/}, Hugo le
+mostrará automáticamente la página de salida correspondiente en el
+navegador web.
 
-Note that Hugo renders and serves the website from memory by default, so
-no files will be generated to \texttt{public/}. If you need to publish
-the \texttt{public/} folder manually, you will have to manually build
-the website via \texttt{blogdown::hugo\_build()} or
-\texttt{blogdown::build\_site()}.
+Tenga en cuenta que Hugo presenta el sitio web desde la memoria de forma
+predeterminada, por lo que no se generarán archivos para
+\texttt{public/}. Si necesita publicar la carpeta \texttt{public/}
+manualmente, deberá compilar manualmente el sitio web a través de
+\texttt{blogdown::hugo\_build()} o \texttt{blogdown::build\_site()}.
 
 \hypertarget{local-preview}{%
-\section{Building a website for local preview}\label{local-preview}}
+\section{Construyendo un sitio web para vista previa
+local}\label{local-preview}}
 
-The function\index{blogdown::build\_site()}
-\texttt{blogdown::build\_site()} has an argument \texttt{local} that
-defaults to \texttt{FALSE}, which means building the website for
-publishing instead of local previewing. The mode \texttt{local\ =\ TRUE}
-is primarily for \texttt{blogdown::serve\_site()} to serve the website
-locally. There are three major differences between
-\texttt{local\ =\ FALSE} and \texttt{TRUE}. When
-\texttt{local\ =\ TRUE}:
+La función\index{blogdown::build\_site()}
+\texttt{blogdown::build\_site()} tiene un argumento \texttt{local} que
+por defecto es \texttt{FALSE}, lo que significa construir el sitio web
+para publicación en lugar de vista previa local. El modo
+\texttt{local\ =\ TRUE} es principalmente para
+\texttt{blogdown::serve\_site()} para presentar el sitio web localmente.
+Hay tres diferencias principales entre \texttt{local\ =\ FALSE} y
+\texttt{TRUE}. Cuando \texttt{local\ =\ TRUE}:
 
 \begin{itemize}
 \item
-  The \texttt{baseurl} option in \texttt{config.toml} is temporarily
-  overridden by \texttt{"/"} even if you have set it to a full URL like
-  \texttt{"http://www.example.com/"}.\footnote{If your \texttt{baseurl}
-    contains a subdirectory, it will be overridden by the subdirectory
-    name. For example, for
-    \texttt{baseurl\ =\ "http://www.example.com/project/"},
-    \texttt{build\_site(local\ =\ TRUE)} will temporarily remove the
-    domain name and only use the value \texttt{/project/}.} This is
-  because when a website is to be previewed locally, links should refer
-  to local files. For example, \texttt{/about/index.html} should be used
-  instead of the full link
-  \texttt{http://www.example.com/about/index.html}; the function
-  \texttt{serve\_site()} knows that \texttt{/about/index.html} means the
-  file under the \texttt{public/} directory, and can fetch it and
-  display the content to you, otherwise your browser will take you to
-  the website \texttt{http://www.example.com} instead of displaying a
-  local file.
+  La opción \texttt{baseurl} en \texttt{config.toml} se reemplaza
+  temporalmente por \texttt{"/"} aunque haya configurado una URL
+  completa como \texttt{"http://www.example.com/"}.\footnote{Si su
+    \texttt{baseurl} contiene un subdirectorio, será reemplazado por el
+    nombre del subdirectorio. Por ejemplo, para
+    \texttt{baseurl="\ http://www.example.com/project/\ "},
+    \texttt{build\_site(local\ =TRUE)} eliminará temporalmente el nombre
+    de dominio y solo usará el valor \texttt{/project/}.} es porque
+  cuando un sitio web se va a obtener una vista previa localmente, los
+  enlaces deben hacer referencia a los archivos locales. Por ejemplo, se
+  debe usar \texttt{/about/index.html} en lugar del enlace
+  completo\texttt{http://www.example.com/about/index.html}; la función
+  \texttt{serve\_site()} sabe que \texttt{/about/index.html} significa
+  el archivo bajo el directorio \texttt{public/}, y puede buscarlo y
+  mostrarle el contenido, de lo contrario, su navegador lo llevará al
+  sitio web \texttt{http://www.example.com} en lugar de mostrar un
+  archivo local.
 \item
-  Draft and future posts are always rendered when
-  \texttt{local\ =\ TRUE}, but not when \texttt{local\ =\ FALSE}. This
-  is for you to preview draft and future posts locally. If you know the
-  \href{https://gohugo.io/commands/hugo/}{Hugo command line,} it means
-  the \texttt{hugo} command is called with the flags \texttt{-D\ -F}, or
-  equivalently, \texttt{-\/-buildDrafts\ -\/-buildFuture}.
+  Las publicaciones en borrador y futuras siempre se muestran cuando
+  \texttt{local\ =\ TRUE}, pero no cuando \texttt{local\ =\ FALSE}. Esto
+  es para que pueda obtener una vista previa del borrador y futuras
+  publicaciones localmente. Si conoce la
+  \href{https://gohugo.io/commands/hugo/}{línea de comandos de Hugo}
+  significa que se llama al comando \texttt{hugo} con las banderas
+  \texttt{-D\ -F}, o equivalentemente,
+  \texttt{-\/-buildDrafts\ -\/-buildFuture}.
 \item
-  There is a caching mechanism to speed up building your website: an Rmd
-  file will not be recompiled when its \texttt{*.html} output file is
-  newer (in terms of file modification time). If you want to force
-  \texttt{build\_site(local\ =\ TRUE)} to recompile the Rmd file even if
-  it is older than the HTML output, you need to delete the HTML output,
-  or edit the Rmd file so that its modification time will be newer. This
-  caching mechanism does not apply to \texttt{local\ =\ FALSE}, i.e.,
-  \texttt{build\_site(local\ =\ FALSE)} will always recompile all Rmd
-  files, because when you want to publish a site, you may need to
-  recompile everything to make sure the site is fully regenerated. If
-  you have time-consuming code chunks in any Rmd files, you have to use
-  either of these methods to save time:
+  Hay un mecanismo de almacenamiento en caché para acelerar la creación
+  de su sitio web: un archivo Rmd no se volverá a compilar cuando su
+  archivo de salida \texttt{*.html} sea más reciente (en términos de
+  tiempo de modificación de archivos). Si desea forzar
+  \texttt{build\_site(local\ =\ TRUE)} para recompilar el archivo Rmd
+  incluso si es anterior al resultado HTML, debe eliminar el resultado
+  HTML o editar el archivo Rmd para que su hora de modificación sea más
+  reciente. Este mecanismo de almacenamiento en caché no se aplica a
+  \texttt{local\ =\ FALSE}, es decir,
+  \texttt{build\_site(local\ =\ FALSE)}siempre recompilará todos los
+  archivos Rmd, porque cuando desee publicar un sitio, es posible que
+  deba recompilarlo todo para asegurarse de que el sitio está
+  completamente regenerado. Si tiene fragmentos de código que consumen
+  mucho tiempo en cualquier archivo Rmd, debe usar cualquiera de estos
+  métodos para ahorrar tiempo:
 
   \begin{itemize}
   \item
-    Turn on \textbf{knitr}'s caching for time-consuming code chunks,
-    i.e., the chunk option \texttt{cache\ =\ TRUE}.
+    Active el almacenamiento en caché de \textbf{knitr} para la pérdida
+    de tiempo de los trozos de código, i.e., la opción de chunk
+    \texttt{cache\ =\ TRUE}.
   \item
-    Do not call \texttt{build\_site()}, but
-    \texttt{blogdown::hugo\_build()}
-    instead\index{blogdown::hugo\_build()}. The latter does not compile
-    any Rmd files, but simply runs the \texttt{hugo} command to build
-    the site. Please use this method only if you are sure that your Rmd
-    files do not need to be recompiled.
+    No llame \texttt{build\_site()}, sino
+    \texttt{blogdown::hugo\_build()} en su lugar
+    \index{blogdown::hugo\_build()}. Este último no compila ningún
+    archivo Rmd, simplemente ejecuta el comando \texttt{hugo} para
+    construir el sitio. Utilice este método solo si está seguro de que
+    sus archivos Rmd no necesitan ser recompilados.
   \end{itemize}
 \end{itemize}
 
-You do not need to worry about these details if your website is
-automatically generated from source via a service like Netlify, which
-will make use of \texttt{baseurl} and not use \texttt{-D\ -F} by
-default. If you manually publish the \texttt{public/} folder, you need
-to be more careful:
+No necesita preocuparse por estos detalles si su sitio web se genera
+automáticamente desde la fuente a través de un servicio como Netlify,
+que hará uso de \texttt{baseurl} y no usar \texttt{-D\ -F} de forma
+predeterminada. Si publica manualmente la carpeta \texttt{public/}, debe
+tener más cuidado:
 
 \begin{itemize}
 \item
-  If your website does not work without the full \texttt{baseurl}, or
-  you do not want the draft or future posts to be published, you should
-  not publish the \texttt{public/} directory generated by
-  \texttt{serve\_site()}. Always run \texttt{blogdown::build\_site()} or
-  \texttt{blogdown::hugo\_build()} before you upload this directory to a
-  web server.
+  Si su sitio web no funciona sin el \texttt{baseurl} completo, o si no
+  desea que se publiquen los borradores o las publicaciones futuras, no
+  debe publicar el directorio \texttt{public/} generado por
+  \texttt{serve\_site()}. Siempre ejecute
+  \texttt{blogdown::build\_site()} o \texttt{blogdown::hugo\_build()}
+  antes de subir este directorio a un servidor web.
 \item
-  If your drafts and future posts contain (time-)sensitive information,
-  you are strongly recommended to delete the \texttt{/public/} directory
-  before you rebuild the site for publishing every time, because Hugo
-  never deletes it, and your sensitive information may be rendered by a
-  certain \texttt{build\_site(local\ =\ TRUE)} call last time and left
-  in the directory. If the website is really important, and you need to
-  make sure you absolutely will not screw up anything every time you
-  publish it, put the \texttt{/public/} directory under version control,
-  so you have a chance to see which files were changed before you
-  publish the new site.
+  Si sus borradores y publicaciones futuras contienen información
+  (sensible al tiempo), se recomienda mucho eliminar el directorio
+  \texttt{/public/} antes de reconstruir el sitio para publicarlo todo
+  el tiempo, porque Hugo nunca lo elimina, y su información confidencial
+  puede ser presentada por una determinada llamada
+  \texttt{build\_site(local\ =\ TRUE)} la última vez y la dejarla en el
+  directorio. Si el sitio web es realmente importante, y necesita
+  asegurarse de que no se arruinará nada cada vez que lo publique,
+  coloque el directorio \texttt{/public/} bajo control de versiones,
+  para que pueda ver qué archivos se cambiaron antes de publicar el
+  nuevo sitio.
 \end{itemize}
 
-\hypertarget{functions}{%
-\section{Functions in the blogdown package}\label{functions}}
+\hypertarget{funciones}{%
+\section{Funciones del paquete de blogdown}\label{funciones}}
 
-There are about 20 exported functions\index{Functions} in the
-\textbf{blogdown} package, and many more non-exported functions.
-Exported functions are documented and you can use them after
-\texttt{library(blogdown)} (or via \texttt{blogdown::}). Non-exported
-functions are not documented, but you can access them via
-\texttt{blogdown:::} (the triple-colon syntax). This package is not very
-complicated, and consists of only about 1800 lines of R code (the number
-is given by the word-counting command \texttt{wc}):
+Hay aproximadamente 20 funciones exportadas\index{Funciones} en el
+paquete \textbf{blogdown}, y muchas más funciones no exportadas. Las
+funciones exportadas están documentadas y puede usarlas después de
+\texttt{library(blogdown)} (o mediante \texttt{blogdown\ ::}). Las
+funciones no exportadas no están documentadas, pero puede acceder a
+ellas a través de \texttt{blogdown:::} (la sintaxis de tres puntos).
+Este paquete no es muy complicado y consta de solo 1800 líneas de código
+en R (el número viene dado por el comando de conteo de palabras
+\texttt{wc}):
 
-You may take a look at the source code
-(\url{https://github.com/rstudio/blogdown}) if you want to know more
-about a non-exported function. In this section, we selectively list some
-exported and non-exported functions in the package for your reference.
+Puede consultar el código fuente
+(\url{https://github.com/rstudio/blogdown}) si quiere saber más acerca
+de una función no exportada. En esta sección, enumeramos de forma
+selectiva algunas funciones exportadas y no exportadas en el paquete
+para su referencia.
 
-\hypertarget{exported-functions}{%
-\subsection{Exported functions}\label{exported-functions}}
+\hypertarget{funciones-exportadas}{%
+\subsection{Funciones exportadas}\label{funciones-exportadas}}
 
-Installation: You can install Hugo with \texttt{install\_hugo()}, update
-Hugo with \texttt{update\_hugo()}, and install a Hugo theme with
-\texttt{install\_theme()}.
+Instalación: Puede instalar Hugo con \texttt{install\_hugo()},
+actualizar Hugo con \texttt{update\_hugo()}, e instalar un tema de Hugo
+con \texttt{install\_theme()}.
 
-Wrappers of Hugo commands: \texttt{hugo\_cmd()} is a general wrapper of
-\texttt{system2(\textquotesingle{}hugo\textquotesingle{},\ ...)}, and
-all later functions execute specific Hugo commands based on this general
-wrapper function; \texttt{hugo\_version()} executes the command
-\texttt{hugo\ version} (i.e.,
+Paquetes de comandos de Hugo: \texttt{hugo\_cmd()} es un paquete de
+\texttt{system2(\textquotesingle{}hugo\textquotesingle{},\ ...)}, y
+todas las funciones posteriores ejecutan comandos específicos de Hugo
+basados en esta función de paquete general; \texttt{hugo\_version()}
+ejecuta el comando \texttt{hugo\ version} (i.e.,
 \texttt{system2(\textquotesingle{}hugo\textquotesingle{},\ \textquotesingle{}version\textquotesingle{})}
-in R); \texttt{hugo\_build()} executes \texttt{hugo} with optional
-parameters; \texttt{new\_site()} executes \texttt{hugo\ new\ site};
-\texttt{new\_content()} executes \texttt{hugo\ new} to create a new
-content file, and \texttt{new\_post()} is a wrapper based on
-\texttt{new\_content()} to create a new blog post with appropriate YAML
-metadata and filename; \texttt{hugo\_convert()} executes
-\texttt{hugo\ convert}; \texttt{hugo\_server()} executes
+en R); \texttt{hugo\_build()} ejecuta \texttt{hugo} con parámetros
+opcionales; \texttt{new\_site()} ejecuta \texttt{hugo\ new\ site};
+\texttt{new\_content()} ejecuta \texttt{hugo\ new} para crear un nuevo
+archivo de contenido, y \texttt{new\_post()} es un paquete basado en
+\texttt{new\_content()} para crear una nueva publicación de blog con
+metadatos YAML apropiados y nombre de archivo; \texttt{hugo\_convert()}
+ejecuta \texttt{hugo\ convert}; \texttt{hugo\_server()} ejecuta
 \texttt{hugo\ server}.
 
-Output format: \texttt{html\_page()} is the only R Markdown output
-format function in the package. It inherits from
-\texttt{bookdown::html\_document2()}, which in turn inherits from
-\texttt{rmarkdown::html\_document()}. You need to read the documentation
-of these two functions to know the possible arguments. Section
-\ref{output-format} has more detailed information about it.
+Formato de salida: \texttt{html\_page()} es la única función de formato
+de salida R Markdown en el paquete. Está heredada desde
+\texttt{bookdown::html\_document2()}, que a su vez está heredada de
+\texttt{rmarkdown::html\_document()}. Necesita leer la documentación de
+estas dos funciones para conocer los posibles argumentos. La sección
+\ref{formato-de-salida} tiene información más detallada al respecto.
 
-Helper functions: \texttt{shortcode()} is a helper function to write a
-Hugo shortcode \texttt{\{\{\%\ \%\}\}} in an Rmd post;
-\texttt{shortcode\_html()} writes out
+Funciones de ayuda: \texttt{shortcode()} es una función de ayuda para
+escribir abreviatura de Hugo \texttt{\{\{\%\ \%\}\}} en un post Rmd;
+\texttt{shortcode\_html()} escribe
 \texttt{\{\{\textless{}\ \textgreater{}\}\}}.
 
-Serving a site: \texttt{serve\_site()} starts a local web server to
-build and preview a site continuously; you can stop the server via
-\texttt{stop\_server()}, or restart your R session.
+Presentar un sitio: \texttt{serve\_site()} inicia un servidor web local
+para construir y obtener una vista previa de un sitio de forma continua;
+puede detener el servidor a través de \texttt{stop\_server()}, o
+reiniciar su sesión en R.
 
-Dealing with YAML metadata: \texttt{find\_yaml()} can be used to find
-content files that contain a specified YAML field with specified values;
-\texttt{find\_tags()} and \texttt{find\_categories()} are wrapper
-functions based on \texttt{find\_yaml()} to match specific tags and
-categories in content files, respectively; \texttt{count\_yaml()} can be
-used to calculate the frequencies of specified fields.
+Manejando metadatos YAML: \texttt{find\_yaml()} se puede usar para
+encontrar archivos de contenido que contengan un campo YAML especificado
+con valores especificados; \texttt{find\_tags()} y
+\texttt{find\_categories()} son funciones de contenedor basadas en
+\texttt{find\_yaml()} para unir etiquetas y categorías específicas en
+archivos de contenido, respectivamente; \texttt{count\_yaml()} se puede
+usar para calcular las frecuencias de los campos especificados.
 
-\hypertarget{non-exported-functions}{%
-\subsection{Non-exported functions}\label{non-exported-functions}}
+\hypertarget{funciones-no-exportadas}{%
+\subsection{Funciones no exportadas}\label{funciones-no-exportadas}}
 
-Some functions are not exported in this package because average users
-are unlikely to use them directly, and we list a subset of them below:
+Algunas funciones no se exportan en este paquete porque es poco probable
+que los usuarios promedio las utilicen directamente, y enumeramos un
+subconjunto de ellas a continuación:
 
 \begin{itemize}
 \item
-  You can find the path to the Hugo executable via
-  \texttt{blogdown:::find\_hugo()}. If the executable can be found via
-  the \texttt{PATH} environment variable, it just returns
+  Puede encontrar la ruta al ejecutable de Hugo a través de
+  \texttt{blogdown:::find\_hugo()}. Si el ejecutable se puede encontrar
+  a través de la variable de entorno \texttt{PATH}, simplemente devuelve
   \texttt{\textquotesingle{}hugo\textquotesingle{}}.
 \item
-  The helper function \texttt{modify\_yaml()} can be used to modify the
-  YAML metadata of a file. It has a \texttt{...} argument that takes
-  arbitrary YAML fields, e.g.,
+  La función auxiliar \texttt{modify\_yaml()} se puede usar para
+  modificar los metadatos YAML de un archivo. Tiene un argumento
+  \texttt{...} que toma campos YAML arbitrarios, por ejemplo,
   \texttt{blogdown:::modify\_yaml(\textquotesingle{}foo.md\textquotesingle{},\ author\ =\ \textquotesingle{}Frida\ Gomam\textquotesingle{},\ date\ =\ \textquotesingle{}2015-07-23\textquotesingle{})}
-  will change the \texttt{author} field in the file \texttt{foo.md} to
-  \texttt{Frida\ Gomam}, and \texttt{date} to \texttt{2015-07-23}. We
-  have shown the advanced usage of this function in Section
-  \ref{from-jekyll}.
+  cambiará el campo \texttt{author} en el archivo \texttt{foo.md} a
+  \texttt{Frida\ Gomam}, y \texttt{date} a \texttt{2015-07-23}. Hemos
+  mostrado el uso avanzado de esta función en la sección
+  \ref{Desde-jekyll}.
 \item
-  We have also mentioned a series of functions to clean up Markdown
-  posts in Section \ref{from-jekyll}. They include
+  También hemos mencionado una serie de funciones para limpiar
+  publicaciones de Markdown en la sección \ref{desde-jekyll}. Incluyendo
   \texttt{process\_file()}, \texttt{remove\_extra\_empty\_lines()},
   \texttt{process\_bare\_urls()}, \texttt{normalize\_chars()},
-  \texttt{remove\_highlight\_tags()}, and \texttt{fix\_img\_tags()}.
+  \texttt{remove\_highlight\_tags()}, y \texttt{fix\_img\_tags()}.
 \item
-  In Section \ref{local-preview}, we mentioned a caching mechanism based
-  on the file modification time. It is implemented in
-  \texttt{blogdown:::require\_rebuild()}, which takes two arguments of
-  filenames. The first file is the output file, and the second is the
-  source file. When the source file is older than the output file, or
-  the output file does not exist or is empty, this function returns
-  \texttt{TRUE}.
+  En la sección @ref(vista previa local), mencionamos un mecanismo de
+  almacenamiento en caché basado en el tiempo de modificación del
+  archivo. Se implementa en \texttt{blogdown:::require\_rebuild()}, que
+  toma dos argumentos de nombres de archivos. El primer archivo es el
+  archivo de salida, y el segundo es el archivo de origen. Cuando el
+  archivo fuente es anterior al archivo de salida, o el archivo de
+  salida no existe o está vacío, esta función devuelve \texttt{TRUE}.
 \item
-  The function \texttt{blogdown:::Rscript()} is a wrapper function to
-  execute the command \texttt{Rscript}, which basically means to execute
-  an R script in a new R session. We mentioned this function in Chapter
-  \ref{other-generators}.
+  La función \texttt{blogdown:::Rscript()} es una función de contenedor
+  para ejecutar el comando \texttt{Rscript}, que básicamente significa
+  ejecutar un script R en una nueva sesión R. Mencionamos esta función
+  en el capítulo \ref{otros-generadores}.
 \end{itemize}
 
-\hypertarget{dep-path}{%
-\section{Paths of figures and other dependencies}\label{dep-path}}
+\hypertarget{rutas-de-figuras-y-otras-dependencias-dep-path}{%
+\section{Rutas de figuras y otras dependencias \{\#
+dep-path\}}\label{rutas-de-figuras-y-otras-dependencias-dep-path}}
 
-One of the most challenging tasks in developing the \textbf{blogdown}
-package is to properly handle dependency files\index{Dependency Files}
-of web pages. If all pages of a website were plain text without
-dependencies like images or JavaScript libraries, it would be much
-easier for me to develop the \textbf{blogdown} package.
+Una de las tareas más desafiantes en el desarrollo del paquete
+\textbf{blogdown} es manejar adecuadamente los archivos de dependencia
+\index{Archivos de dependencia} de las páginas web. Si todas las páginas
+de un sitio web estuvieran en texto plano sin dependencias como imágenes
+o librerías de JavaScript, hubiera sido mucho más fácil desarrollar el
+paquete \textbf{blogdown}.
 
-After \textbf{blogdown} compiles each Rmd document to HTML, it will try
-to detect the dependencies (if there are any) from the HTML source and
-copy them to the \texttt{static/} folder, so that Hugo will copy them to
-\texttt{public/} later. The detection depends on the paths of
-dependencies. By default, all dependencies, like R plots and libraries
-for HTML widgets, are generated to the \texttt{foo\_files/} directory if
-the Rmd is named \texttt{foo.Rmd}. Specifically, R plots are generated
-to \texttt{foo\_files/figure-html/} and the rest of files under
-\texttt{foo\_files/} are typically from HTML widgets.
+Después de que \textbf{blogdown} compila cada documento Rmd en HTML,
+intentará detectar las dependencias (si las hay) del código fuente HTML
+y las copiará en la carpeta \texttt{static/}, para que Hugo las copie
+luego en \texttt{public/} . La detección depende de las rutas de las
+dependencias. De forma predeterminada, todas las dependencias, como las
+representaciones R y las librerías para HTML widgets, se generan en el
+directorio \texttt{foo\_files/} si la Rmd se llama \texttt{foo.Rmd}.
+Específicamente, los gráficos R se generan a
+\texttt{foo\_files/figure-html/} y el resto de los archivos bajo
+\texttt{foo\_files/} son típicamente de HTML widgets.
 
-R plots under \texttt{content/*/foo\_files/figure-html/} are copied to
-\texttt{static/*/foo\_files/figure-html/}, and the paths in HTML tags
-like
-\texttt{\textless{}img\ src="foo\_files/figure-html/bar.png"\ /\textgreater{}}
-are substituted with \texttt{/*/foo\_files/figure-html/bar.png}. Note
-the leading slash indicates the root directory of the published website,
-and the substitution works because Hugo will copy
-\texttt{*/foo\_files/figure-html/} from \texttt{static/} to
+Los gráficos de R bajo \texttt{content/*/foo\_files/figure-html/} se
+copian a \texttt{static/*/foo\_files/figure-html/}, y las rutas en las
+etiquetas HTML como
+\texttt{\textless{}img\ src="foo\_files/figure-html/bar.png"/\textgreater{}}
+se sustituyen por \texttt{/*/foo\_files/figure-html/bar.png}. Tenga en
+cuenta que la barra diagonal indica el directorio raíz del sitio web
+publicado, y la sustitución funciona porque Hugo copiará
+\texttt{*/foo\_files/figure-html/} de \texttt{static/} a
 \texttt{public/}.
 
-Any other files under \texttt{foo\_files/} are treated as dependency
-files of HTML widgets, and will be copied to
-\texttt{static/rmarkdown-libs/}. The original paths in HTML will also be
-substituted accordingly, e.g., from
-\texttt{\textless{}script\ src="foo\_files/jquery/jquery.min.js"\textgreater{}}
-to
-\texttt{\textless{}script\ src="/rmarkdown-libs/jquery/jquery.min.js"\textgreater{}}.
-It does not matter whether these files are generated by HTML widgets or
-not. The links on the published website will be correct and typically
-hidden from the readers of the pages.\footnote{For example, a reader
-  will not see the \texttt{\textless{}script\textgreater{}} tag on a
-  page, so it does not really matter what its \texttt{src} attribute
-  looks like as long as it is a path that actually exists.}
+Cualquier otro archivo bajo \texttt{foo\_files/} se trata como archivo
+de dependencia de HTML widgets, y se copiará a
+\texttt{static/rmarkdown-libs/}. Las rutas originales en HTML también
+serán sustituidos en consecuencia, por ejemplo, del
+\texttt{\textless{}script\ src\ =\ "foo\_files/jquery/jquery.min.js"\textgreater{}}
+a
+\texttt{\textless{}script\ src\ ="/rmarkdown-libs/jquery/jquery.min.js\ "\textgreater{}}.
+No importa si estos archivos son generados por HTML widgets o no. Los
+enlaces en el sitio web publicado serán correctos y normalmente ocultos
+a los lectores de las páginas.\footnote{Por ejemplo, un lector no verá
+  la etiqueta \texttt{\textless{}script\textgreater{}} en una página,
+  por lo que realmente no importa lo que su atributo \texttt{src} parece
+  siempre que sea una ruta que realmente existe.}
 
-You should not modify the \textbf{knitr} chunk option \texttt{fig.path}
-or \texttt{cache.path} unless the above process is completely clear to
-you, and you want to handle dependencies by yourself.
+No debe modificar la opción \textbf{knitr} chunk \texttt{fig.path} o
+\texttt{cache.path} a menos que el proceso anterior sea completamente
+claro para usted, y quiera manejar las dependencias usted mismo.
 
-In the rare cases when \textbf{blogdown} fails to detect and copy some
-of your dependencies (e.g., you used a fairly sophisticated HTML widget
-package that writes out files to custom paths), you have two possible
-choices:
+En los casos poco frecuentes en los que \textbf{blogdown} no detecta y
+copia algunas de sus dependencias (p.~ej., osó un paquete de HTML
+widgets bastante sofisticado que escribe archivos en rutas
+personalizadas), tiene dos opciones posibles:
 
 \begin{itemize}
 \item
-  Do not ignore \texttt{\_files\$} in the option \texttt{ignoreFiles} in
-  \texttt{config.toml}, do not customize the \texttt{permalinks} option,
-  and set the option \texttt{uglyURLs} to \texttt{true}. This way,
-  \textbf{blogdown} will not substitute paths that it cannot recognize,
-  and Hugo will copy these files to \texttt{public/}. The relative file
-  locations of the \texttt{*.html} file and its dependencies will remain
-  the same when they are copied to \texttt{public/}, so all links will
-  continue to work.
+  No ignore \texttt{\_files\$} en la opción \texttt{ignoreFiles} en
+  \texttt{config.toml}, no personalice la opción \texttt{permalinks}, y
+  configure la opción \texttt{uglyURLs} en \texttt{true}. De esta forma,
+  \textbf{blogdown} no sustituirá las rutas que no puede reconocer, y
+  Hugo copiará estos archivos a \texttt{public/}. Las ubicaciones de
+  archivo relativas del archivo \texttt{*.html} y sus dependencias
+  seguirán siendo las mismas cuando se copien en \texttt{public/}, de
+  modo que todos los enlaces continuarán funcionando.
 \item
-  If you choose to ignore \texttt{\_files\$} or have customized the
-  \texttt{permalinks} option, you need to make sure \textbf{blogdown}
-  can recognize the dependencies. One approach is to use the path
-  returned by the helper function \texttt{blogdown::dep\_path()} to
-  write out additional dependency files. Basically this function returns
-  the current \texttt{fig.path} option in \textbf{knitr}, which defaults
-  to \texttt{*\_files/figure-html/}. For example, you can generate a
-  plot manually under \texttt{dep\_path()}, and \textbf{blogdown} will
-  process it automatically (copy the file and substitute the image path
-  accordingly).
+  Si elige ignorar \texttt{\_files\$} o ha personalizado la opción
+  \texttt{permalinks}, debe asegurarse de que \textbf{blogdown} pueda
+  reconocer las dependencias. Un enfoque es usar la ruta devuelta por la
+  función auxiliar \texttt{blogdown::dep\_path()} para escribir archivos
+  de dependencia adicionales. Básicamente, esta función devuelve la
+  opción actual \texttt{fig.path} en \textbf{knitr}, que por defecto es
+  \texttt{*\_files/figure-html/}. Por ejemplo, puede generar un trazado
+  manualmente bajo \texttt{dep\_path()}, y \textbf{blogdown} lo
+  procesará automáticamente (copie el archivo y sustituya la ruta de la
+  imagen).
 \end{itemize}
 
-If you do not understand all these technical details, we recommend that
-you use the first choice, and you will have to sacrifice custom
-permanent links and clean URLs (e.g., \texttt{/about.html} instead of
-\texttt{/about/}). With this choice, you can also customize the
-\texttt{fig.path} option for code chunks if you want.
+Si no entiende todos estos detalles técnicos, le recomendamos que use la
+primera opción, y deberá sacrificar los enlaces permanentes
+personalizados y las URL limpias (por ejemplo, \texttt{/about.html} en
+lugar de \texttt{/about/}). Con esta opción, también puede personalizar
+la opción \texttt{fig.path} para fragmentos de código si lo desea.
 
 \hypertarget{html-widgets}{%
 \section{HTML widgets}\label{html-widgets}}
 
-We do not recommend that you use different HTML
-widgets\index{HTML Widgets} from many R packages on the same page,
-because it is likely to cause conflicts in JavaScript. For example, if
-your theme uses the jQuery library, it may conflict with the jQuery
-library used by a certain HTML widget. In this case, you can
-conditionally load the theme's jQuery\index{jQuery} library by setting a
-parameter in the YAML metadata of your post and revising the Hugo
-template that loads jQuery. Below is the example code to load jQuery
-conditionally in a Hugo template:
+No recomendamos utilizar diferentes HTML widgets\index {HTML Widgets} de
+muchos paquetes de R en la misma página, ya que es probable que genere
+conflictos en JavaScript. Por ejemplo, si su tema utiliza la librería
+jQuery, puede entrar en conflicto con la librería jQuery utilizada por
+un determinado HTML widget. En este caso, puede cargar de forma
+condicional la librería jQuery\index{jQuery} del tema configurando un
+parámetro en los metadatos YAML de su publicación y revisando la
+plantilla Hugo que carga jQuery. A continuación se muestra el código de
+ejemplo para cargar jQuery condicionalmente en una plantilla de Hugo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6336,27 +6364,28 @@ conditionally in a Hugo template:
 \end{Highlighting}
 \end{Shaded}
 
-Then if you set \texttt{exclude\_jquery:\ true} in the YAML metadata of
-a post, the theme's jQuery will not be loaded, so there will not be
-conflicts when your HTML widgets also depend on jQuery.
+Luego, si configura \texttt{exclude\_jquery:\ true} en los metadatos
+YAML de una publicación, la jQuery del tema no se cargará, por lo que no
+habrá conflictos cuando los HTML widgets también dependan de jQuery.
 
-Another solution is the
-\href{https://github.com/bhaskarvk/widgetframe}{\textbf{widgetframe}
-package} \citep{R-widgetframe}. It solves this problem by embedding HTML
-widgets in
+Otra solución es el paquete
+\href{https://github.com/bhaskarvk/widgetframe}{\textbf{widgetframe}}
+\citep{R-widgetframe}. Resuelve este problema incorporando HTML widgets
+en
 \texttt{\textless{}iframe\textgreater{}\textless{}/iframe\textgreater{}}.
-Since an iframe is isolated from the main web page on which it is
-embedded, there will not be any JavaScript conflicts.
+Como un iframe está aislado de la página web principal en la que está
+incrustado, no habrá conflictos de JavaScript.
 
-A widget is typically not of full width on the page. To set its width to
-100\%, you can use the chunk option \texttt{out.width\ =\ "100\%"}.
+Un widget generalmente no tiene el ancho completo en la página. Para
+establecer su ancho al 100\%, puede usar la opción de fragmento de
+código \texttt{out.width\ ="100\%"}.
 
-\hypertarget{version-control}{%
-\section{Version control}\label{version-control}}
+\hypertarget{control-de-versiones}{%
+\section{Control de versiones}\label{control-de-versiones}}
 
-If your website source files are under version
-control\index{Version Control}, we recommend that you add at least these
-two folder names to your \texttt{.gitignore} file:
+Si los archivos fuente de su sitio web están bajo control de versión
+\index{Control de versiones}, le recomendamos que agregue al menos estos
+dos nombres de carpeta a su archivo \texttt{.gitignore}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6365,31 +6394,33 @@ two folder names to your \texttt{.gitignore} file:
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{blogdown/} directory is used to store cache files, and they
-are most likely to be useless to the published website. Only
-\textbf{knitr} may use them, and the published website will not depend
-on these files.
+El directorio \texttt{blogdown/} se usa para almacenar archivos de
+caché, y es probable que sean inútiles para el sitio web publicado. Solo
+\textbf{knitr} puede usarlos, y el sitio web publicado no dependerá de
+estos archivos.
 
-The \texttt{public/} directory should be ignored if your website is to
-going to be automatically (re)built on a remote server such as Netlify.
+El directorio \texttt{public/} debe ignorarse si su sitio web va a ser
+(re)incorporado automáticamente en un servidor remoto como Netlify.
 
-As we mentioned in Section \ref{dep-path}, R plots will be copied to
-\texttt{static/}, so you may see new files in GIT after you render an
-Rmd file that has graphics output. You need to add and commit these new
-files in GIT, because the website will use them.
+Como mencionamos en la sección \ref{dep-path}, las gráficas de R se
+copiarán a \texttt{static/}, por lo que puede ver nuevos archivos en GIT
+luego de renderizar un archivo Rmd que tenga salida de gráficos. Debe
+agregar y confirmar estos nuevos archivos en GIT, ya que el sitio web
+los usará.
 
-Although it is not relevant to \textbf{blogdown}, macOS users should
-remember to ignore \texttt{.DS\_Store} and Windows users should ignore
-\texttt{Thumbs.db}.
+Aunque no es relevante para \textbf{blogdown}, los usuarios de macOS
+deben recordar ignorar \texttt{.DS\_Store} y los usuarios de Windows
+deben ignorar \texttt{Thumbs.db}.
 
-If you are relatively familiar with GIT\index{GIT Submodules}, there is
-a special technique that may be useful for you to manage Hugo themes,
-which is called ``GIT submodules.'' A submodule in GIT allows you to
-manage a particular folder of the main repository using a different
-remote repository. For example, if you used the default
-\texttt{hugo-lithium-theme} from my GitHub repository, you might want to
-sync it with my repository occasionally, because I may update it from
-time to time. You can add the GIT submodule via the command line:
+Si está relativamente familiarizado con GIT\index{Submódulos de GIT},
+hay una técnica especial que puede serle útil para administrar los temas
+de Hugo, que se llama ``GIT submodules''. Un submódulo en GIT le permite
+administrar una carpeta particular del repositorio principal utilizando
+un repositorio remoto diferente. Por ejemplo, si utilizó el
+\texttt{hugo-lithium-theme} predeterminado de mi repositorio de GitHub,
+es posible que desee sincronizarlo con mi repositorio de vez en cuando,
+porque puedo actualizarlo de vez en cuando. Puede agregar el submódulo
+GIT a través de la línea de comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6399,13 +6430,13 @@ time to time. You can add the GIT submodule via the command line:
 \end{Highlighting}
 \end{Shaded}
 
-If the folder \texttt{themes/hugo-lithium-theme} exists, you need to
-delete it before adding the submodule. Then you can see a SHA string
-associated with the ``folder'' \texttt{themes/hugo-lithium-theme} in the
-GIT status of your main repository indicating the version of the
-submodule. Note that you will only see the SHA string instead of the
-full content of the folder. Next time when you want to sync with my
-repository, you may run the command:
+Si existe la carpeta \texttt{themes/hugo-lithium-theme}, debe eliminarla
+antes de agregar el submódulo. Luego puede ver una cadena SHA asociada a
+la ``carpeta'' \texttt{themes/hugo-lithium-theme} en el estado de GIT de
+su repositorio principal que indica la versión del submódulo. Tenga en
+cuenta que solo verá la cadena SHA en lugar del contenido completo de la
+carpeta. La próxima vez que quiera sincronizarse con mi repositorio,
+puede ejecutar el comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6413,18 +6444,19 @@ repository, you may run the command:
 \end{Highlighting}
 \end{Shaded}
 
-In general, if you are happy with how your website looks, you do not
-need to manage the theme using GIT submodules. Future updates in the
-upstream repository may not really be what you want. In that case, a
-physical and fixed copy of the theme is more appropriate for you.
+En general, si está satisfecho con el aspecto de su sitio web, no
+necesita administrar el tema con los submódulos de GIT. Es posible que
+las actualizaciones futuras en el repositorio upstream no sean realmente
+lo que desea. En ese caso, una copia física y fija del tema es más
+apropiada para usted.
 
-\hypertarget{default-template}{%
-\section{The default HTML template}\label{default-template}}
+\hypertarget{default-plantilla}{%
+\section{La plantilla por defecto en HTML}\label{default-plantilla}}
 
-As we mentioned in Section \ref{output-format}, the default output
-format for an Rmd document in \textbf{blogdown} is
-\texttt{blogdown::html\_page}. This format passes a minimal HTML
-template to Pandoc\index{Pandoc} by default:
+Como mencionamos en la sección \ref{formato-de-salida}, el formato de
+salida predeterminado para un documento Rmd en \textbf{blogdown} es
+\texttt{blogdown::html\_page}. Este formato transfiere una plantilla
+HTML mínima a Pandoc\index{Pandoc} de manera predeterminada:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6457,78 +6489,81 @@ template to Pandoc\index{Pandoc} by default:
 \end{Highlighting}
 \end{Shaded}
 
-You can find this template file via
+Puede encontrar este archivo de plantilla a través de
 \texttt{blogdown:::pkg\_file(\textquotesingle{}resources\textquotesingle{},\ \textquotesingle{}template-minimal.html\textquotesingle{})}
-in R, and this file path is the default value of the \texttt{template}
-argument of \texttt{html\_page()}. You may change this default template,
-but you should understand what this template is supposed to do first.
+en R, y esta ruta de archivo es el valor predeterminado del argumento
+\texttt{template} de \texttt{html\_page()}. Puede cambiar esta plantilla
+predeterminada, pero debe entender qué se supone que debe hacer esta
+plantilla primero.
 
-If you are familiar with Pandoc templates, you should realize that this
-is not a complete HTML template, e.g., it does not have the tags
-\texttt{\textless{}html\textgreater{}},
-\texttt{\textless{}head\textgreater{}}, or
-\texttt{\textless{}body\textgreater{}}. That is because we do not need
-or want Pandoc to return a full HTML document to us. The main thing we
-want Pandoc to do is to convert our Markdown document to HTML, and give
-us the body of the HTML document, which is in the template variable
-\texttt{\$body\$}. Once we have the body, we can further pass it to
-Hugo, and Hugo will use its own template to embed the body and generate
-the full HTML document. Let's explain this by a minimal example. Suppose
-we have an R Markdown document \texttt{foo.Rmd}:
+Si está familiarizado con las plantillas de Pandoc, debe tener en cuenta
+que esta no es una plantilla HTML completa, por ejemplo, no tiene las
+etiquetas \texttt{\textless{}html\textgreater{}},
+\texttt{\textless{}head\textgreater{}}, o
+\texttt{\textless{}body\textgreater{}}. Eso es porque no necesitamos ni
+queremos que Pandoc nos devuelva un documento HTML completo. Lo
+principal que queremos que Pandoc haga es convertir nuestro documento
+Markdown a HTML, y darnos el cuerpo del documento HTML, que está en la
+variable de plantilla \texttt{\$body\$}. Una vez que tengamos el cuerpo,
+podemos pasarlo a Hugo, y Hugo usará su propia plantilla para incrustar
+el cuerpo y generar el documento HTML completo. Vamos a explicar esto
+con un ejemplo mínimo. Supongamos que tenemos un documento R Markdown
+\texttt{foo.Rmd}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{---}
-\NormalTok{title: "Hello World"}
+\NormalTok{title: "Hola mundo"}
 \NormalTok{author: "Yihui Xie"}
 \NormalTok{---}
 
-\NormalTok{I found a package named **blogdown**.}
+\NormalTok{Encontré un paquete llamado **blogdown**.}
 \end{Highlighting}
 \end{Shaded}
 
-It is first converted to an HTML file \texttt{foo.html} through
-\texttt{html\_page()}, and note that YAML metadata are ignored for now:
+Primero se convierte a un archivo HTML \texttt{foo.html} a través de
+\texttt{html\_page()}, y tenga en cuenta que los metadatos YAML se
+ignoran por ahora:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{I found a package named }\KeywordTok{<strong>}\NormalTok{blogdown}\KeywordTok{</strong>}\NormalTok{.}
+\NormalTok{Encontré un paquete llamado }\KeywordTok{<strong>}\NormalTok{blogdown}\KeywordTok{</strong>}\NormalTok{.}
 \end{Highlighting}
 \end{Shaded}
 
-Then \textbf{blogdown} will read the YAML metadata of the Rmd source
-file, and insert the metadata into the HTML file so it becomes:
+Luego \textbf{blogdown} leerá los metadatos YAML del archivo fuente Rmd
+e insertará los metadatos en el archivo HTML para que se convierta en:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{---}
-\NormalTok{title: "Hello World"}
+\NormalTok{title: "Hola mundo"}
 \NormalTok{author: "Yihui Xie"}
 \NormalTok{---}
 
-\NormalTok{I found a package named }\KeywordTok{<strong>}\NormalTok{blogdown}\KeywordTok{</strong>}\NormalTok{.}
+\NormalTok{Encontré un paquete llamado }\KeywordTok{<strong>}\NormalTok{blogdown}\KeywordTok{</strong>}\NormalTok{.}
 \end{Highlighting}
 \end{Shaded}
 
-This is the file to be picked up by Hugo and eventually converted to an
-HTML page of a website. Since the Markdown body has been processed to
-HTML by Pandoc, Hugo will basically use the HTML. That is how we bypass
-Hugo's Markdown engine BlackFriday.
+Este es el archivo que Hugo debe recoger y eventualmente convertir a una
+página HTML de un sitio web. Como Pandoc procesó el cuerpo de Markdown
+para HTML, Hugo básicamente usará el HTML. Así es como eludimos el motor
+Markdown BlackFriday de Hugo.
 
-Besides \texttt{\$body\$}, you may have noticed other Pandoc template
-variables like \texttt{\$header-includes\$}, \texttt{\$css\$},
-\texttt{\$include-before\$}, \texttt{\$toc\$}, and
-\texttt{\$include-after\$}. These variables make it possible to
-customize the \texttt{html\_page} format. For example, if you want to
-generate a table of contents, and apply an additional CSS stylesheet to
-a certain page, you may set \texttt{toc} to \texttt{true} and pass the
-stylesheet path to the \texttt{css} argument of \texttt{html\_page()},
-e.g.,
+Además de \texttt{\$body\$}, puede haber notado otras variables de
+plantilla de Pandoc como \texttt{\$header-includes\$}, \texttt{\$css\$},
+\texttt{\$include-before\$}, \texttt{\$toc\$}, y
+\texttt{\$include-after\$}. Estas variables permiten personalizar el
+formato \texttt{html\_page}. Por ejemplo, si desea generar una tabla de
+contenido y aplicar una hoja de estilo CSS adicional a una página
+determinada, puede establecer \texttt{toc} en \texttt{true} y pasar la
+ruta de la hoja de estilo al argumento \texttt{css} de
+\texttt{html\_page()}, por ejemplo,
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \OtherTok{---}
-\FunctionTok{title:}\AttributeTok{ }\StringTok{"Hello World"}
+\FunctionTok{title:}\AttributeTok{ }\StringTok{"Hola mundo"}
 \FunctionTok{author:}\AttributeTok{ }\StringTok{"Yihui Xie"}
 \FunctionTok{output:}
   \FunctionTok{blogdown:}\AttributeTok{:html_page:}
@@ -6538,14 +6573,15 @@ e.g.,
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{methods}{%
-\section{Different building methods}\label{methods}}
+\hypertarget{muxe9todos}{%
+\section{Diferentes métodos de construcción}\label{muxe9todos}}
 
-If your website does not contain any Rmd files, it is very
-straightforward to render it --- just a system call to the \texttt{hugo}
-command. When your website contains Rmd files, \textbf{blogdown} has
-provided two rendering methods to compile these Rmd files. A website can
-be built using the function \texttt{blogdown::build\_site()}:
+Si su sitio web no contiene ningún archivo Rmd, es muy sencillo
+presentarlo, solo una llamada al sistema al comando \texttt{hugo}.
+Cuando su sitio web contiene archivos Rmd, \textbf{blogdown} ha
+proporcionado dos métodos de representación para compilar estos archivos
+Rmd. Se puede construir un sitio web usando la función
+\texttt{blogdown::build\_site()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6554,53 +6590,57 @@ be built using the function \texttt{blogdown::build\_site()}:
 \end{Highlighting}
 \end{Shaded}
 
-As mentioned in Section \ref{global-options}, the default value of the
-\texttt{method} argument is determined by the global option
-\texttt{blogdown.method}, and you can set this option in
-\texttt{.Rprofile}.
+Como se menciona en la sección \ref{opciones-globales}, el valor
+predeterminado del argumento \texttt{método} está determinado por la
+opción global \texttt{blogdown.method}, y puede establecer esta opción
+en \texttt{.Rprofile}.
 
-For \texttt{method\ =\ \textquotesingle{}html\textquotesingle{}},
-\texttt{build\_site()} renders \texttt{*.Rmd} to \texttt{*.html}, and
-\texttt{*.Rmarkdown} to \texttt{*.markdown}, and keeps the
-\texttt{*.html}/\texttt{*.markdown} output files under the same
-directory as \texttt{*.Rmd}/\texttt{*.Rmarkdown} files.
+Para
+\texttt{method\ =\ \textquotesingle{}html\textquotesingle{}},\texttt{build\_site()}
+renderiza \texttt{*.Rmd} a \texttt{*.html}, y \texttt{*.Rmarkdown} a
+\texttt{*.markdown}, y mantiene los \texttt{*.html}/\texttt{*.markdown}
+archivos de salida bajo el mismo directorio que los archivos
+\texttt{*.Rmd}/\texttt{*.Rmarkdown}.
 
-An Rmd file may generate two directories for figures
-(\texttt{*\_files/}) and cache (\texttt{*\_cache/}), respectively, if
-you have plot output or HTML widgets \citep{R-htmlwidgets} in your R
-code chunks, or enabled the chunk option \texttt{cache\ =\ TRUE} for
-caching. In the figure directory, there will be a subdirectory
-\texttt{figure-html/} that contains your plot output files, and possibly
-other subdirectories containing HTML dependencies from HTML widgets
-(e.g., \texttt{jquery/}). The figure directory is moved to
-\texttt{/static/}, and the cache directory is moved to
+Un archivo Rmd puede generar dos directorios para figuras
+(\texttt{*\_files/}) y caché (\texttt{*\_caché/}), respectivamente, si
+tiene salida de gráficos o HTML widgets \citep{R-htmlwidgets} en los
+fragmentos de código R, o habilitada la opción de fragmento
+\texttt{cache\ =\ TRUE} para el almacenamiento en caché. En el
+directorio de figuras, habrá un subdirectorio \texttt{figure-html/} que
+contiene los archivos de salida de trazado, y posiblemente otros
+subdirectorios que contengan dependencias HTML de widgets HTML (por
+ejemplo, \texttt{jquery/}). El directorio de figuras se mueve a
+\texttt{/static/}, y el directorio de caché se mueve a
 \texttt{/blogdown/}.
 
-After you run \texttt{build\_site()}, your website is ready to be
-compiled by Hugo. This gives you the freedom to use deploying services
-like Netlify (Chapter \ref{deployment}), where neither R nor
-\textbf{blogdown} is available, but Hugo is.
+Después de ejecutar \texttt{build\_site()}, su sitio web está listo para
+ser compilado por Hugo. Esto le da la libertad de usar servicios de
+implementación como Netlify (capítulo \ref{implementación}), donde ni R
+ni \textbf{blogdown} están disponibles, pero Hugo sí lo está.
 
-For \texttt{method\ =\ \textquotesingle{}custom\textquotesingle{}},
-\texttt{build\_site()} will not process any R Markdown files, nor will
-it call Hugo to build the site. No matter which method you choose to
-use, \texttt{build\_site()} will always look for an R script
-\texttt{/R/build.R} and execute it if it exists. This gives you the
-complete freedom to do anything you want for the website. For example,
-you can call \texttt{knitr::knit()} to compile Rmd to Markdown
-(\texttt{*.md}) in this R script instead of using
-\texttt{rmarkdown::render()}. This feature is designed for advanced
-users who are really familiar with the \textbf{knitr} package\footnote{Honestly,
-  it was originally designed for Yihui himself to build his own website,
-  but he realized this feature could actually free users from Hugo. For
-  example, it is possible to use Jekyll (another popular static site
-  generator) with \textbf{blogdown}, too.} and Hugo or other static
-website generators (see Chapter \ref{other-generators}).
+Para \texttt{method\ =\ \textquotesingle{}custom\textquotesingle{}},
+\texttt{build\_site()} no procesará ningún archivo R Markdown ni llamará
+a Hugo para construir el sitio. No importa qué método elija usar,
+\texttt{build\_site()} siempre buscará un script en R
+\texttt{/R/build.R} y lo ejecutará si existe. Esto le da total libertad
+para hacer lo que quiera para el sitio web. Por ejemplo, puede llamar a
+\texttt{knitr::knit()} para compilar Rmd a Markdown (\texttt{*.md}) en
+este script de R en lugar de usar \texttt{rmarkdown::render()}. Esta
+característica está diseñada para usuarios avanzados que están realmente
+familiarizados con el paquete \textbf{knitr}\footnote{Honestamente,
+  originalmente fue diseñado para que el propio Yihui construya su
+  propio sitio web, pero se dio cuenta de que esta característica podría
+  liberar a los usuarios de Hugo. Por ejemplo, es posible usar Jekyll
+  (otro popular generador de sitios estáticos) con \textbf{blogdown},
+  también.} Y Hugo u otros generadores de sitios web estáticos (ver
+capítulo \ref{otros-generadores}).
 
-When \texttt{R/build.R} exists and
-\texttt{method\ =\ \textquotesingle{}html\textquotesingle{}}, the R
-Markdown files are knitted first, then the script \texttt{R/build.R} is
-executed, and lastly Hugo is called to build the website.
+Cuando \texttt{R/build.R} existe y
+\texttt{method\ =\ \textquotesingle{}html\textquotesingle{}}, los
+archivos R Markdown se tejen primero, luego se ejecuta el script
+\texttt{R/build.R}, y finalmente se llama a Hugo para construir el sitio
+web.
 
 \hypertarget{personal-experience}{%
 \chapter{Personal Experience}\label{personal-experience}}

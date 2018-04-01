@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="livereload.html">
-<link rel="next" href="functions.html">
+<link rel="next" href="funciones.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -207,19 +207,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="C.2" data-path="nombres-de-servidores.html"><a href="nombres-de-servidores.html"><i class="fa fa-check"></i><b>C.2</b> Nombres de servidores</a></li>
 <li class="chapter" data-level="C.3" data-path="resgistro-dns.html"><a href="resgistro-dns.html"><i class="fa fa-check"></i><b>C.3</b> Resgistro DNS</a></li>
 </ul></li>
-<li class="chapter" data-level="D" data-path="advanced-topics.html"><a href="advanced-topics.html"><i class="fa fa-check"></i><b>D</b> Advanced Topics</a><ul>
-<li class="chapter" data-level="D.1" data-path="more-global-options.html"><a href="more-global-options.html"><i class="fa fa-check"></i><b>D.1</b> More global options</a></li>
+<li class="chapter" data-level="D" data-path="topicos-avanzados.html"><a href="topicos-avanzados.html"><i class="fa fa-check"></i><b>D</b> Tópicos avanzados</a><ul>
+<li class="chapter" data-level="D.1" data-path="mas-opciones-globales.html"><a href="mas-opciones-globales.html"><i class="fa fa-check"></i><b>D.1</b> Más opciones globales</a></li>
 <li class="chapter" data-level="D.2" data-path="livereload.html"><a href="livereload.html"><i class="fa fa-check"></i><b>D.2</b> LiveReload</a></li>
-<li class="chapter" data-level="D.3" data-path="local-preview.html"><a href="local-preview.html"><i class="fa fa-check"></i><b>D.3</b> Building a website for local preview</a></li>
-<li class="chapter" data-level="D.4" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>D.4</b> Functions in the blogdown package</a><ul>
-<li class="chapter" data-level="D.4.1" data-path="functions.html"><a href="functions.html#exported-functions"><i class="fa fa-check"></i><b>D.4.1</b> Exported functions</a></li>
-<li class="chapter" data-level="D.4.2" data-path="functions.html"><a href="functions.html#non-exported-functions"><i class="fa fa-check"></i><b>D.4.2</b> Non-exported functions</a></li>
+<li class="chapter" data-level="D.3" data-path="local-preview.html"><a href="local-preview.html"><i class="fa fa-check"></i><b>D.3</b> Construyendo un sitio web para vista previa local</a></li>
+<li class="chapter" data-level="D.4" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>D.4</b> Funciones del paquete de blogdown</a><ul>
+<li class="chapter" data-level="D.4.1" data-path="funciones.html"><a href="funciones.html#funciones-exportadas"><i class="fa fa-check"></i><b>D.4.1</b> Funciones exportadas</a></li>
+<li class="chapter" data-level="D.4.2" data-path="funciones.html"><a href="funciones.html#funciones-no-exportadas"><i class="fa fa-check"></i><b>D.4.2</b> Funciones no exportadas</a></li>
 </ul></li>
-<li class="chapter" data-level="D.5" data-path="dep-path.html"><a href="dep-path.html"><i class="fa fa-check"></i><b>D.5</b> Paths of figures and other dependencies</a></li>
+<li class="chapter" data-level="D.5" data-path="rutas-de-figuras-y-otras-dependencias-dep-path.html"><a href="rutas-de-figuras-y-otras-dependencias-dep-path.html"><i class="fa fa-check"></i><b>D.5</b> Rutas de figuras y otras dependencias {# dep-path}</a></li>
 <li class="chapter" data-level="D.6" data-path="html-widgets.html"><a href="html-widgets.html"><i class="fa fa-check"></i><b>D.6</b> HTML widgets</a></li>
-<li class="chapter" data-level="D.7" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>D.7</b> Version control</a></li>
-<li class="chapter" data-level="D.8" data-path="default-template.html"><a href="default-template.html"><i class="fa fa-check"></i><b>D.8</b> The default HTML template</a></li>
-<li class="chapter" data-level="D.9" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>D.9</b> Different building methods</a></li>
+<li class="chapter" data-level="D.7" data-path="control-de-versiones.html"><a href="control-de-versiones.html"><i class="fa fa-check"></i><b>D.7</b> Control de versiones</a></li>
+<li class="chapter" data-level="D.8" data-path="default-plantilla.html"><a href="default-plantilla.html"><i class="fa fa-check"></i><b>D.8</b> La plantilla por defecto en HTML</a></li>
+<li class="chapter" data-level="D.9" data-path="métodos.html"><a href="métodos.html"><i class="fa fa-check"></i><b>D.9</b> Diferentes métodos de construcción</a></li>
 </ul></li>
 <li class="chapter" data-level="E" data-path="personal-experience.html"><a href="personal-experience.html"><i class="fa fa-check"></i><b>E</b> Personal Experience</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -244,27 +244,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="local-preview" class="section level2">
-<h2><span class="header-section-number">D.3</span> Building a website for local preview</h2>
-<p>The function <code>blogdown::build_site()</code> has an argument <code>local</code> that defaults to <code>FALSE</code>, which means building the website for publishing instead of local previewing. The mode <code>local = TRUE</code> is primarily for <code>blogdown::serve_site()</code> to serve the website locally. There are three major differences between <code>local = FALSE</code> and <code>TRUE</code>. When <code>local = TRUE</code>:</p>
+<h2><span class="header-section-number">D.3</span> Construyendo un sitio web para vista previa local</h2>
+<p>La función <code>blogdown::build_site()</code> tiene un argumento <code>local</code> que por defecto es <code>FALSE</code>, lo que significa construir el sitio web para publicación en lugar de vista previa local. El modo <code>local = TRUE</code> es principalmente para <code>blogdown::serve_site()</code> para presentar el sitio web localmente. Hay tres diferencias principales entre <code>local = FALSE</code> y <code>TRUE</code>. Cuando <code>local = TRUE</code>:</p>
 <ul>
-<li><p>The <code>baseurl</code> option in <code>config.toml</code> is temporarily overridden by <code>&quot;/&quot;</code> even if you have set it to a full URL like <code>&quot;http://www.example.com/&quot;</code>.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> This is because when a website is to be previewed locally, links should refer to local files. For example, <code>/about/index.html</code> should be used instead of the full link <code>http://www.example.com/about/index.html</code>; the function <code>serve_site()</code> knows that <code>/about/index.html</code> means the file under the <code>public/</code> directory, and can fetch it and display the content to you, otherwise your browser will take you to the website <code>http://www.example.com</code> instead of displaying a local file.</p></li>
-<li><p>Draft and future posts are always rendered when <code>local = TRUE</code>, but not when <code>local = FALSE</code>. This is for you to preview draft and future posts locally. If you know the <a href="https://gohugo.io/commands/hugo/">Hugo command line,</a> it means the <code>hugo</code> command is called with the flags <code>-D -F</code>, or equivalently, <code>--buildDrafts --buildFuture</code>.</p></li>
-<li><p>There is a caching mechanism to speed up building your website: an Rmd file will not be recompiled when its <code>*.html</code> output file is newer (in terms of file modification time). If you want to force <code>build_site(local = TRUE)</code> to recompile the Rmd file even if it is older than the HTML output, you need to delete the HTML output, or edit the Rmd file so that its modification time will be newer. This caching mechanism does not apply to <code>local = FALSE</code>, i.e., <code>build_site(local = FALSE)</code> will always recompile all Rmd files, because when you want to publish a site, you may need to recompile everything to make sure the site is fully regenerated. If you have time-consuming code chunks in any Rmd files, you have to use either of these methods to save time:</p>
+<li><p>La opción <code>baseurl</code> en <code>config.toml</code> se reemplaza temporalmente por <code>&quot;/&quot;</code> aunque haya configurado una URL completa como <code>&quot;http://www.example.com/&quot;</code>.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> es porque cuando un sitio web se va a obtener una vista previa localmente, los enlaces deben hacer referencia a los archivos locales. Por ejemplo, se debe usar <code>/about/index.html</code> en lugar del enlace completo<code>http://www.example.com/about/index.html</code>; la función <code>serve_site()</code> sabe que <code>/about/index.html</code> significa el archivo bajo el directorio <code>public/</code>, y puede buscarlo y mostrarle el contenido, de lo contrario, su navegador lo llevará al sitio web <code>http://www.example.com</code> en lugar de mostrar un archivo local.</p></li>
+<li><p>Las publicaciones en borrador y futuras siempre se muestran cuando <code>local = TRUE</code>, pero no cuando <code>local = FALSE</code>. Esto es para que pueda obtener una vista previa del borrador y futuras publicaciones localmente. Si conoce la <a href="https://gohugo.io/commands/hugo/">línea de comandos de Hugo</a> significa que se llama al comando <code>hugo</code> con las banderas <code>-D -F</code>, o equivalentemente, <code>--buildDrafts --buildFuture</code>.</p></li>
+<li><p>Hay un mecanismo de almacenamiento en caché para acelerar la creación de su sitio web: un archivo Rmd no se volverá a compilar cuando su archivo de salida <code>*.html</code> sea más reciente (en términos de tiempo de modificación de archivos). Si desea forzar <code>build_site(local = TRUE)</code> para recompilar el archivo Rmd incluso si es anterior al resultado HTML, debe eliminar el resultado HTML o editar el archivo Rmd para que su hora de modificación sea más reciente. Este mecanismo de almacenamiento en caché no se aplica a <code>local = FALSE</code>, es decir, <code>build_site(local = FALSE)</code>siempre recompilará todos los archivos Rmd, porque cuando desee publicar un sitio, es posible que deba recompilarlo todo para asegurarse de que el sitio está completamente regenerado. Si tiene fragmentos de código que consumen mucho tiempo en cualquier archivo Rmd, debe usar cualquiera de estos métodos para ahorrar tiempo:</p>
 <ul>
-<li><p>Turn on <strong>knitr</strong>’s caching for time-consuming code chunks, i.e., the chunk option <code>cache = TRUE</code>.</p></li>
-<li><p>Do not call <code>build_site()</code>, but <code>blogdown::hugo_build()</code> instead. The latter does not compile any Rmd files, but simply runs the <code>hugo</code> command to build the site. Please use this method only if you are sure that your Rmd files do not need to be recompiled.</p></li>
+<li><p>Active el almacenamiento en caché de <strong>knitr</strong> para la pérdida de tiempo de los trozos de código, i.e., la opción de chunk <code>cache = TRUE</code>.</p></li>
+<li><p>No llame <code>build_site()</code>, sino <code>blogdown::hugo_build()</code> en su lugar . Este último no compila ningún archivo Rmd, simplemente ejecuta el comando <code>hugo</code> para construir el sitio. Utilice este método solo si está seguro de que sus archivos Rmd no necesitan ser recompilados.</p></li>
 </ul></li>
 </ul>
-<p>You do not need to worry about these details if your website is automatically generated from source via a service like Netlify, which will make use of <code>baseurl</code> and not use <code>-D -F</code> by default. If you manually publish the <code>public/</code> folder, you need to be more careful:</p>
+<p>No necesita preocuparse por estos detalles si su sitio web se genera automáticamente desde la fuente a través de un servicio como Netlify, que hará uso de <code>baseurl</code> y no usar <code>-D -F</code> de forma predeterminada. Si publica manualmente la carpeta <code>public/</code>, debe tener más cuidado:</p>
 <ul>
-<li><p>If your website does not work without the full <code>baseurl</code>, or you do not want the draft or future posts to be published, you should not publish the <code>public/</code> directory generated by <code>serve_site()</code>. Always run <code>blogdown::build_site()</code> or <code>blogdown::hugo_build()</code> before you upload this directory to a web server.</p></li>
-<li><p>If your drafts and future posts contain (time-)sensitive information, you are strongly recommended to delete the <code>/public/</code> directory before you rebuild the site for publishing every time, because Hugo never deletes it, and your sensitive information may be rendered by a certain <code>build_site(local = TRUE)</code> call last time and left in the directory. If the website is really important, and you need to make sure you absolutely will not screw up anything every time you publish it, put the <code>/public/</code> directory under version control, so you have a chance to see which files were changed before you publish the new site.</p></li>
+<li><p>Si su sitio web no funciona sin el <code>baseurl</code> completo, o si no desea que se publiquen los borradores o las publicaciones futuras, no debe publicar el directorio <code>public/</code> generado por <code>serve_site()</code>. Siempre ejecute <code>blogdown::build_site()</code> o <code>blogdown::hugo_build()</code> antes de subir este directorio a un servidor web.</p></li>
+<li><p>Si sus borradores y publicaciones futuras contienen información (sensible al tiempo), se recomienda mucho eliminar el directorio <code>/public/</code> antes de reconstruir el sitio para publicarlo todo el tiempo, porque Hugo nunca lo elimina, y su información confidencial puede ser presentada por una determinada llamada <code>build_site(local = TRUE)</code> la última vez y la dejarla en el directorio. Si el sitio web es realmente importante, y necesita asegurarse de que no se arruinará nada cada vez que lo publique, coloque el directorio <code>/public/</code> bajo control de versiones, para que pueda ver qué archivos se cambiaron antes de publicar el nuevo sitio.</p></li>
 </ul>
 </div>
 <div class="footnotes">
 <hr />
 <ol start="44">
-<li id="fn44"><p>If your <code>baseurl</code> contains a subdirectory, it will be overridden by the subdirectory name. For example, for <code>baseurl = &quot;http://www.example.com/project/&quot;</code>, <code>build_site(local = TRUE)</code> will temporarily remove the domain name and only use the value <code>/project/</code>.<a href="local-preview.html#fnref44" class="footnote-back">↩</a></p></li>
+<li id="fn44"><p>Si su <code>baseurl</code> contiene un subdirectorio, será reemplazado por el nombre del subdirectorio. Por ejemplo, para <code>baseurl=&quot; http://www.example.com/project/ &quot;</code>, <code>build_site(local =TRUE)</code> eliminará temporalmente el nombre de dominio y solo usará el valor <code>/project/</code>.<a href="local-preview.html#fnref44" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -273,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="livereload.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="funciones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

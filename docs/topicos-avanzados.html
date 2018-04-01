@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="funciones.html">
-<link rel="next" href="html-widgets.html">
+<link rel="prev" href="resgistro-dns.html">
+<link rel="next" href="mas-opciones-globales.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -213,13 +213,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="D.3" data-path="local-preview.html"><a href="local-preview.html"><i class="fa fa-check"></i><b>D.3</b> Construyendo un sitio web para vista previa local</a></li>
 <li class="chapter" data-level="D.4" data-path="funciones.html"><a href="funciones.html"><i class="fa fa-check"></i><b>D.4</b> Funciones del paquete de blogdown</a><ul>
 <li class="chapter" data-level="D.4.1" data-path="funciones.html"><a href="funciones.html#funciones-exportadas"><i class="fa fa-check"></i><b>D.4.1</b> Funciones exportadas</a></li>
-<li class="chapter" data-level="D.4.2" data-path="funciones.html"><a href="funciones.html#non-exported-functions"><i class="fa fa-check"></i><b>D.4.2</b> Non-exported functions</a></li>
+<li class="chapter" data-level="D.4.2" data-path="funciones.html"><a href="funciones.html#funciones-no-exportadas"><i class="fa fa-check"></i><b>D.4.2</b> Funciones no exportadas</a></li>
 </ul></li>
-<li class="chapter" data-level="D.5" data-path="dep-path.html"><a href="dep-path.html"><i class="fa fa-check"></i><b>D.5</b> Paths of figures and other dependencies</a></li>
+<li class="chapter" data-level="D.5" data-path="rutas-de-figuras-y-otras-dependencias-dep-path.html"><a href="rutas-de-figuras-y-otras-dependencias-dep-path.html"><i class="fa fa-check"></i><b>D.5</b> Rutas de figuras y otras dependencias {# dep-path}</a></li>
 <li class="chapter" data-level="D.6" data-path="html-widgets.html"><a href="html-widgets.html"><i class="fa fa-check"></i><b>D.6</b> HTML widgets</a></li>
-<li class="chapter" data-level="D.7" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>D.7</b> Version control</a></li>
-<li class="chapter" data-level="D.8" data-path="default-template.html"><a href="default-template.html"><i class="fa fa-check"></i><b>D.8</b> The default HTML template</a></li>
-<li class="chapter" data-level="D.9" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>D.9</b> Different building methods</a></li>
+<li class="chapter" data-level="D.7" data-path="control-de-versiones.html"><a href="control-de-versiones.html"><i class="fa fa-check"></i><b>D.7</b> Control de versiones</a></li>
+<li class="chapter" data-level="D.8" data-path="default-plantilla.html"><a href="default-plantilla.html"><i class="fa fa-check"></i><b>D.8</b> La plantilla por defecto en HTML</a></li>
+<li class="chapter" data-level="D.9" data-path="métodos.html"><a href="métodos.html"><i class="fa fa-check"></i><b>D.9</b> Diferentes métodos de construcción</a></li>
 </ul></li>
 <li class="chapter" data-level="E" data-path="personal-experience.html"><a href="personal-experience.html"><i class="fa fa-check"></i><b>E</b> Personal Experience</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -243,33 +243,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="dep-path" class="section level2">
-<h2><span class="header-section-number">D.5</span> Paths of figures and other dependencies</h2>
-<p>One of the most challenging tasks in developing the <strong>blogdown</strong> package is to properly handle dependency files of web pages. If all pages of a website were plain text without dependencies like images or JavaScript libraries, it would be much easier for me to develop the <strong>blogdown</strong> package.</p>
-<p>After <strong>blogdown</strong> compiles each Rmd document to HTML, it will try to detect the dependencies (if there are any) from the HTML source and copy them to the <code>static/</code> folder, so that Hugo will copy them to <code>public/</code> later. The detection depends on the paths of dependencies. By default, all dependencies, like R plots and libraries for HTML widgets, are generated to the <code>foo_files/</code> directory if the Rmd is named <code>foo.Rmd</code>. Specifically, R plots are generated to <code>foo_files/figure-html/</code> and the rest of files under <code>foo_files/</code> are typically from HTML widgets.</p>
-<p>R plots under <code>content/*/foo_files/figure-html/</code> are copied to <code>static/*/foo_files/figure-html/</code>, and the paths in HTML tags like <code>&lt;img src=&quot;foo_files/figure-html/bar.png&quot; /&gt;</code> are substituted with <code>/*/foo_files/figure-html/bar.png</code>. Note the leading slash indicates the root directory of the published website, and the substitution works because Hugo will copy <code>*/foo_files/figure-html/</code> from <code>static/</code> to <code>public/</code>.</p>
-<p>Any other files under <code>foo_files/</code> are treated as dependency files of HTML widgets, and will be copied to <code>static/rmarkdown-libs/</code>. The original paths in HTML will also be substituted accordingly, e.g., from <code>&lt;script src=&quot;foo_files/jquery/jquery.min.js&quot;&gt;</code> to <code>&lt;script src=&quot;/rmarkdown-libs/jquery/jquery.min.js&quot;&gt;</code>. It does not matter whether these files are generated by HTML widgets or not. The links on the published website will be correct and typically hidden from the readers of the pages.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
-<p>You should not modify the <strong>knitr</strong> chunk option <code>fig.path</code> or <code>cache.path</code> unless the above process is completely clear to you, and you want to handle dependencies by yourself.</p>
-<p>In the rare cases when <strong>blogdown</strong> fails to detect and copy some of your dependencies (e.g., you used a fairly sophisticated HTML widget package that writes out files to custom paths), you have two possible choices:</p>
-<ul>
-<li><p>Do not ignore <code>_files$</code> in the option <code>ignoreFiles</code> in <code>config.toml</code>, do not customize the <code>permalinks</code> option, and set the option <code>uglyURLs</code> to <code>true</code>. This way, <strong>blogdown</strong> will not substitute paths that it cannot recognize, and Hugo will copy these files to <code>public/</code>. The relative file locations of the <code>*.html</code> file and its dependencies will remain the same when they are copied to <code>public/</code>, so all links will continue to work.</p></li>
-<li><p>If you choose to ignore <code>_files$</code> or have customized the <code>permalinks</code> option, you need to make sure <strong>blogdown</strong> can recognize the dependencies. One approach is to use the path returned by the helper function <code>blogdown::dep_path()</code> to write out additional dependency files. Basically this function returns the current <code>fig.path</code> option in <strong>knitr</strong>, which defaults to <code>*_files/figure-html/</code>. For example, you can generate a plot manually under <code>dep_path()</code>, and <strong>blogdown</strong> will process it automatically (copy the file and substitute the image path accordingly).</p></li>
-</ul>
-<p>If you do not understand all these technical details, we recommend that you use the first choice, and you will have to sacrifice custom permanent links and clean URLs (e.g., <code>/about.html</code> instead of <code>/about/</code>). With this choice, you can also customize the <code>fig.path</code> option for code chunks if you want.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="45">
-<li id="fn45"><p>For example, a reader will not see the <code>&lt;script&gt;</code> tag on a page, so it does not really matter what its <code>src</code> attribute looks like as long as it is a path that actually exists.<a href="dep-path.html#fnref45" class="footnote-back">↩</a></p></li>
-</ol>
+<div id="topicos-avanzados" class="section level1">
+<h1><span class="header-section-number">D</span> Tópicos avanzados</h1>
+<p>En este apéndice, hablamos de algunos temas avanzados que pueden ser de interés para desarrolladores y usuarios avanzados.</p> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="funciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="html-widgets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="resgistro-dns.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mas-opciones-globales.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
