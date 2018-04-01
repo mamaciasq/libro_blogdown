@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="rmd-website.html">
-<link rel="next" href="r-markdown.html">
+<link rel="prev" href="default-plantilla.html">
+<link rel="next" href="experiencia-personal.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,23 +243,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pkgdown" class="section level2">
-<h2><span class="header-section-number">5.4</span> pkgdown</h2>
-<p>El paquete <strong>pkgdown</strong> (<span class="citation">(<span class="citeproc-not-found" data-reference-id="R-pkgdown"><strong>???</strong></span>)</span>, <a href="https://github.com/hadley/pkgdown" class="uri">https://github.com/hadley/pkgdown</a>) puede ayudarlo a convertir rápidamente la documentación R de un paquete en R (incluidas páginas de ayuda y viñetas) en un sitio web. Es independiente de <strong>blogdown</strong> y resuelve un problema específico. No es un generador de sitios web de propósito general. Queremos mencionarlo en este libro porque es muy fácil de usar y también muy útil. Puede encontrar las instrucciones en su sitio web o en su repositorio de GitHub.</p>
-
+<div id="métodos" class="section level2">
+<h2><span class="header-section-number">D.9</span> Diferentes métodos de construcción</h2>
+<p>Si su sitio web no contiene ningún archivo Rmd, es muy sencillo presentarlo, solo una llamada al sistema al comando <code>hugo</code>. Cuando su sitio web contiene archivos Rmd, <strong>blogdown</strong> ha proporcionado dos métodos de representación para compilar estos archivos Rmd. Se puede construir un sitio web usando la función <code>blogdown::build_site()</code>:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">build_site</span>(<span class="dt">local =</span> <span class="ot">FALSE</span>, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;html&quot;</span>, <span class="st">&quot;custom&quot;</span>),</a>
+<a class="sourceLine" id="cb116-2" data-line-number="2">  <span class="dt">run_hugo =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Como se menciona en la sección <a href="opciones-globales.html#opciones-globales">1.4</a>, el valor predeterminado del argumento <code>método</code> está determinado por la opción global <code>blogdown.method</code>, y puede establecer esta opción en <code>.Rprofile</code>.</p>
+<p>Para <code>method = 'html'</code>,<code>build_site()</code> renderiza <code>*.Rmd</code> a <code>*.html</code>, y <code>*.Rmarkdown</code> a <code>*.markdown</code>, y mantiene los <code>*.html</code>/<code>*.markdown</code> archivos de salida bajo el mismo directorio que los archivos <code>*.Rmd</code>/<code>*.Rmarkdown</code>.</p>
+<p>Un archivo Rmd puede generar dos directorios para figuras (<code>*_files/</code>) y caché (<code>*_caché/</code>), respectivamente, si tiene salida de gráficos o HTML widgets <span class="citation">(Vaidyanathan et al. <a href="#ref-R-htmlwidgets">2018</a>)</span> en los fragmentos de código R, o habilitada la opción de fragmento <code>cache = TRUE</code> para el almacenamiento en caché. En el directorio de figuras, habrá un subdirectorio <code>figure-html/</code> que contiene los archivos de salida de trazado, y posiblemente otros subdirectorios que contengan dependencias HTML de widgets HTML (por ejemplo, <code>jquery/</code>). El directorio de figuras se mueve a <code>/static/</code>, y el directorio de caché se mueve a <code>/blogdown/</code>.</p>
+<p>Después de ejecutar <code>build_site()</code>, su sitio web está listo para ser compilado por Hugo. Esto le da la libertad de usar servicios de implementación como Netlify (capítulo <a href="#implementación"><strong>??</strong></a>), donde ni R ni <strong>blogdown</strong> están disponibles, pero Hugo sí lo está.</p>
+<p>Para <code>method = 'custom'</code>, <code>build_site()</code> no procesará ningún archivo R Markdown ni llamará a Hugo para construir el sitio. No importa qué método elija usar, <code>build_site()</code> siempre buscará un script en R <code>/R/build.R</code> y lo ejecutará si existe. Esto le da total libertad para hacer lo que quiera para el sitio web. Por ejemplo, puede llamar a <code>knitr::knit()</code> para compilar Rmd a Markdown (<code>*.md</code>) en este script de R en lugar de usar <code>rmarkdown::render()</code>. Esta característica está diseñada para usuarios avanzados que están realmente familiarizados con el paquete <strong>knitr</strong><a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> Y Hugo u otros generadores de sitios web estáticos (ver capítulo <a href="otros-generadores.html#otros-generadores">5</a>).</p>
+<p>Cuando <code>R/build.R</code> existe y <code>method = 'html'</code>, los archivos R Markdown se tejen primero, luego se ejecuta el script <code>R/build.R</code>, y finalmente se llama a Hugo para construir el sitio web.</p>
 
 </div>
 <!-- </div> -->
-
-
-
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-R-htmlwidgets">
+<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="46">
+<li id="fn46"><p>Honestamente, originalmente fue diseñado para que el propio Yihui construya su propio sitio web, pero se dio cuenta de que esta característica podría liberar a los usuarios de Hugo. Por ejemplo, es posible usar Jekyll (otro popular generador de sitios estáticos) con <strong>blogdown</strong>, también.<a href="métodos.html#fnref46" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="rmd-website.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="default-plantilla.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="experiencia-personal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -289,7 +305,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown05-custom.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],

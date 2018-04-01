@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="rmd-website.html">
-<link rel="next" href="r-markdown.html">
+<link rel="prev" href="métodos.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,23 +243,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="pkgdown" class="section level2">
-<h2><span class="header-section-number">5.4</span> pkgdown</h2>
-<p>El paquete <strong>pkgdown</strong> (<span class="citation">(<span class="citeproc-not-found" data-reference-id="R-pkgdown"><strong>???</strong></span>)</span>, <a href="https://github.com/hadley/pkgdown" class="uri">https://github.com/hadley/pkgdown</a>) puede ayudarlo a convertir rápidamente la documentación R de un paquete en R (incluidas páginas de ayuda y viñetas) en un sitio web. Es independiente de <strong>blogdown</strong> y resuelve un problema específico. No es un generador de sitios web de propósito general. Queremos mencionarlo en este libro porque es muy fácil de usar y también muy útil. Puede encontrar las instrucciones en su sitio web o en su repositorio de GitHub.</p>
-
+<div id="experiencia-personal" class="section level1">
+<h1><span class="header-section-number">E</span> Experiencia personal</h1>
+<p>Empecé a bloguear en blogchina.com en 2005, me mudé a blog.com.cn, luego a MSN Space, y finalmente compré mi propio dominio <code>yihui.name</code> y un host virtual. Primero usé una aplicación PHP llamada Bo-Blog, luego cambié a WordPress, y luego a Jekyll. Finalmente me mudé a Hugo. Aunque me he mudado varias veces, todas mis publicaciones se han conservado, y todavía se puede ver mi primera publicación en chino en 2005. A menudo hago mi mejor esfuerzo para no introducir enlaces rotos (que conducen a la página 404) cada vez que cambio la publicación backend de mi sitio web. Cuando sea demasiado difícil preservar los enlaces originales de ciertas páginas, redirigiré las URL rotas a las nuevas URL. Es por eso que es importante que su sistema admita redirecciones, y en particular, 301 redirecciones (Netlify hace un buen trabajo aquí). Estas son algunas de mis reglas de redireccionamiento: <a href="https://github.com/rbind/yihui/blob/master/static/_redirects" class="uri">https://github.com/rbind/yihui/blob/master/static/_redirects</a>. Por ejemplo, <code>http://yihui.name/en/feed/</code> era la fuente RSS de mis viejos blogs de WordPress y Jekyll en inglés, y Hugo genera la fuente RSS a <code>/en/index.xml</code> en su lugar, así que necesita redirigir <code>/en/feed/</code> a <code>/en/index.xml</code>.</p>
+<p>Google ha proporcionado varias herramientas para ayudarlo a obtener más información sobre su sitio web. Por ejemplo, <a href="https://analytics.google.com">Google Analytics</a> puede recopilar estadísticas de visitantes y dar sugerencias de velocidad para su sitio web. <a href="https://www.google.com/webmasters/">Google Webmasters</a> puede mostrarle los enlaces rotos que encuentra. Uso estas herramientas con frecuencia.</p>
+<p>Creo firmemente en el valor de escribir. Con los años, he escrito más de 1000 publicaciones en chino e inglés. Algunos son largos, y la mayoría son cortos. El tamaño total de estos archivos de texto es de aproximadamente 5 Mb. En retrospectiva, la mayoría de los mensajes probablemente no son valiosos para los lectores en general (algunos son pensamientos aleatorios, y algunos son mis discursos), pero creo que me beneficié mucho de escribir en dos aspectos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Si me siento y me concentro en escribir un tema pequeño por un tiempo, a menudo siento que mis pensamientos serán más claros. Una gran diferencia entre escribir y hablar es que siempre puedes reorganizar las cosas y revisarlas al escribir. No creo que escribir en redes sociales cuente. 140 caracteres bien pueden ser reflexivos, pero siento que hay mucho caos allí. Es difícil plantear pensamientos sistemáticos solo a través de mensajes cortos, y estos mensajes rápidos a menudo se olvidan rápidamente.</p></li>
+<li><p>Sé que algunos bloggers están en contra de los comentarios, por lo que no abren comentarios al público. Todavía no he tenido una experiencia muy negativa con los comentarios. Por el contrario, constantemente encuentro inspiraciones de los comentarios. Por ejemplo, <a href="https://yihui.name/en/2013/04/travis-ci-for-r/">Estaba pensando</a> si era posible verificar automáticamente los paquetes en R en la nube a través de Travis CI. En ese momento (abril de 2013), creo que no mucha gente en la comunidad R había comenzado a usar Travis CI, aunque no estoy seguro si fui la primera persona que experimentó con esta idea. Sentí que Travis CI podría ser prometedor, pero no fue compatible con R en ese momento. Alguien llamado Vincent Arel-Bundock (todavía no lo conozco) me contó un truco en un comentario, que de repente me iluminó y rápidamente descubrí una solución. En octubre de 2013, Craig Citro comenzó un trabajo más sólido en el apoyo de R en Travis CI. No sé si vio mi publicación en el blog. De todos modos, creo que Travis CI ha tenido un impacto sustancial en los desarrolladores de paquetes en R, que es algo grandioso para la comunidad de R.</p></li>
+</ol>
+<p>Otro beneficio relativamente pequeño es que a menudo voy a mis propios posts para aprender algunas cosas técnicas que he olvidado. Por ejemplo, me resulta difícil recordar la sintaxis de diferentes tipos de aserciones de ancho cero en expresiones regulares similares a Perl: <code>(?=...)</code>, <code>(?!...)</code>, <code>(?&lt;=...)</code>, y<code>(?&lt;!...)</code>. Así que escribí una breve publicación en el blog y me di algunos ejemplos mínimos. Después de volver a esa publicación varias veces, finalmente puedo recordar cómo usar estas expresiones regulares.</p>
 
 </div>
-<!-- </div> -->
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="rmd-website.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="métodos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -289,7 +291,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown05-custom.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown10-experience.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],
