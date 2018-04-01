@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="funciones.html">
-<link rel="next" href="html-widgets.html">
+<link rel="prev" href="experiencia-personal.html">
+
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
@@ -243,33 +243,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rutas-de-figuras-y-otras-dependencias-dep-path" class="section level2">
-<h2><span class="header-section-number">D.5</span> Rutas de figuras y otras dependencias {# dep-path}</h2>
-<p>Una de las tareas más desafiantes en el desarrollo del paquete <strong>blogdown</strong> es manejar adecuadamente los archivos de dependencia  de las páginas web. Si todas las páginas de un sitio web estuvieran en texto plano sin dependencias como imágenes o librerías de JavaScript, hubiera sido mucho más fácil desarrollar el paquete <strong>blogdown</strong>.</p>
-<p>Después de que <strong>blogdown</strong> compila cada documento Rmd en HTML, intentará detectar las dependencias (si las hay) del código fuente HTML y las copiará en la carpeta <code>static/</code>, para que Hugo las copie luego en <code>public/</code> . La detección depende de las rutas de las dependencias. De forma predeterminada, todas las dependencias, como las representaciones R y las librerías para HTML widgets, se generan en el directorio <code>foo_files/</code> si la Rmd se llama <code>foo.Rmd</code>. Específicamente, los gráficos R se generan a <code>foo_files/figure-html/</code> y el resto de los archivos bajo <code>foo_files/</code> son típicamente de HTML widgets.</p>
-<p>Los gráficos de R bajo <code>content/*/foo_files/figure-html/</code> se copian a <code>static/*/foo_files/figure-html/</code>, y las rutas en las etiquetas HTML como <code>&lt;img src=&quot;foo_files/figure-html/bar.png&quot;/&gt;</code> se sustituyen por <code>/*/foo_files/figure-html/bar.png</code>. Tenga en cuenta que la barra diagonal indica el directorio raíz del sitio web publicado, y la sustitución funciona porque Hugo copiará <code>*/foo_files/figure-html/</code> de <code>static/</code> a <code>public/</code>.</p>
-<p>Cualquier otro archivo bajo <code>foo_files/</code> se trata como archivo de dependencia de HTML widgets, y se copiará a <code>static/rmarkdown-libs/</code>. Las rutas originales en HTML también serán sustituidos en consecuencia, por ejemplo, del <code>&lt;script src = &quot;foo_files/jquery/jquery.min.js&quot;&gt;</code> a <code>&lt;script src =&quot;/rmarkdown-libs/jquery/jquery.min.js &quot;&gt;</code>. No importa si estos archivos son generados por HTML widgets o no. Los enlaces en el sitio web publicado serán correctos y normalmente ocultos a los lectores de las páginas.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a></p>
-<p>No debe modificar la opción <strong>knitr</strong> chunk <code>fig.path</code> o <code>cache.path</code> a menos que el proceso anterior sea completamente claro para usted, y quiera manejar las dependencias usted mismo.</p>
-<p>En los casos poco frecuentes en los que <strong>blogdown</strong> no detecta y copia algunas de sus dependencias (p. ej., osó un paquete de HTML widgets bastante sofisticado que escribe archivos en rutas personalizadas), tiene dos opciones posibles:</p>
-<ul>
-<li><p>No ignore <code>_files$</code> en la opción <code>ignoreFiles</code> en <code>config.toml</code>, no personalice la opción <code>permalinks</code>, y configure la opción <code>uglyURLs</code> en <code>true</code>. De esta forma, <strong>blogdown</strong> no sustituirá las rutas que no puede reconocer, y Hugo copiará estos archivos a <code>public/</code>. Las ubicaciones de archivo relativas del archivo <code>*.html</code> y sus dependencias seguirán siendo las mismas cuando se copien en <code>public/</code>, de modo que todos los enlaces continuarán funcionando.</p></li>
-<li><p>Si elige ignorar <code>_files$</code> o ha personalizado la opción <code>permalinks</code>, debe asegurarse de que <strong>blogdown</strong> pueda reconocer las dependencias. Un enfoque es usar la ruta devuelta por la función auxiliar <code>blogdown::dep_path()</code> para escribir archivos de dependencia adicionales. Básicamente, esta función devuelve la opción actual <code>fig.path</code> en <strong>knitr</strong>, que por defecto es <code>*_files/figure-html/</code>. Por ejemplo, puede generar un trazado manualmente bajo <code>dep_path()</code>, y <strong>blogdown</strong> lo procesará automáticamente (copie el archivo y sustituya la ruta de la imagen).</p></li>
-</ul>
-<p>Si no entiende todos estos detalles técnicos, le recomendamos que use la primera opción, y deberá sacrificar los enlaces permanentes personalizados y las URL limpias (por ejemplo, <code>/about.html</code> en lugar de <code>/about/</code>). Con esta opción, también puede personalizar la opción <code>fig.path</code> para fragmentos de código si lo desea.</p>
+<div id="referencias" class="section level1 unnumbered">
+<h1>Referencias</h1>
+
+<div id="refs" class="references">
+<div>
+<p>Allaire, JJ, Yihui Xie, Jonathan McPherson, Javier Luraschi, Kevin Ushey, Aron Atkins, Hadley Wickham, Joe Cheng, and Winston Chang. 2018. <em>Rmarkdown: Dynamic Documents for R</em>. <a href="https://CRAN.R-project.org/package=rmarkdown" class="uri">https://CRAN.R-project.org/package=rmarkdown</a>.</p>
 </div>
-<div class="footnotes">
-<hr />
-<ol start="45">
-<li id="fn45"><p>Por ejemplo, un lector no verá la etiqueta <code>&lt;script&gt;</code> en una página, por lo que realmente no importa lo que su atributo <code>src</code> parece siempre que sea una ruta que realmente existe.<a href="rutas-de-figuras-y-otras-dependencias-dep-path.html#fnref45" class="footnote-back">↩</a></p></li>
-</ol>
+<div>
+<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
 </div>
+<div>
+<p>Vaidyanathan, Ramnath, Yihui Xie, JJ Allaire, Joe Cheng, and Kenton Russell. 2018. <em>Htmlwidgets: HTML Widgets for R</em>. <a href="https://CRAN.R-project.org/package=htmlwidgets" class="uri">https://CRAN.R-project.org/package=htmlwidgets</a>.</p>
+</div>
+<div>
+<p>Xie, Yihui. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+<div>
+<p>———. 2018a. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown" class="uri">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+<div>
+<p>———. 2018b. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://CRAN.R-project.org/package=knitr" class="uri">https://CRAN.R-project.org/package=knitr</a>.</p>
+</div>
+<div>
+<p>———. 2018c. <em>Servr: A Simple Http Server to Serve Static Files or Dynamic Documents</em>. <a href="https://CRAN.R-project.org/package=servr" class="uri">https://CRAN.R-project.org/package=servr</a>.</p>
+</div>
+<div>
+<p>———. 2018d. <em>Xaringan: Presentation Ninja</em>. <a href="https://CRAN.R-project.org/package=xaringan" class="uri">https://CRAN.R-project.org/package=xaringan</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="funciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="html-widgets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="experiencia-personal.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -299,7 +360,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mamaciasq/libro_blogdown09-advanced.Rmd",
+"link": "https://github.com/mamaciasq/libro_blogdown11-references.Rmd",
 "text": "Edit"
 },
 "download": ["blogdown.pdf", "blogdown.epub"],
